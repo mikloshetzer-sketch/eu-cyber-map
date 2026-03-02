@@ -1,0 +1,7 @@
+[
+  { "id": 1, "title": "DDoS hullám – eGov", "type": "DDoS", "date": "2025-02-12", "country": "EE", "lat": 59.437, "lon": 24.7536 },
+  { "id": 2, "title": "Ransomware – egészségügy", "type": "Ransomware", "date": "2025-06-03", "country": "DE", "lat": 52.52, "lon": 13.405 },
+  { "id": 3, "title": "Phishing kampány – banki ügyfelek", "type": "Phishing", "date": "2025-09-18", "country": "HU", "lat": 47.4979, "lon": 19.0402 },
+  { "id": 4, "title": "Adatszivárgás – szolgáltató", "type": "DataLeak", "date": "2026-01-10", "country": "FR", "lat": 48.8566, "lon": 2.3522 },
+  { "id": 5, "title": "Supply-chain gyanú – szoftver", "type": "SupplyChain", "date": "2026-02-05", "country": "NL", "lat": 52.3676, "lon": 4.9041 }
+]

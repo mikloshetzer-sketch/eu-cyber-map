@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>EU Kiberbiztonsági Térkép</title>
 
-  <!-- Leaflet (térkép könyvtár) -->
+  <!-- Leaflet -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -19,34 +19,310 @@
   ></script>
 
   <style>
-    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-    header { padding: 12px 16px; border-bottom: 1px solid #eee; }
-    #map { height: calc(100vh - 58px); }
-    .hint { color: #666; font-size: 14px; margin-top: 4px; }
+    :root{
+      --bg: #070a12;
+      --panel: rgba(12, 18, 34, .82);
+      --border: rgba(110, 231, 255, .18);
+      --text: rgba(235, 245, 255, .92);
+      --muted: rgba(235, 245, 255, .65);
+      --neon: rgba(110, 231, 255, .9);
+      --neon2: rgba(167, 139, 250, .9);
+    }
+
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    #map { height: 100vh; }
+
+    /* Cyber panel */
+    .panel {
+      position: absolute;
+      z-index: 999;
+      top: 14px;
+      left: 14px;
+      width: min(360px, calc(100vw - 28px));
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px 12px 10px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.35);
+    }
+    .title {
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      margin-bottom: 8px;
+    }
+    .title h1 {
+      margin: 0;
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .badge{
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 8px;
+      border-radius: 999px;
+    }
+
+    .row { display:flex; gap:10px; align-items:center; margin: 10px 0; }
+    .row label { font-size: 12px; color: var(--muted); min-width: 86px; }
+    select, input[type="date"]{
+      width: 100%;
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 10px;
+      padding: 8px 10px;
+      outline: none;
+    }
+    .checks{ display:flex; flex-wrap: wrap; gap:10px; margin-top: 6px; }
+    .checks label{ min-width: unset; color: var(--text); font-size: 12px; display:flex; gap:8px; align-items:center; }
+    input[type="checkbox"]{ accent-color: rgba(110,231,255,.95); }
+
+    .btns{ display:flex; gap:10px; margin-top: 10px; }
+    button{
+      width: 100%;
+      cursor: pointer;
+      background: rgba(110,231,255,.10);
+      color: var(--text);
+      border: 1px solid rgba(110,231,255,.25);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 600;
+      letter-spacing: .02em;
+    }
+    button:hover{ background: rgba(110,231,255,.16); }
+
+    .hint{
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    /* Neon marker */
+    .neon-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: rgba(110, 231, 255, .95);
+      box-shadow:
+        0 0 0 4px rgba(110, 231, 255, .15),
+        0 0 18px rgba(110, 231, 255, .65),
+        0 0 34px rgba(167, 139, 250, .22);
+      border: 1px solid rgba(255,255,255,.35);
+    }
+
+    /* Popup vibe */
+    .leaflet-popup-content-wrapper{
+      background: rgba(10, 14, 28, .92);
+      color: var(--text);
+      border: 1px solid rgba(110,231,255,.18);
+      border-radius: 14px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.5);
+    }
+    .leaflet-popup-tip{ background: rgba(10, 14, 28, .92); }
+    .pop-title{ font-weight: 800; letter-spacing: .02em; margin-bottom: 4px; }
+    .pop-meta{ color: var(--muted); font-size: 12px; }
+    .pop-tag{
+      display:inline-block; margin-top: 8px;
+      border: 1px solid rgba(167,139,250,.28);
+      background: rgba(167,139,250,.10);
+      padding: 3px 8px; border-radius: 999px;
+      font-size: 12px;
+    }
   </style>
 </head>
-<body>
-  <header>
-    <div><strong>EU Kiberbiztonsági Térkép</strong></div>
-    <div class="hint">1. lépés: alap EU-térkép GitHub Pages-en. Következőben jönnek az adatrétegek és szűrők.</div>
-  </header>
 
+<body>
   <div id="map"></div>
 
-  <script>
-    // EU középpont környéke
-    const map = L.map("map").setView([54.5, 15.0], 4);
+  <div class="panel">
+    <div class="title">
+      <h1>EU Cyber Map</h1>
+      <div class="badge" id="countBadge">— incidens</div>
+    </div>
 
-    // Ingyenes, stabil térképcsempék (OpenStreetMap)
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 18,
-      attribution: '&copy; OpenStreetMap közreműködők'
+    <div class="checks">
+      <label><input type="checkbox" id="toggleIncidents" checked> Incidensek</label>
+      <label><input type="checkbox" id="toggleIndex"> Országos index</label>
+    </div>
+
+    <div class="row">
+      <label for="typeFilter">Típus</label>
+      <select id="typeFilter">
+        <option value="ALL">Összes</option>
+        <option value="DDoS">DDoS</option>
+        <option value="Ransomware">Ransomware</option>
+        <option value="Phishing">Phishing</option>
+        <option value="DataLeak">Adatszivárgás</option>
+        <option value="SupplyChain">Ellátási lánc</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label for="fromDate">Mettől</label>
+      <input type="date" id="fromDate">
+    </div>
+    <div class="row">
+      <label for="toDate">Meddig</label>
+      <input type="date" id="toDate">
+    </div>
+
+    <div class="btns">
+      <button id="applyBtn">Szűrés</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+
+    <div class="hint">
+      Következő lépésben: incidensek betöltése <code>incidents.json</code>-ból, ország-határok overlay, és valódi országindex-adatok (EU/NIS2, ENISA, stb.).
+    </div>
+  </div>
+
+  <script>
+    // ---- 1) Térkép (sötét "cyber" csempék) ----
+    const map = L.map("map", { zoomControl: true }).setView([54.5, 15.0], 4);
+
+    // CARTO Dark basemap (stabil, ingyenes)
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap &copy; CARTO'
     }).addTo(map);
 
-    // Teszt jelölő (Budapest)
-    L.marker([47.4979, 19.0402]).addTo(map)
-      .bindPopup("Teszt pont: Budapest")
-      .openPopup();
+    // ---- 2) Minta incidens adatok (később ezt fájlból töltjük) ----
+    // country: ISO2 (később jól fog jönni az országos összesítéshez / indexhez)
+    const INCIDENTS = [
+      { id: 1, title: "DDoS hullám – eGov", type: "DDoS", date: "2025-02-12", country: "EE", lat: 59.437, lon: 24.7536 },
+      { id: 2, title: "Ransomware – egészségügy", type: "Ransomware", date: "2025-06-03", country: "DE", lat: 52.52, lon: 13.405 },
+      { id: 3, title: "Phishing kampány – banki ügyfelek", type: "Phishing", date: "2025-09-18", country: "HU", lat: 47.4979, lon: 19.0402 },
+      { id: 4, title: "Adatszivárgás – szolgáltató", type: "DataLeak", date: "2026-01-10", country: "FR", lat: 48.8566, lon: 2.3522 },
+      { id: 5, title: "Supply-chain gyanú – szoftver", type: "SupplyChain", date: "2026-02-05", country: "NL", lat: 52.3676, lon: 4.9041 }
+    ];
+
+    // ---- 3) Incidensek réteg (LayerGroup) ----
+    const incidentsLayer = L.layerGroup();
+    const neonIcon = L.divIcon({
+      className: "",
+      html: '<div class="neon-dot"></div>',
+      iconSize: [14, 14],
+      iconAnchor: [7, 7]
+    });
+
+    function inDateRange(d, from, to){
+      if (!from && !to) return true;
+      const t = new Date(d).getTime();
+      if (from){
+        const f = new Date(from).getTime();
+        if (t < f) return false;
+      }
+      if (to){
+        const tt = new Date(to).getTime();
+        if (t > tt) return false;
+      }
+      return true;
+    }
+
+    function renderIncidents(){
+      incidentsLayer.clearLayers();
+
+      const typeValue = document.getElementById("typeFilter").value;
+      const fromDate = document.getElementById("fromDate").value;
+      const toDate = document.getElementById("toDate").value;
+
+      const filtered = INCIDENTS.filter(x => {
+        const typeOk = (typeValue === "ALL") ? true : (x.type === typeValue);
+        const dateOk = inDateRange(x.date, fromDate, toDate);
+        return typeOk && dateOk;
+      });
+
+      filtered.forEach(x => {
+        const marker = L.marker([x.lat, x.lon], { icon: neonIcon });
+
+        marker.bindPopup(`
+          <div class="pop-title">${x.title}</div>
+          <div class="pop-meta">Dátum: <strong>${x.date}</strong> · Ország: <strong>${x.country}</strong></div>
+          <div class="pop-tag">${x.type}</div>
+        `);
+
+        incidentsLayer.addLayer(marker);
+      });
+
+      document.getElementById("countBadge").textContent = `${filtered.length} incidens`;
+    }
+
+    // ---- 4) Országos index réteg (GeoJSON) – ki/be kapcsolható ----
+    // Demo index: 0..100 (később cseréljük valódi adatra)
+    const COUNTRY_INDEX = {
+      "DE": 78, "FR": 74, "NL": 80, "EE": 82, "HU": 62, "IT": 68, "ES": 70, "PL": 64, "SE": 79
+    };
+
+    function indexColor(v){
+      // egyszerű skála (sötét -> neon): alacsonyabb v = sötétebb
+      if (v == null) return "rgba(255,255,255,.05)";
+      if (v >= 80) return "rgba(110,231,255,.35)";
+      if (v >= 70) return "rgba(167,139,250,.28)";
+      if (v >= 60) return "rgba(110,231,255,.18)";
+      return "rgba(255,255,255,.10)";
+    }
+
+    let indexLayer = null;
+    async function ensureIndexLayer(){
+      if (indexLayer) return indexLayer;
+
+      // EU/európai országok GeoJSON (demóhoz jó; később cserélhetjük EU27-re + overlay határokra)
+      const url = "https://raw.githubusercontent.com/Leaflet/Leaflet.VectorGrid/master/docs/eu-countries.geo.json";
+
+      const resp = await fetch(url);
+      const geo = await resp.json();
+
+      indexLayer = L.geoJSON(geo, {
+        style: (feature) => {
+          const iso2 = feature?.properties?.iso_a2; // pl. "HU"
+          const v = COUNTRY_INDEX[iso2];
+          return {
+            color: "rgba(110,231,255,.18)",
+            weight: 1,
+            fillColor: indexColor(v),
+            fillOpacity: 1
+          };
+        },
+        onEachFeature: (feature, layer) => {
+          const iso2 = feature?.properties?.iso_a2;
+          const name = feature?.properties?.name || "Ismeretlen";
+          const v = COUNTRY_INDEX[iso2];
+          layer.bindTooltip(`${name} (${iso2}) — index: ${v ?? "n/a"}`, { sticky: true, opacity: 0.95 });
+        }
+      });
+
+      return indexLayer;
+    }
+
+    // ---- 5) UI események ----
+    document.getElementById("applyBtn").addEventListener("click", () => {
+      renderIncidents();
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      document.getElementById("typeFilter").value = "ALL";
+      document.getElementById("fromDate").value = "";
+      document.getElementById("toDate").value = "";
+      renderIncidents();
+    });
+
+    document.getElementById("toggleIncidents").addEventListener("change", (e) => {
+      if (e.target.checked) incidentsLayer.addTo(map);
+      else map.removeLayer(incidentsLayer);
+    });
+
+    document.getElementById("toggleIndex").addEventListener("change", async (e) => {
+      const layer = await ensureIndexLayer();
+      if (e.target.checked) layer.addTo(map);
+      else map.removeLayer(layer);
+    });
+
+    // ---- 6) Indulás ----
+    incidentsLayer.addTo(map);
+    renderIncidents();
   </script>
 </body>
 </html>

@@ -32,7 +32,6 @@
     body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
     #map { height: 100vh; }
 
-    /* Cyber panel */
     .panel {
       position: absolute;
       z-index: 999;
@@ -101,7 +100,6 @@
       line-height: 1.35;
     }
 
-    /* Neon marker */
     .neon-dot {
       width: 14px; height: 14px;
       border-radius: 50%;
@@ -113,7 +111,6 @@
       border: 1px solid rgba(255,255,255,.35);
     }
 
-    /* Popup vibe */
     .leaflet-popup-content-wrapper{
       background: rgba(10, 14, 28, .92);
       color: var(--text);
@@ -175,7 +172,7 @@
     </div>
 
     <div class="hint">
-      Következő lépésben: incidensek betöltése <code>incidents.json</code>-ból, ország-határok overlay, és valódi országindex-adatok (EU/NIS2, ENISA, stb.).
+      Következő lépés: ország-centrum fallback (ha nincs lat/lon), ország-határok overlay külön rétegként, és jelmagyarázat az indexhez.
     </div>
   </div>
 
@@ -183,21 +180,20 @@
     // ---- 1) Térkép (sötét "cyber" csempék) ----
     const map = L.map("map", { zoomControl: true }).setView([54.5, 15.0], 4);
 
-    // CARTO Dark basemap (stabil, ingyenes)
     L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
       maxZoom: 19,
       attribution: '&copy; OpenStreetMap &copy; CARTO'
     }).addTo(map);
 
-    // ---- 2) Minta incidens adatok (később ezt fájlból töltjük) ----
-    // country: ISO2 (később jól fog jönni az országos összesítéshez / indexhez)
-    const INCIDENTS = [
-      { id: 1, title: "DDoS hullám – eGov", type: "DDoS", date: "2025-02-12", country: "EE", lat: 59.437, lon: 24.7536 },
-      { id: 2, title: "Ransomware – egészségügy", type: "Ransomware", date: "2025-06-03", country: "DE", lat: 52.52, lon: 13.405 },
-      { id: 3, title: "Phishing kampány – banki ügyfelek", type: "Phishing", date: "2025-09-18", country: "HU", lat: 47.4979, lon: 19.0402 },
-      { id: 4, title: "Adatszivárgás – szolgáltató", type: "DataLeak", date: "2026-01-10", country: "FR", lat: 48.8566, lon: 2.3522 },
-      { id: 5, title: "Supply-chain gyanú – szoftver", type: "SupplyChain", date: "2026-02-05", country: "NL", lat: 52.3676, lon: 4.9041 }
-    ];
+    // ---- 2) Incidensek betöltése fájlból ----
+    let INCIDENTS = [];
+
+    async function loadIncidents(){
+      const resp = await fetch("./data/incidents.json", { cache: "no-store" });
+      if (!resp.ok) throw new Error("Nem sikerült betölteni: data/incidents.json");
+      const data = await resp.json();
+      INCIDENTS = Array.isArray(data) ? data : [];
+    }
 
     // ---- 3) Incidensek réteg (LayerGroup) ----
     const incidentsLayer = L.layerGroup();
@@ -232,16 +228,17 @@
       const filtered = INCIDENTS.filter(x => {
         const typeOk = (typeValue === "ALL") ? true : (x.type === typeValue);
         const dateOk = inDateRange(x.date, fromDate, toDate);
-        return typeOk && dateOk;
+        const coordOk = Number.isFinite(x.lat) && Number.isFinite(x.lon);
+        return typeOk && dateOk && coordOk;
       });
 
       filtered.forEach(x => {
         const marker = L.marker([x.lat, x.lon], { icon: neonIcon });
 
         marker.bindPopup(`
-          <div class="pop-title">${x.title}</div>
-          <div class="pop-meta">Dátum: <strong>${x.date}</strong> · Ország: <strong>${x.country}</strong></div>
-          <div class="pop-tag">${x.type}</div>
+          <div class="pop-title">${x.title ?? "Incidens"}</div>
+          <div class="pop-meta">Dátum: <strong>${x.date ?? "n/a"}</strong> · Ország: <strong>${x.country ?? "n/a"}</strong></div>
+          <div class="pop-tag">${x.type ?? "n/a"}</div>
         `);
 
         incidentsLayer.addLayer(marker);
@@ -251,13 +248,11 @@
     }
 
     // ---- 4) Országos index réteg (GeoJSON) – ki/be kapcsolható ----
-    // Demo index: 0..100 (később cseréljük valódi adatra)
     const COUNTRY_INDEX = {
       "DE": 78, "FR": 74, "NL": 80, "EE": 82, "HU": 62, "IT": 68, "ES": 70, "PL": 64, "SE": 79
     };
 
     function indexColor(v){
-      // egyszerű skála (sötét -> neon): alacsonyabb v = sötétebb
       if (v == null) return "rgba(255,255,255,.05)";
       if (v >= 80) return "rgba(110,231,255,.35)";
       if (v >= 70) return "rgba(167,139,250,.28)";
@@ -269,15 +264,13 @@
     async function ensureIndexLayer(){
       if (indexLayer) return indexLayer;
 
-      // EU/európai országok GeoJSON (demóhoz jó; később cserélhetjük EU27-re + overlay határokra)
       const url = "https://raw.githubusercontent.com/Leaflet/Leaflet.VectorGrid/master/docs/eu-countries.geo.json";
-
       const resp = await fetch(url);
       const geo = await resp.json();
 
       indexLayer = L.geoJSON(geo, {
         style: (feature) => {
-          const iso2 = feature?.properties?.iso_a2; // pl. "HU"
+          const iso2 = feature?.properties?.iso_a2;
           const v = COUNTRY_INDEX[iso2];
           return {
             color: "rgba(110,231,255,.18)",
@@ -322,7 +315,16 @@
 
     // ---- 6) Indulás ----
     incidentsLayer.addTo(map);
-    renderIncidents();
+
+    (async () => {
+      try {
+        await loadIncidents();
+        renderIncidents();
+      } catch (err) {
+        console.error(err);
+        document.getElementById("countBadge").textContent = "Hiba: incidensek nem töltődtek be";
+      }
+    })();
   </script>
 </body>
 </html>

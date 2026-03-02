@@ -27,6 +27,7 @@
       --muted: rgba(235, 245, 255, .65);
       --neon: rgba(110, 231, 255, .9);
       --neon2: rgba(167, 139, 250, .9);
+      --warn: rgba(251, 191, 36, .95);
     }
 
     body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
@@ -37,7 +38,7 @@
       z-index: 999;
       top: 14px;
       left: 14px;
-      width: min(360px, calc(100vw - 28px));
+      width: min(380px, calc(100vw - 28px));
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -128,6 +129,46 @@
       padding: 3px 8px; border-radius: 999px;
       font-size: 12px;
     }
+    .pop-warn{
+      display:inline-block; margin-top: 8px; margin-left: 8px;
+      border: 1px solid rgba(251,191,36,.35);
+      background: rgba(251,191,36,.12);
+      color: rgba(255,240,210,.95);
+      padding: 3px 8px; border-radius: 999px;
+      font-size: 12px;
+    }
+
+    /* Legend control */
+    .legend {
+      background: rgba(12, 18, 34, .82);
+      border: 1px solid rgba(110, 231, 255, .18);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 10px 10px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.35);
+      backdrop-filter: blur(8px);
+      min-width: 170px;
+    }
+    .legend .head{
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .legend .item{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size: 12px;
+      color: var(--text);
+      margin: 6px 0;
+    }
+    .legend .swatch{
+      width: 18px; height: 12px;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,.14);
+    }
   </style>
 </head>
 
@@ -143,6 +184,7 @@
     <div class="checks">
       <label><input type="checkbox" id="toggleIncidents" checked> Incidensek</label>
       <label><input type="checkbox" id="toggleIndex"> Országos index</label>
+      <label><input type="checkbox" id="toggleBorders"> Országhatárok</label>
     </div>
 
     <div class="row">
@@ -172,7 +214,7 @@
     </div>
 
     <div class="hint">
-      Következő lépés: ország-centrum fallback (ha nincs lat/lon), ország-határok overlay külön rétegként, és jelmagyarázat az indexhez.
+      Újdonság: ha az incidensben nincs <code>lat/lon</code>, de van <code>country</code>, automatikusan ország-középpontra kerül. + külön kapcsolható országhatárok és index legenda.
     </div>
   </div>
 
@@ -185,7 +227,35 @@
       attribution: '&copy; OpenStreetMap &copy; CARTO'
     }).addTo(map);
 
-    // ---- 2) Incidensek betöltése fájlból ----
+    // ---- 2) Közös ország-GeoJSON + centroid map (egyszer töltjük le, és minden réteg ezt használja) ----
+    const COUNTRIES_GEOJSON_URL = "https://raw.githubusercontent.com/Leaflet/Leaflet.VectorGrid/master/docs/eu-countries.geo.json";
+
+    let countriesGeo = null;          // a teljes GeoJSON
+    let countryCentroids = null;      // { "HU": {lat, lon}, ... }
+
+    async function ensureCountriesData(){
+      if (countriesGeo && countryCentroids) return { countriesGeo, countryCentroids };
+
+      const resp = await fetch(COUNTRIES_GEOJSON_URL, { cache: "force-cache" });
+      if (!resp.ok) throw new Error("Nem sikerült betölteni az ország GeoJSON-t.");
+      countriesGeo = await resp.json();
+
+      // Centroid: egyszerűen a polygon bounds közepe (gyors, elég jó fallbackhez)
+      countryCentroids = {};
+      const temp = L.geoJSON(countriesGeo, {
+        onEachFeature: (feature, layer) => {
+          const iso2 = feature?.properties?.iso_a2;
+          if (!iso2) return;
+          const c = layer.getBounds().getCenter();
+          countryCentroids[iso2] = { lat: c.lat, lon: c.lng };
+        }
+      });
+
+      // temp layer-t nem adjuk a map-hez, csak számolásra kellett
+      return { countriesGeo, countryCentroids };
+    }
+
+    // ---- 3) Incidensek betöltése fájlból ----
     let INCIDENTS = [];
 
     async function loadIncidents(){
@@ -195,7 +265,7 @@
       INCIDENTS = Array.isArray(data) ? data : [];
     }
 
-    // ---- 3) Incidensek réteg (LayerGroup) ----
+    // ---- 4) Incidensek réteg (LayerGroup) + neon ikon ----
     const incidentsLayer = L.layerGroup();
     const neonIcon = L.divIcon({
       className: "",
@@ -218,8 +288,26 @@
       return true;
     }
 
-    function renderIncidents(){
+    function resolveIncidentLatLon(incident){
+      // 1) Ha van pontos lat/lon: azt használjuk
+      if (Number.isFinite(incident.lat) && Number.isFinite(incident.lon)) {
+        return { lat: incident.lat, lon: incident.lon, usedFallback: false };
+      }
+      // 2) Ha nincs, de van country: centroid fallback
+      const iso2 = incident.country;
+      if (iso2 && countryCentroids && countryCentroids[iso2]) {
+        const c = countryCentroids[iso2];
+        return { lat: c.lat, lon: c.lon, usedFallback: true };
+      }
+      // 3) Semmi
+      return null;
+    }
+
+    async function renderIncidents(){
       incidentsLayer.clearLayers();
+
+      // centroid fallbackhez kellhet a countryCentroids
+      await ensureCountriesData();
 
       const typeValue = document.getElementById("typeFilter").value;
       const fromDate = document.getElementById("fromDate").value;
@@ -228,26 +316,36 @@
       const filtered = INCIDENTS.filter(x => {
         const typeOk = (typeValue === "ALL") ? true : (x.type === typeValue);
         const dateOk = inDateRange(x.date, fromDate, toDate);
-        const coordOk = Number.isFinite(x.lat) && Number.isFinite(x.lon);
-        return typeOk && dateOk && coordOk;
+        return typeOk && dateOk;
       });
 
-      filtered.forEach(x => {
-        const marker = L.marker([x.lat, x.lon], { icon: neonIcon });
+      let renderedCount = 0;
 
+      filtered.forEach(x => {
+        const pos = resolveIncidentLatLon(x);
+        if (!pos) return;
+
+        const marker = L.marker([pos.lat, pos.lon], { icon: neonIcon });
+
+        const warn = pos.usedFallback ? `<span class="pop-warn">ország-közép (fallback)</span>` : "";
         marker.bindPopup(`
           <div class="pop-title">${x.title ?? "Incidens"}</div>
           <div class="pop-meta">Dátum: <strong>${x.date ?? "n/a"}</strong> · Ország: <strong>${x.country ?? "n/a"}</strong></div>
-          <div class="pop-tag">${x.type ?? "n/a"}</div>
+          <div>
+            <span class="pop-tag">${x.type ?? "n/a"}</span>
+            ${warn}
+          </div>
         `);
 
         incidentsLayer.addLayer(marker);
+        renderedCount += 1;
       });
 
-      document.getElementById("countBadge").textContent = `${filtered.length} incidens`;
+      document.getElementById("countBadge").textContent = `${renderedCount} incidens`;
     }
 
-    // ---- 4) Országos index réteg (GeoJSON) – ki/be kapcsolható ----
+    // ---- 5) Országos index réteg (GeoJSON) – ki/be kapcsolható ----
+    // Demo index: 0..100 (később cseréljük valódi adatra)
     const COUNTRY_INDEX = {
       "DE": 78, "FR": 74, "NL": 80, "EE": 82, "HU": 62, "IT": 68, "ES": 70, "PL": 64, "SE": 79
     };
@@ -261,14 +359,13 @@
     }
 
     let indexLayer = null;
+
     async function ensureIndexLayer(){
       if (indexLayer) return indexLayer;
 
-      const url = "https://raw.githubusercontent.com/Leaflet/Leaflet.VectorGrid/master/docs/eu-countries.geo.json";
-      const resp = await fetch(url);
-      const geo = await resp.json();
+      const { countriesGeo } = await ensureCountriesData();
 
-      indexLayer = L.geoJSON(geo, {
+      indexLayer = L.geoJSON(countriesGeo, {
         style: (feature) => {
           const iso2 = feature?.properties?.iso_a2;
           const v = COUNTRY_INDEX[iso2];
@@ -290,39 +387,101 @@
       return indexLayer;
     }
 
-    // ---- 5) UI események ----
-    document.getElementById("applyBtn").addEventListener("click", () => {
-      renderIncidents();
+    // ---- 6) Országhatárok overlay (külön kapcsolható) ----
+    let bordersLayer = null;
+
+    async function ensureBordersLayer(){
+      if (bordersLayer) return bordersLayer;
+
+      const { countriesGeo } = await ensureCountriesData();
+
+      bordersLayer = L.geoJSON(countriesGeo, {
+        style: () => ({
+          color: "rgba(110,231,255,.28)",
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 0
+        }),
+        interactive: false
+      });
+
+      return bordersLayer;
+    }
+
+    // ---- 7) Index legend (csak ha index ON) ----
+    const legend = L.control({ position: "bottomright" });
+    legend.onAdd = function(){
+      const div = L.DomUtil.create("div", "legend");
+      div.innerHTML = `
+        <div class="head">Országos index</div>
+        <div class="item"><span class="swatch" style="background:${indexColor(80)}"></span> 80–100</div>
+        <div class="item"><span class="swatch" style="background:${indexColor(70)}"></span> 70–79</div>
+        <div class="item"><span class="swatch" style="background:${indexColor(60)}"></span> 60–69</div>
+        <div class="item"><span class="swatch" style="background:${indexColor(10)}"></span> 0–59</div>
+        <div class="item"><span class="swatch" style="background:${indexColor(null)}"></span> n/a</div>
+      `;
+      // Ne lehessen a legendet “átkattintani” a térképre
+      L.DomEvent.disableClickPropagation(div);
+      return div;
+    };
+
+    function showLegend(){
+      try { legend.addTo(map); } catch (e) {}
+    }
+    function hideLegend(){
+      try { map.removeControl(legend); } catch (e) {}
+    }
+
+    // ---- 8) UI események ----
+    document.getElementById("applyBtn").addEventListener("click", async () => {
+      await renderIncidents();
     });
 
-    document.getElementById("resetBtn").addEventListener("click", () => {
+    document.getElementById("resetBtn").addEventListener("click", async () => {
       document.getElementById("typeFilter").value = "ALL";
       document.getElementById("fromDate").value = "";
       document.getElementById("toDate").value = "";
-      renderIncidents();
+      await renderIncidents();
     });
 
-    document.getElementById("toggleIncidents").addEventListener("change", (e) => {
-      if (e.target.checked) incidentsLayer.addTo(map);
-      else map.removeLayer(incidentsLayer);
+    document.getElementById("toggleIncidents").addEventListener("change", async (e) => {
+      if (e.target.checked) {
+        incidentsLayer.addTo(map);
+        await renderIncidents();
+      } else {
+        map.removeLayer(incidentsLayer);
+      }
     });
 
     document.getElementById("toggleIndex").addEventListener("change", async (e) => {
       const layer = await ensureIndexLayer();
+      if (e.target.checked) {
+        layer.addTo(map);
+        showLegend();
+      } else {
+        map.removeLayer(layer);
+        hideLegend();
+      }
+    });
+
+    document.getElementById("toggleBorders").addEventListener("change", async (e) => {
+      const layer = await ensureBordersLayer();
       if (e.target.checked) layer.addTo(map);
       else map.removeLayer(layer);
     });
 
-    // ---- 6) Indulás ----
+    // ---- 9) Indulás ----
     incidentsLayer.addTo(map);
 
     (async () => {
       try {
+        // ország-adatok előtöltése: gyorsabb UI + centroid fallback biztosan megvan
+        await ensureCountriesData();
         await loadIncidents();
-        renderIncidents();
+        await renderIncidents();
       } catch (err) {
         console.error(err);
-        document.getElementById("countBadge").textContent = "Hiba: incidensek nem töltődtek be";
+        document.getElementById("countBadge").textContent = "Hiba: adatok nem töltődtek be";
       }
     })();
   </script>

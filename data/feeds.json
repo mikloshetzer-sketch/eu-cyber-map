@@ -6,6 +6,7 @@
     "source_type": "CERT",
     "source_name": "CERT-EU",
     "feed_url": "https://cert.europa.eu/publications/security-advisories-rss",
+    "fallback_feed_url": "https://cow-prod-www-v3.azurewebsites.net/publications/security-advisories-rss",
     "default_confidence": "Med",
     "default_type": "Vulnerability"
   }

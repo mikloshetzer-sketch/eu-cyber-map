@@ -1,0 +1,48 @@
+{
+  "selected_default": "NCSI",
+  "sources": {
+    "NCSI": {
+      "label": "NCSI (országpontok)",
+      "source_name": "National Cyber Security Index (NCSI) – e-Governance Academy",
+      "source_note": "EU27 országok NCSI pontszámai (0–100).",
+      "scores": {
+        "AT": 85.00,
+        "BE": 94.17,
+        "BG": 80.83,
+        "HR": 82.50,
+        "CY": 85.83,
+        "CZ": 98.33,
+        "DK": 89.17,
+        "EE": 96.67,
+        "FI": 95.83,
+        "FR": 89.17,
+        "DE": 90.83,
+        "GR": 85.00,
+        "HU": 93.33,
+        "IE": 77.50,
+        "IT": 88.33,
+        "LV": 85.83,
+        "LT": 95.00,
+        "LU": 77.50,
+        "MT": 58.33,
+        "NL": 81.67,
+        "PL": 92.50,
+        "PT": 84.17,
+        "RO": 92.50,
+        "SK": 92.50,
+        "SI": 89.17,
+        "ES": 89.17,
+        "SE": 75.83
+      }
+    },
+    "EUCSI_2024": {
+      "label": "ENISA EU-CSI 2024 (EU-szint)",
+      "source_name": "ENISA – The EU Cybersecurity Index 2024",
+      "source_note": "Publikus anyag EU-szintű betekintést ad (országonkénti pontlista nem része ennek a publikációnak).",
+      "eu_metrics": {
+        "overall_index_value": 62.65,
+        "unit": "0–100"
+      }
+    }
+  }
+}

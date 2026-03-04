@@ -1,0 +1,9 @@
+{
+  "updated_at": "2026-03-04T13:12:07.967250Z",
+  "auto_count": 10,
+  "total_count": 16,
+  "logs_tail": [
+    "[cert-eu-security-advisories] GET https://cert.europa.eu/publications/security-advisories-rss",
+    "[cert-eu-security-advisories]  -> status 200"
+  ]
+}

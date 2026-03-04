@@ -44,6 +44,7 @@
     :root{
       --bg: #070a12;
       --panel: rgba(12, 18, 34, .82);
+      --panelSolid: rgba(12, 18, 34, .96);
       --border: rgba(110, 231, 255, .18);
       --text: rgba(235, 245, 255, .92);
       --muted: rgba(235, 245, 255, .65);
@@ -63,7 +64,7 @@
       z-index: 999;
       top: 14px;
       left: 14px;
-      width: min(520px, calc(100vw - 28px));
+      width: min(560px, calc(100vw - 28px));
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -97,8 +98,9 @@
     input[type="checkbox"]{ accent-color: rgba(110,231,255,.95); }
 
     .row { display:flex; gap:10px; align-items:center; margin: 10px 0; }
-    .row label { font-size: 12px; color: var(--muted); min-width: 100px; }
+    .row label { font-size: 12px; color: var(--muted); min-width: 110px; }
 
+    /* IMPORTANT: dropdown opciók sötét témánál */
     select, input[type="text"]{
       width: 100%;
       background: rgba(255,255,255,.06);
@@ -107,6 +109,10 @@
       border-radius: 10px;
       padding: 8px 10px;
       outline: none;
+    }
+    select option{
+      background: var(--panelSolid);
+      color: var(--text);
     }
 
     .grid2{
@@ -143,10 +149,16 @@
       border: 1px solid rgba(110,231,255,.25);
       border-radius: 12px;
       padding: 10px 12px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: .02em;
     }
     button:hover{ background: rgba(110,231,255,.16); }
+
+    .btn-secondary{
+      background: rgba(167,139,250,.10);
+      border-color: rgba(167,139,250,.25);
+    }
+    .btn-secondary:hover{ background: rgba(167,139,250,.16); }
 
     .hint{
       margin-top: 10px;
@@ -154,15 +166,6 @@
       color: var(--muted);
       line-height: 1.35;
     }
-    .src{
-      margin-top: 8px;
-      font-size: 12px;
-      color: var(--muted);
-      border-top: 1px solid rgba(255,255,255,.10);
-      padding-top: 8px;
-      line-height: 1.35;
-    }
-    .src strong{ color: var(--text); }
 
     /* Type markers */
     .dot {
@@ -177,7 +180,7 @@
     .dot-supplychain { background: rgba(52, 211, 153, .95); box-shadow: 0 0 0 4px rgba(52,211,153,.15), 0 0 18px rgba(52,211,153,.55), 0 0 34px rgba(34,211,238,.18); }
     .dot-other { background: rgba(110, 231, 255, .95); box-shadow: 0 0 0 4px rgba(110,231,255,.15), 0 0 18px rgba(110,231,255,.60), 0 0 34px rgba(167,139,250,.18); }
 
-    /* Popup vibe */
+    /* Popup */
     .leaflet-popup-content-wrapper{
       background: rgba(10, 14, 28, .92);
       color: var(--text);
@@ -192,14 +195,6 @@
       display:inline-block; margin-top: 8px;
       border: 1px solid rgba(167,139,250,.28);
       background: rgba(167,139,250,.10);
-      padding: 3px 8px; border-radius: 999px;
-      font-size: 12px;
-    }
-    .pop-warn{
-      display:inline-block; margin-top: 8px; margin-left: 8px;
-      border: 1px solid rgba(251,191,36,.35);
-      background: rgba(251,191,36,.12);
-      color: rgba(255,240,210,.95);
       padding: 3px 8px; border-radius: 999px;
       font-size: 12px;
     }
@@ -234,7 +229,7 @@
     a.pop-link { color: rgba(110,231,255,.95); text-decoration: none; }
     a.pop-link:hover { text-decoration: underline; }
 
-    /* Cluster "cyber" */
+    /* Cluster cyber */
     .marker-cluster-small, .marker-cluster-medium, .marker-cluster-large {
       background: rgba(110,231,255,.18) !important;
       border: 1px solid rgba(110,231,255,.25);
@@ -309,7 +304,7 @@
       </div>
 
       <div class="row" style="margin:0;">
-        <label style="min-width:100px;">OSINT</label>
+        <label style="min-width:110px;">OSINT</label>
         <div style="display:flex; gap:10px; align-items:center; width:100%; flex-wrap:wrap;">
           <label style="font-size:12px; color:var(--text); display:flex; gap:8px; align-items:center;">
             <input type="checkbox" id="onlyWithSources" />
@@ -331,18 +326,18 @@
     </div>
 
     <div class="btns">
-      <button id="applyBtn">Szűrés</button>
+      <button id="osintBtn" class="btn-secondary">OSINT mód: OFF</button>
       <button id="resetBtn">Reset</button>
     </div>
 
-    <div class="hint">
-      Heatmap 5 pontnál is látszódjon: feljebb vett radius/blur/minOpacity. Ha még mindig halvány, zoomolj 5–7 körülre.
+    <div class="hint" id="osintHint">
+      OSINT mód ON esetén automatikusan: <strong>csak forrással</strong> + <strong>bizalom: Med/High</strong> + <strong>forrás: nem n/a</strong>.
     </div>
   </div>
 
   <script>
     // ---------------------------
-    // 1) Map
+    // Map
     // ---------------------------
     const map = L.map("map", { zoomControl: true }).setView([54.5, 15.0], 4);
     L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
@@ -351,16 +346,14 @@
     }).addTo(map);
 
     // ---------------------------
-    // 2) Countries GeoJSON + centroid map (fallback)
+    // Countries + centroid fallback
     // ---------------------------
     const COUNTRIES_GEOJSON_URL = "https://raw.githubusercontent.com/Leaflet/Leaflet.VectorGrid/master/docs/eu-countries.geo.json";
-
     let countriesGeo = null;
     let countryCentroids = null;
 
     async function ensureCountriesData(){
       if (countriesGeo && countryCentroids) return { countriesGeo, countryCentroids };
-
       const resp = await fetch(COUNTRIES_GEOJSON_URL, { cache: "force-cache" });
       if (!resp.ok) throw new Error("Nem sikerült betölteni az ország GeoJSON-t.");
       countriesGeo = await resp.json();
@@ -379,7 +372,7 @@
     }
 
     // ---------------------------
-    // 3) Load incidents
+    // Load incidents
     // ---------------------------
     let INCIDENTS = [];
     async function loadIncidents(){
@@ -390,7 +383,7 @@
     }
 
     // ---------------------------
-    // 4) Time slider axis
+    // Time slider axis
     // ---------------------------
     let ALL_DATES = [];
     function toDateKey(s){ return String(s || "").slice(0, 10); }
@@ -433,7 +426,7 @@
     }
 
     // ---------------------------
-    // 5) Incidents: markers + clusters + heatmap + OSINT filters
+    // Incidents: markers + clusters + heatmap + OSINT filters
     // ---------------------------
     const rawMarkersLayer = L.layerGroup();
     const clusterLayer = L.markerClusterGroup({
@@ -441,7 +434,6 @@
       spiderfyDistanceMultiplier: 1.1,
       maxClusterRadius: 52
     });
-
     let heatLayer = null;
 
     function norm(s){ return String(s || "").toLowerCase().trim(); }
@@ -508,7 +500,6 @@
     }
 
     function heatWeight(incident){
-      // erősebb súlyozás, hogy kevés pontnál is látszódjon
       const conf = confNorm(incident.confidence);
       let w = 0.60;
       if (conf === "High") w += 0.30;
@@ -525,15 +516,13 @@
       return Math.max(0.25, Math.min(1.0, w));
     }
 
-    function buildIncidentPopupHtml(x, usedFallback){
-      const warn = usedFallback ? `<span class="pop-warn">ország-közép</span>` : "";
+    function buildIncidentPopupHtml(x){
       const confCls = confidenceClass(x.confidence);
       const confLbl = confNorm(x.confidence);
       const srcType = sourceTypeNorm(x.source_type);
 
       const hasUrl = !!x.source_url;
       const hasName = !!x.source_name;
-
       const srcBadge = `<span class="src-badge">src: ${srcType}</span>`;
 
       let srcLine = `<div class="pop-meta" style="margin-top:8px;">Forrás: <strong>nincs adat</strong></div>`;
@@ -554,7 +543,6 @@
         <div class="pop-meta">Dátum: <strong>${toDateKey(x.date) || "n/a"}</strong> · Ország: <strong>${x.country ?? "n/a"}</strong></div>
         <div>
           <span class="pop-tag">${x.type ?? "n/a"}</span>
-          ${warn}
           <span class="${confCls}">conf: ${confLbl}</span>
           ${srcBadge}
         </div>
@@ -597,16 +585,14 @@
       const q = norm(document.getElementById("searchFilter").value);
       const { from, to } = getSelectedDateRange();
 
-      const confValue = document.getElementById("confFilter").value; // ALL/High/Med/Low/NA
-      const srcTypeValue = document.getElementById("sourceTypeFilter").value; // ALL/CERT/...
+      const confValue = document.getElementById("confFilter").value;
+      const srcTypeValue = document.getElementById("sourceTypeFilter").value;
       const onlyWithSources = document.getElementById("onlyWithSources").checked;
 
       const filtered = INCIDENTS.filter(x => {
         const d = toDateKey(x.date);
         if (!inDateRangeKey(d, from, to)) return false;
-
         if (typeValue !== "ALL" && x.type !== typeValue) return false;
-
         if (q && !norm(x.title).includes(q)) return false;
 
         const c = confNorm(x.confidence);
@@ -619,7 +605,6 @@
           const hasAnySource = !!x.source_url || !!x.source_name;
           if (!hasAnySource) return false;
         }
-
         return true;
       });
 
@@ -631,7 +616,7 @@
         if (!pos) continue;
 
         const marker = L.marker([pos.lat, pos.lon], { icon: iconForType(x.type) });
-        marker.bindPopup(buildIncidentPopupHtml(x, pos.usedFallback));
+        marker.bindPopup(buildIncidentPopupHtml(x));
 
         rawMarkersLayer.addLayer(marker);
         clusterLayer.addLayer(marker);
@@ -640,7 +625,6 @@
         renderedCount += 1;
       }
 
-      // rebuild heat layer with stronger visuals for low-count datasets
       if (heatLayer && map.hasLayer(heatLayer)) map.removeLayer(heatLayer);
       heatLayer = L.heatLayer(heatPoints, {
         radius: 45,
@@ -649,13 +633,15 @@
         maxZoom: 12
       });
 
-      document.getElementById("countBadge").textContent = `${renderedCount} incidens`;
+      const osintOn = isOsintModeOn();
+      document.getElementById("countBadge").textContent =
+        `${renderedCount} incidens${osintOn ? " • OSINT ON" : ""}`;
 
       setIncidentLayersVisibility();
     }
 
     // ---------------------------
-    // 6) Borders overlay
+    // Borders overlay
     // ---------------------------
     let bordersLayer = null;
     async function ensureBordersLayer(){
@@ -674,12 +660,65 @@
     }
 
     // ---------------------------
-    // 7) UI events
+    // OSINT MODE BUTTON (ténylegesen működik)
+    // ---------------------------
+    function isOsintModeOn(){
+      // ON ha a gomb bekapcsolta a presetet
+      return document.getElementById("osintBtn").dataset.state === "on";
+    }
+
+    function setOsintMode(on){
+      const btn = document.getElementById("osintBtn");
+      btn.dataset.state = on ? "on" : "off";
+      btn.textContent = `OSINT mód: ${on ? "ON" : "OFF"}`;
+
+      if (on) {
+        // “szigorú” OSINT preset
+        document.getElementById("onlyWithSources").checked = true;
+        document.getElementById("confFilter").value = "Med";          // Med/High – Med az alap, High-ra átrakhatod
+        document.getElementById("sourceTypeFilter").value = "ALL";    // csak forrással úgyis szűkít
+      } else {
+        // lazítunk, de nem romboljuk szét a többi beállítást teljesen
+        document.getElementById("onlyWithSources").checked = false;
+        // confFilter és sourceType maradjon, hogy ne érezd “random reset”-nek
+      }
+    }
+
+    document.getElementById("osintBtn").addEventListener("click", async () => {
+      setOsintMode(!isOsintModeOn());
+      await renderIncidents();
+    });
+
+    // ---------------------------
+    // UI events
     // ---------------------------
     document.getElementById("fromRange").addEventListener("input", async () => { syncDateLabels(); await renderIncidents(); });
     document.getElementById("toRange").addEventListener("input", async () => { syncDateLabels(); await renderIncidents(); });
 
-    document.getElementById("applyBtn").addEventListener("click", async () => { syncDateLabels(); await renderIncidents(); });
+    let typingTimer = null;
+    document.getElementById("searchFilter").addEventListener("input", () => {
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(() => renderIncidents(), 140);
+    });
+
+    document.getElementById("typeFilter").addEventListener("change", () => renderIncidents());
+    document.getElementById("confFilter").addEventListener("change", () => renderIncidents());
+    document.getElementById("sourceTypeFilter").addEventListener("change", () => renderIncidents());
+    document.getElementById("onlyWithSources").addEventListener("change", async () => {
+      // ha kézzel kapcsolod a checkboxot, OSINT gomb OFF legyen, hogy egyértelmű legyen az állapot
+      setOsintMode(false);
+      await renderIncidents();
+    });
+
+    document.getElementById("toggleIncidents").addEventListener("change", () => setIncidentLayersVisibility());
+    document.getElementById("toggleClusters").addEventListener("change", () => setIncidentLayersVisibility());
+    document.getElementById("toggleHeatmap").addEventListener("change", () => setIncidentLayersVisibility());
+
+    document.getElementById("toggleBorders").addEventListener("change", async (e) => {
+      const layer = await ensureBordersLayer();
+      if (e.target.checked) layer.addTo(map);
+      else map.removeLayer(layer);
+    });
 
     document.getElementById("resetBtn").addEventListener("click", async () => {
       document.getElementById("searchFilter").value = "";
@@ -687,6 +726,7 @@
       document.getElementById("confFilter").value = "ALL";
       document.getElementById("sourceTypeFilter").value = "ALL";
       document.getElementById("onlyWithSources").checked = false;
+      setOsintMode(false);
 
       document.getElementById("toggleIncidents").checked = true;
       document.getElementById("toggleClusters").checked = true;
@@ -702,29 +742,8 @@
       await renderIncidents();
     });
 
-    let typingTimer = null;
-    document.getElementById("searchFilter").addEventListener("input", () => {
-      clearTimeout(typingTimer);
-      typingTimer = setTimeout(() => renderIncidents(), 140);
-    });
-
-    document.getElementById("typeFilter").addEventListener("change", () => renderIncidents());
-    document.getElementById("confFilter").addEventListener("change", () => renderIncidents());
-    document.getElementById("sourceTypeFilter").addEventListener("change", () => renderIncidents());
-    document.getElementById("onlyWithSources").addEventListener("change", () => renderIncidents());
-
-    document.getElementById("toggleIncidents").addEventListener("change", () => setIncidentLayersVisibility());
-    document.getElementById("toggleClusters").addEventListener("change", () => setIncidentLayersVisibility());
-    document.getElementById("toggleHeatmap").addEventListener("change", () => setIncidentLayersVisibility());
-
-    document.getElementById("toggleBorders").addEventListener("change", async (e) => {
-      const layer = await ensureBordersLayer();
-      if (e.target.checked) layer.addTo(map);
-      else map.removeLayer(layer);
-    });
-
     // ---------------------------
-    // 8) Boot
+    // Boot
     // ---------------------------
     (async () => {
       try {
@@ -736,6 +755,9 @@
 
         rawMarkersLayer.addTo(map);
         setIncidentLayersVisibility();
+
+        // OSINT default OFF
+        document.getElementById("osintBtn").dataset.state = "off";
 
         await renderIncidents();
       } catch (err) {

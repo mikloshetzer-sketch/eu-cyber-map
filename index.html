@@ -47,9 +47,6 @@
       --border: rgba(110, 231, 255, .18);
       --text: rgba(235, 245, 255, .92);
       --muted: rgba(235, 245, 255, .65);
-      --warn: rgba(251, 191, 36, .95);
-      --ok: rgba(52, 211, 153, .95);
-      --bad: rgba(248, 113, 113, .95);
 
       --danger: rgba(248, 113, 113, .95);
       --green: rgba(52, 211, 153, .95);
@@ -66,7 +63,7 @@
       z-index: 999;
       top: 14px;
       left: 14px;
-      width: min(480px, calc(100vw - 28px));
+      width: min(520px, calc(100vw - 28px));
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -100,7 +97,7 @@
     input[type="checkbox"]{ accent-color: rgba(110,231,255,.95); }
 
     .row { display:flex; gap:10px; align-items:center; margin: 10px 0; }
-    .row label { font-size: 12px; color: var(--muted); min-width: 86px; }
+    .row label { font-size: 12px; color: var(--muted); min-width: 100px; }
 
     select, input[type="text"]{
       width: 100%;
@@ -110,6 +107,13 @@
       border-radius: 10px;
       padding: 8px 10px;
       outline: none;
+    }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top: 10px;
     }
 
     .sliderBox{
@@ -199,6 +203,7 @@
       padding: 3px 8px; border-radius: 999px;
       font-size: 12px;
     }
+
     .conf {
       display:inline-block;
       margin-left: 8px;
@@ -214,42 +219,22 @@
     .conf-med  { border-color: rgba(251,191,36,.35); background: rgba(251,191,36,.10); }
     .conf-low  { border-color: rgba(248,113,113,.35); background: rgba(248,113,113,.10); }
 
+    .src-badge{
+      display:inline-block;
+      margin-left: 8px;
+      margin-top: 8px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      border: 1px solid rgba(110,231,255,.20);
+      background: rgba(110,231,255,.08);
+      color: var(--text);
+    }
+
     a.pop-link { color: rgba(110,231,255,.95); text-decoration: none; }
     a.pop-link:hover { text-decoration: underline; }
 
-    /* Legend (NCSI choropleth) */
-    .legend {
-      background: rgba(12, 18, 34, .82);
-      border: 1px solid rgba(110, 231, 255, .18);
-      color: var(--text);
-      border-radius: 14px;
-      padding: 10px 10px;
-      box-shadow: 0 12px 40px rgba(0,0,0,.35);
-      backdrop-filter: blur(8px);
-      min-width: 170px;
-    }
-    .legend .head{
-      font-size: 12px;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-    .legend .item{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-size: 12px;
-      color: var(--text);
-      margin: 6px 0;
-    }
-    .legend .swatch{
-      width: 18px; height: 12px;
-      border-radius: 4px;
-      border: 1px solid rgba(255,255,255,.14);
-    }
-
-    /* Make default cluster look more "cyber" */
+    /* Cluster "cyber" */
     .marker-cluster-small, .marker-cluster-medium, .marker-cluster-large {
       background: rgba(110,231,255,.18) !important;
       border: 1px solid rgba(110,231,255,.25);
@@ -277,13 +262,7 @@
       <label><input type="checkbox" id="toggleIncidents" checked> Pontok</label>
       <label><input type="checkbox" id="toggleClusters" checked> Cluster</label>
       <label><input type="checkbox" id="toggleHeatmap"> Heatmap</label>
-      <label><input type="checkbox" id="toggleIndex" checked> Index</label>
       <label><input type="checkbox" id="toggleBorders"> Határok</label>
-    </div>
-
-    <div class="row">
-      <label for="indexSelect">Index</label>
-      <select id="indexSelect"></select>
     </div>
 
     <div class="row">
@@ -291,16 +270,53 @@
       <input type="text" id="searchFilter" placeholder="pl. bank, eGov, egészségügy..." />
     </div>
 
-    <div class="row">
-      <label for="typeFilter">Típus</label>
-      <select id="typeFilter">
-        <option value="ALL">Összes</option>
-        <option value="DDoS">DDoS</option>
-        <option value="Ransomware">Ransomware</option>
-        <option value="Phishing">Phishing</option>
-        <option value="DataLeak">Adatszivárgás</option>
-        <option value="SupplyChain">Ellátási lánc</option>
-      </select>
+    <div class="grid2">
+      <div class="row" style="margin:0;">
+        <label for="typeFilter">Típus</label>
+        <select id="typeFilter">
+          <option value="ALL">Összes</option>
+          <option value="DDoS">DDoS</option>
+          <option value="Ransomware">Ransomware</option>
+          <option value="Phishing">Phishing</option>
+          <option value="DataLeak">Adatszivárgás</option>
+          <option value="SupplyChain">Ellátási lánc</option>
+        </select>
+      </div>
+
+      <div class="row" style="margin:0;">
+        <label for="confFilter">Bizalom</label>
+        <select id="confFilter">
+          <option value="ALL">Összes</option>
+          <option value="High">High</option>
+          <option value="Med">Med</option>
+          <option value="Low">Low</option>
+          <option value="NA">n/a</option>
+        </select>
+      </div>
+
+      <div class="row" style="margin:0;">
+        <label for="sourceTypeFilter">Forrás</label>
+        <select id="sourceTypeFilter">
+          <option value="ALL">Összes</option>
+          <option value="CERT">CERT</option>
+          <option value="Vendor">Vendor</option>
+          <option value="Media">Media</option>
+          <option value="Gov">Gov</option>
+          <option value="Research">Research</option>
+          <option value="Other">Other</option>
+          <option value="NA">n/a</option>
+        </select>
+      </div>
+
+      <div class="row" style="margin:0;">
+        <label style="min-width:100px;">OSINT</label>
+        <div style="display:flex; gap:10px; align-items:center; width:100%; flex-wrap:wrap;">
+          <label style="font-size:12px; color:var(--text); display:flex; gap:8px; align-items:center;">
+            <input type="checkbox" id="onlyWithSources" />
+            csak forrással
+          </label>
+        </div>
+      </div>
     </div>
 
     <div class="sliderBox">
@@ -320,10 +336,8 @@
     </div>
 
     <div class="hint">
-      Új: <strong>cluster + heatmap</strong>, és popupban <strong>forráslink + confidence</strong>. Országra kattintva továbbra is: index + incidens-szám.
+      Heatmap 5 pontnál is látszódjon: feljebb vett radius/blur/minOpacity. Ha még mindig halvány, zoomolj 5–7 körülre.
     </div>
-
-    <div class="src" id="indexSourceLine">Index forrás: betöltés…</div>
   </div>
 
   <script>
@@ -337,7 +351,7 @@
     }).addTo(map);
 
     // ---------------------------
-    // 2) Countries GeoJSON + centroid map
+    // 2) Countries GeoJSON + centroid map (fallback)
     // ---------------------------
     const COUNTRIES_GEOJSON_URL = "https://raw.githubusercontent.com/Leaflet/Leaflet.VectorGrid/master/docs/eu-countries.geo.json";
 
@@ -365,7 +379,7 @@
     }
 
     // ---------------------------
-    // 3) Load incidents + indices
+    // 3) Load incidents
     // ---------------------------
     let INCIDENTS = [];
     async function loadIncidents(){
@@ -375,52 +389,10 @@
       INCIDENTS = Array.isArray(data) ? data : [];
     }
 
-    let INDICES = null;
-    let selectedIndexKey = "NCSI";
-
-    async function loadIndices(){
-      const resp = await fetch("./data/indices.json", { cache: "no-store" });
-      if (!resp.ok) throw new Error("Nem sikerült betölteni: data/indices.json");
-      INDICES = await resp.json();
-      selectedIndexKey = INDICES?.selected_default ?? "NCSI";
-      populateIndexSelect();
-      updateIndexSourceLine();
-    }
-
-    function populateIndexSelect(){
-      const sel = document.getElementById("indexSelect");
-      sel.innerHTML = "";
-      const sources = INDICES?.sources ?? {};
-      for (const k of Object.keys(sources)){
-        const opt = document.createElement("option");
-        opt.value = k;
-        opt.textContent = sources[k]?.label ?? k;
-        sel.appendChild(opt);
-      }
-      sel.value = selectedIndexKey;
-    }
-
-    function currentIndexObj(){
-      const sources = INDICES?.sources ?? {};
-      return sources[selectedIndexKey] ?? null;
-    }
-
-    function updateIndexSourceLine(){
-      const idx = currentIndexObj();
-      if (!idx){
-        document.getElementById("indexSourceLine").textContent = "Index forrás: n/a";
-        return;
-      }
-      const note = idx.source_note ? ` — ${idx.source_note}` : "";
-      document.getElementById("indexSourceLine").innerHTML =
-        `Index forrás: <strong>${idx.source_name ?? "n/a"}</strong>${note}`;
-    }
-
     // ---------------------------
     // 4) Time slider axis
     // ---------------------------
     let ALL_DATES = [];
-
     function toDateKey(s){ return String(s || "").slice(0, 10); }
 
     function buildDateAxis(){
@@ -434,15 +406,9 @@
 
       const fromRange = document.getElementById("fromRange");
       const toRange = document.getElementById("toRange");
-
-      fromRange.min = 0;
-      toRange.min = 0;
-      fromRange.max = ALL_DATES.length - 1;
-      toRange.max = ALL_DATES.length - 1;
-
-      fromRange.value = 0;
-      toRange.value = ALL_DATES.length - 1;
-
+      fromRange.min = 0; toRange.min = 0;
+      fromRange.max = ALL_DATES.length - 1; toRange.max = ALL_DATES.length - 1;
+      fromRange.value = 0; toRange.value = ALL_DATES.length - 1;
       syncDateLabels();
     }
 
@@ -467,17 +433,16 @@
     }
 
     // ---------------------------
-    // 5) Incidents: markers + clusters + heatmap
+    // 5) Incidents: markers + clusters + heatmap + OSINT filters
     // ---------------------------
-    const rawMarkersLayer = L.layerGroup();             // sima pontok
-    const clusterLayer = L.markerClusterGroup({         // cluster
+    const rawMarkersLayer = L.layerGroup();
+    const clusterLayer = L.markerClusterGroup({
       showCoverageOnHover: false,
       spiderfyDistanceMultiplier: 1.1,
-      maxClusterRadius: 48
+      maxClusterRadius: 52
     });
 
-    let heatLayer = null;                               // heatmap layer
-    let LAST_FILTERED_INCIDENTS = [];                   // ország-kattintáshoz
+    let heatLayer = null;
 
     function norm(s){ return String(s || "").toLowerCase().trim(); }
     function inDateRangeKey(d, from, to){ return d && d >= from && d <= to; }
@@ -514,56 +479,75 @@
       return null;
     }
 
-    function confidenceClass(conf){
-      const c = String(conf || "").toLowerCase();
-      if (c === "high") return "conf conf-high";
-      if (c === "med" || c === "medium") return "conf conf-med";
-      if (c === "low") return "conf conf-low";
-      return "conf";
-    }
-
-    function confidenceLabel(conf){
+    function confNorm(conf){
       const c = String(conf || "").toLowerCase();
       if (c === "high") return "High";
       if (c === "med" || c === "medium") return "Med";
       if (c === "low") return "Low";
-      return "n/a";
+      return "NA";
+    }
+
+    function sourceTypeNorm(st){
+      const s = String(st || "").toLowerCase();
+      if (!s) return "NA";
+      if (s === "cert") return "CERT";
+      if (s === "vendor") return "Vendor";
+      if (s === "media") return "Media";
+      if (s === "gov") return "Gov";
+      if (s === "research") return "Research";
+      if (s === "other") return "Other";
+      return "Other";
+    }
+
+    function confidenceClass(conf){
+      const c = confNorm(conf);
+      if (c === "High") return "conf conf-high";
+      if (c === "Med") return "conf conf-med";
+      if (c === "Low") return "conf conf-low";
+      return "conf";
     }
 
     function heatWeight(incident){
-      // egyszerű súlyozás: confidence + type
-      // (később lehet impact alapú)
-      const conf = String(incident.confidence || "").toLowerCase();
-      let w = 0.45;
-      if (conf === "high") w += 0.35;
-      else if (conf === "med" || conf === "medium") w += 0.20;
-      else if (conf === "low") w += 0.10;
+      // erősebb súlyozás, hogy kevés pontnál is látszódjon
+      const conf = confNorm(incident.confidence);
+      let w = 0.60;
+      if (conf === "High") w += 0.30;
+      else if (conf === "Med") w += 0.20;
+      else if (conf === "Low") w += 0.12;
+      else w += 0.10;
 
       switch (incident.type){
         case "Ransomware": w += 0.20; break;
-        case "DataLeak": w += 0.15; break;
         case "SupplyChain": w += 0.18; break;
+        case "DataLeak": w += 0.16; break;
         default: w += 0.10; break;
       }
-
-      // clamp 0.2..1.0
-      return Math.max(0.2, Math.min(1.0, w));
+      return Math.max(0.25, Math.min(1.0, w));
     }
 
     function buildIncidentPopupHtml(x, usedFallback){
       const warn = usedFallback ? `<span class="pop-warn">ország-közép</span>` : "";
       const confCls = confidenceClass(x.confidence);
-      const confLbl = confidenceLabel(x.confidence);
+      const confLbl = confNorm(x.confidence);
+      const srcType = sourceTypeNorm(x.source_type);
 
-      const srcLine = (x.source_url && x.source_name)
-        ? `<div class="pop-meta" style="margin-top:8px;">
-             Forrás: <a class="pop-link" href="${x.source_url}" target="_blank" rel="noopener noreferrer">${x.source_name}</a>
-           </div>`
-        : (x.source_url
-            ? `<div class="pop-meta" style="margin-top:8px;">
-                 Forrás: <a class="pop-link" href="${x.source_url}" target="_blank" rel="noopener noreferrer">${x.source_url}</a>
-               </div>`
-            : `<div class="pop-meta" style="margin-top:8px;">Forrás: n/a</div>`);
+      const hasUrl = !!x.source_url;
+      const hasName = !!x.source_name;
+
+      const srcBadge = `<span class="src-badge">src: ${srcType}</span>`;
+
+      let srcLine = `<div class="pop-meta" style="margin-top:8px;">Forrás: <strong>nincs adat</strong></div>`;
+      if (hasUrl && hasName) {
+        srcLine = `<div class="pop-meta" style="margin-top:8px;">
+          Forrás: <a class="pop-link" href="${x.source_url}" target="_blank" rel="noopener noreferrer">${x.source_name}</a>
+        </div>`;
+      } else if (hasUrl) {
+        srcLine = `<div class="pop-meta" style="margin-top:8px;">
+          Forrás: <a class="pop-link" href="${x.source_url}" target="_blank" rel="noopener noreferrer">${x.source_url}</a>
+        </div>`;
+      } else if (hasName) {
+        srcLine = `<div class="pop-meta" style="margin-top:8px;">Forrás: ${x.source_name}</div>`;
+      }
 
       return `
         <div class="pop-title">${x.title ?? "Incidens"}</div>
@@ -572,6 +556,7 @@
           <span class="pop-tag">${x.type ?? "n/a"}</span>
           ${warn}
           <span class="${confCls}">conf: ${confLbl}</span>
+          ${srcBadge}
         </div>
         ${srcLine}
       `;
@@ -582,8 +567,6 @@
       const useClusters = document.getElementById("toggleClusters").checked;
       const showHeat = document.getElementById("toggleHeatmap").checked;
 
-      // Points/clusters are mutually exclusive in display, but both can be ON/OFF
-      // If showPoints is off -> remove both marker layers.
       if (!showPoints) {
         if (map.hasLayer(rawMarkersLayer)) map.removeLayer(rawMarkersLayer);
         if (map.hasLayer(clusterLayer)) map.removeLayer(clusterLayer);
@@ -597,7 +580,6 @@
         }
       }
 
-      // Heatmap independent
       if (!showHeat) {
         if (heatLayer && map.hasLayer(heatLayer)) map.removeLayer(heatLayer);
       } else {
@@ -615,15 +597,31 @@
       const q = norm(document.getElementById("searchFilter").value);
       const { from, to } = getSelectedDateRange();
 
+      const confValue = document.getElementById("confFilter").value; // ALL/High/Med/Low/NA
+      const srcTypeValue = document.getElementById("sourceTypeFilter").value; // ALL/CERT/...
+      const onlyWithSources = document.getElementById("onlyWithSources").checked;
+
       const filtered = INCIDENTS.filter(x => {
         const d = toDateKey(x.date);
-        const dateOk = inDateRangeKey(d, from, to);
-        const typeOk = (typeValue === "ALL") ? true : (x.type === typeValue);
-        const textOk = !q ? true : (norm(x.title).includes(q));
-        return dateOk && typeOk && textOk;
-      });
+        if (!inDateRangeKey(d, from, to)) return false;
 
-      LAST_FILTERED_INCIDENTS = filtered;
+        if (typeValue !== "ALL" && x.type !== typeValue) return false;
+
+        if (q && !norm(x.title).includes(q)) return false;
+
+        const c = confNorm(x.confidence);
+        if (confValue !== "ALL" && c !== confValue) return false;
+
+        const s = sourceTypeNorm(x.source_type);
+        if (srcTypeValue !== "ALL" && s !== srcTypeValue) return false;
+
+        if (onlyWithSources) {
+          const hasAnySource = !!x.source_url || !!x.source_name;
+          if (!hasAnySource) return false;
+        }
+
+        return true;
+      });
 
       const heatPoints = [];
       let renderedCount = 0;
@@ -642,86 +640,22 @@
         renderedCount += 1;
       }
 
-      // Rebuild heat layer
+      // rebuild heat layer with stronger visuals for low-count datasets
       if (heatLayer && map.hasLayer(heatLayer)) map.removeLayer(heatLayer);
       heatLayer = L.heatLayer(heatPoints, {
-        radius: 22,
-        blur: 18,
-        maxZoom: 9
+        radius: 45,
+        blur: 30,
+        minOpacity: 0.35,
+        maxZoom: 12
       });
 
       document.getElementById("countBadge").textContent = `${renderedCount} incidens`;
 
-      // Apply current visibility preferences
       setIncidentLayersVisibility();
     }
 
     // ---------------------------
-    // 6) Index layer + legend (NCSI only)
-    // ---------------------------
-    function indexColor(v){
-      if (v == null) return "rgba(255,255,255,.05)";
-      if (v >= 80) return "rgba(110,231,255,.35)";
-      if (v >= 70) return "rgba(167,139,250,.28)";
-      if (v >= 60) return "rgba(110,231,255,.18)";
-      return "rgba(255,255,255,.10)";
-    }
-
-    let indexLayer = null;
-
-    async function rebuildIndexLayer(){
-      if (indexLayer && map.hasLayer(indexLayer)) map.removeLayer(indexLayer);
-      indexLayer = null;
-
-      const idx = currentIndexObj();
-      if (!idx) return;
-
-      if (selectedIndexKey === "EUCSI_2024") {
-        hideLegend();
-        return;
-      }
-
-      const { countriesGeo } = await ensureCountriesData();
-      const scores = idx.scores ?? {};
-
-      indexLayer = L.geoJSON(countriesGeo, {
-        style: (feature) => {
-          const iso2 = feature?.properties?.iso_a2;
-          const v = scores?.[iso2];
-          return {
-            color: "rgba(110,231,255,.18)",
-            weight: 1,
-            fillColor: indexColor(v),
-            fillOpacity: 1
-          };
-        }
-      });
-
-      if (document.getElementById("toggleIndex").checked) {
-        indexLayer.addTo(map);
-        showLegend();
-      }
-    }
-
-    const legend = L.control({ position: "bottomright" });
-    legend.onAdd = function(){
-      const div = L.DomUtil.create("div", "legend");
-      div.innerHTML = `
-        <div class="head">Országos index</div>
-        <div class="item"><span class="swatch" style="background:${indexColor(80)}"></span> 80–100</div>
-        <div class="item"><span class="swatch" style="background:${indexColor(70)}"></span> 70–79</div>
-        <div class="item"><span class="swatch" style="background:${indexColor(60)}"></span> 60–69</div>
-        <div class="item"><span class="swatch" style="background:${indexColor(10)}"></span> 0–59</div>
-        <div class="item"><span class="swatch" style="background:${indexColor(null)}"></span> n/a</div>
-      `;
-      L.DomEvent.disableClickPropagation(div);
-      return div;
-    };
-    function showLegend(){ try { legend.addTo(map); } catch(e){} }
-    function hideLegend(){ try { map.removeControl(legend); } catch(e){} }
-
-    // ---------------------------
-    // 7) Borders overlay
+    // 6) Borders overlay
     // ---------------------------
     let bordersLayer = null;
     async function ensureBordersLayer(){
@@ -740,93 +674,7 @@
     }
 
     // ---------------------------
-    // 8) Country click layer: index + incident counts (same as before)
-    // ---------------------------
-    let countryClickLayer = null;
-    let lastSelectedFeatureLayer = null;
-
-    function getIncidentStatsForCountry(iso2){
-      const list = (LAST_FILTERED_INCIDENTS || []).filter(x => x.country === iso2);
-      const top = list
-        .slice()
-        .sort((a,b) => (toDateKey(b.date)).localeCompare(toDateKey(a.date)))
-        .slice(0, 5);
-      return { count: list.length, top };
-    }
-
-    function getIndexValueForCountry(iso2){
-      const idx = currentIndexObj();
-      if (!idx) return null;
-      if (selectedIndexKey !== "NCSI") return null;
-      return (idx.scores && typeof idx.scores[iso2] === "number") ? idx.scores[iso2] : null;
-    }
-
-    function euCsiSummaryHtml(){
-      const idx = currentIndexObj();
-      const val = idx?.eu_metrics?.overall_index_value;
-      if (val == null) return `<div class="pop-meta">EU-CSI: n/a</div>`;
-      return `
-        <div class="pop-meta" style="margin-top:8px;">
-          EU-CSI 2024 (EU-szint): <strong>${val}</strong> / 100<br/>
-          Megjegyzés: EU-szintű publikáció; nem országonkénti pontlista.
-        </div>
-      `;
-    }
-
-    async function ensureCountryClickLayer(){
-      if (countryClickLayer) return countryClickLayer;
-
-      const { countriesGeo } = await ensureCountriesData();
-
-      countryClickLayer = L.geoJSON(countriesGeo, {
-        style: () => ({ color: "rgba(255,255,255,0)", weight: 0, fillOpacity: 0 }),
-        onEachFeature: (feature, layer) => {
-          layer.on("click", (e) => {
-            const iso2 = feature?.properties?.iso_a2;
-            const name = feature?.properties?.name || "Ismeretlen";
-            if (!iso2) return;
-
-            if (lastSelectedFeatureLayer) {
-              lastSelectedFeatureLayer.setStyle({ color: "rgba(255,255,255,0)", weight: 0, fillOpacity: 0 });
-            }
-            layer.setStyle({ color: "rgba(110,231,255,.55)", weight: 2, fillOpacity: 0 });
-            lastSelectedFeatureLayer = layer;
-
-            const stats = getIncidentStatsForCountry(iso2);
-            const idxVal = getIndexValueForCountry(iso2);
-
-            const idxBlock = (selectedIndexKey === "NCSI")
-              ? `<div class="pop-meta" style="margin-top:8px;">NCSI: <strong>${idxVal ?? "n/a"}</strong> / 100</div>`
-              : `<div class="pop-meta" style="margin-top:8px;">Index: <strong>ENISA EU-CSI 2024 (EU-szint)</strong></div>`;
-
-            const listHtml = stats.top.length
-              ? `<ol class="pop-meta" style="margin:8px 0 0 0; padding-left:18px;">
-                   ${stats.top.map(x => `<li>${x.title ?? "Incidens"} <span style="color:rgba(235,245,255,.65)">(${toDateKey(x.date)})</span></li>`).join("")}
-                 </ol>`
-              : `<div class="pop-meta" style="margin-top:8px;">Nincs incidens a jelenlegi szűrők szerint.</div>`;
-
-            const eucsiHtml = (selectedIndexKey === "EUCSI_2024") ? euCsiSummaryHtml() : "";
-
-            L.popup({ maxWidth: 420 })
-              .setLatLng(e.latlng)
-              .setContent(`
-                <div class="pop-title">${name} (${iso2})</div>
-                <div class="pop-meta">Aktuális szűrők szerinti incidensek: <strong>${stats.count}</strong></div>
-                ${idxBlock}
-                ${eucsiHtml}
-                <div class="pop-meta" style="margin-top:10px;">Top események (max 5):</div>
-                ${listHtml}
-              `)
-              .openOn(map);
-          });
-        }
-      }).addTo(map);
-
-      return countryClickLayer;
-    }
-
-    // ---------------------------
-    // 9) UI wiring
+    // 7) UI events
     // ---------------------------
     document.getElementById("fromRange").addEventListener("input", async () => { syncDateLabels(); await renderIncidents(); });
     document.getElementById("toRange").addEventListener("input", async () => { syncDateLabels(); await renderIncidents(); });
@@ -834,11 +682,18 @@
     document.getElementById("applyBtn").addEventListener("click", async () => { syncDateLabels(); await renderIncidents(); });
 
     document.getElementById("resetBtn").addEventListener("click", async () => {
-      document.getElementById("typeFilter").value = "ALL";
       document.getElementById("searchFilter").value = "";
+      document.getElementById("typeFilter").value = "ALL";
+      document.getElementById("confFilter").value = "ALL";
+      document.getElementById("sourceTypeFilter").value = "ALL";
+      document.getElementById("onlyWithSources").checked = false;
+
       document.getElementById("toggleIncidents").checked = true;
       document.getElementById("toggleClusters").checked = true;
       document.getElementById("toggleHeatmap").checked = false;
+
+      document.getElementById("toggleBorders").checked = false;
+      if (bordersLayer && map.hasLayer(bordersLayer)) map.removeLayer(bordersLayer);
 
       document.getElementById("fromRange").value = 0;
       document.getElementById("toRange").value = ALL_DATES.length - 1;
@@ -847,29 +702,20 @@
       await renderIncidents();
     });
 
-    // auto-filter while typing
     let typingTimer = null;
     document.getElementById("searchFilter").addEventListener("input", () => {
       clearTimeout(typingTimer);
       typingTimer = setTimeout(() => renderIncidents(), 140);
     });
-    document.getElementById("typeFilter").addEventListener("change", () => renderIncidents());
 
-    // toggles for incident layers
+    document.getElementById("typeFilter").addEventListener("change", () => renderIncidents());
+    document.getElementById("confFilter").addEventListener("change", () => renderIncidents());
+    document.getElementById("sourceTypeFilter").addEventListener("change", () => renderIncidents());
+    document.getElementById("onlyWithSources").addEventListener("change", () => renderIncidents());
+
     document.getElementById("toggleIncidents").addEventListener("change", () => setIncidentLayersVisibility());
     document.getElementById("toggleClusters").addEventListener("change", () => setIncidentLayersVisibility());
     document.getElementById("toggleHeatmap").addEventListener("change", () => setIncidentLayersVisibility());
-
-    // index toggle
-    document.getElementById("toggleIndex").addEventListener("change", async (e) => {
-      if (e.target.checked) {
-        if (indexLayer) indexLayer.addTo(map);
-        if (selectedIndexKey === "NCSI") showLegend();
-      } else {
-        if (indexLayer) map.removeLayer(indexLayer);
-        hideLegend();
-      }
-    });
 
     document.getElementById("toggleBorders").addEventListener("change", async (e) => {
       const layer = await ensureBordersLayer();
@@ -877,36 +723,24 @@
       else map.removeLayer(layer);
     });
 
-    document.getElementById("indexSelect").addEventListener("change", async (e) => {
-      selectedIndexKey = e.target.value;
-      updateIndexSourceLine();
-      await rebuildIndexLayer();
-    });
-
     // ---------------------------
-    // 10) Boot
+    // 8) Boot
     // ---------------------------
     (async () => {
       try {
         await ensureCountriesData();
-        await ensureCountryClickLayer();
-
         await loadIncidents();
-        await loadIndices();
 
         buildDateAxis();
         syncDateLabels();
 
-        // initial layers
-        rawMarkersLayer.addTo(map); // will be swapped to cluster based on toggle
+        rawMarkersLayer.addTo(map);
         setIncidentLayersVisibility();
 
         await renderIncidents();
-        await rebuildIndexLayer();
       } catch (err) {
         console.error(err);
-        document.getElementById("countBadge").textContent = "Hiba: adatok nem töltődtek be";
-        document.getElementById("indexSourceLine").textContent = "Index forrás: hiba a betöltéskor";
+        document.getElementById("countBadge").textContent = "Hiba: incidensek nem töltődtek be";
       }
     })();
   </script>

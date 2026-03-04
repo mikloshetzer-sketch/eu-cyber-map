@@ -28,6 +28,11 @@
       --neon: rgba(110, 231, 255, .9);
       --neon2: rgba(167, 139, 250, .9);
       --warn: rgba(251, 191, 36, .95);
+      --danger: rgba(248, 113, 113, .95);
+      --green: rgba(52, 211, 153, .95);
+      --blue: rgba(96, 165, 250, .95);
+      --purple: rgba(167, 139, 250, .95);
+      --cyan: rgba(34, 211, 238, .95);
     }
 
     body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
@@ -38,7 +43,7 @@
       z-index: 999;
       top: 14px;
       left: 14px;
-      width: min(380px, calc(100vw - 28px));
+      width: min(420px, calc(100vw - 28px));
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -63,11 +68,17 @@
       border: 1px solid var(--border);
       padding: 4px 8px;
       border-radius: 999px;
+      white-space: nowrap;
     }
+
+    .checks{ display:flex; flex-wrap: wrap; gap:10px; margin-top: 6px; margin-bottom: 6px; }
+    .checks label{ color: var(--text); font-size: 12px; display:flex; gap:8px; align-items:center; }
+    input[type="checkbox"]{ accent-color: rgba(110,231,255,.95); }
 
     .row { display:flex; gap:10px; align-items:center; margin: 10px 0; }
     .row label { font-size: 12px; color: var(--muted); min-width: 86px; }
-    select, input[type="date"]{
+
+    select, input[type="text"]{
       width: 100%;
       background: rgba(255,255,255,.06);
       color: var(--text);
@@ -76,9 +87,31 @@
       padding: 8px 10px;
       outline: none;
     }
-    .checks{ display:flex; flex-wrap: wrap; gap:10px; margin-top: 6px; }
-    .checks label{ min-width: unset; color: var(--text); font-size: 12px; display:flex; gap:8px; align-items:center; }
-    input[type="checkbox"]{ accent-color: rgba(110,231,255,.95); }
+
+    .sliderBox{
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+    }
+    .sliderHead{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .sliderHead strong{ color: var(--text); font-weight: 700; }
+    .sliders{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    input[type="range"]{
+      width: 100%;
+    }
 
     .btns{ display:flex; gap:10px; margin-top: 10px; }
     button{
@@ -100,18 +133,33 @@
       color: var(--muted);
       line-height: 1.35;
     }
-
-    .neon-dot {
-      width: 14px; height: 14px;
-      border-radius: 50%;
-      background: rgba(110, 231, 255, .95);
-      box-shadow:
-        0 0 0 4px rgba(110, 231, 255, .15),
-        0 0 18px rgba(110, 231, 255, .65),
-        0 0 34px rgba(167, 139, 250, .22);
-      border: 1px solid rgba(255,255,255,.35);
+    .src{
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,.10);
+      padding-top: 8px;
+      line-height: 1.35;
     }
 
+    /* ---- Marker dots by type ---- */
+    .dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.35);
+      box-shadow:
+        0 0 0 4px rgba(110, 231, 255, .10),
+        0 0 18px rgba(110, 231, 255, .35),
+        0 0 34px rgba(167, 139, 250, .18);
+    }
+    .dot-ddos { background: rgba(34, 211, 238, .95); box-shadow: 0 0 0 4px rgba(34,211,238,.15), 0 0 18px rgba(34,211,238,.60), 0 0 34px rgba(167,139,250,.18); }
+    .dot-ransomware { background: rgba(248, 113, 113, .95); box-shadow: 0 0 0 4px rgba(248,113,113,.15), 0 0 18px rgba(248,113,113,.55), 0 0 34px rgba(167,139,250,.18); }
+    .dot-phishing { background: rgba(167, 139, 250, .95); box-shadow: 0 0 0 4px rgba(167,139,250,.15), 0 0 18px rgba(167,139,250,.55), 0 0 34px rgba(34,211,238,.18); }
+    .dot-dataleak { background: rgba(96, 165, 250, .95); box-shadow: 0 0 0 4px rgba(96,165,250,.15), 0 0 18px rgba(96,165,250,.55), 0 0 34px rgba(167,139,250,.18); }
+    .dot-supplychain { background: rgba(52, 211, 153, .95); box-shadow: 0 0 0 4px rgba(52,211,153,.15), 0 0 18px rgba(52,211,153,.55), 0 0 34px rgba(34,211,238,.18); }
+    .dot-other { background: rgba(110, 231, 255, .95); box-shadow: 0 0 0 4px rgba(110,231,255,.15), 0 0 18px rgba(110,231,255,.60), 0 0 34px rgba(167,139,250,.18); }
+
+    /* Popup vibe */
     .leaflet-popup-content-wrapper{
       background: rgba(10, 14, 28, .92);
       color: var(--text);
@@ -188,6 +236,11 @@
     </div>
 
     <div class="row">
+      <label for="searchFilter">Keresés</label>
+      <input type="text" id="searchFilter" placeholder="pl. bank, eGov, egészségügy..." />
+    </div>
+
+    <div class="row">
       <label for="typeFilter">Típus</label>
       <select id="typeFilter">
         <option value="ALL">Összes</option>
@@ -199,13 +252,15 @@
       </select>
     </div>
 
-    <div class="row">
-      <label for="fromDate">Mettől</label>
-      <input type="date" id="fromDate">
-    </div>
-    <div class="row">
-      <label for="toDate">Meddig</label>
-      <input type="date" id="toDate">
+    <div class="sliderBox">
+      <div class="sliderHead">
+        <div>Idősáv: <strong id="fromLabel">—</strong></div>
+        <div>→ <strong id="toLabel">—</strong></div>
+      </div>
+      <div class="sliders">
+        <input type="range" id="fromRange" min="0" max="0" value="0" />
+        <input type="range" id="toRange" min="0" max="0" value="0" />
+      </div>
     </div>
 
     <div class="btns">
@@ -214,12 +269,14 @@
     </div>
 
     <div class="hint">
-      Újdonság: ha az incidensben nincs <code>lat/lon</code>, de van <code>country</code>, automatikusan ország-középpontra kerül. + külön kapcsolható országhatárok és index legenda.
+      Tipp: ha egy incidensben nincs <code>lat/lon</code>, de van <code>country</code>, automatikusan ország-középpontra kerül.
     </div>
+
+    <div class="src" id="indexSourceLine">Index forrás: betöltés…</div>
   </div>
 
   <script>
-    // ---- 1) Térkép (sötét "cyber" csempék) ----
+    // ---- 1) Map ----
     const map = L.map("map", { zoomControl: true }).setView([54.5, 15.0], 4);
 
     L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
@@ -227,11 +284,11 @@
       attribution: '&copy; OpenStreetMap &copy; CARTO'
     }).addTo(map);
 
-    // ---- 2) Közös ország-GeoJSON + centroid map (egyszer töltjük le, és minden réteg ezt használja) ----
+    // ---- 2) Countries GeoJSON + centroid map (loaded once) ----
     const COUNTRIES_GEOJSON_URL = "https://raw.githubusercontent.com/Leaflet/Leaflet.VectorGrid/master/docs/eu-countries.geo.json";
 
-    let countriesGeo = null;          // a teljes GeoJSON
-    let countryCentroids = null;      // { "HU": {lat, lon}, ... }
+    let countriesGeo = null;
+    let countryCentroids = null;
 
     async function ensureCountriesData(){
       if (countriesGeo && countryCentroids) return { countriesGeo, countryCentroids };
@@ -240,9 +297,8 @@
       if (!resp.ok) throw new Error("Nem sikerült betölteni az ország GeoJSON-t.");
       countriesGeo = await resp.json();
 
-      // Centroid: egyszerűen a polygon bounds közepe (gyors, elég jó fallbackhez)
       countryCentroids = {};
-      const temp = L.geoJSON(countriesGeo, {
+      L.geoJSON(countriesGeo, {
         onEachFeature: (feature, layer) => {
           const iso2 = feature?.properties?.iso_a2;
           if (!iso2) return;
@@ -251,13 +307,11 @@
         }
       });
 
-      // temp layer-t nem adjuk a map-hez, csak számolásra kellett
       return { countriesGeo, countryCentroids };
     }
 
-    // ---- 3) Incidensek betöltése fájlból ----
+    // ---- 3) Data load ----
     let INCIDENTS = [];
-
     async function loadIncidents(){
       const resp = await fetch("./data/incidents.json", { cache: "no-store" });
       if (!resp.ok) throw new Error("Nem sikerült betölteni: data/incidents.json");
@@ -265,72 +319,150 @@
       INCIDENTS = Array.isArray(data) ? data : [];
     }
 
-    // ---- 4) Incidensek réteg (LayerGroup) + neon ikon ----
-    const incidentsLayer = L.layerGroup();
-    const neonIcon = L.divIcon({
-      className: "",
-      html: '<div class="neon-dot"></div>',
-      iconSize: [14, 14],
-      iconAnchor: [7, 7]
-    });
+    // Index (real-ish): loaded from local json
+    let INDEX = { source_name: "n/a", source_note: "", scores: {} };
 
-    function inDateRange(d, from, to){
-      if (!from && !to) return true;
-      const t = new Date(d).getTime();
-      if (from){
-        const f = new Date(from).getTime();
-        if (t < f) return false;
+    async function loadIndex(){
+      const resp = await fetch("./data/index.json", { cache: "no-store" });
+      if (!resp.ok) throw new Error("Nem sikerült betölteni: data/index.json");
+      const data = await resp.json();
+      INDEX = {
+        source_name: data?.source_name ?? "n/a",
+        source_note: data?.source_note ?? "",
+        scores: data?.scores ?? {}
+      };
+      document.getElementById("indexSourceLine").textContent =
+        `Index forrás: ${INDEX.source_name}${INDEX.source_note ? " — " + INDEX.source_note : ""}`;
+    }
+
+    // ---- 4) Time slider helpers ----
+    let ALL_DATES = []; // sorted unique YYYY-MM-DD strings
+
+    function toDateKey(s){
+      // keep YYYY-MM-DD; assumes correct format
+      return String(s || "").slice(0, 10);
+    }
+
+    function buildDateAxis(){
+      const set = new Set();
+      for (const x of INCIDENTS){
+        const d = toDateKey(x.date);
+        if (d && /^\d{4}-\d{2}-\d{2}$/.test(d)) set.add(d);
       }
-      if (to){
-        const tt = new Date(to).getTime();
-        if (t > tt) return false;
+      ALL_DATES = Array.from(set).sort(); // lexicographic ok for YYYY-MM-DD
+      if (ALL_DATES.length === 0) ALL_DATES = ["2026-01-01"];
+
+      const fromRange = document.getElementById("fromRange");
+      const toRange = document.getElementById("toRange");
+
+      fromRange.min = 0;
+      toRange.min = 0;
+      fromRange.max = ALL_DATES.length - 1;
+      toRange.max = ALL_DATES.length - 1;
+
+      fromRange.value = 0;
+      toRange.value = ALL_DATES.length - 1;
+
+      syncDateLabels();
+    }
+
+    function clampRanges(){
+      const fromRange = document.getElementById("fromRange");
+      const toRange = document.getElementById("toRange");
+      let a = Number(fromRange.value);
+      let b = Number(toRange.value);
+      if (a > b) {
+        // keep them consistent: move the other
+        // if user moved from beyond to, shift to
+        toRange.value = a;
+        b = a;
       }
-      return true;
+      return { fromIdx: a, toIdx: b };
+    }
+
+    function getSelectedDateRange(){
+      const { fromIdx, toIdx } = clampRanges();
+      return { from: ALL_DATES[fromIdx], to: ALL_DATES[toIdx] };
+    }
+
+    function syncDateLabels(){
+      const { from, to } = getSelectedDateRange();
+      document.getElementById("fromLabel").textContent = from;
+      document.getElementById("toLabel").textContent = to;
+    }
+
+    // ---- 5) Incidents layer + colored markers ----
+    const incidentsLayer = L.layerGroup();
+
+    function typeToDotClass(t){
+      switch (t){
+        case "DDoS": return "dot dot-ddos";
+        case "Ransomware": return "dot dot-ransomware";
+        case "Phishing": return "dot dot-phishing";
+        case "DataLeak": return "dot dot-dataleak";
+        case "SupplyChain": return "dot dot-supplychain";
+        default: return "dot dot-other";
+      }
+    }
+
+    function iconForType(t){
+      return L.divIcon({
+        className: "",
+        html: `<div class="${typeToDotClass(t)}"></div>`,
+        iconSize: [14, 14],
+        iconAnchor: [7, 7]
+      });
     }
 
     function resolveIncidentLatLon(incident){
-      // 1) Ha van pontos lat/lon: azt használjuk
       if (Number.isFinite(incident.lat) && Number.isFinite(incident.lon)) {
         return { lat: incident.lat, lon: incident.lon, usedFallback: false };
       }
-      // 2) Ha nincs, de van country: centroid fallback
       const iso2 = incident.country;
       if (iso2 && countryCentroids && countryCentroids[iso2]) {
         const c = countryCentroids[iso2];
         return { lat: c.lat, lon: c.lon, usedFallback: true };
       }
-      // 3) Semmi
       return null;
+    }
+
+    function inDateRangeKey(d, from, to){
+      if (!d) return false;
+      return d >= from && d <= to;
+    }
+
+    function norm(s){
+      return String(s || "").toLowerCase().trim();
     }
 
     async function renderIncidents(){
       incidentsLayer.clearLayers();
-
-      // centroid fallbackhez kellhet a countryCentroids
       await ensureCountriesData();
 
       const typeValue = document.getElementById("typeFilter").value;
-      const fromDate = document.getElementById("fromDate").value;
-      const toDate = document.getElementById("toDate").value;
+      const q = norm(document.getElementById("searchFilter").value);
+      const { from, to } = getSelectedDateRange();
 
       const filtered = INCIDENTS.filter(x => {
+        const d = toDateKey(x.date);
+        const dateOk = inDateRangeKey(d, from, to);
         const typeOk = (typeValue === "ALL") ? true : (x.type === typeValue);
-        const dateOk = inDateRange(x.date, fromDate, toDate);
-        return typeOk && dateOk;
+        const textOk = !q ? true : (norm(x.title).includes(q));
+        return dateOk && typeOk && textOk;
       });
 
       let renderedCount = 0;
 
-      filtered.forEach(x => {
+      for (const x of filtered){
         const pos = resolveIncidentLatLon(x);
-        if (!pos) return;
+        if (!pos) continue;
 
-        const marker = L.marker([pos.lat, pos.lon], { icon: neonIcon });
-
+        const marker = L.marker([pos.lat, pos.lon], { icon: iconForType(x.type) });
         const warn = pos.usedFallback ? `<span class="pop-warn">ország-közép (fallback)</span>` : "";
+
         marker.bindPopup(`
           <div class="pop-title">${x.title ?? "Incidens"}</div>
-          <div class="pop-meta">Dátum: <strong>${x.date ?? "n/a"}</strong> · Ország: <strong>${x.country ?? "n/a"}</strong></div>
+          <div class="pop-meta">Dátum: <strong>${toDateKey(x.date) || "n/a"}</strong> · Ország: <strong>${x.country ?? "n/a"}</strong></div>
           <div>
             <span class="pop-tag">${x.type ?? "n/a"}</span>
             ${warn}
@@ -339,17 +471,12 @@
 
         incidentsLayer.addLayer(marker);
         renderedCount += 1;
-      });
+      }
 
       document.getElementById("countBadge").textContent = `${renderedCount} incidens`;
     }
 
-    // ---- 5) Országos index réteg (GeoJSON) – ki/be kapcsolható ----
-    // Demo index: 0..100 (később cseréljük valódi adatra)
-    const COUNTRY_INDEX = {
-      "DE": 78, "FR": 74, "NL": 80, "EE": 82, "HU": 62, "IT": 68, "ES": 70, "PL": 64, "SE": 79
-    };
-
+    // ---- 6) Index layer + legend ----
     function indexColor(v){
       if (v == null) return "rgba(255,255,255,.05)";
       if (v >= 80) return "rgba(110,231,255,.35)";
@@ -359,16 +486,14 @@
     }
 
     let indexLayer = null;
-
     async function ensureIndexLayer(){
       if (indexLayer) return indexLayer;
-
       const { countriesGeo } = await ensureCountriesData();
 
       indexLayer = L.geoJSON(countriesGeo, {
         style: (feature) => {
           const iso2 = feature?.properties?.iso_a2;
-          const v = COUNTRY_INDEX[iso2];
+          const v = INDEX.scores?.[iso2];
           return {
             color: "rgba(110,231,255,.18)",
             weight: 1,
@@ -379,36 +504,13 @@
         onEachFeature: (feature, layer) => {
           const iso2 = feature?.properties?.iso_a2;
           const name = feature?.properties?.name || "Ismeretlen";
-          const v = COUNTRY_INDEX[iso2];
+          const v = INDEX.scores?.[iso2];
           layer.bindTooltip(`${name} (${iso2}) — index: ${v ?? "n/a"}`, { sticky: true, opacity: 0.95 });
         }
       });
-
       return indexLayer;
     }
 
-    // ---- 6) Országhatárok overlay (külön kapcsolható) ----
-    let bordersLayer = null;
-
-    async function ensureBordersLayer(){
-      if (bordersLayer) return bordersLayer;
-
-      const { countriesGeo } = await ensureCountriesData();
-
-      bordersLayer = L.geoJSON(countriesGeo, {
-        style: () => ({
-          color: "rgba(110,231,255,.28)",
-          weight: 2,
-          opacity: 1,
-          fillOpacity: 0
-        }),
-        interactive: false
-      });
-
-      return bordersLayer;
-    }
-
-    // ---- 7) Index legend (csak ha index ON) ----
     const legend = L.control({ position: "bottomright" });
     legend.onAdd = function(){
       const div = L.DomUtil.create("div", "legend");
@@ -420,29 +522,63 @@
         <div class="item"><span class="swatch" style="background:${indexColor(10)}"></span> 0–59</div>
         <div class="item"><span class="swatch" style="background:${indexColor(null)}"></span> n/a</div>
       `;
-      // Ne lehessen a legendet “átkattintani” a térképre
       L.DomEvent.disableClickPropagation(div);
       return div;
     };
+    function showLegend(){ try { legend.addTo(map); } catch(e){} }
+    function hideLegend(){ try { map.removeControl(legend); } catch(e){} }
 
-    function showLegend(){
-      try { legend.addTo(map); } catch (e) {}
-    }
-    function hideLegend(){
-      try { map.removeControl(legend); } catch (e) {}
+    // ---- 7) Borders overlay ----
+    let bordersLayer = null;
+    async function ensureBordersLayer(){
+      if (bordersLayer) return bordersLayer;
+      const { countriesGeo } = await ensureCountriesData();
+      bordersLayer = L.geoJSON(countriesGeo, {
+        style: () => ({
+          color: "rgba(110,231,255,.28)",
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 0
+        }),
+        interactive: false
+      });
+      return bordersLayer;
     }
 
-    // ---- 8) UI események ----
+    // ---- 8) UI wiring ----
+    document.getElementById("fromRange").addEventListener("input", async () => {
+      syncDateLabels();
+      await renderIncidents();
+    });
+    document.getElementById("toRange").addEventListener("input", async () => {
+      syncDateLabels();
+      await renderIncidents();
+    });
+
     document.getElementById("applyBtn").addEventListener("click", async () => {
+      syncDateLabels();
       await renderIncidents();
     });
 
     document.getElementById("resetBtn").addEventListener("click", async () => {
       document.getElementById("typeFilter").value = "ALL";
-      document.getElementById("fromDate").value = "";
-      document.getElementById("toDate").value = "";
+      document.getElementById("searchFilter").value = "";
+
+      // reset slider to full span
+      document.getElementById("fromRange").value = 0;
+      document.getElementById("toRange").value = ALL_DATES.length - 1;
+      syncDateLabels();
+
       await renderIncidents();
     });
+
+    // auto-filter while typing (lightweight)
+    let typingTimer = null;
+    document.getElementById("searchFilter").addEventListener("input", () => {
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(() => renderIncidents(), 120);
+    });
+    document.getElementById("typeFilter").addEventListener("change", () => renderIncidents());
 
     document.getElementById("toggleIncidents").addEventListener("change", async (e) => {
       if (e.target.checked) {
@@ -470,18 +606,22 @@
       else map.removeLayer(layer);
     });
 
-    // ---- 9) Indulás ----
+    // ---- 9) Boot ----
     incidentsLayer.addTo(map);
 
     (async () => {
       try {
-        // ország-adatok előtöltése: gyorsabb UI + centroid fallback biztosan megvan
         await ensureCountriesData();
         await loadIncidents();
+        await loadIndex();
+
+        buildDateAxis();
+        syncDateLabels();
         await renderIncidents();
       } catch (err) {
         console.error(err);
         document.getElementById("countBadge").textContent = "Hiba: adatok nem töltődtek be";
+        document.getElementById("indexSourceLine").textContent = "Index forrás: hiba a betöltéskor";
       }
     })();
   </script>

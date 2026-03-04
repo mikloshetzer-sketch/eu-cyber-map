@@ -1,0 +1,12 @@
+[
+  {
+    "id": "cert-eu-security-advisories",
+    "country": "BE",
+    "scope": "EU institutions",
+    "source_type": "CERT",
+    "source_name": "CERT-EU",
+    "feed_url": "https://cert.europa.eu/publications/security-advisories-rss",
+    "default_confidence": "Med",
+    "default_type": "Vulnerability"
+  }
+]

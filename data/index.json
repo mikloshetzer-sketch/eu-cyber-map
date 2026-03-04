@@ -1,0 +1,16 @@
+{
+  "source_name": "National Cyber Security Index (NCSI) – e-Governance Academy",
+  "source_note": "Pontszámok 0–100 skálán. A hiányzó országok n/a-ként jelennek meg. Frissíthető, bővíthető.",
+  "scores": {
+    "AT": 85.00,
+    "HU": 67.53,
+    "PL": 80.00,
+    "DE": 78.00,
+    "FR": 74.00,
+    "NL": 80.00,
+    "EE": 82.00,
+    "IT": 68.00,
+    "ES": 70.00,
+    "SE": 79.00
+  }
+}

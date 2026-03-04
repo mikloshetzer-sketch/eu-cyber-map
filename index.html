@@ -295,7 +295,10 @@
   <div class="panel">
     <div class="title">
       <h1>EU Cyber Map</h1>
-      <div class="badge" id="countBadge">— incidens</div>
+      <div class="badge">
+        <span id="countBadge">— incidens</span>
+        <span id="updateBadge" style="margin-left:8px;"></span>
+      </div>
     </div>
 
     <div class="checks">
@@ -376,7 +379,7 @@
     </div>
 
     <div class="hint">
-      OSINT mód ON: “csak forrással” + (Med/High ajánlott). A validátor megmutatja, mi hiányzik az adatból.
+      OSINT mód ON: “csak forrással” + (Med/High ajánlott). Most már látszik a frissítés ideje és a popupban az origin (AUTO/MANUAL).
     </div>
 
     <div class="validator" id="validatorBox">
@@ -434,6 +437,26 @@
       if (!resp.ok) throw new Error("Nem sikerült betölteni: data/incidents.json");
       const data = await resp.json();
       INCIDENTS = Array.isArray(data) ? data : [];
+    }
+
+    // ---------------------------
+    // Last update badge
+    // ---------------------------
+    async function loadLastUpdate(){
+      const el = document.getElementById("updateBadge");
+      if (!el) return;
+      try{
+        const r = await fetch("./data/last_update.json", { cache: "no-store" });
+        if (!r.ok) return;
+        const j = await r.json();
+        if (!j || !j.updated_at) return;
+        const d = new Date(j.updated_at);
+        // e.g. 2026-03-04 06:15 UTC
+        const txt = d.toISOString().replace("T"," ").slice(0,16) + " UTC";
+        el.textContent = `• Last update: ${txt}`;
+      }catch(e){
+        // silent
+      }
     }
 
     // ---------------------------
@@ -559,14 +582,20 @@
       return Math.max(0.25, Math.min(1.0, w));
     }
 
+    function hasAnySource(x){
+      return !!x.source_url || !!x.source_name;
+    }
+
     function buildIncidentPopupHtml(x){
       const confCls = confidenceClass(x.confidence);
       const confLbl = confNorm(x.confidence);
       const srcType = sourceTypeNorm(x.source_type);
       const hasUrl = !!x.source_url;
       const hasName = !!x.source_name;
+      const origin = x.generated ? "AUTO" : "MANUAL";
 
       const srcBadge = `<span class="src-badge">src: ${srcType}</span>`;
+      const originBadge = `<span class="src-badge">origin: ${origin}</span>`;
 
       let srcLine = `<div class="pop-meta" style="margin-top:8px;">Forrás: <strong>nincs adat</strong></div>`;
       if (hasUrl && hasName) {
@@ -588,6 +617,7 @@
           <span class="pop-tag">${x.type ?? "n/a"}</span>
           <span class="${confCls}">conf: ${confLbl}</span>
           ${srcBadge}
+          ${originBadge}
         </div>
         ${srcLine}
       `;
@@ -632,9 +662,7 @@
 
       if (on) {
         document.getElementById("onlyWithSources").checked = true;
-        // Med legyen alap, de te felülírhatod High-ra
         document.getElementById("confFilter").value = "Med";
-        // ne legyen n/a forrás típus (de “csak forrással” a fő szűrő)
         if (document.getElementById("sourceTypeFilter").value === "NA") {
           document.getElementById("sourceTypeFilter").value = "ALL";
         }
@@ -652,12 +680,7 @@
       return typeof d === "string" && /^\d{4}-\d{2}-\d{2}$/.test(d);
     }
 
-    function hasAnySource(x){
-      return !!x.source_url || !!x.source_name;
-    }
-
     function isOsintReady(x){
-      // szigorú definíció: legyen link + név + source_type + confidence (Med/High)
       const c = confNorm(x.confidence);
       const st = sourceTypeNorm(x.source_type);
       const hasLinkAndName = !!x.source_url && !!x.source_name;
@@ -676,7 +699,7 @@
       let badDate = 0;
       let osintReady = 0;
 
-      const missingRows = []; // for CSV
+      const missingRows = [];
 
       for (const x of INCIDENTS){
         const issues = [];
@@ -798,6 +821,7 @@
       const filtered = INCIDENTS.filter(x => {
         const d = toDateKey(x.date);
         if (!inDateRangeKey(d, from, to)) return false;
+
         if (typeValue !== "ALL" && x.type !== typeValue) return false;
         if (q && !norm(x.title).includes(q)) return false;
 
@@ -809,7 +833,6 @@
 
         if (onlyWithSources && !hasAnySource(x)) return false;
 
-        // OSINT gomb ON esetén: Med/High ajánlott minimum
         if (isOsintModeOn()) {
           if (!(c === "Med" || c === "High")) return false;
           if (s === "NA") return false;
@@ -874,7 +897,6 @@
     document.getElementById("sourceTypeFilter").addEventListener("change", () => renderIncidents());
 
     document.getElementById("onlyWithSources").addEventListener("change", async () => {
-      // kézi módosításnál OSINT preset ne “hazudjon”
       setOsintMode(false);
       await renderIncidents();
     });
@@ -926,6 +948,7 @@
       try {
         await ensureCountriesData();
         await loadIncidents();
+        await loadLastUpdate();
 
         buildDateAxis();
         syncDateLabels();

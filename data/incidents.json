@@ -1,7 +1,76 @@
 [
-  { "id": 1, "title": "DDoS hullám – eGov", "type": "DDoS", "date": "2025-02-12", "country": "EE", "lat": 59.437, "lon": 24.7536 },
-  { "id": 2, "title": "Ransomware – egészségügy", "type": "Ransomware", "date": "2025-06-03", "country": "DE", "lat": 52.52, "lon": 13.405 },
-  { "id": 3, "title": "Phishing kampány – banki ügyfelek", "type": "Phishing", "date": "2025-09-18", "country": "HU", "lat": 47.4979, "lon": 19.0402 },
-  { "id": 4, "title": "Adatszivárgás – szolgáltató", "type": "DataLeak", "date": "2026-01-10", "country": "FR", "lat": 48.8566, "lon": 2.3522 },
-  { "id": 5, "title": "Supply-chain gyanú – szoftver", "type": "SupplyChain", "date": "2026-02-05", "country": "NL", "lat": 52.3676, "lon": 4.9041 }
+  {
+    "id": 1,
+    "title": "DDoS hullám – eGov",
+    "type": "DDoS",
+    "date": "2025-02-12",
+    "country": "EE",
+    "lat": 59.437,
+    "lon": 24.7536,
+    "source_type": "CERT",
+    "source_name": "CERT-EE (példa)",
+    "source_url": "https://example.com",
+    "confidence": "High"
+  },
+  {
+    "id": 2,
+    "title": "Ransomware – egészségügy",
+    "type": "Ransomware",
+    "date": "2025-06-03",
+    "country": "DE",
+    "lat": 52.52,
+    "lon": 13.405,
+    "source_type": "Media",
+    "source_name": "Sajtó (példa)",
+    "source_url": "https://example.com",
+    "confidence": "Med"
+  },
+  {
+    "id": 3,
+    "title": "Phishing kampány – banki ügyfelek",
+    "type": "Phishing",
+    "date": "2025-09-18",
+    "country": "HU",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "source_type": "Gov",
+    "source_name": "NKI/NBSZ (példa)",
+    "source_url": "https://example.com",
+    "confidence": "Med"
+  },
+  {
+    "id": 4,
+    "title": "Adatszivárgás – szolgáltató",
+    "type": "DataLeak",
+    "date": "2026-01-10",
+    "country": "FR",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "source_type": "Research",
+    "source_name": "Kut. összefoglaló (példa)",
+    "source_url": "https://example.com",
+    "confidence": "Low"
+  },
+  {
+    "id": 5,
+    "title": "Supply-chain gyanú – szoftver",
+    "type": "SupplyChain",
+    "date": "2026-02-05",
+    "country": "NL",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "source_type": "Vendor",
+    "source_name": "Vendor advisory (példa)",
+    "source_url": "https://example.com",
+    "confidence": "High"
+  },
+  {
+    "id": 6,
+    "title": "Ismeretlen helyű incidens (fallback teszt)",
+    "type": "DDoS",
+    "date": "2026-02-20",
+    "country": "HU",
+    "source_type": "NA",
+    "confidence": "NA"
+  }
 ]

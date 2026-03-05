@@ -1,11 +1,11 @@
 {
   "source_name": "CISA KEV",
   "source_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-  "fetched_at": "2026-03-04T13:14:23.365336Z",
+  "fetched_at": "2026-03-05T07:08:46.844286Z",
   "data": {
     "title": "CISA Catalog of Known Exploited Vulnerabilities",
-    "catalogVersion": "2026.03.03",
-    "dateReleased": "2026-03-03T17:37:44.7824Z",
+    "catalogVersion": "2026.03.04",
+    "dateReleased": "2026-03-04T17:04:44.5929Z",
     "count": 1531,
     "vulnerabilities": [
       {

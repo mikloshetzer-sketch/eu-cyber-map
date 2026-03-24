@@ -1,5 +1,18 @@
 [
   {
+    "id": "6a7176c551231bae",
+    "title": "2026-003: Multiple Vulnerabilities in Citrix NetScaler and Citrix ADC",
+    "type": "Vulnerability",
+    "date": "2026-03-23",
+    "country": "BE",
+    "source_type": "CERT",
+    "source_name": "CERT-EU",
+    "source_url": "https://cert.europa.eu/publications/security-advisories/2026-003/",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "EU institutions"
+  },
+  {
     "id": "54f966fae5aadca2",
     "title": "2026-002: Multiple Vulnerabilities in Cisco Products",
     "type": "Vulnerability",
@@ -147,19 +160,6 @@
     "source_type": "CERT",
     "source_name": "CERT-EU",
     "source_url": "https://cert.europa.eu/publications/security-advisories/2025-036/",
-    "confidence": "Med",
-    "generated": true,
-    "scope": "EU institutions"
-  },
-  {
-    "id": "80af48091c699ed4",
-    "title": "2025-035: High Vulnerability in Cisco IOS and IOS XE Software",
-    "type": "Vulnerability",
-    "date": "2025-09-26",
-    "country": "BE",
-    "source_type": "CERT",
-    "source_name": "CERT-EU",
-    "source_url": "https://cert.europa.eu/publications/security-advisories/2025-035/",
     "confidence": "Med",
     "generated": true,
     "scope": "EU institutions"

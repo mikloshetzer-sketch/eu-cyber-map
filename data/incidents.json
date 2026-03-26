@@ -1,5 +1,18 @@
 [
   {
+    "id": "936ac6c231e7a3f5",
+    "title": "2026-004: Critical Vulnerability in SharePoint Exploited",
+    "type": "Vulnerability",
+    "date": "2026-03-25",
+    "country": "BE",
+    "source_type": "CERT",
+    "source_name": "CERT-EU",
+    "source_url": "https://cert.europa.eu/publications/security-advisories/2026-004/",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "EU institutions"
+  },
+  {
     "id": "6a7176c551231bae",
     "title": "2026-003: Multiple Vulnerabilities in Citrix NetScaler and Citrix ADC",
     "type": "Vulnerability",
@@ -147,19 +160,6 @@
     "source_type": "CERT",
     "source_name": "CERT-EU",
     "source_url": "https://cert.europa.eu/publications/security-advisories/2025-037/",
-    "confidence": "Med",
-    "generated": true,
-    "scope": "EU institutions"
-  },
-  {
-    "id": "8f5e9c4c3fef404e",
-    "title": "2025-036: Critical Vulnerabilities in Cisco ASA and FTD",
-    "type": "Vulnerability",
-    "date": "2025-09-26",
-    "country": "BE",
-    "source_type": "CERT",
-    "source_name": "CERT-EU",
-    "source_url": "https://cert.europa.eu/publications/security-advisories/2025-036/",
     "confidence": "Med",
     "generated": true,
     "scope": "EU institutions"

@@ -1,0 +1,57 @@
+[
+  {
+    "id": "dc-de-fra-001",
+    "name": "Frankfurt DC Cluster",
+    "operator": "Example Operator",
+    "country": "DE",
+    "city": "Frankfurt",
+    "lat": 50.1109,
+    "lon": 8.6821,
+    "category": "Hyperscale",
+    "criticality": "High"
+  },
+  {
+    "id": "dc-nl-ams-001",
+    "name": "Amsterdam DC Hub",
+    "operator": "Example Operator",
+    "country": "NL",
+    "city": "Amsterdam",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "category": "Colocation",
+    "criticality": "High"
+  },
+  {
+    "id": "dc-fr-par-001",
+    "name": "Paris Government Data Center",
+    "operator": "GovCloud Example",
+    "country": "FR",
+    "city": "Paris",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "category": "Government",
+    "criticality": "High"
+  },
+  {
+    "id": "dc-ie-dub-001",
+    "name": "Dublin Cloud Region",
+    "operator": "Cloud Example",
+    "country": "IE",
+    "city": "Dublin",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "category": "Hyperscale",
+    "criticality": "High"
+  },
+  {
+    "id": "dc-hu-bud-001",
+    "name": "Budapest Regional DC",
+    "operator": "Regional Hosting Example",
+    "country": "HU",
+    "city": "Budapest",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "category": "Regional",
+    "criticality": "Medium"
+  }
+]

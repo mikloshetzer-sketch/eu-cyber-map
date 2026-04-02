@@ -61,7 +61,7 @@
       z-index: 999;
       top: 14px;
       left: 14px;
-      width: min(640px, calc(100vw - 28px));
+      width: min(700px, calc(100vw - 28px));
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -458,6 +458,45 @@
           <option value="NA">n/a</option>
         </select>
       </div>
+
+      <div class="row" style="margin:0;">
+        <label for="statusFilter">Státusz</label>
+        <select id="statusFilter">
+          <option value="ALL">Összes</option>
+          <option value="Confirmed">Confirmed</option>
+          <option value="Probable">Probable</option>
+          <option value="Suspected">Suspected</option>
+          <option value="NA">n/a</option>
+        </select>
+      </div>
+
+      <div class="row" style="margin:0;">
+        <label for="impactFilter">Impact</label>
+        <select id="impactFilter">
+          <option value="ALL">Összes</option>
+          <option value="High">High</option>
+          <option value="Med">Med</option>
+          <option value="Low">Low</option>
+          <option value="NA">n/a</option>
+        </select>
+      </div>
+
+      <div class="row" style="margin:0;">
+        <label for="operatorFilter">Operátor</label>
+        <select id="operatorFilter">
+          <option value="ALL">Összes</option>
+        </select>
+      </div>
+
+      <div class="row" style="margin:0;">
+        <label style="min-width:110px;">OSINT</label>
+        <div style="display:flex; gap:10px; align-items:center; width:100%; flex-wrap:wrap;">
+          <label style="font-size:12px; color:var(--text); display:flex; gap:8px; align-items:center;">
+            <input type="checkbox" id="onlyWithSources" />
+            csak forrással
+          </label>
+        </div>
+      </div>
     </div>
 
     <div class="sliderBox">
@@ -477,7 +516,7 @@
     </div>
 
     <div class="hint">
-      Új réteg: adatközpontok és adatközpont-incidensek. Adatközpontra kattintva látod a hozzá tartozó incidensek számát és az utolsó esemény dátumát.
+      Új szűrők: státusz, impact, operátor. Ezek főleg az adatközpont-incidensek elemzésére hasznosak.
     </div>
 
     <div class="validator" id="validatorBox">
@@ -523,6 +562,69 @@
     function norm(s){ return String(s || "").toLowerCase().trim(); }
     function toDateKey(s){ return String(s || "").slice(0, 10); }
     function inDateRangeKey(d, from, to){ return d && d >= from && d <= to; }
+
+    function confNorm(conf){
+      const c = String(conf || "").toLowerCase();
+      if (c === "high") return "High";
+      if (c === "med" || c === "medium") return "Med";
+      if (c === "low") return "Low";
+      return "NA";
+    }
+
+    function sourceTypeNorm(st){
+      const s = String(st || "").toLowerCase();
+      if (!s) return "NA";
+      if (s === "cert") return "CERT";
+      if (s === "vendor") return "Vendor";
+      if (s === "media") return "Media";
+      if (s === "gov") return "Gov";
+      if (s === "research") return "Research";
+      if (s === "other") return "Other";
+      return "Other";
+    }
+
+    function statusNorm(st){
+      const s = String(st || "").toLowerCase();
+      if (s === "confirmed") return "Confirmed";
+      if (s === "probable") return "Probable";
+      if (s === "suspected") return "Suspected";
+      return "NA";
+    }
+
+    function impactNorm(v){
+      const s = String(v || "").toLowerCase();
+      if (s === "high") return "High";
+      if (s === "med" || s === "medium") return "Med";
+      if (s === "low") return "Low";
+      return "NA";
+    }
+
+    function confidenceClass(conf){
+      const c = confNorm(conf);
+      if (c === "High") return "conf conf-high";
+      if (c === "Med") return "conf conf-med";
+      if (c === "Low") return "conf conf-low";
+      return "conf";
+    }
+
+    function hasAnySource(x){
+      return !!x.source_url || !!x.source_name;
+    }
+
+    function isPlaceholderSource(x){
+      const n = String(x.source_name || "");
+      const u = String(x.source_url || "");
+      if (/példa/i.test(n)) return true;
+      if (/example\.com/i.test(u)) return true;
+      return false;
+    }
+
+    function isOsintReady(x){
+      const c = confNorm(x.confidence);
+      const st = sourceTypeNorm(x.source_type);
+      const hasLinkAndName = !!x.source_url && !!x.source_name;
+      return hasLinkAndName && st !== "NA" && (c === "Med" || c === "High") && !isPlaceholderSource(x);
+    }
 
     async function ensureCountriesData(){
       if (countriesGeo && countryCentroids) return { countriesGeo, countryCentroids };
@@ -579,6 +681,27 @@
       }catch(e){}
     }
 
+    function buildOperatorFilter(){
+      const sel = document.getElementById("operatorFilter");
+      if (!sel) return;
+
+      const current = sel.value || "ALL";
+      const set = new Set();
+
+      for (const dc of DATACENTERS) {
+        if (dc.operator) set.add(dc.operator);
+      }
+      for (const ev of DC_INCIDENTS) {
+        if (ev.operator) set.add(ev.operator);
+      }
+
+      const operators = Array.from(set).sort((a,b) => a.localeCompare(b, "hu"));
+      sel.innerHTML = `<option value="ALL">Összes</option>` + operators.map(op => `<option value="${op}">${op}</option>`).join("");
+
+      if (operators.includes(current)) sel.value = current;
+      else sel.value = "ALL";
+    }
+
     function buildDateAxis(){
       const set = new Set();
 
@@ -629,53 +752,6 @@
       const { from, to } = getSelectedDateRange();
       document.getElementById("fromLabel").textContent = from;
       document.getElementById("toLabel").textContent = to;
-    }
-
-    function confNorm(conf){
-      const c = String(conf || "").toLowerCase();
-      if (c === "high") return "High";
-      if (c === "med" || c === "medium") return "Med";
-      if (c === "low") return "Low";
-      return "NA";
-    }
-
-    function sourceTypeNorm(st){
-      const s = String(st || "").toLowerCase();
-      if (!s) return "NA";
-      if (s === "cert") return "CERT";
-      if (s === "vendor") return "Vendor";
-      if (s === "media") return "Media";
-      if (s === "gov") return "Gov";
-      if (s === "research") return "Research";
-      if (s === "other") return "Other";
-      return "Other";
-    }
-
-    function confidenceClass(conf){
-      const c = confNorm(conf);
-      if (c === "High") return "conf conf-high";
-      if (c === "Med") return "conf conf-med";
-      if (c === "Low") return "conf conf-low";
-      return "conf";
-    }
-
-    function hasAnySource(x){
-      return !!x.source_url || !!x.source_name;
-    }
-
-    function isPlaceholderSource(x){
-      const n = String(x.source_name || "");
-      const u = String(x.source_url || "");
-      if (/példa/i.test(n)) return true;
-      if (/example\.com/i.test(u)) return true;
-      return false;
-    }
-
-    function isOsintReady(x){
-      const c = confNorm(x.confidence);
-      const st = sourceTypeNorm(x.source_type);
-      const hasLinkAndName = !!x.source_url && !!x.source_name;
-      return hasLinkAndName && st !== "NA" && (c === "Med" || c === "High") && !isPlaceholderSource(x);
     }
 
     function typeToDotClass(t){
@@ -741,6 +817,12 @@
         case "DataLeak": w += 0.16; break;
         default: w += 0.10; break;
       }
+
+      const impact = impactNorm(incident.impact);
+      if (impact === "High") w += 0.20;
+      else if (impact === "Med") w += 0.12;
+      else if (impact === "Low") w += 0.05;
+
       return Math.max(0.25, Math.min(1.0, w));
     }
 
@@ -779,16 +861,25 @@
       const originBadge = `<span class="src-badge">origin: ${origin}</span>`;
       const targetBadge = `<span class="src-badge">target: ${targetType}</span>`;
       const typeValue = x.type || x.event_type || "n/a";
+      const statusValue = statusNorm(x.status);
+      const impactValue = impactNorm(x.impact);
+
+      const statusBadge = statusValue !== "NA" ? `<span class="src-badge">status: ${statusValue}</span>` : "";
+      const impactBadge = impactValue !== "NA" ? `<span class="src-badge">impact: ${impactValue}</span>` : "";
+      const operatorLine = x.operator ? `<div class="pop-meta">Operátor: <strong>${x.operator}</strong></div>` : "";
 
       return `
         <div class="pop-title">${x.title || x.target_name || "Incidens"}</div>
         <div class="pop-meta">Dátum: <strong>${toDateKey(x.date) || "n/a"}</strong> · Ország: <strong>${x.country || "n/a"}</strong></div>
+        ${operatorLine}
         <div>
           <span class="pop-tag">${typeValue}</span>
           <span class="${confCls}">conf: ${confLbl}</span>
           ${srcBadge}
           ${originBadge}
           ${targetBadge}
+          ${statusBadge}
+          ${impactBadge}
         </div>
         ${buildSourceLine(x)}
       `;
@@ -805,6 +896,13 @@
     function buildDatacenterPopupHtml(dc){
       const stats = getDCIncidentStats(dc.id);
       const last = stats.lastDate ? stats.lastDate : "nincs";
+
+      const statusBreakdown = {
+        Confirmed: stats.list.filter(x => statusNorm(x.status) === "Confirmed").length,
+        Probable: stats.list.filter(x => statusNorm(x.status) === "Probable").length,
+        Suspected: stats.list.filter(x => statusNorm(x.status) === "Suspected").length
+      };
+
       return `
         <div class="pop-title">${dc.name}</div>
         <div class="pop-meta">Operátor: <strong>${dc.operator || "n/a"}</strong></div>
@@ -813,6 +911,11 @@
         <div style="margin-top:8px;">
           <span class="src-badge">DC incidensek: ${stats.count}</span>
           <span class="src-badge">utolsó: ${last}</span>
+        </div>
+        <div class="pop-meta" style="margin-top:8px;">
+          Confirmed: <strong>${statusBreakdown.Confirmed}</strong> ·
+          Probable: <strong>${statusBreakdown.Probable}</strong> ·
+          Suspected: <strong>${statusBreakdown.Suspected}</strong>
         </div>
       `;
     }
@@ -875,6 +978,10 @@
       }
     }
 
+    const EU_ISO2 = new Set([
+      "AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE"
+    ]);
+
     function computeValidation(){
       const allEvents = [...INCIDENTS, ...DC_INCIDENTS];
       const total = allEvents.length;
@@ -887,6 +994,9 @@
       let badCountry = 0;
       let badDate = 0;
       let osintReady = 0;
+      let missingStatus = 0;
+      let missingImpact = 0;
+      let missingOperator = 0;
 
       const missingRows = [];
 
@@ -929,6 +1039,21 @@
           issues.push("missing_source_type");
         }
 
+        if ("status" in x && statusNorm(x.status) === "NA") {
+          missingStatus++;
+          issues.push("missing_status");
+        }
+
+        if ("impact" in x && impactNorm(x.impact) === "NA") {
+          missingImpact++;
+          issues.push("missing_impact");
+        }
+
+        if (x.target_type === "DataCenter" && !x.operator) {
+          missingOperator++;
+          issues.push("missing_operator");
+        }
+
         if (isOsintReady(x)) osintReady++;
 
         if (issues.length){
@@ -952,6 +1077,9 @@
         badCountry,
         badDate,
         osintReady,
+        missingStatus,
+        missingImpact,
+        missingOperator,
         missingRows
       };
     }
@@ -974,6 +1102,9 @@
         <div class="k">Hiányzik source_url vagy source_name</div><div class="${pillClass(v.missingSourceStrict, v.total)}">${v.missingSourceStrict}</div>
         <div class="k">Hiányzik confidence</div><div class="${pillClass(v.missingConfidence, v.total)}">${v.missingConfidence}</div>
         <div class="k">Hiányzik source_type</div><div class="${pillClass(v.missingSourceType, v.total)}">${v.missingSourceType}</div>
+        <div class="k">Hiányzik status</div><div class="${pillClass(v.missingStatus, v.total)}">${v.missingStatus}</div>
+        <div class="k">Hiányzik impact</div><div class="${pillClass(v.missingImpact, v.total)}">${v.missingImpact}</div>
+        <div class="k">Hiányzik operator (DC)</div><div class="${pillClass(v.missingOperator, v.total)}">${v.missingOperator}</div>
         <div class="k">Hiányzik lat/lon</div><div class="${pillClass(v.missingLatLon, v.total)}">${v.missingLatLon}</div>
         <div class="k">Hibás/hiányzó országkód</div><div class="${pillClass(v.badCountry, v.total)}">${v.badCountry}</div>
         <div class="k">Hibás/hiányzó dátum</div><div class="${pillClass(v.badDate, v.total)}">${v.badDate}</div>
@@ -1022,6 +1153,10 @@
       const targetValue = document.getElementById("targetFilter").value;
       const confValue = document.getElementById("confFilter").value;
       const srcTypeValue = document.getElementById("sourceTypeFilter").value;
+      const statusValue = document.getElementById("statusFilter").value;
+      const impactValue = document.getElementById("impactFilter").value;
+      const operatorValue = document.getElementById("operatorFilter").value;
+      const onlyWithSources = document.getElementById("onlyWithSources").checked;
       const { from, to } = getSelectedDateRange();
 
       let renderedCount = 0;
@@ -1040,6 +1175,8 @@
         const s = sourceTypeNorm(x.source_type);
         if (srcTypeValue !== "ALL" && s !== srcTypeValue) return false;
 
+        if (onlyWithSources && !hasAnySource(x)) return false;
+
         if (isOsintModeOn()) {
           if (!(c === "Med" || c === "High")) return false;
           if (s === "NA") return false;
@@ -1054,14 +1191,24 @@
         if (targetValue !== "ALL" && targetValue !== "DataCenter") return false;
         if (typeValue !== "ALL" && x.event_type !== typeValue) return false;
 
-        const searchHaystack = `${x.target_name || ""} ${x.city || ""} ${x.operator || ""} ${x.country || ""}`;
-        if (q && !norm(searchHaystack).includes(q)) return false;
+        const hay = `${x.target_name || ""} ${x.city || ""} ${x.operator || ""} ${x.country || ""}`;
+        if (q && !norm(hay).includes(q)) return false;
 
         const c = confNorm(x.confidence);
         if (confValue !== "ALL" && c !== confValue) return false;
 
         const s = sourceTypeNorm(x.source_type);
         if (srcTypeValue !== "ALL" && s !== srcTypeValue) return false;
+
+        const st = statusNorm(x.status);
+        if (statusValue !== "ALL" && st !== statusValue) return false;
+
+        const imp = impactNorm(x.impact);
+        if (impactValue !== "ALL" && imp !== impactValue) return false;
+
+        if (operatorValue !== "ALL" && (x.operator || "") !== operatorValue) return false;
+
+        if (onlyWithSources && !hasAnySource(x)) return false;
 
         if (isOsintModeOn()) {
           if (!(c === "Med" || c === "High")) return false;
@@ -1097,11 +1244,14 @@
         renderedCount++;
       }
 
-      const dcQuery = q;
       const filteredDCs = DATACENTERS.filter(dc => {
         if (targetValue !== "ALL" && targetValue !== "DataCenter") return false;
+
         const hay = `${dc.name || ""} ${dc.city || ""} ${dc.operator || ""} ${dc.country || ""} ${dc.category || ""}`;
-        if (dcQuery && !norm(hay).includes(dcQuery)) return false;
+        if (q && !norm(hay).includes(q)) return false;
+
+        if (operatorValue !== "ALL" && (dc.operator || "") !== operatorValue) return false;
+
         return true;
       });
 
@@ -1161,6 +1311,14 @@
     document.getElementById("typeFilter").addEventListener("change", () => renderMapData());
     document.getElementById("confFilter").addEventListener("change", () => renderMapData());
     document.getElementById("sourceTypeFilter").addEventListener("change", () => renderMapData());
+    document.getElementById("statusFilter").addEventListener("change", () => renderMapData());
+    document.getElementById("impactFilter").addEventListener("change", () => renderMapData());
+    document.getElementById("operatorFilter").addEventListener("change", () => renderMapData());
+
+    document.getElementById("onlyWithSources").addEventListener("change", async () => {
+      setOsintMode(false);
+      await renderMapData();
+    });
 
     document.getElementById("toggleIncidents").addEventListener("change", () => setLayersVisibility());
     document.getElementById("toggleDCIncidents").addEventListener("change", () => setLayersVisibility());
@@ -1188,6 +1346,10 @@
       document.getElementById("typeFilter").value = "ALL";
       document.getElementById("confFilter").value = "ALL";
       document.getElementById("sourceTypeFilter").value = "ALL";
+      document.getElementById("statusFilter").value = "ALL";
+      document.getElementById("impactFilter").value = "ALL";
+      document.getElementById("operatorFilter").value = "ALL";
+      document.getElementById("onlyWithSources").checked = false;
       setOsintMode(false);
 
       document.getElementById("toggleIncidents").checked = true;
@@ -1214,6 +1376,7 @@
         await loadDCIncidents();
         await loadLastUpdate();
 
+        buildOperatorFilter();
         buildDateAxis();
         syncDateLabels();
 

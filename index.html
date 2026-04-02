@@ -2,551 +2,1033 @@
 <html lang="hu">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>EU Cyber Map</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EU Cyber Dashboard</title>
 
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""
-  />
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""
-  ></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
-    crossorigin=""
-  />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"
-    crossorigin=""
-  />
-  <script
-    src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"
-    crossorigin=""
-  ></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" crossorigin="" />
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" crossorigin=""></script>
 
-  <script
-    src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"
-    crossorigin=""
-  ></script>
+  <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js" crossorigin=""></script>
 
   <style>
     :root{
-      --bg: #070a12;
-      --panel: rgba(12, 18, 34, .82);
-      --panelSolid: rgba(12, 18, 34, .96);
-      --border: rgba(110, 231, 255, .18);
-      --text: rgba(235, 245, 255, .92);
-      --muted: rgba(235, 245, 255, .65);
+      --bg:#0a1220;
+      --bg-2:#0d1728;
+      --panel:rgba(20,30,48,.84);
+      --panel-2:rgba(24,36,58,.88);
+      --panel-solid:#17243b;
+      --line:rgba(124, 212, 255, .18);
+      --line-strong:rgba(124, 212, 255, .30);
+      --text:#eaf3ff;
+      --muted:#9eb1c7;
+
+      --cyan:#66e6ff;
+      --cyan-2:#2ed4ff;
+      --violet:#b693ff;
+      --green:#5ee0a9;
+      --yellow:#f6c96f;
+      --red:#ff9292;
+      --blue:#78a7ff;
+
+      --shadow:0 18px 50px rgba(0,0,0,.35);
+      --radius-xl:22px;
+      --radius-lg:18px;
+      --radius-md:14px;
+      --radius-sm:12px;
     }
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    * { box-sizing:border-box; }
+
+    html, body {
+      margin:0;
+      padding:0;
+      height:100%;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(102,230,255,.10), transparent 24%),
+        radial-gradient(circle at 88% 10%, rgba(182,147,255,.10), transparent 20%),
+        linear-gradient(180deg, #09111d 0%, #0b1320 100%);
+      color:var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
 
-    #map { height: 100vh; }
-
-    .panel {
-      position: absolute;
-      z-index: 999;
-      top: 14px;
-      left: 14px;
-      width: min(700px, calc(100vw - 28px));
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 12px 12px 10px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 12px 40px rgba(0,0,0,.35);
-      max-height: calc(100vh - 28px);
-      overflow: auto;
+    .app{
+      display:grid;
+      grid-template-rows: 72px 1fr;
+      gap:10px;
+      padding:10px;
+      height:100vh;
     }
 
-    .title {
+    .topbar{
+      display:grid;
+      grid-template-columns:minmax(220px, 1fr) auto;
+      gap:14px;
+      align-items:center;
+      padding:12px 16px;
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:rgba(19,29,46,.88);
+      backdrop-filter:blur(10px);
+      box-shadow:var(--shadow);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .brand-logo{
+      width:40px;
+      height:40px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      font-size:18px;
+      border:1px solid var(--line-strong);
+      background:
+        linear-gradient(135deg, rgba(102,230,255,.18), rgba(182,147,255,.16)),
+        rgba(255,255,255,.04);
+      box-shadow:0 0 26px rgba(102,230,255,.16);
+      flex:0 0 auto;
+    }
+
+    .brand-copy{
+      min-width:0;
+    }
+
+    .brand-title{
+      font-size:15px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:#fff;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .brand-sub{
+      margin-top:2px;
+      font-size:12px;
+      color:var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .top-pills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:flex-end;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      min-height:34px;
+      padding:0 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    .pill strong{ color:#fff; }
+    .pill.good{ border-color:rgba(94,224,169,.30); background:rgba(94,224,169,.10); }
+    .pill.warn{ border-color:rgba(246,201,111,.30); background:rgba(246,201,111,.10); }
+    .pill.bad{ border-color:rgba(255,146,146,.30); background:rgba(255,146,146,.10); }
+
+    .workspace{
+      display:grid;
+      grid-template-columns:340px minmax(0,1fr) 360px;
+      gap:10px;
+      min-height:0;
+    }
+
+    .sidebar, .rightbar{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-height:0;
+    }
+
+    .panel{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--radius-xl);
+      backdrop-filter:blur(10px);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .panel-head{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
-      margin-bottom: 8px;
+      gap:10px;
+      padding:12px 14px 8px;
     }
 
-    .title h1 {
-      margin: 0;
-      font-size: 14px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--text);
+    .panel-title{
+      font-size:12px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-weight:800;
     }
 
-    .badge{
-      font-size: 12px;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 4px 8px;
-      border-radius: 999px;
-      white-space: nowrap;
+    .panel-body{
+      padding:0 14px 14px;
+    }
+
+    .map-panel{
+      position:relative;
+      min-width:0;
+      min-height:0;
+      overflow:hidden;
+      border-radius:24px;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      background:#d8e2f0;
+    }
+
+    #map{
+      width:100%;
+      height:100%;
+    }
+
+    .map-floating{
+      position:absolute;
+      top:12px;
+      right:12px;
+      z-index:700;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:flex-end;
+      max-width:360px;
+      pointer-events:none;
+    }
+
+    .map-chip{
+      pointer-events:auto;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      min-height:32px;
+      padding:0 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(18,27,42,.86);
+      backdrop-filter:blur(8px);
+      font-size:12px;
+      color:var(--text);
+    }
+
+    .metric-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .metric{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      padding:12px;
+    }
+
+    .metric-label{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      color:var(--muted);
+      margin-bottom:6px;
+      font-weight:700;
+    }
+
+    .metric-value{
+      font-size:24px;
+      font-weight:800;
+      color:#fff;
+      line-height:1.05;
+    }
+
+    .metric-sub{
+      margin-top:6px;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.35;
+    }
+
+    .summary-list, .top-list{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .summary-item, .top-item{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:15px;
+      padding:10px 12px;
+    }
+
+    .summary-item-title, .top-item-title{
+      font-size:13px;
+      font-weight:700;
+      color:#fff;
+    }
+
+    .summary-item-sub, .top-item-sub{
+      margin-top:4px;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.4;
+    }
+
+    .filter-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    .field.full{
+      grid-column:1 / -1;
+    }
+
+    .field label{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      color:var(--muted);
+      font-weight:800;
+    }
+
+    select, input[type="text"], input[type="range"]{
+      width:100%;
+    }
+
+    select, input[type="text"]{
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;
+      padding:9px 10px;
+      outline:none;
+    }
+
+    select option{
+      background:var(--panel-solid);
+      color:var(--text);
     }
 
     .checks{
       display:flex;
-      flex-wrap: wrap;
-      gap:10px;
-      margin-top: 6px;
-      margin-bottom: 6px;
+      flex-wrap:wrap;
+      gap:8px 12px;
+      margin-top:4px;
     }
 
     .checks label{
-      color: var(--text);
-      font-size: 12px;
       display:flex;
+      align-items:center;
+      gap:7px;
+      font-size:12px;
+      color:var(--text);
+    }
+
+    input[type="checkbox"]{
+      accent-color:var(--cyan-2);
+    }
+
+    .slider-box{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      padding:10px 12px;
+    }
+
+    .slider-head{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      font-size:12px;
+      color:var(--muted);
+      margin-bottom:8px;
+    }
+
+    .slider-head strong{
+      color:#fff;
+    }
+
+    .button-row{
+      display:flex;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    button{
+      width:100%;
+      cursor:pointer;
+      background:rgba(102,230,255,.10);
+      color:var(--text);
+      border:1px solid rgba(102,230,255,.24);
+      border-radius:13px;
+      padding:10px 12px;
+      font-weight:800;
+      letter-spacing:.02em;
+      transition:.15s ease;
+    }
+
+    button:hover{
+      background:rgba(102,230,255,.16);
+    }
+
+    .btn-secondary{
+      background:rgba(182,147,255,.10);
+      border-color:rgba(182,147,255,.24);
+    }
+
+    .btn-secondary:hover{
+      background:rgba(182,147,255,.16);
+    }
+
+    .btn-ghost{
+      background:rgba(255,255,255,.05);
+      border-color:rgba(255,255,255,.12);
+    }
+
+    .btn-ghost:hover{
+      background:rgba(255,255,255,.09);
+    }
+
+    .mini-note{
+      margin-top:10px;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.4;
+    }
+
+    .legend-list{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .legend-item{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:12px;
+      color:#fff;
+    }
+
+    .legend-swatch{
+      width:18px;
+      height:12px;
+      border-radius:4px;
+      border:1px solid rgba(255,255,255,.16);
+      flex:0 0 auto;
+    }
+
+    .bar-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .bar-row{
+      display:grid;
+      grid-template-columns:1fr auto;
       gap:8px;
       align-items:center;
     }
 
-    input[type="checkbox"]{
-      accent-color: rgba(110,231,255,.95);
+    .bar-label{
+      font-size:12px;
+      color:#fff;
+      min-width:0;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
-    .row {
+    .bar-value{
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .bar-track{
+      grid-column:1 / -1;
+      height:8px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      overflow:hidden;
+    }
+
+    .bar-fill{
+      height:100%;
+      border-radius:999px;
+      background:linear-gradient(90deg, rgba(102,230,255,.85), rgba(182,147,255,.75));
+      box-shadow:0 0 16px rgba(102,230,255,.18);
+    }
+
+    .trend-bars{
       display:flex;
-      gap:10px;
+      align-items:flex-end;
+      gap:6px;
+      height:132px;
+      padding-top:8px;
+    }
+
+    .trend-col{
+      flex:1;
+      min-width:0;
+      display:flex;
+      flex-direction:column;
       align-items:center;
-      margin: 10px 0;
+      gap:6px;
     }
 
-    .row label {
-      font-size: 12px;
-      color: var(--muted);
-      min-width: 110px;
-    }
-
-    select, input[type="text"]{
-      width: 100%;
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 10px;
-      padding: 8px 10px;
-      outline: none;
-    }
-
-    select option{
-      background: var(--panelSolid);
-      color: var(--text);
-    }
-
-    .grid2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-      margin-top: 10px;
-    }
-
-    .sliderBox{
-      margin-top: 8px;
-      padding: 10px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-    }
-
-    .sliderHead{
+    .trend-bar-wrap{
+      width:100%;
+      height:96px;
       display:flex;
-      justify-content:space-between;
-      gap:10px;
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 8px;
+      align-items:flex-end;
+      justify-content:center;
     }
 
-    .sliderHead strong{
-      color: var(--text);
-      font-weight: 700;
+    .trend-bar{
+      width:100%;
+      max-width:26px;
+      min-height:4px;
+      border-radius:10px 10px 4px 4px;
+      background:linear-gradient(180deg, rgba(102,230,255,.88), rgba(182,147,255,.72));
+      box-shadow:0 0 16px rgba(102,230,255,.18);
     }
 
-    .sliders{
+    .trend-value{
+      font-size:10px;
+      color:#fff;
+    }
+
+    .trend-label{
+      font-size:10px;
+      color:var(--muted);
+      width:100%;
+      text-align:center;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .validator-wrap{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      padding:10px 12px;
+    }
+
+    .validator-grid{
       display:grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
+      grid-template-columns:1fr auto;
+      gap:7px 10px;
+      font-size:12px;
     }
 
-    .btns{
+    .validator-grid .k{
+      color:var(--muted);
+    }
+
+    .validator-pill{
+      display:inline-block;
+      min-width:56px;
+      text-align:center;
+      padding:2px 8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+    }
+
+    .validator-pill.good{ border-color:rgba(94,224,169,.30); background:rgba(94,224,169,.10); }
+    .validator-pill.warn{ border-color:rgba(246,201,111,.30); background:rgba(246,201,111,.10); }
+    .validator-pill.bad{ border-color:rgba(255,146,146,.30); background:rgba(255,146,146,.10); }
+
+    .validator-actions{
       display:flex;
       gap:10px;
-      margin-top: 10px;
+      margin-top:10px;
     }
-
-    button{
-      width: 100%;
-      cursor: pointer;
-      background: rgba(110,231,255,.10);
-      color: var(--text);
-      border: 1px solid rgba(110,231,255,.25);
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-weight: 700;
-      letter-spacing: .02em;
-    }
-
-    button:hover{
-      background: rgba(110,231,255,.16);
-    }
-
-    .btn-secondary{
-      background: rgba(167,139,250,.10);
-      border-color: rgba(167,139,250,.25);
-    }
-
-    .btn-secondary:hover{
-      background: rgba(167,139,250,.16);
-    }
-
-    .btn-ghost{
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.12);
-    }
-
-    .btn-ghost:hover{
-      background: rgba(255,255,255,.10);
-    }
-
-    .hint{
-      margin-top: 10px;
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.35;
-    }
-
-    .dot { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(255,255,255,.35); }
-    .dot-ddos { background: rgba(34, 211, 238, .95); box-shadow: 0 0 0 4px rgba(34,211,238,.15), 0 0 18px rgba(34,211,238,.60); }
-    .dot-ransomware { background: rgba(248, 113, 113, .95); box-shadow: 0 0 0 4px rgba(248,113,113,.15), 0 0 18px rgba(248,113,113,.55); }
-    .dot-phishing { background: rgba(167, 139, 250, .95); box-shadow: 0 0 0 4px rgba(167,139,250,.15), 0 0 18px rgba(167,139,250,.55); }
-    .dot-dataleak { background: rgba(96, 165, 250, .95); box-shadow: 0 0 0 4px rgba(96,165,250,.15), 0 0 18px rgba(96,165,250,.55); }
-    .dot-supplychain { background: rgba(52, 211, 153, .95); box-shadow: 0 0 0 4px rgba(52,211,153,.15), 0 0 18px rgba(52,211,153,.55); }
-    .dot-other { background: rgba(110, 231, 255, .95); box-shadow: 0 0 0 4px rgba(110,231,255,.15), 0 0 18px rgba(110,231,255,.60); }
-
-    .dc-icon {
-      width: 18px;
-      height: 18px;
-      border-radius: 4px;
-      border: 1px solid rgba(255,255,255,.45);
-      background: rgba(255,255,255,.12);
-      box-shadow: 0 0 0 4px rgba(110,231,255,.10), 0 0 18px rgba(110,231,255,.30);
-    }
-
-    .dc-hyperscale { background: rgba(110,231,255,.92); }
-    .dc-colocation { background: rgba(167,139,250,.92); }
-    .dc-government { background: rgba(248,113,113,.92); }
-    .dc-regional { background: rgba(52,211,153,.92); }
-    .dc-other { background: rgba(255,255,255,.72); }
 
     .leaflet-popup-content-wrapper{
-      background: rgba(10, 14, 28, .92);
-      color: var(--text);
-      border: 1px solid rgba(110,231,255,.18);
-      border-radius: 14px;
-      box-shadow: 0 18px 60px rgba(0,0,0,.5);
+      background:rgba(17,26,42,.95);
+      color:var(--text);
+      border:1px solid var(--line);
+      border-radius:16px;
+      box-shadow:0 18px 60px rgba(0,0,0,.45);
     }
 
     .leaflet-popup-tip{
-      background: rgba(10, 14, 28, .92);
+      background:rgba(17,26,42,.95);
     }
 
     .pop-title{
-      font-weight: 800;
-      letter-spacing: .02em;
-      margin-bottom: 4px;
+      font-weight:800;
+      letter-spacing:.02em;
+      margin-bottom:4px;
+      color:#fff;
     }
 
     .pop-meta{
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.35;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.4;
     }
 
     .pop-tag{
       display:inline-block;
-      margin-top: 8px;
-      border: 1px solid rgba(167,139,250,.28);
-      background: rgba(167,139,250,.10);
-      padding: 3px 8px;
-      border-radius: 999px;
-      font-size: 12px;
+      margin-top:8px;
+      border:1px solid rgba(182,147,255,.28);
+      background:rgba(182,147,255,.12);
+      padding:3px 8px;
+      border-radius:999px;
+      font-size:12px;
     }
 
-    .conf {
+    .conf{
       display:inline-block;
-      margin-left: 8px;
-      margin-top: 8px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      font-size: 12px;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
+      margin-left:8px;
+      margin-top:8px;
+      padding:3px 8px;
+      border-radius:999px;
+      font-size:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
     }
 
-    .conf-high { border-color: rgba(52,211,153,.35); background: rgba(52,211,153,.10); }
-    .conf-med  { border-color: rgba(251,191,36,.35); background: rgba(251,191,36,.10); }
-    .conf-low  { border-color: rgba(248,113,113,.35); background: rgba(248,113,113,.10); }
+    .conf-high{ border-color:rgba(94,224,169,.28); background:rgba(94,224,169,.10); }
+    .conf-med{ border-color:rgba(246,201,111,.28); background:rgba(246,201,111,.10); }
+    .conf-low{ border-color:rgba(255,146,146,.28); background:rgba(255,146,146,.10); }
 
     .src-badge{
       display:inline-block;
-      margin-left: 8px;
-      margin-top: 8px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      font-size: 12px;
-      border: 1px solid rgba(110,231,255,.20);
-      background: rgba(110,231,255,.08);
-      color: var(--text);
+      margin-left:8px;
+      margin-top:8px;
+      padding:3px 8px;
+      border-radius:999px;
+      font-size:12px;
+      border:1px solid rgba(102,230,255,.22);
+      background:rgba(102,230,255,.08);
     }
 
-    a.pop-link {
-      color: rgba(110,231,255,.95);
-      text-decoration: none;
+    a.pop-link{
+      color:var(--cyan);
+      text-decoration:none;
     }
 
-    a.pop-link:hover {
-      text-decoration: underline;
+    a.pop-link:hover{
+      text-decoration:underline;
     }
 
-    .marker-cluster-small, .marker-cluster-medium, .marker-cluster-large {
-      background: rgba(110,231,255,.18) !important;
-      border: 1px solid rgba(110,231,255,.25);
-      box-shadow: 0 0 18px rgba(110,231,255,.22);
+    .dot{
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.35);
     }
 
-    .marker-cluster div {
-      background: rgba(12,18,34,.82) !important;
-      color: var(--text) !important;
-      border-radius: 999px !important;
-      border: 1px solid rgba(110,231,255,.18);
+    .dot-ddos{
+      background:rgba(46,212,255,.95);
+      box-shadow:0 0 0 4px rgba(46,212,255,.15), 0 0 18px rgba(46,212,255,.45);
     }
 
-    .validator{
-      margin-top: 12px;
-      padding: 10px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
+    .dot-ransomware{
+      background:rgba(255,146,146,.95);
+      box-shadow:0 0 0 4px rgba(255,146,146,.15), 0 0 18px rgba(255,146,146,.45);
     }
 
-    .validator h2{
-      margin: 0 0 8px 0;
-      font-size: 12px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--muted);
+    .dot-phishing{
+      background:rgba(182,147,255,.95);
+      box-shadow:0 0 0 4px rgba(182,147,255,.15), 0 0 18px rgba(182,147,255,.45);
     }
 
-    .kv{
-      display:grid;
-      grid-template-columns: 1fr auto;
-      gap: 6px 10px;
-      font-size: 12px;
-      color: var(--text);
-      margin-top: 6px;
+    .dot-dataleak{
+      background:rgba(120,167,255,.95);
+      box-shadow:0 0 0 4px rgba(120,167,255,.15), 0 0 18px rgba(120,167,255,.45);
     }
 
-    .kv .k{ color: var(--muted); }
-
-    .pill{
-      display:inline-block;
-      padding: 2px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      font-size: 12px;
-      color: var(--text);
-      text-align: right;
-      min-width: 52px;
+    .dot-supplychain{
+      background:rgba(94,224,169,.95);
+      box-shadow:0 0 0 4px rgba(94,224,169,.15), 0 0 18px rgba(94,224,169,.45);
     }
 
-    .pill.good{ border-color: rgba(52,211,153,.25); background: rgba(52,211,153,.08); }
-    .pill.warn{ border-color: rgba(251,191,36,.25); background: rgba(251,191,36,.08); }
-    .pill.bad{ border-color: rgba(248,113,113,.25); background: rgba(248,113,113,.08); }
+    .dot-other{
+      background:rgba(102,230,255,.85);
+      box-shadow:0 0 0 4px rgba(102,230,255,.15), 0 0 18px rgba(102,230,255,.45);
+    }
 
-    .validatorBtns{
-      display:flex;
-      gap:10px;
-      margin-top: 10px;
+    .dc-icon{
+      width:18px;
+      height:18px;
+      border-radius:5px;
+      border:1px solid rgba(255,255,255,.45);
+      box-shadow:0 0 0 4px rgba(102,230,255,.10), 0 0 18px rgba(102,230,255,.20);
+    }
+
+    .dc-hyperscale{ background:rgba(102,230,255,.92); }
+    .dc-colocation{ background:rgba(182,147,255,.92); }
+    .dc-government{ background:rgba(255,146,146,.92); }
+    .dc-regional{ background:rgba(94,224,169,.92); }
+    .dc-other{ background:rgba(255,255,255,.72); }
+
+    .marker-cluster-small, .marker-cluster-medium, .marker-cluster-large{
+      background:rgba(102,230,255,.18)!important;
+      border:1px solid rgba(102,230,255,.24);
+      box-shadow:0 0 18px rgba(102,230,255,.18);
+    }
+
+    .marker-cluster div{
+      background:rgba(19,29,46,.90)!important;
+      color:#fff!important;
+      border-radius:999px!important;
+      border:1px solid rgba(102,230,255,.18);
+    }
+
+    @media (max-width: 1450px){
+      .workspace{
+        grid-template-columns:320px minmax(0,1fr) 330px;
+      }
+    }
+
+    @media (max-width: 1240px){
+      html, body{
+        overflow:auto;
+      }
+
+      .app{
+        height:auto;
+        min-height:100vh;
+        overflow:auto;
+      }
+
+      .workspace{
+        grid-template-columns:1fr;
+        grid-template-rows:auto minmax(520px, 62vh) auto;
+      }
+
+      .map-panel{
+        min-height:540px;
+      }
     }
   </style>
 </head>
-
 <body>
-  <div id="map"></div>
-
-  <div class="panel">
-    <div class="title">
-      <h1>EU Cyber Map</h1>
-      <div class="badge">
-        <span id="countBadge">— incidens</span>
-        <span id="updateBadge" style="margin-left:8px;"></span>
-      </div>
-    </div>
-
-    <div class="checks">
-      <label><input type="checkbox" id="toggleIncidents" checked> Általános incidensek</label>
-      <label><input type="checkbox" id="toggleDCIncidents" checked> DC incidensek</label>
-      <label><input type="checkbox" id="toggleDatacenters" checked> Adatközpontok</label>
-      <label><input type="checkbox" id="toggleClusters" checked> Cluster</label>
-      <label><input type="checkbox" id="toggleHeatmap"> Heatmap</label>
-      <label><input type="checkbox" id="toggleBorders"> Határok</label>
-    </div>
-
-    <div class="row">
-      <label for="searchFilter">Keresés</label>
-      <input type="text" id="searchFilter" placeholder="pl. bank, eGov, Frankfurt, data center..." />
-    </div>
-
-    <div class="grid2">
-      <div class="row" style="margin:0;">
-        <label for="targetFilter">Célpont</label>
-        <select id="targetFilter">
-          <option value="ALL">Összes</option>
-          <option value="Country">Ország</option>
-          <option value="DataCenter">Adatközpont</option>
-        </select>
-      </div>
-
-      <div class="row" style="margin:0;">
-        <label for="typeFilter">Típus</label>
-        <select id="typeFilter">
-          <option value="ALL">Összes</option>
-          <option value="DDoS">DDoS</option>
-          <option value="Ransomware">Ransomware</option>
-          <option value="Phishing">Phishing</option>
-          <option value="DataLeak">Adatszivárgás</option>
-          <option value="SupplyChain">Ellátási lánc</option>
-          <option value="Vulnerability">Vulnerability</option>
-        </select>
-      </div>
-
-      <div class="row" style="margin:0;">
-        <label for="confFilter">Bizalom</label>
-        <select id="confFilter">
-          <option value="ALL">Összes</option>
-          <option value="High">High</option>
-          <option value="Med">Med</option>
-          <option value="Low">Low</option>
-          <option value="NA">n/a</option>
-        </select>
-      </div>
-
-      <div class="row" style="margin:0;">
-        <label for="sourceTypeFilter">Forrás</label>
-        <select id="sourceTypeFilter">
-          <option value="ALL">Összes</option>
-          <option value="CERT">CERT</option>
-          <option value="Vendor">Vendor</option>
-          <option value="Media">Media</option>
-          <option value="Gov">Gov</option>
-          <option value="Research">Research</option>
-          <option value="Other">Other</option>
-          <option value="NA">n/a</option>
-        </select>
-      </div>
-
-      <div class="row" style="margin:0;">
-        <label for="statusFilter">Státusz</label>
-        <select id="statusFilter">
-          <option value="ALL">Összes</option>
-          <option value="Confirmed">Confirmed</option>
-          <option value="Probable">Probable</option>
-          <option value="Suspected">Suspected</option>
-          <option value="NA">n/a</option>
-        </select>
-      </div>
-
-      <div class="row" style="margin:0;">
-        <label for="impactFilter">Impact</label>
-        <select id="impactFilter">
-          <option value="ALL">Összes</option>
-          <option value="High">High</option>
-          <option value="Med">Med</option>
-          <option value="Low">Low</option>
-          <option value="NA">n/a</option>
-        </select>
-      </div>
-
-      <div class="row" style="margin:0;">
-        <label for="operatorFilter">Operátor</label>
-        <select id="operatorFilter">
-          <option value="ALL">Összes</option>
-        </select>
-      </div>
-
-      <div class="row" style="margin:0;">
-        <label style="min-width:110px;">OSINT</label>
-        <div style="display:flex; gap:10px; align-items:center; width:100%; flex-wrap:wrap;">
-          <label style="font-size:12px; color:var(--text); display:flex; gap:8px; align-items:center;">
-            <input type="checkbox" id="onlyWithSources" />
-            csak forrással
-          </label>
+  <div class="app">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-logo">🛡️</div>
+        <div class="brand-copy">
+          <div class="brand-title">EU Cyber Dashboard</div>
+          <div class="brand-sub">Adatközpontok, országos incidensek, OSINT-szűrők és elemző nézet</div>
         </div>
       </div>
-    </div>
 
-    <div class="sliderBox">
-      <div class="sliderHead">
-        <div>Idősáv: <strong id="fromLabel">—</strong></div>
-        <div>→ <strong id="toLabel">—</strong></div>
-      </div>
-      <div class="sliders">
-        <input type="range" id="fromRange" min="0" max="0" value="0" />
-        <input type="range" id="toRange" min="0" max="0" value="0" />
+      <div class="top-pills">
+        <div class="pill" id="topLastUpdate">Frissítés: —</div>
+        <div class="pill" id="topDateRange">Idősáv: —</div>
+        <div class="pill" id="topRiskPill">Régiós kockázat: —</div>
+        <div class="pill" id="topConfidencePill">Confidence: —</div>
       </div>
     </div>
 
-    <div class="btns">
-      <button id="osintBtn" class="btn-secondary">OSINT mód: OFF</button>
-      <button id="resetBtn">Reset</button>
-    </div>
+    <div class="workspace">
+      <div class="sidebar">
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Executive summary</div>
+          </div>
+          <div class="panel-body">
+            <div class="metric-grid">
+              <div class="metric">
+                <div class="metric-label">Összes esemény</div>
+                <div class="metric-value" id="metricTotalEvents">0</div>
+                <div class="metric-sub" id="metricTotalSub">szűrt nézet</div>
+              </div>
 
-    <div class="hint">
-      Új szűrők: státusz, impact, operátor. Ezek főleg az adatközpont-incidensek elemzésére hasznosak.
-    </div>
+              <div class="metric">
+                <div class="metric-label">DC incidensek</div>
+                <div class="metric-value" id="metricDCEvents">0</div>
+                <div class="metric-sub">adatközponti célzás</div>
+              </div>
 
-    <div class="validator" id="validatorBox">
-      <h2>Data validator</h2>
-      <div class="kv" id="validatorKv"></div>
-      <div class="validatorBtns">
-        <button id="exportOsintBtn" class="btn-ghost">Export OSINT-ready JSON</button>
-        <button id="exportMissingBtn" class="btn-ghost">Export hiánylista CSV</button>
+              <div class="metric">
+                <div class="metric-label">Adatközpontok</div>
+                <div class="metric-value" id="metricDCCount">0</div>
+                <div class="metric-sub">látható helyszín</div>
+              </div>
+
+              <div class="metric">
+                <div class="metric-label">OSINT-ready</div>
+                <div class="metric-value" id="metricOsintReady">0%</div>
+                <div class="metric-sub">forrásolt arány</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Összefoglaló</div>
+          </div>
+          <div class="panel-body">
+            <div class="summary-list" id="summaryList"></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Trend – napi eseményszám</div>
+          </div>
+          <div class="panel-body">
+            <div class="trend-bars" id="trendBars"></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Adatminőség validátor</div>
+          </div>
+          <div class="panel-body">
+            <div class="validator-wrap">
+              <div class="validator-grid" id="validatorGrid"></div>
+              <div class="validator-actions">
+                <button id="exportOsintBtn" class="btn-ghost">Export OSINT-ready JSON</button>
+                <button id="exportMissingBtn" class="btn-ghost">Export hiánylista CSV</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-panel">
+        <div id="map"></div>
+
+        <div class="map-floating">
+          <div class="map-chip" id="mapChipTarget">Célpont: Összes</div>
+          <div class="map-chip" id="mapChipMode">OSINT: OFF</div>
+          <div class="map-chip" id="mapChipCount">0 esemény</div>
+        </div>
+      </div>
+
+      <div class="rightbar">
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Rétegek és szűrők</div>
+          </div>
+          <div class="panel-body">
+            <div class="checks">
+              <label><input type="checkbox" id="toggleIncidents" checked> Általános incidensek</label>
+              <label><input type="checkbox" id="toggleDCIncidents" checked> DC incidensek</label>
+              <label><input type="checkbox" id="toggleDatacenters" checked> Adatközpontok</label>
+              <label><input type="checkbox" id="toggleClusters" checked> Cluster</label>
+              <label><input type="checkbox" id="toggleHeatmap"> Heatmap</label>
+              <label><input type="checkbox" id="toggleBorders"> Határok</label>
+            </div>
+
+            <div class="filter-grid" style="margin-top:12px;">
+              <div class="field full">
+                <label for="searchFilter">Keresés</label>
+                <input type="text" id="searchFilter" placeholder="pl. Frankfurt, operator, gov, ransomware..." />
+              </div>
+
+              <div class="field">
+                <label for="targetFilter">Célpont</label>
+                <select id="targetFilter">
+                  <option value="ALL">Összes</option>
+                  <option value="Country">Ország</option>
+                  <option value="DataCenter">Adatközpont</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="typeFilter">Típus</label>
+                <select id="typeFilter">
+                  <option value="ALL">Összes</option>
+                  <option value="DDoS">DDoS</option>
+                  <option value="Ransomware">Ransomware</option>
+                  <option value="Phishing">Phishing</option>
+                  <option value="DataLeak">Adatszivárgás</option>
+                  <option value="SupplyChain">Ellátási lánc</option>
+                  <option value="Vulnerability">Vulnerability</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="confFilter">Bizalom</label>
+                <select id="confFilter">
+                  <option value="ALL">Összes</option>
+                  <option value="High">High</option>
+                  <option value="Med">Med</option>
+                  <option value="Low">Low</option>
+                  <option value="NA">n/a</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="sourceTypeFilter">Forrás</label>
+                <select id="sourceTypeFilter">
+                  <option value="ALL">Összes</option>
+                  <option value="CERT">CERT</option>
+                  <option value="Vendor">Vendor</option>
+                  <option value="Media">Media</option>
+                  <option value="Gov">Gov</option>
+                  <option value="Research">Research</option>
+                  <option value="Other">Other</option>
+                  <option value="NA">n/a</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="statusFilter">Státusz</label>
+                <select id="statusFilter">
+                  <option value="ALL">Összes</option>
+                  <option value="Confirmed">Confirmed</option>
+                  <option value="Probable">Probable</option>
+                  <option value="Suspected">Suspected</option>
+                  <option value="NA">n/a</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="impactFilter">Impact</label>
+                <select id="impactFilter">
+                  <option value="ALL">Összes</option>
+                  <option value="High">High</option>
+                  <option value="Med">Med</option>
+                  <option value="Low">Low</option>
+                  <option value="NA">n/a</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="operatorFilter">Operátor</label>
+                <select id="operatorFilter">
+                  <option value="ALL">Összes</option>
+                </select>
+              </div>
+
+              <div class="field full">
+                <label>OSINT</label>
+                <div class="checks">
+                  <label><input type="checkbox" id="onlyWithSources"> csak forrással</label>
+                </div>
+              </div>
+
+              <div class="field full">
+                <label>Idősáv</label>
+                <div class="slider-box">
+                  <div class="slider-head">
+                    <div><strong id="fromLabel">—</strong></div>
+                    <div>→ <strong id="toLabel">—</strong></div>
+                  </div>
+                  <input type="range" id="fromRange" min="0" max="0" value="0" />
+                  <input type="range" id="toRange" min="0" max="0" value="0" />
+                </div>
+              </div>
+            </div>
+
+            <div class="button-row">
+              <button id="osintBtn" class="btn-secondary">OSINT mód: OFF</button>
+              <button id="resetBtn">Reset</button>
+            </div>
+
+            <div class="mini-note">
+              A nézet külön szűrhető operátor, státusz, impact és forrástípus szerint. Az OSINT mód automatikusan szigorúbb rekordszűrést használ.
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Top 10 leginkább célzott adatközpont</div>
+          </div>
+          <div class="panel-body">
+            <div class="top-list" id="topDCList"></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Operátor bontás</div>
+          </div>
+          <div class="panel-body">
+            <div class="bar-list" id="operatorBars"></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Jelmagyarázat</div>
+          </div>
+          <div class="panel-body">
+            <div class="legend-list">
+              <div class="legend-item"><span class="legend-swatch" style="background:rgba(46,212,255,.95)"></span> DDoS</div>
+              <div class="legend-item"><span class="legend-swatch" style="background:rgba(255,146,146,.95)"></span> Ransomware</div>
+              <div class="legend-item"><span class="legend-swatch" style="background:rgba(182,147,255,.95)"></span> Phishing</div>
+              <div class="legend-item"><span class="legend-swatch" style="background:rgba(120,167,255,.95)"></span> DataLeak</div>
+              <div class="legend-item"><span class="legend-swatch" style="background:rgba(94,224,169,.95)"></span> SupplyChain</div>
+              <div class="legend-item"><span class="legend-swatch" style="background:rgba(102,230,255,.92)"></span> Hyperscale DC</div>
+              <div class="legend-item"><span class="legend-swatch" style="background:rgba(182,147,255,.92)"></span> Colocation DC</div>
+              <div class="legend-item"><span class="legend-swatch" style="background:rgba(255,146,146,.92)"></span> Government DC</div>
+              <div class="legend-item"><span class="legend-swatch" style="background:rgba(94,224,169,.92)"></span> Regional DC</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
+    const COUNTRIES_GEOJSON_URL = "https://raw.githubusercontent.com/Leaflet/Leaflet.VectorGrid/master/docs/eu-countries.geo.json";
+
     const map = L.map("map", { zoomControl: true }).setView([54.5, 15.0], 4);
 
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
       maxZoom: 19,
-      attribution: '&copy; OpenStreetMap &copy; CARTO'
+      attribution: "&copy; OpenStreetMap &copy; CARTO"
     }).addTo(map);
-
-    const COUNTRIES_GEOJSON_URL = "https://raw.githubusercontent.com/Leaflet/Leaflet.VectorGrid/master/docs/eu-countries.geo.json";
 
     let countriesGeo = null;
     let countryCentroids = null;
+    let bordersLayer = null;
 
     let INCIDENTS = [];
     let DATACENTERS = [];
     let DC_INCIDENTS = [];
+    let LAST_UPDATE = null;
 
     let ALL_DATES = [];
+    let CURRENT_FILTERED_COUNTRY_EVENTS = [];
+    let CURRENT_FILTERED_DC_EVENTS = [];
+    let CURRENT_FILTERED_DCS = [];
 
     const rawMarkersLayer = L.layerGroup();
     const dcIncidentsLayer = L.layerGroup();
@@ -556,12 +1038,33 @@
       spiderfyDistanceMultiplier: 1.1,
       maxClusterRadius: 52
     });
-    let heatLayer = null;
-    let bordersLayer = null;
 
-    function norm(s){ return String(s || "").toLowerCase().trim(); }
-    function toDateKey(s){ return String(s || "").slice(0, 10); }
-    function inDateRangeKey(d, from, to){ return d && d >= from && d <= to; }
+    let heatLayer = null;
+
+    function norm(value){
+      return String(value || "").toLowerCase().trim();
+    }
+
+    function toDateKey(value){
+      return String(value || "").slice(0, 10);
+    }
+
+    function inDateRangeKey(dateKey, from, to){
+      return !!dateKey && dateKey >= from && dateKey <= to;
+    }
+
+    function escapeHtml(value){
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function escapeAttr(value){
+      return escapeHtml(value);
+    }
 
     function confNorm(conf){
       const c = String(conf || "").toLowerCase();
@@ -571,8 +1074,8 @@
       return "NA";
     }
 
-    function sourceTypeNorm(st){
-      const s = String(st || "").toLowerCase();
+    function sourceTypeNorm(type){
+      const s = String(type || "").toLowerCase();
       if (!s) return "NA";
       if (s === "cert") return "CERT";
       if (s === "vendor") return "Vendor";
@@ -583,16 +1086,16 @@
       return "Other";
     }
 
-    function statusNorm(st){
-      const s = String(st || "").toLowerCase();
+    function statusNorm(status){
+      const s = String(status || "").toLowerCase();
       if (s === "confirmed") return "Confirmed";
       if (s === "probable") return "Probable";
       if (s === "suspected") return "Suspected";
       return "NA";
     }
 
-    function impactNorm(v){
-      const s = String(v || "").toLowerCase();
+    function impactNorm(value){
+      const s = String(value || "").toLowerCase();
       if (s === "high") return "High";
       if (s === "med" || s === "medium") return "Med";
       if (s === "low") return "Low";
@@ -607,43 +1110,99 @@
       return "conf";
     }
 
-    function hasAnySource(x){
-      return !!x.source_url || !!x.source_name;
+    function hasAnySource(item){
+      return !!item.source_url || !!item.source_name;
     }
 
-    function isPlaceholderSource(x){
-      const n = String(x.source_name || "");
-      const u = String(x.source_url || "");
-      if (/példa/i.test(n)) return true;
-      if (/example\.com/i.test(u)) return true;
-      return false;
+    function isPlaceholderSource(item){
+      const n = String(item.source_name || "");
+      const u = String(item.source_url || "");
+      return /példa/i.test(n) || /example\.com/i.test(u);
     }
 
-    function isOsintReady(x){
-      const c = confNorm(x.confidence);
-      const st = sourceTypeNorm(x.source_type);
-      const hasLinkAndName = !!x.source_url && !!x.source_name;
-      return hasLinkAndName && st !== "NA" && (c === "Med" || c === "High") && !isPlaceholderSource(x);
+    function isOsintReady(item){
+      const conf = confNorm(item.confidence);
+      const srcType = sourceTypeNorm(item.source_type);
+      const hasLinkAndName = !!item.source_url && !!item.source_name;
+      return hasLinkAndName && srcType !== "NA" && (conf === "Med" || conf === "High") && !isPlaceholderSource(item);
+    }
+
+    function typeToDotClass(type){
+      switch (type){
+        case "DDoS": return "dot dot-ddos";
+        case "Ransomware": return "dot dot-ransomware";
+        case "Phishing": return "dot dot-phishing";
+        case "DataLeak": return "dot dot-dataleak";
+        case "SupplyChain": return "dot dot-supplychain";
+        default: return "dot dot-other";
+      }
+    }
+
+    function iconForType(type){
+      return L.divIcon({
+        className: "",
+        html: `<div class="${typeToDotClass(type)}"></div>`,
+        iconSize: [14, 14],
+        iconAnchor: [7, 7]
+      });
+    }
+
+    function datacenterClass(category){
+      const c = String(category || "").toLowerCase();
+      if (c === "hyperscale") return "dc-icon dc-hyperscale";
+      if (c === "colocation") return "dc-icon dc-colocation";
+      if (c === "government") return "dc-icon dc-government";
+      if (c === "regional") return "dc-icon dc-regional";
+      return "dc-icon dc-other";
+    }
+
+    function iconForDatacenter(category){
+      return L.divIcon({
+        className: "",
+        html: `<div class="${datacenterClass(category)}"></div>`,
+        iconSize: [18, 18],
+        iconAnchor: [9, 9]
+      });
     }
 
     async function ensureCountriesData(){
-      if (countriesGeo && countryCentroids) return { countriesGeo, countryCentroids };
+      if (countriesGeo && countryCentroids) {
+        return { countriesGeo, countryCentroids };
+      }
 
       const resp = await fetch(COUNTRIES_GEOJSON_URL, { cache: "force-cache" });
-      if (!resp.ok) throw new Error("Nem sikerült betölteni az ország GeoJSON-t.");
-      countriesGeo = await resp.json();
+      if (!resp.ok) {
+        throw new Error("Nem sikerült betölteni az ország GeoJSON-t.");
+      }
 
+      countriesGeo = await resp.json();
       countryCentroids = {};
+
       L.geoJSON(countriesGeo, {
         onEachFeature: (feature, layer) => {
           const iso2 = feature?.properties?.iso_a2;
           if (!iso2) return;
-          const c = layer.getBounds().getCenter();
-          countryCentroids[iso2] = { lat: c.lat, lon: c.lng };
+          const center = layer.getBounds().getCenter();
+          countryCentroids[iso2] = { lat: center.lat, lon: center.lng };
         }
       });
 
       return { countriesGeo, countryCentroids };
+    }
+
+    async function ensureBordersLayer(){
+      if (bordersLayer) return bordersLayer;
+      const { countriesGeo } = await ensureCountriesData();
+      bordersLayer = L.geoJSON(countriesGeo, {
+        style: () => ({
+          color: "rgba(64,112,160,.55)",
+          weight: 1.3,
+          opacity: 1,
+          fillOpacity: 0
+        }),
+        interactive: false
+      });
+      return bordersLayer;
     }
 
     async function loadIncidents(){
@@ -668,55 +1227,48 @@
     }
 
     async function loadLastUpdate(){
-      const el = document.getElementById("updateBadge");
-      if (!el) return;
-      try{
-        const r = await fetch("./data/last_update.json", { cache: "no-store" });
-        if (!r.ok) return;
-        const j = await r.json();
-        if (!j || !j.updated_at) return;
-        const d = new Date(j.updated_at);
-        const txt = d.toISOString().replace("T"," ").slice(0,16) + " UTC";
-        el.textContent = `• Last update: ${txt}`;
-      }catch(e){}
+      try {
+        const resp = await fetch("./data/last_update.json", { cache: "no-store" });
+        if (!resp.ok) return;
+        LAST_UPDATE = await resp.json();
+      } catch (e) {
+        LAST_UPDATE = null;
+      }
     }
 
     function buildOperatorFilter(){
-      const sel = document.getElementById("operatorFilter");
-      if (!sel) return;
+      const select = document.getElementById("operatorFilter");
+      const currentValue = select.value || "ALL";
 
-      const current = sel.value || "ALL";
       const set = new Set();
+      for (const dc of DATACENTERS) if (dc.operator) set.add(dc.operator);
+      for (const ev of DC_INCIDENTS) if (ev.operator) set.add(ev.operator);
 
-      for (const dc of DATACENTERS) {
-        if (dc.operator) set.add(dc.operator);
-      }
-      for (const ev of DC_INCIDENTS) {
-        if (ev.operator) set.add(ev.operator);
-      }
+      const operators = Array.from(set).sort((a, b) => a.localeCompare(b, "hu"));
+      select.innerHTML = `<option value="ALL">Összes</option>` + operators
+        .map(op => `<option value="${escapeAttr(op)}">${escapeHtml(op)}</option>`)
+        .join("");
 
-      const operators = Array.from(set).sort((a,b) => a.localeCompare(b, "hu"));
-      sel.innerHTML = `<option value="ALL">Összes</option>` + operators.map(op => `<option value="${op}">${op}</option>`).join("");
-
-      if (operators.includes(current)) sel.value = current;
-      else sel.value = "ALL";
+      select.value = operators.includes(currentValue) ? currentValue : "ALL";
     }
 
     function buildDateAxis(){
       const set = new Set();
 
-      for (const x of INCIDENTS) {
+      for (const x of INCIDENTS){
         const d = toDateKey(x.date);
         if (d && /^\d{4}-\d{2}-\d{2}$/.test(d)) set.add(d);
       }
 
-      for (const x of DC_INCIDENTS) {
+      for (const x of DC_INCIDENTS){
         const d = toDateKey(x.date);
         if (d && /^\d{4}-\d{2}-\d{2}$/.test(d)) set.add(d);
       }
 
       ALL_DATES = Array.from(set).sort();
-      if (ALL_DATES.length === 0) ALL_DATES = ["2026-01-01"];
+      if (!ALL_DATES.length) {
+        ALL_DATES = ["2026-01-01"];
+      }
 
       const fromRange = document.getElementById("fromRange");
       const toRange = document.getElementById("toRange");
@@ -725,6 +1277,7 @@
       toRange.min = 0;
       fromRange.max = ALL_DATES.length - 1;
       toRange.max = ALL_DATES.length - 1;
+
       fromRange.value = 0;
       toRange.value = ALL_DATES.length - 1;
 
@@ -736,16 +1289,21 @@
       const toRange = document.getElementById("toRange");
       let a = Number(fromRange.value);
       let b = Number(toRange.value);
+
       if (a > b) {
         toRange.value = a;
         b = a;
       }
+
       return { fromIdx: a, toIdx: b };
     }
 
     function getSelectedDateRange(){
       const { fromIdx, toIdx } = clampRanges();
-      return { from: ALL_DATES[fromIdx], to: ALL_DATES[toIdx] };
+      return {
+        from: ALL_DATES[fromIdx],
+        to: ALL_DATES[toIdx]
+      };
     }
 
     function syncDateLabels(){
@@ -754,71 +1312,34 @@
       document.getElementById("toLabel").textContent = to;
     }
 
-    function typeToDotClass(t){
-      switch (t){
-        case "DDoS": return "dot dot-ddos";
-        case "Ransomware": return "dot dot-ransomware";
-        case "Phishing": return "dot dot-phishing";
-        case "DataLeak": return "dot dot-dataleak";
-        case "SupplyChain": return "dot dot-supplychain";
-        default: return "dot dot-other";
+    function resolveIncidentLatLon(item){
+      if (Number.isFinite(item.lat) && Number.isFinite(item.lon)) {
+        return { lat: item.lat, lon: item.lon };
       }
-    }
-
-    function iconForType(t){
-      return L.divIcon({
-        className: "",
-        html: `<div class="${typeToDotClass(t)}"></div>`,
-        iconSize: [14,14],
-        iconAnchor:[7,7]
-      });
-    }
-
-    function datacenterClass(category){
-      const c = String(category || "").toLowerCase();
-      if (c === "hyperscale") return "dc-icon dc-hyperscale";
-      if (c === "colocation") return "dc-icon dc-colocation";
-      if (c === "government") return "dc-icon dc-government";
-      if (c === "regional") return "dc-icon dc-regional";
-      return "dc-icon dc-other";
-    }
-
-    function iconForDatacenter(category){
-      return L.divIcon({
-        className: "",
-        html: `<div class="${datacenterClass(category)}"></div>`,
-        iconSize: [18,18],
-        iconAnchor:[9,9]
-      });
-    }
-
-    function resolveIncidentLatLon(incident){
-      if (Number.isFinite(incident.lat) && Number.isFinite(incident.lon)) {
-        return { lat: incident.lat, lon: incident.lon };
-      }
-      const iso2 = incident.country;
+      const iso2 = item.country;
       if (iso2 && countryCentroids && countryCentroids[iso2]) {
         return { lat: countryCentroids[iso2].lat, lon: countryCentroids[iso2].lon };
       }
       return null;
     }
 
-    function heatWeight(incident){
-      const conf = confNorm(incident.confidence);
+    function heatWeight(item){
+      const conf = confNorm(item.confidence);
       let w = 0.60;
+
       if (conf === "High") w += 0.30;
       else if (conf === "Med") w += 0.20;
       else if (conf === "Low") w += 0.12;
       else w += 0.10;
 
-      switch (incident.type || incident.event_type){
+      switch (item.type || item.event_type){
         case "Ransomware": w += 0.20; break;
         case "SupplyChain": w += 0.18; break;
         case "DataLeak": w += 0.16; break;
         default: w += 0.10; break;
       }
 
-      const impact = impactNorm(incident.impact);
+      const impact = impactNorm(item.impact);
       if (impact === "High") w += 0.20;
       else if (impact === "Med") w += 0.12;
       else if (impact === "Low") w += 0.05;
@@ -826,141 +1347,142 @@
       return Math.max(0.25, Math.min(1.0, w));
     }
 
-    function buildSourceLine(x){
-      const hasUrl = !!x.source_url;
-      const hasName = !!x.source_name;
-      const placeholder = isPlaceholderSource(x);
+    function buildSourceLine(item){
+      const hasUrl = !!item.source_url;
+      const hasName = !!item.source_name;
+      const placeholder = isPlaceholderSource(item);
 
       if (placeholder) {
-        const label = hasName ? x.source_name : (hasUrl ? x.source_url : "placeholder");
-        return `<div class="pop-meta" style="margin-top:8px;">Forrás: <strong>${label}</strong> (nem élő minta)</div>`;
+        const label = hasName ? item.source_name : (hasUrl ? item.source_url : "placeholder");
+        return `<div class="pop-meta" style="margin-top:8px;">Forrás: <strong>${escapeHtml(label)}</strong> (nem élő minta)</div>`;
       }
 
       if (hasUrl && hasName) {
-        return `<div class="pop-meta" style="margin-top:8px;">Forrás: <a class="pop-link" href="${x.source_url}" target="_blank" rel="noopener noreferrer">${x.source_name}</a></div>`;
+        return `<div class="pop-meta" style="margin-top:8px;">Forrás: <a class="pop-link" href="${escapeAttr(item.source_url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.source_name)}</a></div>`;
       }
 
       if (hasUrl) {
-        return `<div class="pop-meta" style="margin-top:8px;">Forrás: <a class="pop-link" href="${x.source_url}" target="_blank" rel="noopener noreferrer">${x.source_url}</a></div>`;
+        return `<div class="pop-meta" style="margin-top:8px;">Forrás: <a class="pop-link" href="${escapeAttr(item.source_url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.source_url)}</a></div>`;
       }
 
       if (hasName) {
-        return `<div class="pop-meta" style="margin-top:8px;">Forrás: ${x.source_name}</div>`;
+        return `<div class="pop-meta" style="margin-top:8px;">Forrás: ${escapeHtml(item.source_name)}</div>`;
       }
 
       return `<div class="pop-meta" style="margin-top:8px;">Forrás: <strong>nincs adat</strong></div>`;
     }
 
-    function buildIncidentPopupHtml(x, targetType){
-      const confCls = confidenceClass(x.confidence);
-      const confLbl = confNorm(x.confidence);
-      const srcType = sourceTypeNorm(x.source_type);
-      const origin = x.generated ? "AUTO" : "MANUAL";
+    function buildIncidentPopupHtml(item, targetType){
+      const confCls = confidenceClass(item.confidence);
+      const confLbl = confNorm(item.confidence);
+      const srcType = sourceTypeNorm(item.source_type);
+      const origin = item.generated ? "AUTO" : "MANUAL";
+      const typeValue = item.type || item.event_type || "n/a";
+      const statusValue = statusNorm(item.status);
+      const impactValue = impactNorm(item.impact);
 
-      const srcBadge = `<span class="src-badge">src: ${srcType}</span>`;
-      const originBadge = `<span class="src-badge">origin: ${origin}</span>`;
-      const targetBadge = `<span class="src-badge">target: ${targetType}</span>`;
-      const typeValue = x.type || x.event_type || "n/a";
-      const statusValue = statusNorm(x.status);
-      const impactValue = impactNorm(x.impact);
+      const operatorLine = item.operator
+        ? `<div class="pop-meta">Operátor: <strong>${escapeHtml(item.operator)}</strong></div>`
+        : "";
 
       const statusBadge = statusValue !== "NA" ? `<span class="src-badge">status: ${statusValue}</span>` : "";
       const impactBadge = impactValue !== "NA" ? `<span class="src-badge">impact: ${impactValue}</span>` : "";
-      const operatorLine = x.operator ? `<div class="pop-meta">Operátor: <strong>${x.operator}</strong></div>` : "";
 
       return `
-        <div class="pop-title">${x.title || x.target_name || "Incidens"}</div>
-        <div class="pop-meta">Dátum: <strong>${toDateKey(x.date) || "n/a"}</strong> · Ország: <strong>${x.country || "n/a"}</strong></div>
+        <div class="pop-title">${escapeHtml(item.title || item.target_name || "Incidens")}</div>
+        <div class="pop-meta">Dátum: <strong>${escapeHtml(toDateKey(item.date) || "n/a")}</strong> · Ország: <strong>${escapeHtml(item.country || "n/a")}</strong></div>
         ${operatorLine}
         <div>
-          <span class="pop-tag">${typeValue}</span>
+          <span class="pop-tag">${escapeHtml(typeValue)}</span>
           <span class="${confCls}">conf: ${confLbl}</span>
-          ${srcBadge}
-          ${originBadge}
-          ${targetBadge}
+          <span class="src-badge">src: ${srcType}</span>
+          <span class="src-badge">origin: ${origin}</span>
+          <span class="src-badge">target: ${targetType}</span>
           ${statusBadge}
           ${impactBadge}
         </div>
-        ${buildSourceLine(x)}
+        ${buildSourceLine(item)}
       `;
     }
 
     function getDCIncidentStats(dcId){
       const list = DC_INCIDENTS.filter(x => x.target_id === dcId);
-      const count = list.length;
-      const sorted = list.slice().sort((a, b) => (toDateKey(b.date)).localeCompare(toDateKey(a.date)));
-      const lastDate = sorted.length ? sorted[0].date : null;
-      return { count, lastDate, list: sorted };
+      const sorted = list.slice().sort((a,b) => (toDateKey(b.date)).localeCompare(toDateKey(a.date)));
+      return {
+        count: list.length,
+        lastDate: sorted.length ? sorted[0].date : null,
+        list: sorted
+      };
     }
 
     function buildDatacenterPopupHtml(dc){
       const stats = getDCIncidentStats(dc.id);
-      const last = stats.lastDate ? stats.lastDate : "nincs";
+      const last = stats.lastDate || "nincs";
 
-      const statusBreakdown = {
+      const breakdown = {
         Confirmed: stats.list.filter(x => statusNorm(x.status) === "Confirmed").length,
         Probable: stats.list.filter(x => statusNorm(x.status) === "Probable").length,
         Suspected: stats.list.filter(x => statusNorm(x.status) === "Suspected").length
       };
 
       return `
-        <div class="pop-title">${dc.name}</div>
-        <div class="pop-meta">Operátor: <strong>${dc.operator || "n/a"}</strong></div>
-        <div class="pop-meta">Ország / város: <strong>${dc.country || "n/a"} / ${dc.city || "n/a"}</strong></div>
-        <div class="pop-meta">Típus: <strong>${dc.category || "n/a"}</strong> · Kritikus szint: <strong>${dc.criticality || "n/a"}</strong></div>
+        <div class="pop-title">${escapeHtml(dc.name)}</div>
+        <div class="pop-meta">Operátor: <strong>${escapeHtml(dc.operator || "n/a")}</strong></div>
+        <div class="pop-meta">Ország / város: <strong>${escapeHtml(dc.country || "n/a")} / ${escapeHtml(dc.city || "n/a")}</strong></div>
+        <div class="pop-meta">Típus: <strong>${escapeHtml(dc.category || "n/a")}</strong> · Kritikus szint: <strong>${escapeHtml(dc.criticality || "n/a")}</strong></div>
         <div style="margin-top:8px;">
           <span class="src-badge">DC incidensek: ${stats.count}</span>
-          <span class="src-badge">utolsó: ${last}</span>
+          <span class="src-badge">utolsó: ${escapeHtml(last)}</span>
         </div>
         <div class="pop-meta" style="margin-top:8px;">
-          Confirmed: <strong>${statusBreakdown.Confirmed}</strong> ·
-          Probable: <strong>${statusBreakdown.Probable}</strong> ·
-          Suspected: <strong>${statusBreakdown.Suspected}</strong>
+          Confirmed: <strong>${breakdown.Confirmed}</strong> ·
+          Probable: <strong>${breakdown.Probable}</strong> ·
+          Suspected: <strong>${breakdown.Suspected}</strong>
         </div>
       `;
     }
 
     function setLayersVisibility(){
-      const showIncidents = document.getElementById("toggleIncidents").checked;
-      const showDCIncidents = document.getElementById("toggleDCIncidents").checked;
-      const showDatacenters = document.getElementById("toggleDatacenters").checked;
-      const useClusters = document.getElementById("toggleClusters").checked;
+      const showCountry = document.getElementById("toggleIncidents").checked;
+      const showDCEvents = document.getElementById("toggleDCIncidents").checked;
+      const showDCs = document.getElementById("toggleDatacenters").checked;
+      const useCluster = document.getElementById("toggleClusters").checked;
       const showHeat = document.getElementById("toggleHeatmap").checked;
 
-      if (useClusters) {
-        if (showIncidents || showDCIncidents) {
+      if (useCluster) {
+        if (showCountry || showDCEvents) {
           if (!map.hasLayer(clusterLayer)) clusterLayer.addTo(map);
           if (map.hasLayer(rawMarkersLayer)) map.removeLayer(rawMarkersLayer);
           if (map.hasLayer(dcIncidentsLayer)) map.removeLayer(dcIncidentsLayer);
-        } else {
-          if (map.hasLayer(clusterLayer)) map.removeLayer(clusterLayer);
+        } else if (map.hasLayer(clusterLayer)) {
+          map.removeLayer(clusterLayer);
         }
       } else {
-        if (showIncidents) {
+        if (showCountry) {
           if (!map.hasLayer(rawMarkersLayer)) rawMarkersLayer.addTo(map);
-        } else {
-          if (map.hasLayer(rawMarkersLayer)) map.removeLayer(rawMarkersLayer);
+        } else if (map.hasLayer(rawMarkersLayer)) {
+          map.removeLayer(rawMarkersLayer);
         }
 
-        if (showDCIncidents) {
+        if (showDCEvents) {
           if (!map.hasLayer(dcIncidentsLayer)) dcIncidentsLayer.addTo(map);
-        } else {
-          if (map.hasLayer(dcIncidentsLayer)) map.removeLayer(dcIncidentsLayer);
+        } else if (map.hasLayer(dcIncidentsLayer)) {
+          map.removeLayer(dcIncidentsLayer);
         }
 
         if (map.hasLayer(clusterLayer)) map.removeLayer(clusterLayer);
       }
 
-      if (showDatacenters) {
+      if (showDCs) {
         if (!map.hasLayer(datacentersLayer)) datacentersLayer.addTo(map);
-      } else {
-        if (map.hasLayer(datacentersLayer)) map.removeLayer(datacentersLayer);
+      } else if (map.hasLayer(datacentersLayer)) {
+        map.removeLayer(datacentersLayer);
       }
 
       if (!showHeat) {
         if (heatLayer && map.hasLayer(heatLayer)) map.removeLayer(heatLayer);
-      } else {
-        if (heatLayer && !map.hasLayer(heatLayer)) heatLayer.addTo(map);
+      } else if (heatLayer && !map.hasLayer(heatLayer)) {
+        heatLayer.addTo(map);
       }
     }
 
@@ -975,6 +1497,7 @@
 
       if (on) {
         document.getElementById("confFilter").value = "Med";
+        document.getElementById("onlyWithSources").checked = true;
       }
     }
 
@@ -1000,67 +1523,67 @@
 
       const missingRows = [];
 
-      for (const x of allEvents){
+      for (const item of allEvents){
         const issues = [];
-        const dateKey = toDateKey(x.date);
+        const dateKey = toDateKey(item.date);
 
         if (!(typeof dateKey === "string" && /^\d{4}-\d{2}-\d{2}$/.test(dateKey))) {
           badDate++;
           issues.push("bad_date");
         }
 
-        if (!x.country || !EU_ISO2.has(String(x.country).toUpperCase())) {
+        if (!item.country || !EU_ISO2.has(String(item.country).toUpperCase())) {
           badCountry++;
           issues.push("bad_country");
         }
 
-        if (!Number.isFinite(x.lat) || !Number.isFinite(x.lon)) {
+        if (!Number.isFinite(item.lat) || !Number.isFinite(item.lon)) {
           missingLatLon++;
           issues.push("missing_latlon");
         }
 
-        if (!hasAnySource(x)) {
+        if (!hasAnySource(item)) {
           missingSourceAny++;
           issues.push("missing_source_any");
         }
 
-        if (!(x.source_url && x.source_name)) {
+        if (!(item.source_url && item.source_name)) {
           missingSourceStrict++;
           issues.push("missing_source_url_or_name");
         }
 
-        if (confNorm(x.confidence) === "NA") {
+        if (confNorm(item.confidence) === "NA") {
           missingConfidence++;
           issues.push("missing_confidence");
         }
 
-        if (sourceTypeNorm(x.source_type) === "NA") {
+        if (sourceTypeNorm(item.source_type) === "NA") {
           missingSourceType++;
           issues.push("missing_source_type");
         }
 
-        if ("status" in x && statusNorm(x.status) === "NA") {
+        if ("status" in item && statusNorm(item.status) === "NA") {
           missingStatus++;
           issues.push("missing_status");
         }
 
-        if ("impact" in x && impactNorm(x.impact) === "NA") {
+        if ("impact" in item && impactNorm(item.impact) === "NA") {
           missingImpact++;
           issues.push("missing_impact");
         }
 
-        if (x.target_type === "DataCenter" && !x.operator) {
+        if (item.target_type === "DataCenter" && !item.operator) {
           missingOperator++;
           issues.push("missing_operator");
         }
 
-        if (isOsintReady(x)) osintReady++;
+        if (isOsintReady(item)) osintReady++;
 
         if (issues.length){
           missingRows.push({
-            id: x.id ?? "",
-            title: x.title ?? x.target_name ?? "",
-            country: x.country ?? "",
+            id: item.id ?? "",
+            title: item.title ?? item.target_name ?? "",
+            country: item.country ?? "",
             date: dateKey ?? "",
             issues: issues.join("|")
           });
@@ -1084,32 +1607,31 @@
       };
     }
 
-    function pillClass(n, total){
-      if (total === 0) return "pill";
+    function validatorPillClass(n, total){
+      if (total === 0) return "validator-pill";
       const ratio = n / total;
-      if (ratio === 0) return "pill good";
-      if (ratio <= 0.25) return "pill warn";
-      return "pill bad";
+      if (ratio === 0) return "validator-pill good";
+      if (ratio <= 0.25) return "validator-pill warn";
+      return "validator-pill bad";
     }
 
     function updateValidatorUI(){
       const v = computeValidation();
-      const kv = document.getElementById("validatorKv");
-      kv.innerHTML = `
-        <div class="k">Összes esemény</div><div class="pill">${v.total}</div>
-        <div class="k">OSINT-ready</div><div class="pill ${v.total ? (v.osintReady / v.total >= 0.5 ? "good" : "warn") : ""}">${v.osintReady}/${v.total}</div>
-        <div class="k">Hiányzik bármilyen forrás</div><div class="${pillClass(v.missingSourceAny, v.total)}">${v.missingSourceAny}</div>
-        <div class="k">Hiányzik source_url vagy source_name</div><div class="${pillClass(v.missingSourceStrict, v.total)}">${v.missingSourceStrict}</div>
-        <div class="k">Hiányzik confidence</div><div class="${pillClass(v.missingConfidence, v.total)}">${v.missingConfidence}</div>
-        <div class="k">Hiányzik source_type</div><div class="${pillClass(v.missingSourceType, v.total)}">${v.missingSourceType}</div>
-        <div class="k">Hiányzik status</div><div class="${pillClass(v.missingStatus, v.total)}">${v.missingStatus}</div>
-        <div class="k">Hiányzik impact</div><div class="${pillClass(v.missingImpact, v.total)}">${v.missingImpact}</div>
-        <div class="k">Hiányzik operator (DC)</div><div class="${pillClass(v.missingOperator, v.total)}">${v.missingOperator}</div>
-        <div class="k">Hiányzik lat/lon</div><div class="${pillClass(v.missingLatLon, v.total)}">${v.missingLatLon}</div>
-        <div class="k">Hibás/hiányzó országkód</div><div class="${pillClass(v.badCountry, v.total)}">${v.badCountry}</div>
-        <div class="k">Hibás/hiányzó dátum</div><div class="${pillClass(v.badDate, v.total)}">${v.badDate}</div>
+      const el = document.getElementById("validatorGrid");
+      el.innerHTML = `
+        <div class="k">Összes esemény</div><div class="validator-pill">${v.total}</div>
+        <div class="k">OSINT-ready</div><div class="${v.total ? (v.osintReady / v.total >= 0.5 ? 'validator-pill good' : 'validator-pill warn') : 'validator-pill'}">${v.osintReady}/${v.total}</div>
+        <div class="k">Hiányzik bármilyen forrás</div><div class="${validatorPillClass(v.missingSourceAny, v.total)}">${v.missingSourceAny}</div>
+        <div class="k">Hiányzik source_url vagy source_name</div><div class="${validatorPillClass(v.missingSourceStrict, v.total)}">${v.missingSourceStrict}</div>
+        <div class="k">Hiányzik confidence</div><div class="${validatorPillClass(v.missingConfidence, v.total)}">${v.missingConfidence}</div>
+        <div class="k">Hiányzik source_type</div><div class="${validatorPillClass(v.missingSourceType, v.total)}">${v.missingSourceType}</div>
+        <div class="k">Hiányzik status</div><div class="${validatorPillClass(v.missingStatus, v.total)}">${v.missingStatus}</div>
+        <div class="k">Hiányzik impact</div><div class="${validatorPillClass(v.missingImpact, v.total)}">${v.missingImpact}</div>
+        <div class="k">Hiányzik operator (DC)</div><div class="${validatorPillClass(v.missingOperator, v.total)}">${v.missingOperator}</div>
+        <div class="k">Hiányzik lat/lon</div><div class="${validatorPillClass(v.missingLatLon, v.total)}">${v.missingLatLon}</div>
+        <div class="k">Hibás/hiányzó országkód</div><div class="${validatorPillClass(v.badCountry, v.total)}">${v.badCountry}</div>
+        <div class="k">Hibás/hiányzó dátum</div><div class="${validatorPillClass(v.badDate, v.total)}">${v.badDate}</div>
       `;
-      return v;
     }
 
     function downloadText(filename, content, mime){
@@ -1140,6 +1662,246 @@
       downloadText("events_missing.csv", csv, "text/csv;charset=utf-8");
     }
 
+    function renderTopBarStats(){
+      const lastEl = document.getElementById("topLastUpdate");
+      const dateEl = document.getElementById("topDateRange");
+      const riskEl = document.getElementById("topRiskPill");
+      const confEl = document.getElementById("topConfidencePill");
+
+      if (LAST_UPDATE && LAST_UPDATE.updated_at) {
+        const d = new Date(LAST_UPDATE.updated_at);
+        lastEl.textContent = "Frissítés: " + d.toISOString().replace("T", " ").slice(0, 16) + " UTC";
+      } else {
+        lastEl.textContent = "Frissítés: —";
+      }
+
+      const { from, to } = getSelectedDateRange();
+      dateEl.textContent = `Idősáv: ${from} → ${to}`;
+
+      const total = CURRENT_FILTERED_COUNTRY_EVENTS.length + CURRENT_FILTERED_DC_EVENTS.length;
+      const highImpact = CURRENT_FILTERED_DC_EVENTS.filter(x => impactNorm(x.impact) === "High").length;
+
+      let riskClass = "pill";
+      let riskText = "Normál";
+
+      if (highImpact >= 3 || total >= 20) {
+        riskClass = "pill bad";
+        riskText = "Magas";
+      } else if (highImpact >= 1 || total >= 10) {
+        riskClass = "pill warn";
+        riskText = "Emelkedett";
+      }
+
+      riskEl.className = riskClass;
+      riskEl.textContent = `Régiós kockázat: ${riskText}`;
+
+      const all = [...CURRENT_FILTERED_COUNTRY_EVENTS, ...CURRENT_FILTERED_DC_EVENTS];
+      const confs = all.map(x => confNorm(x.confidence)).filter(x => x !== "NA");
+
+      let confLabel = "n/a";
+      if (confs.length) {
+        const score = confs.reduce((acc, c) => acc + (c === "High" ? 3 : c === "Med" ? 2 : 1), 0) / confs.length;
+        confLabel = score >= 2.5 ? "high" : score >= 1.8 ? "medium" : "low";
+      }
+
+      confEl.className = confLabel === "high"
+        ? "pill good"
+        : confLabel === "medium"
+          ? "pill warn"
+          : confLabel === "low"
+            ? "pill bad"
+            : "pill";
+
+      confEl.textContent = `Confidence: ${confLabel}`;
+    }
+
+    function renderMapChips(){
+      const total = CURRENT_FILTERED_COUNTRY_EVENTS.length + CURRENT_FILTERED_DC_EVENTS.length;
+      document.getElementById("mapChipTarget").textContent = "Célpont: " + document.getElementById("targetFilter").value;
+      document.getElementById("mapChipMode").textContent = "OSINT: " + (isOsintModeOn() ? "ON" : "OFF");
+      document.getElementById("mapChipCount").textContent = `${total} esemény`;
+    }
+
+    function renderExecutiveSummary(){
+      const total = CURRENT_FILTERED_COUNTRY_EVENTS.length + CURRENT_FILTERED_DC_EVENTS.length;
+      const dcEvents = CURRENT_FILTERED_DC_EVENTS.length;
+      const dcCount = CURRENT_FILTERED_DCS.length;
+
+      const all = [...CURRENT_FILTERED_COUNTRY_EVENTS, ...CURRENT_FILTERED_DC_EVENTS];
+      const ready = all.filter(isOsintReady).length;
+      const readyPct = total ? Math.round((ready / total) * 100) : 0;
+
+      document.getElementById("metricTotalEvents").textContent = String(total);
+      document.getElementById("metricTotalSub").textContent = "aktuális szűrt nézet";
+      document.getElementById("metricDCEvents").textContent = String(dcEvents);
+      document.getElementById("metricDCCount").textContent = String(dcCount);
+      document.getElementById("metricOsintReady").textContent = `${readyPct}%`;
+    }
+
+    function renderSummaryList(){
+      const el = document.getElementById("summaryList");
+      const total = CURRENT_FILTERED_COUNTRY_EVENTS.length + CURRENT_FILTERED_DC_EVENTS.length;
+      const all = [...CURRENT_FILTERED_COUNTRY_EVENTS, ...CURRENT_FILTERED_DC_EVENTS];
+
+      const byType = {};
+      for (const item of all){
+        const t = item.type || item.event_type || "Other";
+        byType[t] = (byType[t] || 0) + 1;
+      }
+      const topType = Object.entries(byType).sort((a,b) => b[1] - a[1])[0];
+
+      const byCountry = {};
+      for (const item of all){
+        const c = item.country || "n/a";
+        byCountry[c] = (byCountry[c] || 0) + 1;
+      }
+      const topCountry = Object.entries(byCountry).sort((a,b) => b[1] - a[1])[0];
+
+      const byStatus = {};
+      for (const item of CURRENT_FILTERED_DC_EVENTS){
+        const s = statusNorm(item.status);
+        byStatus[s] = (byStatus[s] || 0) + 1;
+      }
+      const topStatus = Object.entries(byStatus).sort((a,b) => b[1] - a[1])[0];
+
+      const highImpactCount = CURRENT_FILTERED_DC_EVENTS.filter(x => impactNorm(x.impact) === "High").length;
+
+      const rows = [
+        {
+          title: "Nézet összegzése",
+          sub: total
+            ? `A jelenlegi szűrők ${total} eseményt mutatnak, ebből ${CURRENT_FILTERED_DC_EVENTS.length} adatközpont-érintett.`
+            : "Nincs megjeleníthető esemény a mostani szűrőkkel."
+        },
+        {
+          title: "Domináns támadástípus",
+          sub: topType ? `${topType[0]} (${topType[1]} esemény)` : "n/a"
+        },
+        {
+          title: "Leginkább érintett ország",
+          sub: topCountry ? `${topCountry[0]} (${topCountry[1]} esemény)` : "n/a"
+        },
+        {
+          title: "Kiemelt DC nyomás",
+          sub: highImpactCount ? `${highImpactCount} high impact DC-esemény látható.` : "Nincs high impact DC esemény a szűrt nézetben."
+        },
+        {
+          title: "DC státusz-kép",
+          sub: topStatus ? `${topStatus[0]} a leggyakoribb (${topStatus[1]} eset)` : "Nincs DC esemény"
+        }
+      ];
+
+      el.innerHTML = rows.map(row => `
+        <div class="summary-item">
+          <div class="summary-item-title">${escapeHtml(row.title)}</div>
+          <div class="summary-item-sub">${escapeHtml(row.sub)}</div>
+        </div>
+      `).join("");
+    }
+
+    function renderTrendBars(){
+      const el = document.getElementById("trendBars");
+      const all = [...CURRENT_FILTERED_COUNTRY_EVENTS, ...CURRENT_FILTERED_DC_EVENTS];
+      const counts = {};
+
+      for (const item of all){
+        const d = toDateKey(item.date);
+        if (!d) continue;
+        counts[d] = (counts[d] || 0) + 1;
+      }
+
+      const keys = Object.keys(counts).sort().slice(-7);
+      if (!keys.length){
+        el.innerHTML = `<div class="mini-note">Nincs elég adat a trend megjelenítéséhez.</div>`;
+        return;
+      }
+
+      const max = Math.max(...keys.map(k => counts[k]), 1);
+
+      el.innerHTML = keys.map(k => {
+        const height = Math.max(4, Math.round((counts[k] / max) * 90));
+        return `
+          <div class="trend-col">
+            <div class="trend-value">${counts[k]}</div>
+            <div class="trend-bar-wrap"><div class="trend-bar" style="height:${height}px;"></div></div>
+            <div class="trend-label">${escapeHtml(k.slice(5))}</div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderTopDCList(){
+      const el = document.getElementById("topDCList");
+      const byDC = new Map();
+
+      for (const ev of CURRENT_FILTERED_DC_EVENTS){
+        const key = ev.target_id || ev.target_name || "unknown";
+        if (!byDC.has(key)) {
+          byDC.set(key, {
+            target_id: ev.target_id || "",
+            name: ev.target_name || "Ismeretlen DC",
+            operator: ev.operator || "n/a",
+            country: ev.country || "n/a",
+            count: 0,
+            lastDate: ev.date || ""
+          });
+        }
+        const obj = byDC.get(key);
+        obj.count += 1;
+        if ((ev.date || "") > (obj.lastDate || "")) obj.lastDate = ev.date || "";
+      }
+
+      const rows = Array.from(byDC.values())
+        .sort((a,b) => b.count - a.count || String(b.lastDate).localeCompare(String(a.lastDate)))
+        .slice(0, 10);
+
+      if (!rows.length){
+        el.innerHTML = `<div class="summary-item"><div class="summary-item-sub">Nincs megjeleníthető adatközpont-incidens.</div></div>`;
+        return;
+      }
+
+      el.innerHTML = rows.map((row, idx) => `
+        <div class="top-item">
+          <div class="top-item-title">${idx + 1}. ${escapeHtml(row.name)}</div>
+          <div class="top-item-sub">
+            ${escapeHtml(row.country)} · ${escapeHtml(row.operator)}<br/>
+            Események: <strong>${row.count}</strong> · Utolsó: <strong>${escapeHtml(row.lastDate || "n/a")}</strong>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function renderOperatorBars(){
+      const el = document.getElementById("operatorBars");
+      const byOp = new Map();
+
+      for (const ev of CURRENT_FILTERED_DC_EVENTS){
+        const op = ev.operator || "n/a";
+        byOp.set(op, (byOp.get(op) || 0) + 1);
+      }
+
+      const rows = Array.from(byOp.entries())
+        .sort((a,b) => b[1] - a[1])
+        .slice(0, 10);
+
+      if (!rows.length){
+        el.innerHTML = `<div class="mini-note">Nincs operátorbontás a jelenlegi szűrőkhöz.</div>`;
+        return;
+      }
+
+      const max = Math.max(...rows.map(r => r[1]), 1);
+
+      el.innerHTML = rows.map(([op, count]) => `
+        <div class="bar-row">
+          <div class="bar-label">${escapeHtml(op)}</div>
+          <div class="bar-value">${count}</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:${Math.max(6, Math.round((count / max) * 100))}%;"></div>
+          </div>
+        </div>
+      `).join("");
+    }
+
     async function renderMapData(){
       await ensureCountriesData();
 
@@ -1159,92 +1921,65 @@
       const onlyWithSources = document.getElementById("onlyWithSources").checked;
       const { from, to } = getSelectedDateRange();
 
-      let renderedCount = 0;
-      const heatPoints = [];
-
-      const countryEvents = INCIDENTS.filter(x => {
-        const d = toDateKey(x.date);
+      CURRENT_FILTERED_COUNTRY_EVENTS = INCIDENTS.filter(item => {
+        const d = toDateKey(item.date);
         if (!inDateRangeKey(d, from, to)) return false;
         if (targetValue !== "ALL" && targetValue !== "Country") return false;
-        if (typeValue !== "ALL" && x.type !== typeValue) return false;
-        if (q && !norm(x.title).includes(q)) return false;
+        if (typeValue !== "ALL" && item.type !== typeValue) return false;
+        if (q && !norm(item.title).includes(q)) return false;
 
-        const c = confNorm(x.confidence);
+        const c = confNorm(item.confidence);
         if (confValue !== "ALL" && c !== confValue) return false;
 
-        const s = sourceTypeNorm(x.source_type);
-        if (srcTypeValue !== "ALL" && s !== srcTypeValue) return false;
+        const src = sourceTypeNorm(item.source_type);
+        if (srcTypeValue !== "ALL" && src !== srcTypeValue) return false;
 
-        if (onlyWithSources && !hasAnySource(x)) return false;
+        if (onlyWithSources && !hasAnySource(item)) return false;
 
         if (isOsintModeOn()) {
           if (!(c === "Med" || c === "High")) return false;
-          if (s === "NA") return false;
-          if (!hasAnySource(x)) return false;
+          if (src === "NA") return false;
+          if (!hasAnySource(item)) return false;
         }
+
         return true;
       });
 
-      const dcEvents = DC_INCIDENTS.filter(x => {
-        const d = toDateKey(x.date);
+      CURRENT_FILTERED_DC_EVENTS = DC_INCIDENTS.filter(item => {
+        const d = toDateKey(item.date);
         if (!inDateRangeKey(d, from, to)) return false;
         if (targetValue !== "ALL" && targetValue !== "DataCenter") return false;
-        if (typeValue !== "ALL" && x.event_type !== typeValue) return false;
+        if (typeValue !== "ALL" && item.event_type !== typeValue) return false;
 
-        const hay = `${x.target_name || ""} ${x.city || ""} ${x.operator || ""} ${x.country || ""}`;
+        const hay = `${item.target_name || ""} ${item.city || ""} ${item.operator || ""} ${item.country || ""}`;
         if (q && !norm(hay).includes(q)) return false;
 
-        const c = confNorm(x.confidence);
+        const c = confNorm(item.confidence);
         if (confValue !== "ALL" && c !== confValue) return false;
 
-        const s = sourceTypeNorm(x.source_type);
-        if (srcTypeValue !== "ALL" && s !== srcTypeValue) return false;
+        const src = sourceTypeNorm(item.source_type);
+        if (srcTypeValue !== "ALL" && src !== srcTypeValue) return false;
 
-        const st = statusNorm(x.status);
+        const st = statusNorm(item.status);
         if (statusValue !== "ALL" && st !== statusValue) return false;
 
-        const imp = impactNorm(x.impact);
+        const imp = impactNorm(item.impact);
         if (impactValue !== "ALL" && imp !== impactValue) return false;
 
-        if (operatorValue !== "ALL" && (x.operator || "") !== operatorValue) return false;
+        if (operatorValue !== "ALL" && (item.operator || "") !== operatorValue) return false;
 
-        if (onlyWithSources && !hasAnySource(x)) return false;
+        if (onlyWithSources && !hasAnySource(item)) return false;
 
         if (isOsintModeOn()) {
           if (!(c === "Med" || c === "High")) return false;
-          if (s === "NA") return false;
-          if (!hasAnySource(x)) return false;
+          if (src === "NA") return false;
+          if (!hasAnySource(item)) return false;
         }
+
         return true;
       });
 
-      for (const x of countryEvents){
-        const pos = resolveIncidentLatLon(x);
-        if (!pos) continue;
-
-        const marker = L.marker([pos.lat, pos.lon], { icon: iconForType(x.type) });
-        marker.bindPopup(buildIncidentPopupHtml(x, "Country"));
-
-        rawMarkersLayer.addLayer(marker);
-        clusterLayer.addLayer(marker);
-        heatPoints.push([pos.lat, pos.lon, heatWeight(x)]);
-        renderedCount++;
-      }
-
-      for (const x of dcEvents){
-        const pos = resolveIncidentLatLon(x);
-        if (!pos) continue;
-
-        const marker = L.marker([pos.lat, pos.lon], { icon: iconForType(x.event_type) });
-        marker.bindPopup(buildIncidentPopupHtml(x, "DataCenter"));
-
-        dcIncidentsLayer.addLayer(marker);
-        clusterLayer.addLayer(marker);
-        heatPoints.push([pos.lat, pos.lon, heatWeight(x)]);
-        renderedCount++;
-      }
-
-      const filteredDCs = DATACENTERS.filter(dc => {
+      CURRENT_FILTERED_DCS = DATACENTERS.filter(dc => {
         if (targetValue !== "ALL" && targetValue !== "DataCenter") return false;
 
         const hay = `${dc.name || ""} ${dc.city || ""} ${dc.operator || ""} ${dc.country || ""} ${dc.category || ""}`;
@@ -1255,118 +1990,153 @@
         return true;
       });
 
-      for (const dc of filteredDCs){
+      const heatPoints = [];
+      let renderedCount = 0;
+
+      for (const item of CURRENT_FILTERED_COUNTRY_EVENTS){
+        const pos = resolveIncidentLatLon(item);
+        if (!pos) continue;
+
+        const marker = L.marker([pos.lat, pos.lon], { icon: iconForType(item.type) });
+        marker.bindPopup(buildIncidentPopupHtml(item, "Country"));
+
+        rawMarkersLayer.addLayer(marker);
+        clusterLayer.addLayer(marker);
+        heatPoints.push([pos.lat, pos.lon, heatWeight(item)]);
+        renderedCount++;
+      }
+
+      for (const item of CURRENT_FILTERED_DC_EVENTS){
+        const pos = resolveIncidentLatLon(item);
+        if (!pos) continue;
+
+        const marker = L.marker([pos.lat, pos.lon], { icon: iconForType(item.event_type) });
+        marker.bindPopup(buildIncidentPopupHtml(item, "DataCenter"));
+
+        dcIncidentsLayer.addLayer(marker);
+        clusterLayer.addLayer(marker);
+        heatPoints.push([pos.lat, pos.lon, heatWeight(item)]);
+        renderedCount++;
+      }
+
+      for (const dc of CURRENT_FILTERED_DCS){
         if (!Number.isFinite(dc.lat) || !Number.isFinite(dc.lon)) continue;
         const marker = L.marker([dc.lat, dc.lon], { icon: iconForDatacenter(dc.category) });
         marker.bindPopup(buildDatacenterPopupHtml(dc));
         datacentersLayer.addLayer(marker);
       }
 
-      if (heatLayer && map.hasLayer(heatLayer)) map.removeLayer(heatLayer);
+      if (heatLayer && map.hasLayer(heatLayer)) {
+        map.removeLayer(heatLayer);
+      }
+
       heatLayer = L.heatLayer(heatPoints, {
-        radius: 45,
-        blur: 30,
-        minOpacity: 0.35,
+        radius: 40,
+        blur: 26,
+        minOpacity: 0.28,
         maxZoom: 12
       });
 
-      document.getElementById("countBadge").textContent =
-        `${renderedCount} esemény${isOsintModeOn() ? " • OSINT ON" : ""}`;
-
       setLayersVisibility();
+
+      document.getElementById("metricTotalSub").textContent = "aktuális szűrt nézet";
+      renderExecutiveSummary();
+      renderSummaryList();
+      renderTrendBars();
+      renderTopDCList();
+      renderOperatorBars();
+      renderTopBarStats();
+      renderMapChips();
     }
 
-    async function ensureBordersLayer(){
-      if (bordersLayer) return bordersLayer;
-      const { countriesGeo } = await ensureCountriesData();
-      bordersLayer = L.geoJSON(countriesGeo, {
-        style: () => ({
-          color: "rgba(110,231,255,.28)",
-          weight: 2,
-          opacity: 1,
-          fillOpacity: 0
-        }),
-        interactive: false
+    function bindUi(){
+      document.getElementById("fromRange").addEventListener("input", async () => {
+        syncDateLabels();
+        await renderMapData();
       });
-      return bordersLayer;
+
+      document.getElementById("toRange").addEventListener("input", async () => {
+        syncDateLabels();
+        await renderMapData();
+      });
+
+      let typingTimer = null;
+      document.getElementById("searchFilter").addEventListener("input", () => {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(() => renderMapData(), 140);
+      });
+
+      for (const id of [
+        "targetFilter",
+        "typeFilter",
+        "confFilter",
+        "sourceTypeFilter",
+        "statusFilter",
+        "impactFilter",
+        "operatorFilter"
+      ]) {
+        document.getElementById(id).addEventListener("change", () => renderMapData());
+      }
+
+      document.getElementById("onlyWithSources").addEventListener("change", async () => {
+        setOsintMode(false);
+        await renderMapData();
+      });
+
+      for (const id of [
+        "toggleIncidents",
+        "toggleDCIncidents",
+        "toggleDatacenters",
+        "toggleClusters",
+        "toggleHeatmap"
+      ]) {
+        document.getElementById(id).addEventListener("change", () => setLayersVisibility());
+      }
+
+      document.getElementById("toggleBorders").addEventListener("change", async (e) => {
+        const layer = await ensureBordersLayer();
+        if (e.target.checked) layer.addTo(map);
+        else map.removeLayer(layer);
+      });
+
+      document.getElementById("osintBtn").addEventListener("click", async () => {
+        setOsintMode(!isOsintModeOn());
+        await renderMapData();
+      });
+
+      document.getElementById("resetBtn").addEventListener("click", async () => {
+        document.getElementById("searchFilter").value = "";
+        document.getElementById("targetFilter").value = "ALL";
+        document.getElementById("typeFilter").value = "ALL";
+        document.getElementById("confFilter").value = "ALL";
+        document.getElementById("sourceTypeFilter").value = "ALL";
+        document.getElementById("statusFilter").value = "ALL";
+        document.getElementById("impactFilter").value = "ALL";
+        document.getElementById("operatorFilter").value = "ALL";
+        document.getElementById("onlyWithSources").checked = false;
+        setOsintMode(false);
+
+        document.getElementById("toggleIncidents").checked = true;
+        document.getElementById("toggleDCIncidents").checked = true;
+        document.getElementById("toggleDatacenters").checked = true;
+        document.getElementById("toggleClusters").checked = true;
+        document.getElementById("toggleHeatmap").checked = false;
+        document.getElementById("toggleBorders").checked = false;
+
+        if (bordersLayer && map.hasLayer(bordersLayer)) {
+          map.removeLayer(bordersLayer);
+        }
+
+        document.getElementById("fromRange").value = 0;
+        document.getElementById("toRange").value = ALL_DATES.length - 1;
+        syncDateLabels();
+
+        await renderMapData();
+      });
+
+      document.getElementById("exportOsintBtn").addEventListener("click", exportOsintReady);
+      document.getElementById("exportMissingBtn").addEventListener("click", exportMissingCsv);
     }
-
-    document.getElementById("fromRange").addEventListener("input", async () => {
-      syncDateLabels();
-      await renderMapData();
-    });
-
-    document.getElementById("toRange").addEventListener("input", async () => {
-      syncDateLabels();
-      await renderMapData();
-    });
-
-    let typingTimer = null;
-    document.getElementById("searchFilter").addEventListener("input", () => {
-      clearTimeout(typingTimer);
-      typingTimer = setTimeout(() => renderMapData(), 140);
-    });
-
-    document.getElementById("targetFilter").addEventListener("change", () => renderMapData());
-    document.getElementById("typeFilter").addEventListener("change", () => renderMapData());
-    document.getElementById("confFilter").addEventListener("change", () => renderMapData());
-    document.getElementById("sourceTypeFilter").addEventListener("change", () => renderMapData());
-    document.getElementById("statusFilter").addEventListener("change", () => renderMapData());
-    document.getElementById("impactFilter").addEventListener("change", () => renderMapData());
-    document.getElementById("operatorFilter").addEventListener("change", () => renderMapData());
-
-    document.getElementById("onlyWithSources").addEventListener("change", async () => {
-      setOsintMode(false);
-      await renderMapData();
-    });
-
-    document.getElementById("toggleIncidents").addEventListener("change", () => setLayersVisibility());
-    document.getElementById("toggleDCIncidents").addEventListener("change", () => setLayersVisibility());
-    document.getElementById("toggleDatacenters").addEventListener("change", () => setLayersVisibility());
-    document.getElementById("toggleClusters").addEventListener("change", () => setLayersVisibility());
-    document.getElementById("toggleHeatmap").addEventListener("change", () => setLayersVisibility());
-
-    document.getElementById("toggleBorders").addEventListener("change", async (e) => {
-      const layer = await ensureBordersLayer();
-      if (e.target.checked) layer.addTo(map);
-      else map.removeLayer(layer);
-    });
-
-    document.getElementById("osintBtn").addEventListener("click", async () => {
-      setOsintMode(!isOsintModeOn());
-      await renderMapData();
-    });
-
-    document.getElementById("exportOsintBtn").addEventListener("click", () => exportOsintReady());
-    document.getElementById("exportMissingBtn").addEventListener("click", () => exportMissingCsv());
-
-    document.getElementById("resetBtn").addEventListener("click", async () => {
-      document.getElementById("searchFilter").value = "";
-      document.getElementById("targetFilter").value = "ALL";
-      document.getElementById("typeFilter").value = "ALL";
-      document.getElementById("confFilter").value = "ALL";
-      document.getElementById("sourceTypeFilter").value = "ALL";
-      document.getElementById("statusFilter").value = "ALL";
-      document.getElementById("impactFilter").value = "ALL";
-      document.getElementById("operatorFilter").value = "ALL";
-      document.getElementById("onlyWithSources").checked = false;
-      setOsintMode(false);
-
-      document.getElementById("toggleIncidents").checked = true;
-      document.getElementById("toggleDCIncidents").checked = true;
-      document.getElementById("toggleDatacenters").checked = true;
-      document.getElementById("toggleClusters").checked = true;
-      document.getElementById("toggleHeatmap").checked = false;
-
-      document.getElementById("toggleBorders").checked = false;
-      if (bordersLayer && map.hasLayer(bordersLayer)) map.removeLayer(bordersLayer);
-
-      document.getElementById("fromRange").value = 0;
-      document.getElementById("toRange").value = ALL_DATES.length - 1;
-      syncDateLabels();
-
-      await renderMapData();
-    });
 
     (async () => {
       try {
@@ -1381,12 +2151,18 @@
         syncDateLabels();
 
         document.getElementById("osintBtn").dataset.state = "off";
-
         updateValidatorUI();
+        bindUi();
         await renderMapData();
       } catch (err) {
         console.error(err);
-        document.getElementById("countBadge").textContent = "Hiba: adatok nem töltődtek be";
+        document.getElementById("metricTotalEvents").textContent = "!";
+        document.getElementById("summaryList").innerHTML = `
+          <div class="summary-item">
+            <div class="summary-item-title">Hiba</div>
+            <div class="summary-item-sub">Az adatok nem töltődtek be. Ellenőrizd a JSON fájlokat és a GitHub Pages útvonalakat.</div>
+          </div>
+        `;
       }
     })();
   </script>

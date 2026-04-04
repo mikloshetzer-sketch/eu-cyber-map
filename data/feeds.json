@@ -24,5 +24,29 @@
     "record_type": "incident",
     "referer": "https://cert.europa.eu/"
   },
+  {
+  "id": "ccb-belgium-advisories",
+  "country": "BE",
+  "scope": "Belgium",
+  "source_type": "Gov",
+  "source_name": "CCB Belgium",
+  "feed_url": "https://ccb.belgium.be/en/rss.xml",
+  "default_confidence": "Med",
+  "default_type": "Vulnerability",
+  "record_type": "advisory",
+  "referer": "https://ccb.belgium.be/"
+},
+{
+  "id": "ncsc-ireland-alerts",
+  "country": "IE",
+  "scope": "Ireland",
+  "source_type": "Gov",
+  "source_name": "NCSC Ireland",
+  "feed_url": "https://www.ncsc.gov.ie/rss.xml",
+  "default_confidence": "Med",
+  "default_type": "Other",
+  "record_type": "incident",
+  "referer": "https://www.ncsc.gov.ie/"
+}
  
 ]

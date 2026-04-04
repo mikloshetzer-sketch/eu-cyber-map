@@ -252,7 +252,7 @@
       flex-wrap:wrap;
       gap:8px;
       justify-content:flex-end;
-      max-width:360px;
+      max-width:420px;
       pointer-events:none;
     }
 
@@ -877,6 +877,7 @@
         <div class="map-floating">
           <div class="map-chip" id="mapChipTarget">Célpont: Összes</div>
           <div class="map-chip" id="mapChipMode">OSINT: OFF</div>
+          <div class="map-chip" id="mapChipRecordType">Rekord: Összes</div>
           <div class="map-chip" id="mapChipCount">0 esemény</div>
         </div>
       </div>
@@ -900,6 +901,16 @@
               <div class="field full">
                 <label for="searchFilter">Keresés</label>
                 <input type="text" id="searchFilter" placeholder="pl. Frankfurt, operator, gov, ransomware..." />
+              </div>
+
+              <div class="field">
+                <label for="recordTypeFilter">Rekordtípus</label>
+                <select id="recordTypeFilter">
+                  <option value="ALL">Összes</option>
+                  <option value="incident">Incident</option>
+                  <option value="advisory">Advisory</option>
+                  <option value="kev">KEV</option>
+                </select>
               </div>
 
               <div class="field">
@@ -1004,7 +1015,7 @@
             </div>
 
             <div class="mini-note">
-              A nézet külön szűrhető operátor, státusz, impact és forrástípus szerint. Az OSINT mód automatikusan szigorúbb rekordszűrést használ.
+              A nézet külön szűrhető rekordtípus, operátor, státusz, impact és forrástípus szerint. Az OSINT mód automatikusan szigorúbb rekordszűrést használ.
             </div>
           </div>
         </div>
@@ -1143,6 +1154,14 @@
       if (s === "med" || s === "medium") return "Med";
       if (s === "low") return "Low";
       return "NA";
+    }
+
+    function recordTypeNorm(value){
+      const s = String(value || "").toLowerCase();
+      if (s === "incident") return "incident";
+      if (s === "advisory") return "advisory";
+      if (s === "kev") return "kev";
+      return "incident";
     }
 
     function confidenceClass(conf){
@@ -1423,6 +1442,7 @@
       const typeValue = item.type || item.event_type || "n/a";
       const statusValue = statusNorm(item.status);
       const impactValue = impactNorm(item.impact);
+      const recordTypeValue = recordTypeNorm(item.record_type);
 
       const operatorLine = item.operator
         ? `<div class="pop-meta">Operátor: <strong>${escapeHtml(item.operator)}</strong></div>`
@@ -1441,6 +1461,7 @@
           <span class="src-badge">src: ${srcType}</span>
           <span class="src-badge">origin: ${origin}</span>
           <span class="src-badge">target: ${targetType}</span>
+          <span class="src-badge">record: ${recordTypeValue}</span>
           ${statusBadge}
           ${impactBadge}
         </div>
@@ -1575,7 +1596,7 @@
           issues.push("bad_date");
         }
 
-        if (!item.country || !EU_ISO2.has(String(item.country).toUpperCase())) {
+        if (item.country && !EU_ISO2.has(String(item.country).toUpperCase())) {
           badCountry++;
           issues.push("bad_country");
         }
@@ -1760,8 +1781,11 @@
 
     function renderMapChips(){
       const total = CURRENT_FILTERED_COUNTRY_EVENTS.length + CURRENT_FILTERED_DC_EVENTS.length;
+      const recordTypeValue = document.getElementById("recordTypeFilter").value;
+
       document.getElementById("mapChipTarget").textContent = "Célpont: " + document.getElementById("targetFilter").value;
       document.getElementById("mapChipMode").textContent = "OSINT: " + (isOsintModeOn() ? "ON" : "OFF");
+      document.getElementById("mapChipRecordType").textContent = "Rekord: " + (recordTypeValue === "ALL" ? "Összes" : recordTypeValue);
       document.getElementById("mapChipCount").textContent = `${total} esemény`;
     }
 
@@ -1807,6 +1831,13 @@
       }
       const topStatus = Object.entries(byStatus).sort((a,b) => b[1] - a[1])[0];
 
+      const byRecordType = {};
+      for (const item of all){
+        const rt = recordTypeNorm(item.record_type);
+        byRecordType[rt] = (byRecordType[rt] || 0) + 1;
+      }
+      const topRecordType = Object.entries(byRecordType).sort((a,b) => b[1] - a[1])[0];
+
       const highImpactCount = CURRENT_FILTERED_DC_EVENTS.filter(x => impactNorm(x.impact) === "High").length;
 
       const rows = [
@@ -1815,6 +1846,10 @@
           sub: total
             ? `A jelenlegi szűrők ${total} eseményt mutatnak, ebből ${CURRENT_FILTERED_DC_EVENTS.length} adatközpont-érintett.`
             : "Nincs megjeleníthető esemény a mostani szűrőkkel."
+        },
+        {
+          title: "Domináns rekordtípus",
+          sub: topRecordType ? `${topRecordType[0]} (${topRecordType[1]} rekord)` : "n/a"
         },
         {
           title: "Domináns támadástípus",
@@ -1953,6 +1988,7 @@
       datacentersLayer.clearLayers();
       clusterLayer.clearLayers();
 
+      const recordTypeValue = document.getElementById("recordTypeFilter").value;
       const typeValue = document.getElementById("typeFilter").value;
       const q = norm(document.getElementById("searchFilter").value);
       const targetValue = document.getElementById("targetFilter").value;
@@ -1968,8 +2004,12 @@
         const d = toDateKey(item.date);
         if (!inDateRangeKey(d, from, to)) return false;
         if (targetValue !== "ALL" && targetValue !== "Country") return false;
+
+        const rt = recordTypeNorm(item.record_type);
+        if (recordTypeValue !== "ALL" && rt !== recordTypeValue) return false;
+
         if (typeValue !== "ALL" && item.type !== typeValue) return false;
-        if (q && !norm(item.title).includes(q)) return false;
+        if (q && !norm(`${item.title || ""} ${item.scope || ""} ${item.country || ""} ${item.source_name || ""}`).includes(q)) return false;
 
         const c = confNorm(item.confidence);
         if (confValue !== "ALL" && c !== confValue) return false;
@@ -1992,6 +2032,10 @@
         const d = toDateKey(item.date);
         if (!inDateRangeKey(d, from, to)) return false;
         if (targetValue !== "ALL" && targetValue !== "DataCenter") return false;
+
+        const rt = recordTypeNorm(item.record_type);
+        if (recordTypeValue !== "ALL" && rt !== recordTypeValue) return false;
+
         if (typeValue !== "ALL" && item.event_type !== typeValue) return false;
 
         const hay = `${item.target_name || ""} ${item.city || ""} ${item.operator || ""} ${item.country || ""}`;
@@ -2034,7 +2078,6 @@
       });
 
       const heatPoints = [];
-      let renderedCount = 0;
 
       for (const item of CURRENT_FILTERED_COUNTRY_EVENTS){
         const pos = resolveIncidentLatLon(item);
@@ -2046,7 +2089,6 @@
         rawMarkersLayer.addLayer(marker);
         clusterLayer.addLayer(marker);
         heatPoints.push([pos.lat, pos.lon, heatWeight(item)]);
-        renderedCount++;
       }
 
       for (const item of CURRENT_FILTERED_DC_EVENTS){
@@ -2059,7 +2101,6 @@
         dcIncidentsLayer.addLayer(marker);
         clusterLayer.addLayer(marker);
         heatPoints.push([pos.lat, pos.lon, heatWeight(item)]);
-        renderedCount++;
       }
 
       for (const dc of CURRENT_FILTERED_DCS){
@@ -2110,6 +2151,7 @@
       });
 
       for (const id of [
+        "recordTypeFilter",
         "targetFilter",
         "typeFilter",
         "confFilter",
@@ -2149,6 +2191,7 @@
 
       document.getElementById("resetBtn").addEventListener("click", async () => {
         document.getElementById("searchFilter").value = "";
+        document.getElementById("recordTypeFilter").value = "ALL";
         document.getElementById("targetFilter").value = "ALL";
         document.getElementById("typeFilter").value = "ALL";
         document.getElementById("confFilter").value = "ALL";

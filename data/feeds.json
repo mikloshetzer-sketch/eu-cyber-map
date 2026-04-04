@@ -8,6 +8,32 @@
     "feed_url": "https://cert.europa.eu/publications/security-advisories-rss",
     "fallback_feed_url": "https://cow-prod-www-v3.azurewebsites.net/publications/security-advisories-rss",
     "default_confidence": "Med",
-    "default_type": "Vulnerability"
+    "default_type": "Vulnerability",
+    "record_type": "advisory",
+    "referer": "https://cert.europa.eu/"
+  },
+  {
+    "id": "cert-eu-threat-intelligence",
+    "scope": "EU institutions",
+    "source_type": "CERT",
+    "source_name": "CERT-EU",
+    "feed_url": "https://cert.europa.eu/publications/threat-intelligence-rss",
+    "fallback_feed_url": "https://cow-prod-www-v3.azurewebsites.net/publications/threat-intelligence-rss",
+    "default_confidence": "Med",
+    "default_type": "Other",
+    "record_type": "incident",
+    "referer": "https://cert.europa.eu/"
+  },
+  {
+    "id": "bsi-cert-bund-tech-warnings",
+    "country": "DE",
+    "scope": "Germany",
+    "source_type": "Gov",
+    "source_name": "BSI / CERT-Bund",
+    "feed_url": "https://www.bsi.bund.de/SiteGlobals/Functions/RSSFeed/RSSNewsfeed/RSSNewsfeed_Kurzmeldungen.xml",
+    "default_confidence": "Med",
+    "default_type": "Vulnerability",
+    "record_type": "advisory",
+    "referer": "https://www.bsi.bund.de/"
   }
 ]

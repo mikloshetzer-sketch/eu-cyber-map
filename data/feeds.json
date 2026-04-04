@@ -24,16 +24,5 @@
     "record_type": "incident",
     "referer": "https://cert.europa.eu/"
   },
-  {
-    "id": "bsi-cert-bund-tech-warnings",
-    "country": "DE",
-    "scope": "Germany",
-    "source_type": "Gov",
-    "source_name": "BSI / CERT-Bund",
-    "feed_url": "https://www.bsi.bund.de/SiteGlobals/Functions/RSSFeed/RSSNewsfeed/RSSNewsfeed_Kurzmeldungen.xml",
-    "default_confidence": "Med",
-    "default_type": "Vulnerability",
-    "record_type": "advisory",
-    "referer": "https://www.bsi.bund.de/"
-  }
+ 
 ]

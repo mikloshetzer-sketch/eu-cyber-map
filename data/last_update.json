@@ -1,7 +1,11 @@
 {
-  "updated_at": "2026-04-04T08:11:17.521883Z",
-  "auto_count": 10,
+  "updated_at": "2026-04-04T08:20:47.611092Z",
+  "auto_raw_count": 10,
+  "auto_clean_count": 10,
   "total_count": 10,
+  "record_type_counts": {
+    "incident": 10
+  },
   "logs_tail": [
     "[cert-eu-security-advisories] GET https://cert.europa.eu/publications/security-advisories-rss",
     "[cert-eu-security-advisories]  -> status 200"

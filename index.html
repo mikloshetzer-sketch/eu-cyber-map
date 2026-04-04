@@ -33,6 +33,7 @@
       --yellow:#f6c96f;
       --red:#ff9292;
       --blue:#78a7ff;
+      --orange:#ffb86b;
 
       --shadow:0 18px 50px rgba(0,0,0,.35);
       --radius-xl:22px;
@@ -101,9 +102,7 @@
       flex:0 0 auto;
     }
 
-    .brand-copy{
-      min-width:0;
-    }
+    .brand-copy{ min-width:0; }
 
     .brand-title{
       font-size:15px;
@@ -223,8 +222,102 @@
       font-weight:800;
     }
 
-    .panel-body{
-      padding:0 14px 14px;
+    .panel-body{ padding:0 14px 14px; }
+
+    .center-col{
+      display:grid;
+      grid-template-rows:auto 1fr;
+      gap:10px;
+      min-width:0;
+      min-height:0;
+      padding-top:8px;
+    }
+
+    .mini-strip{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:10px;
+      min-width:0;
+    }
+
+    .mini-panel{
+      background:rgba(20,30,48,.80);
+      border:1px solid var(--line);
+      border-radius:18px;
+      backdrop-filter:blur(10px);
+      box-shadow:var(--shadow);
+      padding:12px 12px 10px;
+      min-width:0;
+    }
+
+    .mini-title{
+      font-size:11px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-weight:800;
+      margin-bottom:10px;
+    }
+
+    .mini-summary{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+
+    .mini-pill{
+      display:inline-flex;
+      align-items:center;
+      min-height:26px;
+      padding:0 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      font-size:11px;
+      color:#fff;
+    }
+
+    .mini-bars{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .mini-bar-row{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:8px;
+      align-items:center;
+    }
+
+    .mini-bar-label{
+      font-size:11px;
+      color:#fff;
+      min-width:0;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .mini-bar-value{
+      font-size:11px;
+      color:var(--muted);
+    }
+
+    .mini-bar-track{
+      grid-column:1 / -1;
+      height:6px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      overflow:hidden;
+    }
+
+    .mini-bar-fill{
+      height:100%;
+      border-radius:999px;
+      background:linear-gradient(90deg, rgba(102,230,255,.85), rgba(182,147,255,.75));
+      box-shadow:0 0 12px rgba(102,230,255,.16);
     }
 
     .map-panel{
@@ -357,9 +450,7 @@
       font-weight:800;
     }
 
-    select, input[type="text"], input[type="range"]{
-      width:100%;
-    }
+    select, input[type="text"], input[type="range"]{ width:100%; }
 
     select, input[type="text"]{
       background:rgba(255,255,255,.05);
@@ -390,9 +481,7 @@
       color:var(--text);
     }
 
-    input[type="checkbox"]{
-      accent-color:var(--cyan-2);
-    }
+    input[type="checkbox"]{ accent-color:var(--cyan-2); }
 
     .slider-box{
       background:rgba(255,255,255,.04);
@@ -410,9 +499,7 @@
       margin-bottom:8px;
     }
 
-    .slider-head strong{
-      color:#fff;
-    }
+    .slider-head strong{ color:#fff; }
 
     .button-row{
       display:flex;
@@ -433,27 +520,21 @@
       transition:.15s ease;
     }
 
-    button:hover{
-      background:rgba(102,230,255,.16);
-    }
+    button:hover{ background:rgba(102,230,255,.16); }
 
     .btn-secondary{
       background:rgba(182,147,255,.10);
       border-color:rgba(182,147,255,.24);
     }
 
-    .btn-secondary:hover{
-      background:rgba(182,147,255,.16);
-    }
+    .btn-secondary:hover{ background:rgba(182,147,255,.16); }
 
     .btn-ghost{
       background:rgba(255,255,255,.05);
       border-color:rgba(255,255,255,.12);
     }
 
-    .btn-ghost:hover{
-      background:rgba(255,255,255,.09);
-    }
+    .btn-ghost:hover{ background:rgba(255,255,255,.09); }
 
     .mini-note{
       margin-top:10px;
@@ -589,9 +670,7 @@
       font-size:12px;
     }
 
-    .validator-grid .k{
-      color:var(--muted);
-    }
+    .validator-grid .k{ color:var(--muted); }
 
     .validator-pill{
       display:inline-block;
@@ -621,9 +700,7 @@
       box-shadow:0 18px 60px rgba(0,0,0,.45);
     }
 
-    .leaflet-popup-tip{
-      background:rgba(17,26,42,.95);
-    }
+    .leaflet-popup-tip{ background:rgba(17,26,42,.95); }
 
     .pop-title{
       font-weight:800;
@@ -679,9 +756,7 @@
       text-decoration:none;
     }
 
-    a.pop-link:hover{
-      text-decoration:underline;
-    }
+    a.pop-link:hover{ text-decoration:underline; }
 
     .dot{
       width:14px;
@@ -754,9 +829,7 @@
     }
 
     @media (max-width: 1240px){
-      html, body{
-        overflow:auto;
-      }
+      html, body{ overflow:auto; }
 
       .app{
         height:auto;
@@ -766,9 +839,17 @@
 
       .workspace{
         grid-template-columns:1fr;
-        grid-template-rows:auto minmax(520px, 62vh) auto;
+        grid-template-rows:auto auto auto;
         height:auto;
         overflow:visible;
+      }
+
+      .center-col{
+        grid-template-rows:auto auto;
+      }
+
+      .mini-strip{
+        grid-template-columns:1fr;
       }
 
       .sidebar, .rightbar{
@@ -777,9 +858,7 @@
         padding-right:0;
       }
 
-      .map-panel{
-        min-height:540px;
-      }
+      .map-panel{ min-height:540px; }
     }
   </style>
 </head>
@@ -871,14 +950,36 @@
         </div>
       </div>
 
-      <div class="map-panel">
-        <div id="map"></div>
+      <div class="center-col">
+        <div class="mini-strip">
+          <div class="mini-panel">
+            <div class="mini-title">Rekordtípus megoszlás</div>
+            <div class="mini-summary" id="miniRecordSummary"></div>
+            <div class="mini-bars" id="miniRecordTypeBars"></div>
+          </div>
 
-        <div class="map-floating">
-          <div class="map-chip" id="mapChipTarget">Célpont: Összes</div>
-          <div class="map-chip" id="mapChipMode">OSINT: OFF</div>
-          <div class="map-chip" id="mapChipRecordType">Rekord: Összes</div>
-          <div class="map-chip" id="mapChipCount">0 esemény</div>
+          <div class="mini-panel">
+            <div class="mini-title">Támadástípus megoszlás</div>
+            <div class="mini-summary" id="miniTypeSummary"></div>
+            <div class="mini-bars" id="miniTypeBars"></div>
+          </div>
+
+          <div class="mini-panel">
+            <div class="mini-title">Forrástípus megoszlás</div>
+            <div class="mini-summary" id="miniSourceSummary"></div>
+            <div class="mini-bars" id="miniSourceBars"></div>
+          </div>
+        </div>
+
+        <div class="map-panel">
+          <div id="map"></div>
+
+          <div class="map-floating">
+            <div class="map-chip" id="mapChipTarget">Célpont: Összes</div>
+            <div class="map-chip" id="mapChipMode">OSINT: OFF</div>
+            <div class="map-chip" id="mapChipRecordType">Rekord: Összes</div>
+            <div class="map-chip" id="mapChipCount">0 esemény</div>
+          </div>
         </div>
       </div>
 
@@ -1980,6 +2081,80 @@
       `).join("");
     }
 
+    function buildMiniBars(targetId, rows){
+      const el = document.getElementById(targetId);
+      if (!rows.length){
+        el.innerHTML = `<div class="mini-note" style="margin-top:0;">Nincs adat.</div>`;
+        return;
+      }
+
+      const max = Math.max(...rows.map(r => r.value), 1);
+
+      el.innerHTML = rows.map(row => `
+        <div class="mini-bar-row">
+          <div class="mini-bar-label">${escapeHtml(row.label)}</div>
+          <div class="mini-bar-value">${row.value}</div>
+          <div class="mini-bar-track">
+            <div class="mini-bar-fill" style="width:${Math.max(6, Math.round((row.value / max) * 100))}%;"></div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function renderMiniCharts(){
+      const all = [...CURRENT_FILTERED_COUNTRY_EVENTS, ...CURRENT_FILTERED_DC_EVENTS];
+
+      const byRecordType = {};
+      const byType = {};
+      const bySource = {};
+
+      for (const item of all){
+        const rt = recordTypeNorm(item.record_type);
+        const t = item.type || item.event_type || "Other";
+        const s = sourceTypeNorm(item.source_type);
+
+        byRecordType[rt] = (byRecordType[rt] || 0) + 1;
+        byType[t] = (byType[t] || 0) + 1;
+        bySource[s] = (bySource[s] || 0) + 1;
+      }
+
+      const recordRows = Object.entries(byRecordType)
+        .sort((a,b) => b[1] - a[1])
+        .slice(0, 5)
+        .map(([label, value]) => ({ label, value }));
+
+      const typeRows = Object.entries(byType)
+        .sort((a,b) => b[1] - a[1])
+        .slice(0, 5)
+        .map(([label, value]) => ({ label, value }));
+
+      const sourceRows = Object.entries(bySource)
+        .sort((a,b) => b[1] - a[1])
+        .slice(0, 5)
+        .map(([label, value]) => ({ label, value }));
+
+      document.getElementById("miniRecordSummary").innerHTML = `
+        <span class="mini-pill">Összes: ${all.length}</span>
+        <span class="mini-pill">Incident: ${byRecordType.incident || 0}</span>
+        <span class="mini-pill">Advisory: ${byRecordType.advisory || 0}</span>
+      `;
+
+      const topType = typeRows[0] ? `${typeRows[0].label}: ${typeRows[0].value}` : "nincs adat";
+      const topSource = sourceRows[0] ? `${sourceRows[0].label}: ${sourceRows[0].value}` : "nincs adat";
+
+      document.getElementById("miniTypeSummary").innerHTML = `
+        <span class="mini-pill">Top: ${escapeHtml(topType)}</span>
+      `;
+
+      document.getElementById("miniSourceSummary").innerHTML = `
+        <span class="mini-pill">Top: ${escapeHtml(topSource)}</span>
+      `;
+
+      buildMiniBars("miniRecordTypeBars", recordRows);
+      buildMiniBars("miniTypeBars", typeRows);
+      buildMiniBars("miniSourceBars", sourceRows);
+    }
+
     async function renderMapData(){
       await ensureCountriesData();
 
@@ -2122,13 +2297,14 @@
       });
 
       setLayersVisibility();
-
       document.getElementById("metricTotalSub").textContent = "aktuális szűrt nézet";
+
       renderExecutiveSummary();
       renderSummaryList();
       renderTrendBars();
       renderTopDCList();
       renderOperatorBars();
+      renderMiniCharts();
       renderTopBarStats();
       renderMapChips();
     }

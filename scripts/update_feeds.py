@@ -3,9 +3,11 @@
 
 import json
 import hashlib
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
+from urllib.parse import urljoin
 
 import feedparser
 import requests
@@ -128,6 +130,12 @@ def fetch_rss_with_fallback(
     fallback_url: Optional[str] = None,
     referer: Optional[str] = None
 ) -> Tuple[Optional[feedparser.FeedParserDict], List[str]]:
+    """
+    Returns (parsed_feed_or_none, logs)
+    - Tries primary
+    - On common blocks/errors (403/401/429/5xx) tries fallback if provided
+    - Never raises; caller decides what to do
+    """
     logs: List[str] = []
     headers = dict(DEFAULT_HEADERS)
     if referer:
@@ -159,6 +167,21 @@ def fetch_rss_with_fallback(
     return None, logs
 
 
+def fetch_json(url: str, timeout: int = 45) -> Any:
+    headers = dict(DEFAULT_HEADERS)
+    headers["Accept"] = "application/json, */*;q=0.5"
+    r = requests.get(url, headers=headers, timeout=timeout)
+    r.raise_for_status()
+    return r.json()
+
+
+def fetch_text(url: str, timeout: int = 45) -> str:
+    headers = dict(DEFAULT_HEADERS)
+    r = requests.get(url, headers=headers, timeout=timeout)
+    r.raise_for_status()
+    return r.text
+
+
 def normalize_country(feed_country: Optional[str]) -> Optional[str]:
     c = str(feed_country or "").strip().upper()
     if not c:
@@ -186,7 +209,7 @@ def is_placeholder_record(item: Dict[str, Any]) -> bool:
         item.get("source_url", ""),
         item.get("operator", ""),
         item.get("target_name", ""),
-        item.get("scope", ""),
+        item.get("scope", "")
     ]
     combined = " ".join(str(x) for x in fields if x).lower()
 
@@ -231,7 +254,6 @@ def record_quality_issues(item: Dict[str, Any]) -> List[str]:
 def clean_auto_items(auto_items: List[Dict[str, Any]]) -> Tuple[List[Dict[str, Any]], List[str]]:
     cleaned: List[Dict[str, Any]] = []
     logs: List[str] = []
-
     seen_keys = set()
 
     for item in auto_items:
@@ -337,6 +359,123 @@ def build_auto_incidents(feeds_cfg: List[Dict[str, Any]]) -> Tuple[List[Dict[str
     return items[:MAX_AUTO_ITEMS], logs
 
 
+def extract_ncsc_json_links(index_html: str, base_url: str) -> List[str]:
+    matches = re.findall(r'href="([^"]+\.json)"', index_html, flags=re.IGNORECASE)
+    urls: List[str] = []
+    for href in matches:
+        full = urljoin(base_url + "/", href)
+        if full not in urls:
+            urls.append(full)
+    return urls
+
+
+def pick_ncsc_confidence(doc: Dict[str, Any]) -> str:
+    text = json.dumps(doc, ensure_ascii=False).lower()
+    if "critical" in text:
+        return "High"
+    if "high" in text:
+        return "Med"
+    return "Med"
+
+
+def parse_ncsc_type(doc: Dict[str, Any]) -> str:
+    text = json.dumps(doc, ensure_ascii=False).lower()
+
+    if "ransom" in text:
+        return "Ransomware"
+    if "phish" in text:
+        return "Phishing"
+    if "ddos" in text:
+        return "DDoS"
+    if "leak" in text or "breach" in text:
+        return "DataLeak"
+    if "supply chain" in text or "supply-chain" in text:
+        return "SupplyChain"
+    if "vulnerab" in text or "cve-" in text:
+        return "Vulnerability"
+
+    return "Vulnerability"
+
+
+def fetch_ncsc_nl_csaf(max_docs: int = 80) -> Tuple[List[Dict[str, Any]], List[str]]:
+    logs: List[str] = []
+    items: List[Dict[str, Any]] = []
+
+    current_year = datetime.now(timezone.utc).year
+    years = [str(current_year), str(current_year - 1)]
+
+    for year in years:
+        index_url = f"https://advisories.ncsc.nl/csaf/v2/{year}"
+        logs.append(f"[ncsc-nl-csaf] GET index {index_url}")
+
+        try:
+            html = fetch_text(index_url)
+        except Exception as e:
+            logs.append(f"[ncsc-nl-csaf] ERROR index fetch failed for {year}: {e}")
+            continue
+
+        json_links = extract_ncsc_json_links(html, index_url)
+        json_links = sorted(json_links, reverse=True)[:max_docs]
+
+        logs.append(f"[ncsc-nl-csaf] found {len(json_links)} json docs in {year}")
+
+        for url in json_links:
+            try:
+                doc = fetch_json(url)
+            except Exception as e:
+                logs.append(f"[ncsc-nl-csaf] ERROR doc fetch failed {url}: {e}")
+                continue
+
+            tracking = doc.get("tracking", {}) if isinstance(doc, dict) else {}
+            document = doc.get("document", {}) if isinstance(doc, dict) else {}
+
+            title = (
+                document.get("title")
+                or tracking.get("id")
+                or url.rsplit("/", 1)[-1]
+            )
+
+            date = (
+                tracking.get("initial_release_date")
+                or tracking.get("current_release_date")
+                or iso_date(datetime.now(timezone.utc))
+            )
+            date = str(date)[:10]
+
+            item = {
+                "id": stable_id("ncsc-nl-csaf", url, title, date),
+                "title": title,
+                "type": parse_ncsc_type(doc),
+                "record_type": "advisory",
+                "date": date,
+                "country": "NL",
+                "source_type": "Gov",
+                "source_name": "NCSC-NL",
+                "source_url": url,
+                "confidence": pick_ncsc_confidence(doc),
+                "generated": True,
+                "scope": "Netherlands"
+            }
+
+            issues = record_quality_issues(item)
+            if issues:
+                logs.append(
+                    f"[ncsc-nl-csaf] DROP title={title} issues={','.join(issues)}"
+                )
+                continue
+
+            items.append(item)
+
+    dedup: Dict[str, Dict[str, Any]] = {}
+    for it in items:
+        dedup[it["id"]] = it
+
+    out = list(dedup.values())
+    out.sort(key=lambda x: x.get("date", ""), reverse=True)
+    logs.append(f"[ncsc-nl-csaf] final items={len(out)}")
+    return out[:MAX_AUTO_ITEMS], logs
+
+
 def merge_incidents(existing: List[Dict[str, Any]], auto_items: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     manual = [x for x in existing if not (isinstance(x, dict) and x.get("generated") is True)]
 
@@ -395,7 +534,14 @@ def main():
     if not isinstance(existing, list):
         existing = []
 
-    raw_auto_items, logs = build_auto_incidents(feeds_cfg)
+    raw_feed_items, logs = build_auto_incidents(feeds_cfg)
+
+    ncsc_items, ncsc_logs = fetch_ncsc_nl_csaf(max_docs=60)
+    logs.extend(ncsc_logs)
+
+    raw_auto_items = raw_feed_items + ncsc_items
+    raw_auto_items.sort(key=lambda x: x.get("date", ""), reverse=True)
+
     cleaned_auto_items, clean_logs = clean_auto_items(raw_auto_items)
     logs.extend(clean_logs)
 

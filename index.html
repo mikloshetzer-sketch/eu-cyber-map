@@ -406,24 +406,61 @@
       gap:8px;
     }
 
-    .summary-item, .top-item{
+    .summary-item, .top-item, .event-item{
       background:rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.08);
       border-radius:15px;
       padding:10px 12px;
     }
 
-    .summary-item-title, .top-item-title{
+    .summary-item-title, .top-item-title, .event-item-title{
       font-size:13px;
       font-weight:700;
       color:#fff;
     }
 
-    .summary-item-sub, .top-item-sub{
+    .summary-item-sub, .top-item-sub, .event-item-sub{
       margin-top:4px;
       font-size:12px;
       color:var(--muted);
       line-height:1.4;
+    }
+
+    .events-list{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .event-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-top:8px;
+    }
+
+    .event-badge{
+      display:inline-flex;
+      align-items:center;
+      min-height:24px;
+      padding:0 8px;
+      border-radius:999px;
+      font-size:11px;
+      color:#fff;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+    }
+
+    .event-link{
+      display:inline-block;
+      margin-top:8px;
+      color:var(--cyan);
+      text-decoration:none;
+      font-size:12px;
+    }
+
+    .event-link:hover{
+      text-decoration:underline;
     }
 
     .filter-grid{
@@ -913,6 +950,15 @@
                 <div class="metric-sub">forrásolt arány</div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Utolsó 5 esemény röviden</div>
+          </div>
+          <div class="panel-body">
+            <div class="events-list" id="latestEventsList"></div>
           </div>
         </div>
 
@@ -1920,7 +1966,7 @@
 
       const byCountry = {};
       for (const item of all){
-        const c = item.country || "n/a";
+        const c = item.country || item.scope || "n/a";
         byCountry[c] = (byCountry[c] || 0) + 1;
       }
       const topCountry = Object.entries(byCountry).sort((a,b) => b[1] - a[1])[0];
@@ -1957,7 +2003,7 @@
           sub: topType ? `${topType[0]} (${topType[1]} esemény)` : "n/a"
         },
         {
-          title: "Leginkább érintett ország",
+          title: "Leginkább érintett ország / scope",
           sub: topCountry ? `${topCountry[0]} (${topCountry[1]} esemény)` : "n/a"
         },
         {
@@ -2004,6 +2050,61 @@
             <div class="trend-value">${counts[k]}</div>
             <div class="trend-bar-wrap"><div class="trend-bar" style="height:${height}px;"></div></div>
             <div class="trend-label">${escapeHtml(k.slice(5))}</div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function buildEventShortText(item){
+      const rt = recordTypeNorm(item.record_type);
+      const type = item.type || item.event_type || "ismeretlen típus";
+      const scope = item.scope ? `, ${item.scope}` : "";
+      const country = item.country ? item.country : "";
+      const src = item.source_name ? `Forrás: ${item.source_name}.` : "Forrás: nincs adat.";
+
+      if (rt === "advisory") {
+        return `${type} jellegű figyelmeztetés${country ? ` ${country}` : ""}${scope} fókuszban. ${src}`;
+      }
+
+      if (rt === "kev") {
+        return `${type} jellegű, aktívan kihasznált sérülékenységi rekord${country ? ` ${country}` : ""}. ${src}`;
+      }
+
+      return `${type} jellegű esemény${country ? ` ${country}` : ""}${scope}. ${src}`;
+    }
+
+    function renderLatestEvents(){
+      const el = document.getElementById("latestEventsList");
+      const all = [...CURRENT_FILTERED_COUNTRY_EVENTS, ...CURRENT_FILTERED_DC_EVENTS]
+        .slice()
+        .sort((a,b) => String(b.date || "").localeCompare(String(a.date || "")))
+        .slice(0, 5);
+
+      if (!all.length){
+        el.innerHTML = `<div class="event-item"><div class="event-item-sub">Nincs megjeleníthető esemény a jelenlegi szűrőkhöz.</div></div>`;
+        return;
+      }
+
+      el.innerHTML = all.map(item => {
+        const rt = recordTypeNorm(item.record_type);
+        const type = item.type || item.event_type || "n/a";
+        const where = item.country || item.scope || "n/a";
+        const shortText = buildEventShortText(item);
+        const link = item.source_url
+          ? `<a class="event-link" href="${escapeAttr(item.source_url)}" target="_blank" rel="noopener noreferrer">Forrás megnyitása</a>`
+          : "";
+
+        return `
+          <div class="event-item">
+            <div class="event-item-title">${escapeHtml(item.title || item.target_name || "Esemény")}</div>
+            <div class="event-item-sub">${escapeHtml(shortText)}</div>
+            <div class="event-meta">
+              <span class="event-badge">${escapeHtml(toDateKey(item.date) || "n/a")}</span>
+              <span class="event-badge">${escapeHtml(rt)}</span>
+              <span class="event-badge">${escapeHtml(type)}</span>
+              <span class="event-badge">${escapeHtml(where)}</span>
+            </div>
+            ${link}
           </div>
         `;
       }).join("");
@@ -2300,6 +2401,7 @@
       document.getElementById("metricTotalSub").textContent = "aktuális szűrt nézet";
 
       renderExecutiveSummary();
+      renderLatestEvents();
       renderSummaryList();
       renderTrendBars();
       renderTopDCList();
@@ -2423,6 +2525,12 @@
           <div class="summary-item">
             <div class="summary-item-title">Hiba</div>
             <div class="summary-item-sub">Az adatok nem töltődtek be. Ellenőrizd a JSON fájlokat és a GitHub Pages útvonalakat.</div>
+          </div>
+        `;
+        document.getElementById("latestEventsList").innerHTML = `
+          <div class="event-item">
+            <div class="event-item-title">Hiba</div>
+            <div class="event-item-sub">Az eseménylista nem tölthető be.</div>
           </div>
         `;
       }

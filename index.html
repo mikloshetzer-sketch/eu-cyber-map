@@ -62,6 +62,8 @@
       gap:10px;
       padding:10px;
       height:100vh;
+      min-height:100vh;
+      overflow:hidden;
     }
 
     .topbar{
@@ -154,6 +156,8 @@
       grid-template-columns:340px minmax(0,1fr) 360px;
       gap:10px;
       min-height:0;
+      height:100%;
+      overflow:hidden;
     }
 
     .sidebar, .rightbar{
@@ -161,6 +165,36 @@
       flex-direction:column;
       gap:10px;
       min-height:0;
+      height:100%;
+      overflow-y:auto;
+      overflow-x:hidden;
+      scrollbar-width:thin;
+      scrollbar-color:rgba(102,230,255,.35) rgba(255,255,255,.05);
+      scrollbar-gutter:stable;
+      padding-right:4px;
+    }
+
+    .sidebar::-webkit-scrollbar,
+    .rightbar::-webkit-scrollbar{
+      width:10px;
+    }
+
+    .sidebar::-webkit-scrollbar-track,
+    .rightbar::-webkit-scrollbar-track{
+      background:rgba(255,255,255,.05);
+      border-radius:999px;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb,
+    .rightbar::-webkit-scrollbar-thumb{
+      background:linear-gradient(180deg, rgba(102,230,255,.55), rgba(182,147,255,.55));
+      border-radius:999px;
+      border:2px solid rgba(10,18,32,.65);
+    }
+
+    .sidebar::-webkit-scrollbar-thumb:hover,
+    .rightbar::-webkit-scrollbar-thumb:hover{
+      background:linear-gradient(180deg, rgba(102,230,255,.75), rgba(182,147,255,.75));
     }
 
     .panel{
@@ -170,6 +204,7 @@
       backdrop-filter:blur(10px);
       box-shadow:var(--shadow);
       overflow:hidden;
+      flex:0 0 auto;
     }
 
     .panel-head{
@@ -732,6 +767,14 @@
       .workspace{
         grid-template-columns:1fr;
         grid-template-rows:auto minmax(520px, 62vh) auto;
+        height:auto;
+        overflow:visible;
+      }
+
+      .sidebar, .rightbar{
+        height:auto;
+        overflow:visible;
+        padding-right:0;
       }
 
       .map-panel{

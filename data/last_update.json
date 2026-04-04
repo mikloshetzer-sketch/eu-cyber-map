@@ -1,13 +1,19 @@
 {
-  "updated_at": "2026-04-04T08:20:47.611092Z",
-  "auto_raw_count": 10,
-  "auto_clean_count": 10,
-  "total_count": 10,
+  "updated_at": "2026-04-04T08:29:33.127728Z",
+  "auto_raw_count": 20,
+  "auto_clean_count": 20,
+  "total_count": 20,
   "record_type_counts": {
-    "incident": 10
+    "incident": 10,
+    "advisory": 10
   },
   "logs_tail": [
     "[cert-eu-security-advisories] GET https://cert.europa.eu/publications/security-advisories-rss",
-    "[cert-eu-security-advisories]  -> status 200"
+    "[cert-eu-security-advisories]  -> status 200",
+    "[cert-eu-threat-intelligence] GET https://cert.europa.eu/publications/threat-intelligence-rss",
+    "[cert-eu-threat-intelligence]  -> status 200",
+    "[bsi-cert-bund-tech-warnings] GET https://www.bsi.bund.de/SiteGlobals/Functions/RSSFeed/RSSNewsfeed/RSSNewsfeed_Kurzmeldungen.xml",
+    "[bsi-cert-bund-tech-warnings]  -> status 404",
+    "[bsi-cert-bund-tech-warnings] ERROR: feed not fetched/parsed (skipping)"
   ]
 }

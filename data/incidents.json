@@ -1,10 +1,10 @@
 [
   {
-    "id": "f11f84025e8bce36",
+    "id": "10574a41275a5224",
     "title": "Kwetsbaarheid verholpen in FortiClient EMS van Fortinet",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -14,11 +14,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "02fe21e0234834da",
+    "id": "b30eaf6bc8f09061",
     "title": "Kwetsbaarheden verholpen in Cisco Integrated Management Controller",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -28,11 +28,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "f695de5684eb680b",
+    "id": "a7fef78bfc637983",
     "title": "Kwetsbaarheden verholpen in Cisco Nexus Dashboard en Nexus Dashboard Insights",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -42,11 +42,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "d744279a9152e430",
+    "id": "c6b2742f3f75a007",
     "title": "Kwetsbaarheden verholpen in Cisco IOS XE Software",
     "type": "DataLeak",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -56,11 +56,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "401c3e87bc05ebe9",
+    "id": "fcb023d721ebf81e",
     "title": "Kwetsbaarheden verholpen in GitLab",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -70,11 +70,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "a75ae13cc15826f0",
+    "id": "b714da3d0c534d69",
     "title": "Kwetsbaarheden verholpen in Apple macOS",
     "type": "DataLeak",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -84,11 +84,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "43737b8ff3e52423",
+    "id": "f93f9c54052256d8",
     "title": "Kwetsbaarheden verholpen in Apple iOS en iPadOS",
     "type": "DataLeak",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -98,11 +98,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "e61f81dab81a7ef7",
+    "id": "7cd4aa7bf2f49095",
     "title": "Kwetsbaarheden verholpen in Citrix Netscaler ADC en Netscaler Gateway",
     "type": "DataLeak",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -112,11 +112,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "6e75ca18885466f9",
+    "id": "e3e5192888e7ed37",
     "title": "Kwetsbaarheid verholpen in Oracle Identity Manager en Oracle Web Services Manager",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -126,11 +126,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "9584b18b59cd4ba7",
+    "id": "06900e94dfb0b540",
     "title": "Kwetsbaarheden verholpen in Google Chrome",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -140,11 +140,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "24cae17fcc7d8a00",
+    "id": "4cc54f8a3ee30922",
     "title": "Kwetsbaarheden verholpen in Veeam Backup & Replication",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -154,11 +154,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "8691f1de8e0fc27e",
+    "id": "d29e6894349e7d35",
     "title": "Kwetsbaarheid verholpen in pac4j-jwt",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -168,11 +168,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "7fa86994debed4a4",
+    "id": "1a2262726a59b9b2",
     "title": "Kwetsbaarheden verholpen in Cisco IOS XR",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -182,11 +182,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "f678f76a7ce0e3d6",
+    "id": "5f76a04736271b59",
     "title": "Kwetsbaarheden verholpen in Fortinet FortiWeb",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -196,11 +196,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "7dd6318e70937fea",
+    "id": "70b810099b148c13",
     "title": "Kwetsbaarheden verholpen in SAP-producten",
     "type": "SupplyChain",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -210,11 +210,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "52e9c076aed8c95a",
+    "id": "d2c28374d54d3ada",
     "title": "Kwetsbaarheden verholpen in Adobe Experience Manager",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -224,11 +224,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "992a991357399bfb",
+    "id": "42e9e8658c81533d",
     "title": "Kwetsbaarheden verholpen in Adobe Acrobat Reader",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -238,11 +238,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "9c2c174e4bb42c84",
+    "id": "0b1317748f8a71bc",
     "title": "Kwetsbaarheden verholpen in Adobe Illustrator",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -252,11 +252,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "6eb67415367a9bef",
+    "id": "f6832abe744b9636",
     "title": "Kwetsbaarheden verholpen in Adobe Commerce",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -266,11 +266,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "c87a9c8a8b566029",
+    "id": "aeae57d94c7d6d27",
     "title": "Kwetsbaarheden verholpen in Fortinet FortiManager en FortiAnalyzer",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -280,11 +280,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "a2d2caa0ce4a002f",
+    "id": "9bcb5fe5546fa90b",
     "title": "Kwetsbaarheden verholpen in Microsoft Developer tools",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -294,11 +294,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "6567698cc949503b",
+    "id": "ef88349887510226",
     "title": "Kwetsbaarheden verholpen in Microsoft Office",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -308,11 +308,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "447dcfd055f0e70d",
+    "id": "dd0ac6122e425900",
     "title": "Kwetsbaarheid verholpen in Microsoft Authenticator app",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -322,11 +322,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "08f151028a2637e0",
+    "id": "3265ae9099457a18",
     "title": "Kwetsbaarheden verholpen in Microsoft Azure",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -336,11 +336,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "f49b0a206a779bed",
+    "id": "58a66b15147888ad",
     "title": "Kwetsbaarheden verholpen in Microsoft SQL Server",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -350,11 +350,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "3e4c1d39df32028f",
+    "id": "8cf2e592f5153fb1",
     "title": "Kwetsbaarheden verholpen in Microsoft Windows",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -364,11 +364,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "eb6156b75e67c2c3",
+    "id": "91a633cd272cb842",
     "title": "Kwetsbaarheden verholpen in Siemens producten",
     "type": "DataLeak",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -378,11 +378,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "c567968f64c9bf8d",
+    "id": "495eefeda244e6ee",
     "title": "Kwetsbaarheden verholpen in Kibana",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -392,11 +392,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "92225dd7bf3d9fac",
+    "id": "ec4b5ede836b1d11",
     "title": "Kwetsbaarheden verholpen in Cisco Secure Firewall systemen",
     "type": "DataLeak",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -406,11 +406,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "1cbba28d524fb71c",
+    "id": "f7263da86aea786c",
     "title": "Kwetsbaarheden verholpen in Cisco Secure Firewall Management Center",
     "type": "Ransomware",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -420,11 +420,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "15dc0f429dfaf3c1",
+    "id": "3b17218ba55d0939",
     "title": "Kwetsbaarheid verholpen in n8n Automation Platform",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -434,11 +434,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "56f760ba3ad68d9d",
+    "id": "f5c889cd4aa07d81",
     "title": "Kwetsbaarheden verholpen in Google Android en Samsung Mobile",
     "type": "DataLeak",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -448,11 +448,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "564902b7f80235af",
+    "id": "8a2079ecdebfcd40",
     "title": "Kwetsbaarheid verholpen in Juniper Junos OS Evolved",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -462,11 +462,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "13500b3ac3ff32e5",
+    "id": "fc153538e2440216",
     "title": "Kwetsbaarheden verholpen in Cisco Catalyst SD-WAN Manager",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -476,11 +476,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "de0769861e84a4b0",
+    "id": "c43c7c17b35f485f",
     "title": "Kwetsbaarheden verholpen in VMware Aria Operations",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -490,11 +490,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "a9ca46ae0ead82ee",
+    "id": "e76290a58cf4da45",
     "title": "Kwetsbaarheden verholpen in SolarWinds Serv-U",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -504,11 +504,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "1ed447249fe970f0",
+    "id": "83455b38df94cde8",
     "title": "Kwetsbaarheden verholpen in Splunk Enterprise en Splunk Cloud Platform",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -518,11 +518,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "d58c96d2c93dc8ad",
+    "id": "d2056e2881cb6d73",
     "title": "Kwetsbaarheden verholpen in GitHub Enterprise Server",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -532,11 +532,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "ef3f6283c3780d41",
+    "id": "52edc3040be7fe36",
     "title": "Kwetsbaarheid verholpen in Google Chrome",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -546,11 +546,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "67ff04c546dc3585",
+    "id": "069a91b9b6889326",
     "title": "Kwetsbaarheid verholpen in Dell RecoverPoint for Virtual Machines",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -560,11 +560,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "7e3df1ef8d530be8",
+    "id": "5a30977eeac01446",
     "title": "Kwetsbaarheden verholpen in GitLab CE/EE",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -574,11 +574,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "6c413d90fcee8d48",
+    "id": "f169931a2b7897f1",
     "title": "Kwetsbaarheden verholpen in Fortinet FortiOS",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -588,11 +588,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "5db885527fe7bb27",
+    "id": "5cb23f3c0943ce69",
     "title": "Kwetsbaarheden verholpen in Fortinet FortiSandbox, FortiAuthenticator en FortiClient",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -602,11 +602,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "8433b20c2c90310f",
+    "id": "b345859126238f3a",
     "title": "Kwetsbaarheden verholpen in Ivanti Endpoint Manager",
     "type": "DataLeak",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -616,11 +616,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "644aba2103534ca7",
+    "id": "99dff0458b6f1ac7",
     "title": "Kwetsbaarheid verholpen in Microsoft SQL Server",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -630,11 +630,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "0036e54e2486c268",
+    "id": "84d54a23cdfd9ec5",
     "title": "Kwetsbaarheid verholpen in Microsoft Exchange",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -644,11 +644,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "9516e2f1ffea6ee4",
+    "id": "7ae606ecb6b8443a",
     "title": "Kwetsbaarheden verholpen in SAP producten",
     "type": "DataLeak",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -658,11 +658,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "038c6c5ccbb7e0dc",
+    "id": "6a47adf0698172a6",
     "title": "Kwetsbaarheid verholpen in PEAR",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -672,11 +672,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "b2ff22c09193f5b2",
+    "id": "4a7fb69224a4dd74",
     "title": "Kwetsbaarheden verholpen in n8n",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -686,11 +686,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "3ba4d4fd12688cfc",
+    "id": "72caf87ce62ecdd1",
     "title": "Kwetsbaarheid verholpen in BeyondTrust Remote Support",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -700,11 +700,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "6ad17445c52b7f20",
+    "id": "7c8f6efaa867fa21",
     "title": "Kwetsbaarheid verholpen in Roundcube Webmail",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -714,11 +714,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "b20eaf2c12a17f54",
+    "id": "dbc4a3fb6ad692a1",
     "title": "Kwetsbaarheid verholpen in SmarterMail",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -728,11 +728,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "ab5300863cf1601b",
+    "id": "3463ad114f6fe29e",
     "title": "Kwetsbaarheden verholpen in QNAP besturingssystemen",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -742,11 +742,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "65163170b3d55454",
+    "id": "e75047b6f27e9621",
     "title": "Kwetsbaarheid verholpen in MongoDB",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -756,11 +756,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "f346a2a80a884b34",
+    "id": "b52895982000d11d",
     "title": "Kwetsbaarheden verholpen in Foxit PDF Reader",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -770,11 +770,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "733c34694c70e927",
+    "id": "fc79ba2bfdb343b0",
     "title": "Kwetsbaarheid verholpen in WatchGuard Firebox",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -784,11 +784,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "252e53221a3000f5",
+    "id": "9c9464e11e06eb31",
     "title": "Kwetsbaarheid verholpen in HPE OneView Software",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -798,11 +798,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "ed84ca4135748eae",
+    "id": "414c514fa1043f71",
     "title": "Kwetsbaarheid in Cisco AsyncOS",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -812,11 +812,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "55e2ee143928f8eb",
+    "id": "4894e83977281c8c",
     "title": "Kwetsbaarheden verholpen in SAP Software",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -826,11 +826,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "e22e9e13c0b338cc",
+    "id": "e617c7d602d3ed6d",
     "title": "Kwetsbaarheden verholpen in React Server Components",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -840,11 +840,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "178e9e4b5434ab7f",
+    "id": "1d65cf07818939a5",
     "title": "Kwetsbaarheid verholpen in GeoServer",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -854,11 +854,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "6171a46b93a542b4",
+    "id": "5c75df73c25cc482",
     "title": "Kwetsbaarheid verholpen in Barracuda Service Center",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -868,11 +868,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "b6c8ad3f81c393ce",
+    "id": "47e095eaba0ae8fb",
     "title": "Kwetsbaarheden verholpen in Adobe ColdFusion",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -882,11 +882,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "6ba82a70cba9780a",
+    "id": "c5094bd315dc0de3",
     "title": "Kwetsbaarheden verholpen in Fortinet producten",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -896,11 +896,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "ad558cea625e1038",
+    "id": "47cf9fc65ee0e89b",
     "title": "Kwetsbaarheden verholpen in Microsoft Exchange",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -910,11 +910,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "1db4b5199731c84a",
+    "id": "df456221ac52c5b8",
     "title": "Kwetsbaarheden verholpen in Mattermost",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -924,11 +924,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "9d1e2fa5b84496e9",
+    "id": "042409ad2074499c",
     "title": "Kwetsbaarheden verholpen in SonicWall Email Security appliances",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -938,11 +938,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "302115aa82292ef2",
+    "id": "4298648614738330",
     "title": "Kwetsbaarheid verholpen in Progress MOVEit Transfer",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -952,11 +952,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "5ad21532c1377a00",
+    "id": "54188e6f48b713cc",
     "title": "Kwetsbaarheden verholpen in Arista EOS",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -966,11 +966,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "8d520d419870e43c",
+    "id": "26d34e6f205908d4",
     "title": "Kwetsbaarheid verholpen in Fortinet FortiWeb",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -980,11 +980,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "e88ba39f15c57d88",
+    "id": "58d3f0909fbec08d",
     "title": "Kwetsbaarheden verholpen in Cisco Unified Contact Center Express",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -994,11 +994,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "cc249d9b287e6919",
+    "id": "9fcad51595a0d8f4",
     "title": "Kwetsbaarheden verholpen in IBM AIX",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -1008,11 +1008,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "91ce8f1c21d36928",
+    "id": "2e094787a300058c",
     "title": "Kwetsbaarheden verholpen in Zoom Workplace en Zoom Clients",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -1022,11 +1022,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "74c8c0f86ed40f50",
+    "id": "0507af554cc29d5b",
     "title": "Kwetsbaarheden verholpen in Cisco Catalyst Center",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -1036,11 +1036,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "5a1ef583e393de79",
+    "id": "904791ef5451a037",
     "title": "Kwetsbaarheid verholpen in Adobe Photoshop",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -1050,11 +1050,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "aa272d079ac5bb12",
+    "id": "d3c015137637ae78",
     "title": "Kwetsbaarheden verholpen in Microsoft Visual Studio",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -1064,11 +1064,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "60c1ac45ddfbb71c",
+    "id": "ab6d0ed22a073d2e",
     "title": "Kwetsbaarheden verholpen in Microsoft Dynamics",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -1078,11 +1078,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "08fa1b6aea06aa12",
+    "id": "d0a3ccdc1932ce23",
     "title": "Kwetsbaartheden verholpen in Microsoft Windows",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -1092,11 +1092,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "e83c057216def773",
+    "id": "40638c4e0fcabd95",
     "title": "Kwetsbaarheden verholpen in Fortinet FortiOS en FortiProxy",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -1106,11 +1106,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "21ee6dc8ad7129bd",
+    "id": "40bd76c2c27ec3eb",
     "title": "Kwetsbaarheid verholpen in Cisco Identity Services Engine",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -1120,11 +1120,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "921007282bcaf44d",
+    "id": "a6f301c7feb1f939",
     "title": "Kwetsbaarheid verholpen in CFMOTO Ride voertuigdatabeheer systemen",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -1134,11 +1134,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "b550ac8de5f724ff",
+    "id": "371044861bd16e77",
     "title": "Kwetsbaarheden verholpen in Nagios XI",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -1148,11 +1148,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "0ff2241ae0c1008c",
+    "id": "d0d5e2da2b9102ee",
     "title": "Kwetsbaarheden verholpen in Arista Networks producten",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
@@ -1162,11 +1162,11 @@
     "scope": "Netherlands"
   },
   {
-    "id": "2e6d0e3529dba8f9",
+    "id": "ff1c9b421ec1f980",
     "title": "Kwetsbaarheden verholpen in IBM QRadar SIEM",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-04-05",
+    "date": "2026-04-06",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",

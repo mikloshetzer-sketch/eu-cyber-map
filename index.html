@@ -246,8 +246,9 @@
       border-radius:18px;
       backdrop-filter:blur(10px);
       box-shadow:var(--shadow);
-      padding:12px 12px 10px;
+      padding:12px;
       min-width:0;
+      min-height:132px;
     }
 
     .mini-title{
@@ -256,43 +257,46 @@
       text-transform:uppercase;
       letter-spacing:.08em;
       font-weight:800;
-      margin-bottom:10px;
+      margin-bottom:8px;
     }
 
-    .mini-summary{
+    .mini-topline{
       display:flex;
+      justify-content:space-between;
+      align-items:center;
       gap:8px;
-      flex-wrap:wrap;
-      margin-bottom:10px;
+      margin-bottom:8px;
+      font-size:11px;
+      color:var(--muted);
     }
 
-    .mini-pill{
-      display:inline-flex;
-      align-items:center;
-      min-height:26px;
-      padding:0 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.05);
-      font-size:11px;
+    .mini-topline strong{
       color:#fff;
     }
 
-    .mini-bars{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
+    .mini-chart{
+      width:100%;
+      height:74px;
+      display:block;
     }
 
-    .mini-bar-row{
+    .mini-legend{
       display:grid;
-      grid-template-columns:1fr auto;
-      gap:8px;
-      align-items:center;
+      grid-template-columns:1fr 1fr;
+      gap:6px 10px;
+      margin-top:8px;
     }
 
-    .mini-bar-label{
+    .mini-legend-item{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+      min-width:0;
       font-size:11px;
+    }
+
+    .mini-legend-label{
       color:#fff;
       min-width:0;
       white-space:nowrap;
@@ -300,24 +304,9 @@
       text-overflow:ellipsis;
     }
 
-    .mini-bar-value{
-      font-size:11px;
+    .mini-legend-value{
       color:var(--muted);
-    }
-
-    .mini-bar-track{
-      grid-column:1 / -1;
-      height:6px;
-      border-radius:999px;
-      background:rgba(255,255,255,.06);
-      overflow:hidden;
-    }
-
-    .mini-bar-fill{
-      height:100%;
-      border-radius:999px;
-      background:linear-gradient(90deg, rgba(102,230,255,.85), rgba(182,147,255,.75));
-      box-shadow:0 0 12px rgba(102,230,255,.16);
+      flex:0 0 auto;
     }
 
     .map-panel{
@@ -1000,20 +989,32 @@
         <div class="mini-strip">
           <div class="mini-panel">
             <div class="mini-title">Rekordtípus megoszlás</div>
-            <div class="mini-summary" id="miniRecordSummary"></div>
-            <div class="mini-bars" id="miniRecordTypeBars"></div>
+            <div class="mini-topline">
+              <span>Szűrt nézet</span>
+              <strong id="miniRecordTotal">0</strong>
+            </div>
+            <svg class="mini-chart" id="miniRecordChart" viewBox="0 0 220 74" preserveAspectRatio="none"></svg>
+            <div class="mini-legend" id="miniRecordLegend"></div>
           </div>
 
           <div class="mini-panel">
             <div class="mini-title">Támadástípus megoszlás</div>
-            <div class="mini-summary" id="miniTypeSummary"></div>
-            <div class="mini-bars" id="miniTypeBars"></div>
+            <div class="mini-topline">
+              <span>Top típusok</span>
+              <strong id="miniTypeTotal">0</strong>
+            </div>
+            <svg class="mini-chart" id="miniTypeChart" viewBox="0 0 220 74" preserveAspectRatio="none"></svg>
+            <div class="mini-legend" id="miniTypeLegend"></div>
           </div>
 
           <div class="mini-panel">
             <div class="mini-title">Forrástípus megoszlás</div>
-            <div class="mini-summary" id="miniSourceSummary"></div>
-            <div class="mini-bars" id="miniSourceBars"></div>
+            <div class="mini-topline">
+              <span>Forrásmix</span>
+              <strong id="miniSourceTotal">0</strong>
+            </div>
+            <svg class="mini-chart" id="miniSourceChart" viewBox="0 0 220 74" preserveAspectRatio="none"></svg>
+            <div class="mini-legend" id="miniSourceLegend"></div>
           </div>
         </div>
 
@@ -2182,22 +2183,70 @@
       `).join("");
     }
 
-    function buildMiniBars(targetId, rows){
-      const el = document.getElementById(targetId);
+    function renderMiniColumnChart(svgId, legendId, totalId, rows){
+      const svg = document.getElementById(svgId);
+      const legend = document.getElementById(legendId);
+      const totalEl = document.getElementById(totalId);
+
+      totalEl.textContent = rows.reduce((acc, r) => acc + r.value, 0);
+
       if (!rows.length){
-        el.innerHTML = `<div class="mini-note" style="margin-top:0;">Nincs adat.</div>`;
+        svg.innerHTML = "";
+        legend.innerHTML = `<div class="mini-note" style="margin-top:0;">Nincs adat.</div>`;
         return;
       }
 
+      const width = 220;
+      const height = 74;
+      const chartBottom = 64;
+      const topPad = 6;
+      const leftPad = 8;
+      const rightPad = 8;
+      const gap = 8;
+      const count = rows.length;
+      const barWidth = Math.max(14, Math.floor((width - leftPad - rightPad - gap * (count - 1)) / count));
       const max = Math.max(...rows.map(r => r.value), 1);
 
-      el.innerHTML = rows.map(row => `
-        <div class="mini-bar-row">
-          <div class="mini-bar-label">${escapeHtml(row.label)}</div>
-          <div class="mini-bar-value">${row.value}</div>
-          <div class="mini-bar-track">
-            <div class="mini-bar-fill" style="width:${Math.max(6, Math.round((row.value / max) * 100))}%;"></div>
-          </div>
+      let x = leftPad;
+      const parts = [];
+
+      parts.push(`<line x1="0" y1="${chartBottom}" x2="${width}" y2="${chartBottom}" stroke="rgba(255,255,255,.10)" stroke-width="1"/>`);
+
+      for (const row of rows){
+        const h = Math.max(6, Math.round((row.value / max) * (chartBottom - topPad)));
+        const y = chartBottom - h;
+
+        parts.push(`
+          <rect
+            x="${x}"
+            y="${y}"
+            width="${barWidth}"
+            height="${h}"
+            rx="4"
+            ry="4"
+            fill="rgba(102,230,255,.85)"
+          />
+        `);
+
+        parts.push(`
+          <text
+            x="${x + barWidth / 2}"
+            y="${y - 4}"
+            text-anchor="middle"
+            font-size="9"
+            fill="rgba(234,243,255,.92)"
+          >${row.value}</text>
+        `);
+
+        x += barWidth + gap;
+      }
+
+      svg.innerHTML = parts.join("");
+
+      legend.innerHTML = rows.map(row => `
+        <div class="mini-legend-item">
+          <span class="mini-legend-label">${escapeHtml(row.label)}</span>
+          <span class="mini-legend-value">${row.value}</span>
         </div>
       `).join("");
     }
@@ -2221,39 +2270,22 @@
 
       const recordRows = Object.entries(byRecordType)
         .sort((a,b) => b[1] - a[1])
-        .slice(0, 5)
+        .slice(0, 4)
         .map(([label, value]) => ({ label, value }));
 
       const typeRows = Object.entries(byType)
         .sort((a,b) => b[1] - a[1])
-        .slice(0, 5)
+        .slice(0, 4)
         .map(([label, value]) => ({ label, value }));
 
       const sourceRows = Object.entries(bySource)
         .sort((a,b) => b[1] - a[1])
-        .slice(0, 5)
+        .slice(0, 4)
         .map(([label, value]) => ({ label, value }));
 
-      document.getElementById("miniRecordSummary").innerHTML = `
-        <span class="mini-pill">Összes: ${all.length}</span>
-        <span class="mini-pill">Incident: ${byRecordType.incident || 0}</span>
-        <span class="mini-pill">Advisory: ${byRecordType.advisory || 0}</span>
-      `;
-
-      const topType = typeRows[0] ? `${typeRows[0].label}: ${typeRows[0].value}` : "nincs adat";
-      const topSource = sourceRows[0] ? `${sourceRows[0].label}: ${sourceRows[0].value}` : "nincs adat";
-
-      document.getElementById("miniTypeSummary").innerHTML = `
-        <span class="mini-pill">Top: ${escapeHtml(topType)}</span>
-      `;
-
-      document.getElementById("miniSourceSummary").innerHTML = `
-        <span class="mini-pill">Top: ${escapeHtml(topSource)}</span>
-      `;
-
-      buildMiniBars("miniRecordTypeBars", recordRows);
-      buildMiniBars("miniTypeBars", typeRows);
-      buildMiniBars("miniSourceBars", sourceRows);
+      renderMiniColumnChart("miniRecordChart", "miniRecordLegend", "miniRecordTotal", recordRows);
+      renderMiniColumnChart("miniTypeChart", "miniTypeLegend", "miniTypeTotal", typeRows);
+      renderMiniColumnChart("miniSourceChart", "miniSourceLegend", "miniSourceTotal", sourceRows);
     }
 
     async function renderMapData(){
@@ -2382,159 +2414,4 @@
       for (const dc of CURRENT_FILTERED_DCS){
         if (!Number.isFinite(dc.lat) || !Number.isFinite(dc.lon)) continue;
         const marker = L.marker([dc.lat, dc.lon], { icon: iconForDatacenter(dc.category) });
-        marker.bindPopup(buildDatacenterPopupHtml(dc));
-        datacentersLayer.addLayer(marker);
-      }
-
-      if (heatLayer && map.hasLayer(heatLayer)) {
-        map.removeLayer(heatLayer);
-      }
-
-      heatLayer = L.heatLayer(heatPoints, {
-        radius: 40,
-        blur: 26,
-        minOpacity: 0.28,
-        maxZoom: 12
-      });
-
-      setLayersVisibility();
-      document.getElementById("metricTotalSub").textContent = "aktuális szűrt nézet";
-
-      renderExecutiveSummary();
-      renderLatestEvents();
-      renderSummaryList();
-      renderTrendBars();
-      renderTopDCList();
-      renderOperatorBars();
-      renderMiniCharts();
-      renderTopBarStats();
-      renderMapChips();
-    }
-
-    function bindUi(){
-      document.getElementById("fromRange").addEventListener("input", async () => {
-        syncDateLabels();
-        await renderMapData();
-      });
-
-      document.getElementById("toRange").addEventListener("input", async () => {
-        syncDateLabels();
-        await renderMapData();
-      });
-
-      let typingTimer = null;
-      document.getElementById("searchFilter").addEventListener("input", () => {
-        clearTimeout(typingTimer);
-        typingTimer = setTimeout(() => renderMapData(), 140);
-      });
-
-      for (const id of [
-        "recordTypeFilter",
-        "targetFilter",
-        "typeFilter",
-        "confFilter",
-        "sourceTypeFilter",
-        "statusFilter",
-        "impactFilter",
-        "operatorFilter"
-      ]) {
-        document.getElementById(id).addEventListener("change", () => renderMapData());
-      }
-
-      document.getElementById("onlyWithSources").addEventListener("change", async () => {
-        setOsintMode(false);
-        await renderMapData();
-      });
-
-      for (const id of [
-        "toggleIncidents",
-        "toggleDCIncidents",
-        "toggleDatacenters",
-        "toggleClusters",
-        "toggleHeatmap"
-      ]) {
-        document.getElementById(id).addEventListener("change", () => setLayersVisibility());
-      }
-
-      document.getElementById("toggleBorders").addEventListener("change", async (e) => {
-        const layer = await ensureBordersLayer();
-        if (e.target.checked) layer.addTo(map);
-        else map.removeLayer(layer);
-      });
-
-      document.getElementById("osintBtn").addEventListener("click", async () => {
-        setOsintMode(!isOsintModeOn());
-        await renderMapData();
-      });
-
-      document.getElementById("resetBtn").addEventListener("click", async () => {
-        document.getElementById("searchFilter").value = "";
-        document.getElementById("recordTypeFilter").value = "ALL";
-        document.getElementById("targetFilter").value = "ALL";
-        document.getElementById("typeFilter").value = "ALL";
-        document.getElementById("confFilter").value = "ALL";
-        document.getElementById("sourceTypeFilter").value = "ALL";
-        document.getElementById("statusFilter").value = "ALL";
-        document.getElementById("impactFilter").value = "ALL";
-        document.getElementById("operatorFilter").value = "ALL";
-        document.getElementById("onlyWithSources").checked = false;
-        setOsintMode(false);
-
-        document.getElementById("toggleIncidents").checked = true;
-        document.getElementById("toggleDCIncidents").checked = true;
-        document.getElementById("toggleDatacenters").checked = true;
-        document.getElementById("toggleClusters").checked = true;
-        document.getElementById("toggleHeatmap").checked = false;
-        document.getElementById("toggleBorders").checked = false;
-
-        if (bordersLayer && map.hasLayer(bordersLayer)) {
-          map.removeLayer(bordersLayer);
-        }
-
-        document.getElementById("fromRange").value = 0;
-        document.getElementById("toRange").value = ALL_DATES.length - 1;
-        syncDateLabels();
-
-        await renderMapData();
-      });
-
-      document.getElementById("exportOsintBtn").addEventListener("click", exportOsintReady);
-      document.getElementById("exportMissingBtn").addEventListener("click", exportMissingCsv);
-    }
-
-    (async () => {
-      try {
-        await ensureCountriesData();
-        await loadIncidents();
-        await loadDatacenters();
-        await loadDCIncidents();
-        await loadLastUpdate();
-
-        buildOperatorFilter();
-        buildDateAxis();
-        syncDateLabels();
-
-        document.getElementById("osintBtn").dataset.state = "off";
-        updateValidatorUI();
-        bindUi();
-        await renderMapData();
-      } catch (err) {
-        console.error(err);
-        document.getElementById("metricTotalEvents").textContent = "!";
-        document.getElementById("summaryList").innerHTML = `
-          <div class="summary-item">
-            <div class="summary-item-title">Hiba</div>
-            <div class="summary-item-sub">Az adatok nem töltődtek be. Ellenőrizd a JSON fájlokat és a GitHub Pages útvonalakat.</div>
-          </div>
-        `;
-        document.getElementById("latestEventsList").innerHTML = `
-          <div class="event-item">
-            <div class="event-item-title">Hiba</div>
-            <div class="event-item-sub">Az eseménylista nem tölthető be.</div>
-          </div>
-        `;
-      }
-    })();
-  </script>
-</body>
-</html>
+        marker.bindPopup(buildDatacenterPopupHtml(dc

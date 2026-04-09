@@ -33,7 +33,6 @@
       --yellow:#f6c96f;
       --red:#ff9292;
       --blue:#78a7ff;
-      --orange:#ffb86b;
 
       --shadow:0 18px 50px rgba(0,0,0,.35);
       --radius-xl:22px;
@@ -59,7 +58,7 @@
 
     .app{
       display:grid;
-      grid-template-rows: 72px 1fr;
+      grid-template-rows:72px 1fr;
       gap:10px;
       padding:10px;
       height:100vh;
@@ -102,7 +101,9 @@
       flex:0 0 auto;
     }
 
-    .brand-copy{ min-width:0; }
+    .brand-copy{
+      min-width:0;
+    }
 
     .brand-title{
       font-size:15px;
@@ -222,7 +223,9 @@
       font-weight:800;
     }
 
-    .panel-body{ padding:0 14px 14px; }
+    .panel-body{
+      padding:0 14px 14px;
+    }
 
     .center-col{
       display:grid;
@@ -248,7 +251,7 @@
       box-shadow:var(--shadow);
       padding:12px;
       min-width:0;
-      min-height:132px;
+      min-height:138px;
     }
 
     .mini-title{
@@ -389,7 +392,7 @@
       line-height:1.35;
     }
 
-    .summary-list, .top-list{
+    .summary-list, .top-list, .events-list{
       display:flex;
       flex-direction:column;
       gap:8px;
@@ -413,12 +416,6 @@
       font-size:12px;
       color:var(--muted);
       line-height:1.4;
-    }
-
-    .events-list{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
     }
 
     .event-meta{
@@ -476,7 +473,9 @@
       font-weight:800;
     }
 
-    select, input[type="text"], input[type="range"]{ width:100%; }
+    select, input[type="text"], input[type="range"]{
+      width:100%;
+    }
 
     select, input[type="text"]{
       background:rgba(255,255,255,.05);
@@ -507,7 +506,9 @@
       color:var(--text);
     }
 
-    input[type="checkbox"]{ accent-color:var(--cyan-2); }
+    input[type="checkbox"]{
+      accent-color:var(--cyan-2);
+    }
 
     .slider-box{
       background:rgba(255,255,255,.04);
@@ -525,7 +526,9 @@
       margin-bottom:8px;
     }
 
-    .slider-head strong{ color:#fff; }
+    .slider-head strong{
+      color:#fff;
+    }
 
     .button-row{
       display:flex;
@@ -546,21 +549,27 @@
       transition:.15s ease;
     }
 
-    button:hover{ background:rgba(102,230,255,.16); }
+    button:hover{
+      background:rgba(102,230,255,.16);
+    }
 
     .btn-secondary{
       background:rgba(182,147,255,.10);
       border-color:rgba(182,147,255,.24);
     }
 
-    .btn-secondary:hover{ background:rgba(182,147,255,.16); }
+    .btn-secondary:hover{
+      background:rgba(182,147,255,.16);
+    }
 
     .btn-ghost{
       background:rgba(255,255,255,.05);
       border-color:rgba(255,255,255,.12);
     }
 
-    .btn-ghost:hover{ background:rgba(255,255,255,.09); }
+    .btn-ghost:hover{
+      background:rgba(255,255,255,.09);
+    }
 
     .mini-note{
       margin-top:10px;
@@ -696,7 +705,9 @@
       font-size:12px;
     }
 
-    .validator-grid .k{ color:var(--muted); }
+    .validator-grid .k{
+      color:var(--muted);
+    }
 
     .validator-pill{
       display:inline-block;
@@ -726,7 +737,9 @@
       box-shadow:0 18px 60px rgba(0,0,0,.45);
     }
 
-    .leaflet-popup-tip{ background:rgba(17,26,42,.95); }
+    .leaflet-popup-tip{
+      background:rgba(17,26,42,.95);
+    }
 
     .pop-title{
       font-weight:800;
@@ -782,7 +795,9 @@
       text-decoration:none;
     }
 
-    a.pop-link:hover{ text-decoration:underline; }
+    a.pop-link:hover{
+      text-decoration:underline;
+    }
 
     .dot{
       width:14px;
@@ -855,7 +870,9 @@
     }
 
     @media (max-width: 1240px){
-      html, body{ overflow:auto; }
+      html, body{
+        overflow:auto;
+      }
 
       .app{
         height:auto;
@@ -884,7 +901,9 @@
         padding-right:0;
       }
 
-      .map-panel{ min-height:540px; }
+      .map-panel{
+        min-height:540px;
+      }
     }
   </style>
 </head>
@@ -1206,9 +1225,7 @@
         </div>
       </div>
     </div>
-  </div>
-
-  <script>
+      <script>
     const COUNTRIES_GEOJSON_URL = "https://raw.githubusercontent.com/Leaflet/Leaflet.VectorGrid/master/docs/eu-countries.geo.json";
 
     const map = L.map("map", { zoomControl: true }).setView([54.5, 15.0], 4);
@@ -2188,6 +2205,8 @@
       const legend = document.getElementById(legendId);
       const totalEl = document.getElementById(totalId);
 
+      if (!svg || !legend || !totalEl) return;
+
       totalEl.textContent = rows.reduce((acc, r) => acc + r.value, 0);
 
       if (!rows.length){
@@ -2197,14 +2216,14 @@
       }
 
       const width = 220;
-      const height = 74;
       const chartBottom = 64;
       const topPad = 6;
       const leftPad = 8;
       const rightPad = 8;
       const gap = 8;
       const count = rows.length;
-      const barWidth = Math.max(14, Math.floor((width - leftPad - rightPad - gap * (count - 1)) / count));
+      const usableWidth = width - leftPad - rightPad - gap * (count - 1);
+      const barWidth = Math.max(14, Math.floor(usableWidth / count));
       const max = Math.max(...rows.map(r => r.value), 1);
 
       let x = leftPad;
@@ -2414,4 +2433,159 @@
       for (const dc of CURRENT_FILTERED_DCS){
         if (!Number.isFinite(dc.lat) || !Number.isFinite(dc.lon)) continue;
         const marker = L.marker([dc.lat, dc.lon], { icon: iconForDatacenter(dc.category) });
-        marker.bindPopup(buildDatacenterPopupHtml(dc
+        marker.bindPopup(buildDatacenterPopupHtml(dc));
+        datacentersLayer.addLayer(marker);
+      }
+
+      if (heatLayer && map.hasLayer(heatLayer)) {
+        map.removeLayer(heatLayer);
+      }
+
+      heatLayer = L.heatLayer(heatPoints, {
+        radius: 40,
+        blur: 26,
+        minOpacity: 0.28,
+        maxZoom: 12
+      });
+
+      setLayersVisibility();
+
+      document.getElementById("metricTotalSub").textContent = "aktuális szűrt nézet";
+      renderExecutiveSummary();
+      renderLatestEvents();
+      renderSummaryList();
+      renderTrendBars();
+      renderTopDCList();
+      renderOperatorBars();
+      renderMiniCharts();
+      renderTopBarStats();
+      renderMapChips();
+    }
+
+    function bindUi(){
+      document.getElementById("fromRange").addEventListener("input", async () => {
+        syncDateLabels();
+        await renderMapData();
+      });
+
+      document.getElementById("toRange").addEventListener("input", async () => {
+        syncDateLabels();
+        await renderMapData();
+      });
+
+      let typingTimer = null;
+      document.getElementById("searchFilter").addEventListener("input", () => {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(() => renderMapData(), 140);
+      });
+
+      for (const id of [
+        "recordTypeFilter",
+        "targetFilter",
+        "typeFilter",
+        "confFilter",
+        "sourceTypeFilter",
+        "statusFilter",
+        "impactFilter",
+        "operatorFilter"
+      ]) {
+        document.getElementById(id).addEventListener("change", () => renderMapData());
+      }
+
+      document.getElementById("onlyWithSources").addEventListener("change", async () => {
+        setOsintMode(false);
+        await renderMapData();
+      });
+
+      for (const id of [
+        "toggleIncidents",
+        "toggleDCIncidents",
+        "toggleDatacenters",
+        "toggleClusters",
+        "toggleHeatmap"
+      ]) {
+        document.getElementById(id).addEventListener("change", () => setLayersVisibility());
+      }
+
+      document.getElementById("toggleBorders").addEventListener("change", async (e) => {
+        const layer = await ensureBordersLayer();
+        if (e.target.checked) layer.addTo(map);
+        else map.removeLayer(layer);
+      });
+
+      document.getElementById("osintBtn").addEventListener("click", async () => {
+        setOsintMode(!isOsintModeOn());
+        await renderMapData();
+      });
+
+      document.getElementById("resetBtn").addEventListener("click", async () => {
+        document.getElementById("searchFilter").value = "";
+        document.getElementById("recordTypeFilter").value = "ALL";
+        document.getElementById("targetFilter").value = "ALL";
+        document.getElementById("typeFilter").value = "ALL";
+        document.getElementById("confFilter").value = "ALL";
+        document.getElementById("sourceTypeFilter").value = "ALL";
+        document.getElementById("statusFilter").value = "ALL";
+        document.getElementById("impactFilter").value = "ALL";
+        document.getElementById("operatorFilter").value = "ALL";
+        document.getElementById("onlyWithSources").checked = false;
+        setOsintMode(false);
+
+        document.getElementById("toggleIncidents").checked = true;
+        document.getElementById("toggleDCIncidents").checked = true;
+        document.getElementById("toggleDatacenters").checked = true;
+        document.getElementById("toggleClusters").checked = true;
+        document.getElementById("toggleHeatmap").checked = false;
+        document.getElementById("toggleBorders").checked = false;
+
+        if (bordersLayer && map.hasLayer(bordersLayer)) {
+          map.removeLayer(bordersLayer);
+        }
+
+        document.getElementById("fromRange").value = 0;
+        document.getElementById("toRange").value = ALL_DATES.length - 1;
+        syncDateLabels();
+
+        await renderMapData();
+      });
+
+      document.getElementById("exportOsintBtn").addEventListener("click", exportOsintReady);
+      document.getElementById("exportMissingBtn").addEventListener("click", exportMissingCsv);
+    }
+
+    (async () => {
+      try {
+        await ensureCountriesData();
+        await loadIncidents();
+        await loadDatacenters();
+        await loadDCIncidents();
+        await loadLastUpdate();
+
+        buildOperatorFilter();
+        buildDateAxis();
+        syncDateLabels();
+
+        document.getElementById("osintBtn").dataset.state = "off";
+        updateValidatorUI();
+        bindUi();
+        await renderMapData();
+      } catch (err) {
+        console.error(err);
+        document.getElementById("metricTotalEvents").textContent = "!";
+        document.getElementById("summaryList").innerHTML = `
+          <div class="summary-item">
+            <div class="summary-item-title">Hiba</div>
+            <div class="summary-item-sub">Az adatok nem töltődtek be. Ellenőrizd a JSON fájlokat és a GitHub Pages útvonalakat.</div>
+          </div>
+        `;
+        document.getElementById("latestEventsList").innerHTML = `
+          <div class="event-item">
+            <div class="event-item-title">Hiba</div>
+            <div class="event-item-sub">Az eseménylista nem tölthető be.</div>
+          </div>
+        `;
+      }
+    })();
+  </script>
+</body>
+</html>

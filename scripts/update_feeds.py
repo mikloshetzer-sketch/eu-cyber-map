@@ -22,7 +22,8 @@ LAST_UPDATE_PATH = DATA_DIR / "last_update.json"
 KEV_PATH = DATA_DIR / "kev.json"
 RAW_AUTO_INCIDENTS_PATH = DATA_DIR / "raw_auto_incidents.json"
 
-MAX_AUTO_ITEMS = 250  # max auto events kept
+MAX_AUTO_ITEMS = 250
+MAX_FEED_ENTRIES_PER_SOURCE = 120
 
 
 DEFAULT_HEADERS = {
@@ -66,7 +67,7 @@ def save_json(path: Path, obj):
 
 
 def parse_entry_date(entry) -> str:
-    for k in ("published_parsed", "updated_parsed"):
+    for k in ("published_parsed", "updated_parsed", "created_parsed"):
         t = getattr(entry, k, None)
         if t:
             try:
@@ -74,6 +75,15 @@ def parse_entry_date(entry) -> str:
                 return iso_date(dt)
             except Exception:
                 pass
+
+    for k in ("published", "updated", "created"):
+        raw = getattr(entry, k, None)
+        if raw:
+            text = str(raw).strip()
+            m = re.search(r"(\d{4}-\d{2}-\d{2})", text)
+            if m:
+                return m.group(1)
+
     return iso_date(datetime.now(timezone.utc))
 
 
@@ -111,10 +121,10 @@ def map_type(entry, default_type: str) -> str:
         return "Phishing"
     if "ddos" in text:
         return "DDoS"
-    if "leak" in text or "breach" in text or "data leak" in text:
-        return "DataLeak"
     if "supply chain" in text or "supply-chain" in text:
         return "SupplyChain"
+    if "leak" in text or "breach" in text or "data leak" in text or "data breach" in text:
+        return "DataLeak"
     if "vulnerab" in text or "advisory" in text or "cve-" in text:
         return "Vulnerability"
 
@@ -130,12 +140,6 @@ def fetch_rss_with_fallback(
     fallback_url: Optional[str] = None,
     referer: Optional[str] = None
 ) -> Tuple[Optional[feedparser.FeedParserDict], List[str]]:
-    """
-    Returns (parsed_feed_or_none, logs)
-    - Tries primary
-    - On common blocks/errors (403/401/429/5xx) tries fallback if provided
-    - Never raises; caller decides what to do
-    """
     logs: List[str] = []
     headers = dict(DEFAULT_HEADERS)
     if referer:
@@ -190,16 +194,28 @@ def normalize_country(feed_country: Optional[str]) -> Optional[str]:
 
 
 def is_placeholder_text(value: str) -> bool:
-    v = (value or "").lower()
-    return (
-        "példa" in v or
-        "example" in v or
-        "fallback" in v or
-        " teszt" in v or
-        "test " in v or
-        v.startswith("test") or
-        "dummy" in v
-    )
+    v = (value or "").strip().lower()
+    if not v:
+        return False
+
+    bad_patterns = [
+        "example.com",
+        "placeholder",
+        "dummy",
+        "lorem ipsum",
+        "sample feed",
+        "sample advisory",
+        "sample incident",
+        "példa rekord",
+        "példa feed",
+        "példa incidens",
+        "példa tanács",
+        "test feed",
+        "test incident",
+        "test advisory",
+        "fallback example",
+    ]
+    return any(p in v for p in bad_patterns)
 
 
 def is_placeholder_record(item: Dict[str, Any]) -> bool:
@@ -209,7 +225,7 @@ def is_placeholder_record(item: Dict[str, Any]) -> bool:
         item.get("source_url", ""),
         item.get("operator", ""),
         item.get("target_name", ""),
-        item.get("scope", "")
+        item.get("scope", ""),
     ]
     combined = " ".join(str(x) for x in fields if x).lower()
 
@@ -230,20 +246,36 @@ def is_valid_source_url(url: str) -> bool:
     return True
 
 
+def has_meaningful_title(title: str) -> bool:
+    t = str(title or "").strip()
+    if not t:
+        return False
+    if len(t) < 6:
+        return False
+    if is_placeholder_text(t):
+        return False
+    return True
+
+
+def is_valid_date_string(value: str) -> bool:
+    s = str(value or "").strip()
+    return bool(re.fullmatch(r"\d{4}-\d{2}-\d{2}", s))
+
+
 def record_quality_issues(item: Dict[str, Any]) -> List[str]:
     issues: List[str] = []
 
     if is_placeholder_record(item):
         issues.append("placeholder_record")
 
-    if not item.get("title"):
-        issues.append("missing_title")
+    if not has_meaningful_title(item.get("title", "")):
+        issues.append("missing_or_bad_title")
 
-    if not item.get("date"):
-        issues.append("missing_date")
+    if not is_valid_date_string(item.get("date", "")):
+        issues.append("missing_or_bad_date")
 
-    if not item.get("source_name"):
-        issues.append("missing_source_name")
+    if not item.get("source_name") or is_placeholder_text(str(item.get("source_name", ""))):
+        issues.append("missing_or_bad_source_name")
 
     if not is_valid_source_url(item.get("source_url", "")):
         issues.append("invalid_source_url")
@@ -251,10 +283,55 @@ def record_quality_issues(item: Dict[str, Any]) -> List[str]:
     return issues
 
 
+def entry_dedup_key(item: Dict[str, Any]) -> Tuple[Any, ...]:
+    source_url = str(item.get("source_url", "")).strip().lower()
+    if source_url:
+        return ("src", source_url)
+
+    return (
+        "fallback",
+        str(item.get("title", "")).strip().lower(),
+        str(item.get("date", "")).strip(),
+        str(item.get("country", "")).strip().lower(),
+        str(item.get("type", "")).strip().lower(),
+        str(item.get("source_name", "")).strip().lower(),
+    )
+
+
+def record_completeness_score(item: Dict[str, Any]) -> int:
+    score = 0
+
+    if is_valid_source_url(item.get("source_url", "")):
+        score += 100
+    if item.get("source_name"):
+        score += 20
+    if has_meaningful_title(item.get("title", "")):
+        score += 15
+    if is_valid_date_string(item.get("date", "")):
+        score += 10
+    if item.get("country"):
+        score += 5
+    if item.get("scope"):
+        score += 3
+    if item.get("summary_hu"):
+        score += 2
+    if item.get("analyst_note_hu"):
+        score += 2
+
+    conf = str(item.get("confidence", "")).lower()
+    if conf == "high":
+        score += 8
+    elif conf in ("med", "medium"):
+        score += 5
+    elif conf == "low":
+        score += 2
+
+    return score
+
+
 def clean_auto_items(auto_items: List[Dict[str, Any]]) -> Tuple[List[Dict[str, Any]], List[str]]:
-    cleaned: List[Dict[str, Any]] = []
+    cleaned_candidates: List[Dict[str, Any]] = []
     logs: List[str] = []
-    seen_keys = set()
 
     for item in auto_items:
         issues = record_quality_issues(item)
@@ -263,21 +340,27 @@ def clean_auto_items(auto_items: List[Dict[str, Any]]) -> Tuple[List[Dict[str, A
                 f"DROP auto item id={item.get('id')} title={item.get('title','<no-title>')} issues={','.join(issues)}"
             )
             continue
+        cleaned_candidates.append(item)
 
-        dedup_key = (
-            str(item.get("title", "")).strip().lower(),
-            str(item.get("date", "")).strip(),
-            str(item.get("source_name", "")).strip().lower(),
-        )
-        if dedup_key in seen_keys:
-            logs.append(
-                f"DROP duplicate item id={item.get('id')} title={item.get('title','<no-title>')}"
-            )
+    dedup: Dict[Tuple[Any, ...], Dict[str, Any]] = {}
+    for item in cleaned_candidates:
+        key = entry_dedup_key(item)
+        if key not in dedup:
+            dedup[key] = item
             continue
-        seen_keys.add(dedup_key)
 
-        cleaned.append(item)
+        current = dedup[key]
+        if record_completeness_score(item) > record_completeness_score(current):
+            logs.append(
+                f"REPLACE duplicate better item old={current.get('title','<no-title>')} new={item.get('title','<no-title>')}"
+            )
+            dedup[key] = item
+        else:
+            logs.append(
+                f"DROP duplicate weaker item title={item.get('title','<no-title>')}"
+            )
 
+    cleaned = list(dedup.values())
     cleaned.sort(key=lambda x: x.get("date", ""), reverse=True)
     return cleaned[:MAX_AUTO_ITEMS], logs
 
@@ -314,7 +397,9 @@ def build_auto_incidents(feeds_cfg: List[Dict[str, Any]]) -> Tuple[List[Dict[str
         if getattr(parsed, "bozo", False):
             logs.append(f"[{feed_id}] WARN: bozo feed parse issue: {getattr(parsed, 'bozo_exception', '')}")
 
-        for entry in parsed.entries:
+        entries = list(parsed.entries)[:MAX_FEED_ENTRIES_PER_SOURCE]
+
+        for entry in entries:
             title = getattr(entry, "title", None) or "Untitled"
             link = getattr(entry, "link", None) or ""
             date = parse_entry_date(entry)
@@ -324,7 +409,7 @@ def build_auto_incidents(feeds_cfg: List[Dict[str, Any]]) -> Tuple[List[Dict[str
                 logs.append(f"[{feed_id}] SKIP entry without valid link: {title}")
                 continue
 
-            _id = stable_id(str(feed_id), link, title, date)
+            _id = stable_id(link, title, date)
 
             obj: Dict[str, Any] = {
                 "id": _id,
@@ -351,7 +436,8 @@ def build_auto_incidents(feeds_cfg: List[Dict[str, Any]]) -> Tuple[List[Dict[str
 
     dedup: Dict[str, Dict[str, Any]] = {}
     for it in items:
-        dedup[it["id"]] = it
+      dedup_key = stable_id(it.get("source_url", ""), it.get("title", ""), it.get("date", ""))
+      dedup[dedup_key] = it
 
     items = list(dedup.values())
     items.sort(key=lambda x: x.get("date", ""), reverse=True)
@@ -387,10 +473,10 @@ def parse_ncsc_type(doc: Dict[str, Any]) -> str:
         return "Phishing"
     if "ddos" in text:
         return "DDoS"
-    if "leak" in text or "breach" in text:
-        return "DataLeak"
     if "supply chain" in text or "supply-chain" in text:
         return "SupplyChain"
+    if "leak" in text or "breach" in text:
+        return "DataLeak"
     if "vulnerab" in text or "cve-" in text:
         return "Vulnerability"
 
@@ -443,7 +529,7 @@ def fetch_ncsc_nl_csaf(max_docs: int = 80) -> Tuple[List[Dict[str, Any]], List[s
             date = str(date)[:10]
 
             item = {
-                "id": stable_id("ncsc-nl-csaf", url, title, date),
+                "id": stable_id(url, title, date),
                 "title": title,
                 "type": parse_ncsc_type(doc),
                 "record_type": "advisory",
@@ -468,7 +554,8 @@ def fetch_ncsc_nl_csaf(max_docs: int = 80) -> Tuple[List[Dict[str, Any]], List[s
 
     dedup: Dict[str, Dict[str, Any]] = {}
     for it in items:
-        dedup[it["id"]] = it
+        dedup_key = stable_id(it.get("source_url", ""), it.get("title", ""), it.get("date", ""))
+        dedup[dedup_key] = it
 
     out = list(dedup.values())
     out.sort(key=lambda x: x.get("date", ""), reverse=True)
@@ -476,28 +563,58 @@ def fetch_ncsc_nl_csaf(max_docs: int = 80) -> Tuple[List[Dict[str, Any]], List[s
     return out[:MAX_AUTO_ITEMS], logs
 
 
-def merge_incidents(existing: List[Dict[str, Any]], auto_items: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    manual = [x for x in existing if not (isinstance(x, dict) and x.get("generated") is True)]
+def final_merge_deduplicate(items: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    dedup: Dict[Tuple[Any, ...], Dict[str, Any]] = {}
 
-    normalized_manual: List[Dict[str, Any]] = []
-    for x in manual:
+    for item in items:
+        key = entry_dedup_key(item)
+        if key not in dedup:
+            dedup[key] = item
+            continue
+
+        current = dedup[key]
+        current_is_manual = current.get("generated") is not True
+        item_is_manual = item.get("generated") is not True
+
+        if item_is_manual and not current_is_manual:
+            dedup[key] = item
+            continue
+        if current_is_manual and not item_is_manual:
+            continue
+
+        if record_completeness_score(item) > record_completeness_score(current):
+            dedup[key] = item
+
+    out = list(dedup.values())
+    out.sort(key=lambda x: x.get("date", ""), reverse=True)
+    return out
+
+
+def merge_incidents(existing: List[Dict[str, Any]], auto_items: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    normalized_existing: List[Dict[str, Any]] = []
+
+    for x in existing:
         if not isinstance(x, dict):
             continue
 
-        if "id" not in x:
-            x["id"] = stable_id("manual", x.get("title", ""), x.get("date", ""), x.get("country", ""))
+        item = dict(x)
 
-        if "record_type" not in x:
-            manual_type = str(x.get("type", "")).lower()
-            if manual_type == "vulnerability":
-                x["record_type"] = "advisory"
-            else:
-                x["record_type"] = "incident"
+        if "id" not in item:
+            item["id"] = stable_id(
+                item.get("source_url", ""),
+                item.get("title", ""),
+                item.get("date", ""),
+                item.get("country", "")
+            )
 
-        normalized_manual.append(x)
+        if "record_type" not in item:
+            manual_type = str(item.get("type", "")).lower()
+            item["record_type"] = "advisory" if manual_type == "vulnerability" else "incident"
 
-    merged = normalized_manual + auto_items
-    merged.sort(key=lambda x: x.get("date", ""), reverse=True)
+        normalized_existing.append(item)
+
+    merged = normalized_existing + auto_items
+    merged = final_merge_deduplicate(merged)
     return merged
 
 
@@ -556,7 +673,7 @@ def main():
         "auto_clean_count": len(cleaned_auto_items),
         "total_count": len(merged),
         "record_type_counts": summarize_counts(merged),
-        "logs_tail": logs[-80:]
+        "logs_tail": logs[-120:]
     })
 
     try:

@@ -337,7 +337,7 @@
       flex-wrap:wrap;
       gap:8px;
       justify-content:flex-end;
-      max-width:440px;
+      max-width:520px;
       pointer-events:none;
     }
 
@@ -486,6 +486,12 @@
     .badge-supply{
       border-color:rgba(94,224,169,.34);
       background:rgba(94,224,169,.14);
+      color:#fff;
+    }
+
+    .badge-dup{
+      border-color:rgba(182,147,255,.34);
+      background:rgba(182,147,255,.14);
       color:#fff;
     }
 
@@ -887,6 +893,11 @@
       background:rgba(94,224,169,.14);
     }
 
+    .src-badge.duplicate{
+      border-color:rgba(182,147,255,.34);
+      background:rgba(182,147,255,.14);
+    }
+
     a.pop-link{
       color:var(--cyan);
       text-decoration:none;
@@ -1020,6 +1031,7 @@
         <div class="pill" id="topDateRange">Idősáv: —</div>
         <div class="pill" id="topRiskPill">Régiós kockázat: —</div>
         <div class="pill" id="topConfidencePill">Confidence: —</div>
+        <div class="pill" id="topDupPill">Duplikáció: —</div>
       </div>
     </div>
 
@@ -1142,6 +1154,7 @@
             <div class="map-chip" id="mapChipMode">OSINT: OFF</div>
             <div class="map-chip" id="mapChipRecordType">Rekord: Összes</div>
             <div class="map-chip" id="mapChipCount">0 esemény</div>
+            <div class="map-chip" id="mapChipDedup">Dedup: ON</div>
           </div>
         </div>
       </div>
@@ -1271,6 +1284,7 @@
                 <div class="checks">
                   <label><input type="checkbox" id="onlyWithSources"> csak forrással</label>
                   <label><input type="checkbox" id="onlySupplyChain"> csak supply chain</label>
+                  <label><input type="checkbox" id="hideDuplicates" checked> duplikációk rejtése</label>
                 </div>
               </div>
 
@@ -1293,7 +1307,7 @@
             </div>
 
             <div class="mini-note">
-              A nézet külön szűrhető rekordtípus, operátor, státusz, impact, severity és forrástípus szerint. A supply chain fókusz külön kapcsolható.
+              A nézet külön szűrhető rekordtípus, operátor, státusz, impact, severity és forrástípus szerint. A rendszer igény szerint elrejti a duplikált rekordokat.
             </div>
           </div>
         </div>
@@ -1331,6 +1345,7 @@
               <div class="legend-item"><span class="legend-swatch" style="background:rgba(246,201,111,.18)"></span> Severity: High</div>
               <div class="legend-item"><span class="legend-swatch" style="background:rgba(102,230,255,.12)"></span> Severity: Med</div>
               <div class="legend-item"><span class="legend-swatch" style="background:rgba(94,224,169,.12)"></span> Severity: Low</div>
+              <div class="legend-item"><span class="legend-swatch" style="background:rgba(182,147,255,.14)"></span> Deduplicált rekord</div>
               <div class="legend-item"><span class="legend-swatch" style="background:rgba(102,230,255,.92)"></span> Hyperscale DC</div>
               <div class="legend-item"><span class="legend-swatch" style="background:rgba(182,147,255,.92)"></span> Colocation DC</div>
               <div class="legend-item"><span class="legend-swatch" style="background:rgba(255,146,146,.92)"></span> Government DC</div>
@@ -1364,6 +1379,13 @@
     let CURRENT_FILTERED_COUNTRY_EVENTS = [];
     let CURRENT_FILTERED_DC_EVENTS = [];
     let CURRENT_FILTERED_DCS = [];
+    let CURRENT_DUP_INFO = {
+      countryRaw: 0,
+      countryVisible: 0,
+      dcRaw: 0,
+      dcVisible: 0,
+      hidden: 0
+    };
 
     const rawMarkersLayer = L.layerGroup();
     const dcIncidentsLayer = L.layerGroup();
@@ -1801,6 +1823,10 @@
       return `<div class="pop-meta" style="margin-top:8px;">Forrás: <strong>nincs adat</strong></div>`;
     }
 
+    function getDuplicateCount(item){
+      return Number(item._duplicate_count || 1);
+    }
+
     function buildIncidentPopupHtml(item, targetType){
       const confCls = confidenceClass(item.confidence);
       const confLbl = confNorm(item.confidence);
@@ -1817,6 +1843,7 @@
       const summary = getSummaryHu(item);
       const analyst = getAnalystNoteHu(item);
       const effects = getOperationalEffects(item);
+      const dupCount = getDuplicateCount(item);
 
       const operatorLine = item.operator
         ? `<div class="pop-meta">Operátor: <strong>${escapeHtml(item.operator)}</strong></div>`
@@ -1829,6 +1856,7 @@
       const scoreBadge = Number.isFinite(Number(item.severity_score)) ? `<span class="src-badge">score: ${Number(item.severity_score)}</span>` : "";
       const vectorBadge = attackVector !== "NA" ? `<span class="src-badge">vector: ${escapeHtml(attackVector)}</span>` : "";
       const targetClassBadge = targetClass !== "NA" ? `<span class="src-badge">target class: ${escapeHtml(targetClass)}</span>` : "";
+      const dupBadge = dupCount > 1 ? `<span class="src-badge duplicate">duplicates: ${dupCount}</span>` : "";
       const effectsLine = effects.length
         ? `<div class="pop-meta" style="margin-top:8px;">Hatások: <strong>${escapeHtml(effects.join(", "))}</strong></div>`
         : "";
@@ -1851,6 +1879,7 @@
           ${supplyBadge}
           ${vectorBadge}
           ${targetClassBadge}
+          ${dupBadge}
         </div>
         <div class="pop-block pop-summary">${escapeHtml(summary)}</div>
         <div class="pop-block pop-analyst">${escapeHtml(analyst)}</div>
@@ -2124,11 +2153,87 @@
       downloadText("events_missing.csv", csv, "text/csv;charset=utf-8");
     }
 
+    function getDedupKey(item, targetType){
+      const sourceUrl = norm(item.source_url);
+      if (sourceUrl) {
+        return `${targetType}|src|${sourceUrl}`;
+      }
+
+      const title = norm(item.title || item.target_name);
+      const date = toDateKey(item.date);
+      const country = norm(item.country || item.scope);
+      const type = norm(getEventType(item));
+      const operator = norm(item.operator);
+      const targetId = norm(item.target_id);
+
+      return `${targetType}|fallback|${title}|${date}|${country}|${type}|${operator}|${targetId}`;
+    }
+
+    function cloneItem(item){
+      return JSON.parse(JSON.stringify(item));
+    }
+
+    function deduplicateItems(items, targetType){
+      const map = new Map();
+
+      for (const item of items){
+        const key = getDedupKey(item, targetType);
+
+        if (!map.has(key)) {
+          const copy = cloneItem(item);
+          copy._duplicate_count = 1;
+          copy._duplicate_ids = [item.id ?? ""];
+          map.set(key, copy);
+          continue;
+        }
+
+        const current = map.get(key);
+        current._duplicate_count = Number(current._duplicate_count || 1) + 1;
+        current._duplicate_ids = [...new Set([...(current._duplicate_ids || []), item.id ?? ""])];
+
+        const currentScore =
+          (isOsintReady(current) ? 1000 : 0) +
+          (Number(current.severity_score) || 0) +
+          (confNorm(current.confidence) === "High" ? 30 : confNorm(current.confidence) === "Med" ? 20 : 10) +
+          (impactNorm(current.impact) === "High" ? 15 : impactNorm(current.impact) === "Med" ? 8 : 3) +
+          (current.source_url ? 4 : 0);
+
+        const newScore =
+          (isOsintReady(item) ? 1000 : 0) +
+          (Number(item.severity_score) || 0) +
+          (confNorm(item.confidence) === "High" ? 30 : confNorm(item.confidence) === "Med" ? 20 : 10) +
+          (impactNorm(item.impact) === "High" ? 15 : impactNorm(item.impact) === "Med" ? 8 : 3) +
+          (item.source_url ? 4 : 0);
+
+        if (newScore > currentScore) {
+          const copy = cloneItem(item);
+          copy._duplicate_count = current._duplicate_count;
+          copy._duplicate_ids = current._duplicate_ids;
+          map.set(key, copy);
+        }
+      }
+
+      return Array.from(map.values());
+    }
+
+    function maybeDeduplicate(items, targetType){
+      if (!document.getElementById("hideDuplicates").checked) {
+        return items.map(item => {
+          const copy = cloneItem(item);
+          copy._duplicate_count = 1;
+          copy._duplicate_ids = [item.id ?? ""];
+          return copy;
+        });
+      }
+      return deduplicateItems(items, targetType);
+    }
+
     function renderTopBarStats(){
       const lastEl = document.getElementById("topLastUpdate");
       const dateEl = document.getElementById("topDateRange");
       const riskEl = document.getElementById("topRiskPill");
       const confEl = document.getElementById("topConfidencePill");
+      const dupEl = document.getElementById("topDupPill");
 
       if (LAST_UPDATE && LAST_UPDATE.updated_at) {
         const d = new Date(LAST_UPDATE.updated_at);
@@ -2180,6 +2285,10 @@
             : "pill";
 
       confEl.textContent = `Confidence: ${confLabel}`;
+
+      const hidden = CURRENT_DUP_INFO.hidden || 0;
+      dupEl.className = hidden > 0 ? "pill warn" : "pill good";
+      dupEl.textContent = `Duplikáció rejtve: ${hidden}`;
     }
 
     function renderMapChips(){
@@ -2190,6 +2299,7 @@
       document.getElementById("mapChipMode").textContent = "OSINT: " + (isOsintModeOn() ? "ON" : "OFF");
       document.getElementById("mapChipRecordType").textContent = "Rekord: " + (recordTypeValue === "ALL" ? "Összes" : recordTypeValue);
       document.getElementById("mapChipCount").textContent = `${total} esemény`;
+      document.getElementById("mapChipDedup").textContent = "Dedup: " + (document.getElementById("hideDuplicates").checked ? "ON" : "OFF");
     }
 
     function renderExecutiveSummary(){
@@ -2202,7 +2312,9 @@
       const readyPct = total ? Math.round((ready / total) * 100) : 0;
 
       document.getElementById("metricTotalEvents").textContent = String(total);
-      document.getElementById("metricTotalSub").textContent = "aktuális szűrt nézet";
+      document.getElementById("metricTotalSub").textContent = CURRENT_DUP_INFO.hidden > 0
+        ? `${CURRENT_DUP_INFO.hidden} duplikáció elrejtve`
+        : "aktuális szűrt nézet";
       document.getElementById("metricDCEvents").textContent = String(dcEvents);
       document.getElementById("metricDCCount").textContent = String(dcCount);
       document.getElementById("metricOsintReady").textContent = `${readyPct}%`;
@@ -2249,8 +2361,14 @@
         {
           title: "Nézet összegzése",
           sub: total
-            ? `A jelenlegi szűrők ${total} eseményt mutatnak, ebből ${CURRENT_FILTERED_DC_EVENTS.length} adatközpont-érintett.`
+            ? `A jelenlegi szűrők ${total} látható eseményt mutatnak, ebből ${CURRENT_FILTERED_DC_EVENTS.length} adatközpont-érintett.`
             : "Nincs megjeleníthető esemény a mostani szűrőkkel."
+        },
+        {
+          title: "Dedup állapot",
+          sub: document.getElementById("hideDuplicates").checked
+            ? `${CURRENT_DUP_INFO.hidden} rekord lett elrejtve duplikáció miatt.`
+            : "A duplikációszűrés jelenleg ki van kapcsolva."
         },
         {
           title: "Domináns rekordtípus",
@@ -2330,16 +2448,17 @@
       const sev = getSeverity(item);
       const sevTxt = sev !== "NA" ? ` Severity: ${sev}.` : "";
       const scTxt = isSupplyChainEvent(item) ? " Supply chain relevancia jelölt." : "";
+      const dupTxt = getDuplicateCount(item) > 1 ? ` ${getDuplicateCount(item)} rekord összevonva.` : "";
 
       if (rt === "advisory") {
-        return `${type} jellegű figyelmeztetés${country ? ` ${country}` : ""}${scope}.${sevTxt}${scTxt} ${src}`;
+        return `${type} jellegű figyelmeztetés${country ? ` ${country}` : ""}${scope}.${sevTxt}${scTxt}${dupTxt} ${src}`;
       }
 
       if (rt === "kev") {
-        return `${type} jellegű, aktívan kihasznált sérülékenységi rekord${country ? ` ${country}` : ""}.${sevTxt}${scTxt} ${src}`;
+        return `${type} jellegű, aktívan kihasznált sérülékenységi rekord${country ? ` ${country}` : ""}.${sevTxt}${scTxt}${dupTxt} ${src}`;
       }
 
-      return `${type} jellegű esemény${country ? ` ${country}` : ""}${scope}.${sevTxt}${scTxt} ${src}`;
+      return `${type} jellegű esemény${country ? ` ${country}` : ""}${scope}.${sevTxt}${scTxt}${dupTxt} ${src}`;
     }
 
     function renderLatestEvents(){
@@ -2362,6 +2481,7 @@
         const severityValue = getSeverity(item);
         const summary = getSummaryHu(item);
         const analyst = getAnalystNoteHu(item);
+        const dupCount = getDuplicateCount(item);
         const link = item.source_url
           ? `<a class="event-link" href="${escapeAttr(item.source_url)}" target="_blank" rel="noopener noreferrer">Forrás megnyitása</a>`
           : "";
@@ -2377,6 +2497,7 @@
               <span class="event-badge">${escapeHtml(where)}</span>
               ${severityValue !== "NA" ? `<span class="event-badge ${severityBadgeClass(severityValue)}">${escapeHtml(severityValue)}</span>` : ""}
               ${isSupplyChainEvent(item) ? `<span class="event-badge badge-supply">Supply chain</span>` : ""}
+              ${dupCount > 1 ? `<span class="event-badge badge-dup">x${dupCount}</span>` : ""}
             </div>
             <div class="event-item-summary">${escapeHtml(summary)}</div>
             <div class="event-item-analyst">${escapeHtml(analyst)}</div>
@@ -2403,7 +2524,7 @@
           });
         }
         const obj = byDC.get(key);
-        obj.count += 1;
+        obj.count += getDuplicateCount(ev);
         if ((ev.date || "") > (obj.lastDate || "")) obj.lastDate = ev.date || "";
       }
 
@@ -2433,7 +2554,7 @@
 
       for (const ev of CURRENT_FILTERED_DC_EVENTS){
         const op = ev.operator || "n/a";
-        byOp.set(op, (byOp.get(op) || 0) + 1);
+        byOp.set(op, (byOp.get(op) || 0) + getDuplicateCount(ev));
       }
 
       const rows = Array.from(byOp.entries())
@@ -2539,10 +2660,11 @@
         const rt = recordTypeNorm(item.record_type);
         const t = getEventType(item);
         const s = sourceTypeNorm(item.source_type);
+        const count = getDuplicateCount(item);
 
-        byRecordType[rt] = (byRecordType[rt] || 0) + 1;
-        byType[t] = (byType[t] || 0) + 1;
-        bySource[s] = (bySource[s] || 0) + 1;
+        byRecordType[rt] = (byRecordType[rt] || 0) + count;
+        byType[t] = (byType[t] || 0) + count;
+        bySource[s] = (bySource[s] || 0) + count;
       }
 
       const recordRows = Object.entries(byRecordType)
@@ -2587,7 +2709,7 @@
       const onlySupplyChain = document.getElementById("onlySupplyChain").checked;
       const { from, to } = getSelectedDateRange();
 
-      CURRENT_FILTERED_COUNTRY_EVENTS = INCIDENTS.filter(item => {
+      const countryRawFiltered = INCIDENTS.filter(item => {
         const d = toDateKey(item.date);
         if (!inDateRangeKey(d, from, to)) return false;
         if (targetValue !== "ALL" && targetValue !== "Country") return false;
@@ -2627,7 +2749,7 @@
         return true;
       });
 
-      CURRENT_FILTERED_DC_EVENTS = DC_INCIDENTS.filter(item => {
+      const dcRawFiltered = DC_INCIDENTS.filter(item => {
         const d = toDateKey(item.date);
         if (!inDateRangeKey(d, from, to)) return false;
         if (targetValue !== "ALL" && targetValue !== "DataCenter") return false;
@@ -2667,6 +2789,19 @@
 
         return true;
       });
+
+      CURRENT_FILTERED_COUNTRY_EVENTS = maybeDeduplicate(countryRawFiltered, "Country");
+      CURRENT_FILTERED_DC_EVENTS = maybeDeduplicate(dcRawFiltered, "DataCenter");
+
+      CURRENT_DUP_INFO = {
+        countryRaw: countryRawFiltered.length,
+        countryVisible: CURRENT_FILTERED_COUNTRY_EVENTS.length,
+        dcRaw: dcRawFiltered.length,
+        dcVisible: CURRENT_FILTERED_DC_EVENTS.length,
+        hidden:
+          (countryRawFiltered.length - CURRENT_FILTERED_COUNTRY_EVENTS.length) +
+          (dcRawFiltered.length - CURRENT_FILTERED_DC_EVENTS.length)
+      };
 
       CURRENT_FILTERED_DCS = DATACENTERS.filter(dc => {
         if (targetValue !== "ALL" && targetValue !== "DataCenter") return false;
@@ -2725,7 +2860,6 @@
 
       setLayersVisibility();
 
-      document.getElementById("metricTotalSub").textContent = "aktuális szűrt nézet";
       renderExecutiveSummary();
       renderLatestEvents();
       renderSummaryList();
@@ -2777,6 +2911,10 @@
         await renderMapData();
       });
 
+      document.getElementById("hideDuplicates").addEventListener("change", async () => {
+        await renderMapData();
+      });
+
       for (const id of [
         "toggleIncidents",
         "toggleDCIncidents",
@@ -2811,6 +2949,7 @@
         document.getElementById("operatorFilter").value = "ALL";
         document.getElementById("onlyWithSources").checked = false;
         document.getElementById("onlySupplyChain").checked = false;
+        document.getElementById("hideDuplicates").checked = true;
         setOsintMode(false);
 
         document.getElementById("toggleIncidents").checked = true;

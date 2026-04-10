@@ -337,7 +337,7 @@
       flex-wrap:wrap;
       gap:8px;
       justify-content:flex-end;
-      max-width:420px;
+      max-width:440px;
       pointer-events:none;
     }
 
@@ -415,7 +415,29 @@
       margin-top:4px;
       font-size:12px;
       color:var(--muted);
-      line-height:1.4;
+      line-height:1.45;
+    }
+
+    .event-item-summary{
+      margin-top:8px;
+      padding:9px 10px;
+      border-radius:12px;
+      background:rgba(102,230,255,.06);
+      border:1px solid rgba(102,230,255,.14);
+      font-size:12px;
+      line-height:1.45;
+      color:#dcecff;
+    }
+
+    .event-item-analyst{
+      margin-top:8px;
+      padding:9px 10px;
+      border-radius:12px;
+      background:rgba(182,147,255,.08);
+      border:1px solid rgba(182,147,255,.14);
+      font-size:12px;
+      line-height:1.45;
+      color:#ece3ff;
     }
 
     .event-meta{
@@ -435,6 +457,36 @@
       color:#fff;
       border:1px solid rgba(255,255,255,.12);
       background:rgba(255,255,255,.06);
+    }
+
+    .badge-sev-critical{
+      border-color:rgba(255,146,146,.36);
+      background:rgba(255,146,146,.16);
+      color:#fff;
+    }
+
+    .badge-sev-high{
+      border-color:rgba(246,201,111,.36);
+      background:rgba(246,201,111,.16);
+      color:#fff;
+    }
+
+    .badge-sev-med{
+      border-color:rgba(102,230,255,.32);
+      background:rgba(102,230,255,.12);
+      color:#fff;
+    }
+
+    .badge-sev-low{
+      border-color:rgba(94,224,169,.32);
+      background:rgba(94,224,169,.12);
+      color:#fff;
+    }
+
+    .badge-supply{
+      border-color:rgba(94,224,169,.34);
+      background:rgba(94,224,169,.14);
+      color:#fff;
     }
 
     .event-link{
@@ -751,7 +803,27 @@
     .pop-meta{
       color:var(--muted);
       font-size:12px;
-      line-height:1.4;
+      line-height:1.45;
+    }
+
+    .pop-block{
+      margin-top:8px;
+      padding:8px 10px;
+      border-radius:12px;
+      font-size:12px;
+      line-height:1.45;
+    }
+
+    .pop-summary{
+      background:rgba(102,230,255,.06);
+      border:1px solid rgba(102,230,255,.14);
+      color:#dcecff;
+    }
+
+    .pop-analyst{
+      background:rgba(182,147,255,.08);
+      border:1px solid rgba(182,147,255,.14);
+      color:#ece3ff;
     }
 
     .pop-tag{
@@ -788,6 +860,31 @@
       font-size:12px;
       border:1px solid rgba(102,230,255,.22);
       background:rgba(102,230,255,.08);
+    }
+
+    .src-badge.sev-critical{
+      border-color:rgba(255,146,146,.34);
+      background:rgba(255,146,146,.14);
+    }
+
+    .src-badge.sev-high{
+      border-color:rgba(246,201,111,.34);
+      background:rgba(246,201,111,.14);
+    }
+
+    .src-badge.sev-med{
+      border-color:rgba(102,230,255,.28);
+      background:rgba(102,230,255,.10);
+    }
+
+    .src-badge.sev-low{
+      border-color:rgba(94,224,169,.28);
+      background:rgba(94,224,169,.10);
+    }
+
+    .src-badge.supply{
+      border-color:rgba(94,224,169,.34);
+      background:rgba(94,224,169,.14);
     }
 
     a.pop-link{
@@ -1099,6 +1196,7 @@
                   <option value="DataLeak">Adatszivárgás</option>
                   <option value="SupplyChain">Ellátási lánc</option>
                   <option value="Vulnerability">Vulnerability</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
 
@@ -1106,6 +1204,18 @@
                 <label for="confFilter">Bizalom</label>
                 <select id="confFilter">
                   <option value="ALL">Összes</option>
+                  <option value="High">High</option>
+                  <option value="Med">Med</option>
+                  <option value="Low">Low</option>
+                  <option value="NA">n/a</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="severityFilter">Severity</label>
+                <select id="severityFilter">
+                  <option value="ALL">Összes</option>
+                  <option value="Critical">Critical</option>
                   <option value="High">High</option>
                   <option value="Med">Med</option>
                   <option value="Low">Low</option>
@@ -1160,6 +1270,7 @@
                 <label>OSINT</label>
                 <div class="checks">
                   <label><input type="checkbox" id="onlyWithSources"> csak forrással</label>
+                  <label><input type="checkbox" id="onlySupplyChain"> csak supply chain</label>
                 </div>
               </div>
 
@@ -1182,7 +1293,7 @@
             </div>
 
             <div class="mini-note">
-              A nézet külön szűrhető rekordtípus, operátor, státusz, impact és forrástípus szerint. Az OSINT mód automatikusan szigorúbb rekordszűrést használ.
+              A nézet külön szűrhető rekordtípus, operátor, státusz, impact, severity és forrástípus szerint. A supply chain fókusz külön kapcsolható.
             </div>
           </div>
         </div>
@@ -1216,6 +1327,10 @@
               <div class="legend-item"><span class="legend-swatch" style="background:rgba(182,147,255,.95)"></span> Phishing</div>
               <div class="legend-item"><span class="legend-swatch" style="background:rgba(120,167,255,.95)"></span> DataLeak</div>
               <div class="legend-item"><span class="legend-swatch" style="background:rgba(94,224,169,.95)"></span> SupplyChain</div>
+              <div class="legend-item"><span class="legend-swatch" style="background:rgba(255,146,146,.18)"></span> Severity: Critical</div>
+              <div class="legend-item"><span class="legend-swatch" style="background:rgba(246,201,111,.18)"></span> Severity: High</div>
+              <div class="legend-item"><span class="legend-swatch" style="background:rgba(102,230,255,.12)"></span> Severity: Med</div>
+              <div class="legend-item"><span class="legend-swatch" style="background:rgba(94,224,169,.12)"></span> Severity: Low</div>
               <div class="legend-item"><span class="legend-swatch" style="background:rgba(102,230,255,.92)"></span> Hyperscale DC</div>
               <div class="legend-item"><span class="legend-swatch" style="background:rgba(182,147,255,.92)"></span> Colocation DC</div>
               <div class="legend-item"><span class="legend-swatch" style="background:rgba(255,146,146,.92)"></span> Government DC</div>
@@ -1225,7 +1340,8 @@
         </div>
       </div>
     </div>
-      <script>
+
+  <script>
     const COUNTRIES_GEOJSON_URL = "https://raw.githubusercontent.com/Leaflet/Leaflet.VectorGrid/master/docs/eu-countries.geo.json";
 
     const map = L.map("map", { zoomControl: true }).setView([54.5, 15.0], 4);
@@ -1321,6 +1437,15 @@
       return "NA";
     }
 
+    function severityNorm(value){
+      const s = String(value || "").toLowerCase();
+      if (s === "critical") return "Critical";
+      if (s === "high") return "High";
+      if (s === "med" || s === "medium") return "Med";
+      if (s === "low") return "Low";
+      return "NA";
+    }
+
     function recordTypeNorm(value){
       const s = String(value || "").toLowerCase();
       if (s === "incident") return "incident";
@@ -1335,6 +1460,24 @@
       if (c === "Med") return "conf conf-med";
       if (c === "Low") return "conf conf-low";
       return "conf";
+    }
+
+    function severityBadgeClass(sev){
+      const s = severityNorm(sev);
+      if (s === "Critical") return "badge-sev-critical";
+      if (s === "High") return "badge-sev-high";
+      if (s === "Med") return "badge-sev-med";
+      if (s === "Low") return "badge-sev-low";
+      return "";
+    }
+
+    function severityChipClass(sev){
+      const s = severityNorm(sev);
+      if (s === "Critical") return "sev-critical";
+      if (s === "High") return "sev-high";
+      if (s === "Med") return "sev-med";
+      if (s === "Low") return "sev-low";
+      return "";
     }
 
     function hasAnySource(item){
@@ -1352,6 +1495,57 @@
       const srcType = sourceTypeNorm(item.source_type);
       const hasLinkAndName = !!item.source_url && !!item.source_name;
       return hasLinkAndName && srcType !== "NA" && (conf === "Med" || conf === "High") && !isPlaceholderSource(item);
+    }
+
+    function isSupplyChainEvent(item){
+      if (item?.supply_chain?.is_supply_chain === true) return true;
+      const t = String(item.type || item.event_type || "").toLowerCase();
+      return t === "supplychain";
+    }
+
+    function getEventType(item){
+      return item.type || item.event_type || "Other";
+    }
+
+    function getSeverity(item){
+      return severityNorm(item.severity);
+    }
+
+    function getAttackVector(item){
+      return String(item.attack_vector || "NA");
+    }
+
+    function getTargetClass(item){
+      return String(item.target_class || "NA");
+    }
+
+    function getSummaryHu(item){
+      if (item.summary_hu) return String(item.summary_hu);
+      const rt = recordTypeNorm(item.record_type);
+      const type = getEventType(item);
+      const country = item.country ? ` ${item.country}` : "";
+      const src = item.source_name ? ` A forrás: ${item.source_name}.` : "";
+      if (rt === "advisory") {
+        return `${type} jellegű figyelmeztetés${country}.${src}`;
+      }
+      return `${type} jellegű esemény${country}.${src}`;
+    }
+
+    function getAnalystNoteHu(item){
+      if (item.analyst_note_hu) return String(item.analyst_note_hu);
+      const sev = getSeverity(item);
+      const sc = isSupplyChainEvent(item);
+      if (sc) {
+        return "Supply chain szempontból figyelendő rekord: a közvetlen célponton túl másodlagos kitettség is lehetséges.";
+      }
+      if (sev === "Critical" || sev === "High") {
+        return "Magas prioritású tétel, amely gyors elemzést és üzemeltetői ellenőrzést indokolhat.";
+      }
+      return "Elemzői megjegyzés még nincs kitöltve ennél a rekordnál.";
+    }
+
+    function getOperationalEffects(item){
+      return Array.isArray(item.operational_effects) ? item.operational_effects : [];
     }
 
     function typeToDotClass(type){
@@ -1559,7 +1753,7 @@
       else if (conf === "Low") w += 0.12;
       else w += 0.10;
 
-      switch (item.type || item.event_type){
+      switch (getEventType(item)){
         case "Ransomware": w += 0.20; break;
         case "SupplyChain": w += 0.18; break;
         case "DataLeak": w += 0.16; break;
@@ -1570,6 +1764,14 @@
       if (impact === "High") w += 0.20;
       else if (impact === "Med") w += 0.12;
       else if (impact === "Low") w += 0.05;
+
+      const sev = severityNorm(item.severity);
+      if (sev === "Critical") w += 0.22;
+      else if (sev === "High") w += 0.14;
+      else if (sev === "Med") w += 0.08;
+      else if (sev === "Low") w += 0.03;
+
+      if (isSupplyChainEvent(item)) w += 0.10;
 
       return Math.max(0.25, Math.min(1.0, w));
     }
@@ -1604,10 +1806,17 @@
       const confLbl = confNorm(item.confidence);
       const srcType = sourceTypeNorm(item.source_type);
       const origin = item.generated ? "AUTO" : "MANUAL";
-      const typeValue = item.type || item.event_type || "n/a";
+      const typeValue = getEventType(item);
       const statusValue = statusNorm(item.status);
       const impactValue = impactNorm(item.impact);
+      const severityValue = getSeverity(item);
       const recordTypeValue = recordTypeNorm(item.record_type);
+      const severityCls = severityChipClass(severityValue);
+      const attackVector = getAttackVector(item);
+      const targetClass = getTargetClass(item);
+      const summary = getSummaryHu(item);
+      const analyst = getAnalystNoteHu(item);
+      const effects = getOperationalEffects(item);
 
       const operatorLine = item.operator
         ? `<div class="pop-meta">Operátor: <strong>${escapeHtml(item.operator)}</strong></div>`
@@ -1615,6 +1824,14 @@
 
       const statusBadge = statusValue !== "NA" ? `<span class="src-badge">status: ${statusValue}</span>` : "";
       const impactBadge = impactValue !== "NA" ? `<span class="src-badge">impact: ${impactValue}</span>` : "";
+      const severityBadge = severityValue !== "NA" ? `<span class="src-badge ${severityCls}">severity: ${severityValue}</span>` : "";
+      const supplyBadge = isSupplyChainEvent(item) ? `<span class="src-badge supply">supply chain</span>` : "";
+      const scoreBadge = Number.isFinite(Number(item.severity_score)) ? `<span class="src-badge">score: ${Number(item.severity_score)}</span>` : "";
+      const vectorBadge = attackVector !== "NA" ? `<span class="src-badge">vector: ${escapeHtml(attackVector)}</span>` : "";
+      const targetClassBadge = targetClass !== "NA" ? `<span class="src-badge">target class: ${escapeHtml(targetClass)}</span>` : "";
+      const effectsLine = effects.length
+        ? `<div class="pop-meta" style="margin-top:8px;">Hatások: <strong>${escapeHtml(effects.join(", "))}</strong></div>`
+        : "";
 
       return `
         <div class="pop-title">${escapeHtml(item.title || item.target_name || "Incidens")}</div>
@@ -1629,7 +1846,15 @@
           <span class="src-badge">record: ${recordTypeValue}</span>
           ${statusBadge}
           ${impactBadge}
+          ${severityBadge}
+          ${scoreBadge}
+          ${supplyBadge}
+          ${vectorBadge}
+          ${targetClassBadge}
         </div>
+        <div class="pop-block pop-summary">${escapeHtml(summary)}</div>
+        <div class="pop-block pop-analyst">${escapeHtml(analyst)}</div>
+        ${effectsLine}
         ${buildSourceLine(item)}
       `;
     }
@@ -1748,6 +1973,7 @@
       let osintReady = 0;
       let missingStatus = 0;
       let missingImpact = 0;
+      let missingSeverity = 0;
       let missingOperator = 0;
 
       const missingRows = [];
@@ -1801,6 +2027,11 @@
           issues.push("missing_impact");
         }
 
+        if ("severity" in item && severityNorm(item.severity) === "NA") {
+          missingSeverity++;
+          issues.push("missing_severity");
+        }
+
         if (item.target_type === "DataCenter" && !item.operator) {
           missingOperator++;
           issues.push("missing_operator");
@@ -1831,6 +2062,7 @@
         osintReady,
         missingStatus,
         missingImpact,
+        missingSeverity,
         missingOperator,
         missingRows
       };
@@ -1856,6 +2088,7 @@
         <div class="k">Hiányzik source_type</div><div class="${validatorPillClass(v.missingSourceType, v.total)}">${v.missingSourceType}</div>
         <div class="k">Hiányzik status</div><div class="${validatorPillClass(v.missingStatus, v.total)}">${v.missingStatus}</div>
         <div class="k">Hiányzik impact</div><div class="${validatorPillClass(v.missingImpact, v.total)}">${v.missingImpact}</div>
+        <div class="k">Hiányzik severity</div><div class="${validatorPillClass(v.missingSeverity, v.total)}">${v.missingSeverity}</div>
         <div class="k">Hiányzik operator (DC)</div><div class="${validatorPillClass(v.missingOperator, v.total)}">${v.missingOperator}</div>
         <div class="k">Hiányzik lat/lon</div><div class="${validatorPillClass(v.missingLatLon, v.total)}">${v.missingLatLon}</div>
         <div class="k">Hibás/hiányzó országkód</div><div class="${validatorPillClass(v.badCountry, v.total)}">${v.badCountry}</div>
@@ -1908,15 +2141,21 @@
       dateEl.textContent = `Idősáv: ${from} → ${to}`;
 
       const total = CURRENT_FILTERED_COUNTRY_EVENTS.length + CURRENT_FILTERED_DC_EVENTS.length;
-      const highImpact = CURRENT_FILTERED_DC_EVENTS.filter(x => impactNorm(x.impact) === "High").length;
+      const all = [...CURRENT_FILTERED_COUNTRY_EVENTS, ...CURRENT_FILTERED_DC_EVENTS];
+      const highImpact = all.filter(x => impactNorm(x.impact) === "High").length;
+      const criticalOrHigh = all.filter(x => {
+        const s = getSeverity(x);
+        return s === "Critical" || s === "High";
+      }).length;
+      const supplyCount = all.filter(isSupplyChainEvent).length;
 
       let riskClass = "pill";
       let riskText = "Normál";
 
-      if (highImpact >= 3 || total >= 20) {
+      if (criticalOrHigh >= 5 || highImpact >= 4 || supplyCount >= 3 || total >= 20) {
         riskClass = "pill bad";
         riskText = "Magas";
-      } else if (highImpact >= 1 || total >= 10) {
+      } else if (criticalOrHigh >= 2 || highImpact >= 1 || supplyCount >= 1 || total >= 10) {
         riskClass = "pill warn";
         riskText = "Emelkedett";
       }
@@ -1924,7 +2163,6 @@
       riskEl.className = riskClass;
       riskEl.textContent = `Régiós kockázat: ${riskText}`;
 
-      const all = [...CURRENT_FILTERED_COUNTRY_EVENTS, ...CURRENT_FILTERED_DC_EVENTS];
       const confs = all.map(x => confNorm(x.confidence)).filter(x => x !== "NA");
 
       let confLabel = "n/a";
@@ -1977,7 +2215,7 @@
 
       const byType = {};
       for (const item of all){
-        const t = item.type || item.event_type || "Other";
+        const t = getEventType(item);
         byType[t] = (byType[t] || 0) + 1;
       }
       const topType = Object.entries(byType).sort((a,b) => b[1] - a[1])[0];
@@ -2003,7 +2241,9 @@
       }
       const topRecordType = Object.entries(byRecordType).sort((a,b) => b[1] - a[1])[0];
 
-      const highImpactCount = CURRENT_FILTERED_DC_EVENTS.filter(x => impactNorm(x.impact) === "High").length;
+      const criticalCount = all.filter(x => getSeverity(x) === "Critical").length;
+      const supplyCount = all.filter(isSupplyChainEvent).length;
+      const highImpactCount = all.filter(x => impactNorm(x.impact) === "High").length;
 
       const rows = [
         {
@@ -2025,8 +2265,16 @@
           sub: topCountry ? `${topCountry[0]} (${topCountry[1]} esemény)` : "n/a"
         },
         {
-          title: "Kiemelt DC nyomás",
-          sub: highImpactCount ? `${highImpactCount} high impact DC-esemény látható.` : "Nincs high impact DC esemény a szűrt nézetben."
+          title: "Kritikus / magas súlyú tételek",
+          sub: criticalCount ? `${criticalCount} critical severity rekord látható.` : "Nincs critical severity rekord a szűrt nézetben."
+        },
+        {
+          title: "Supply chain kitettség",
+          sub: supplyCount ? `${supplyCount} supply chain jellegű rekord van a nézetben.` : "Nincs külön jelölt supply chain rekord a nézetben."
+        },
+        {
+          title: "Magas hatású események",
+          sub: highImpactCount ? `${highImpactCount} high impact esemény látható.` : "Nincs high impact esemény a szűrt nézetben."
         },
         {
           title: "DC státusz-kép",
@@ -2075,20 +2323,23 @@
 
     function buildEventShortText(item){
       const rt = recordTypeNorm(item.record_type);
-      const type = item.type || item.event_type || "ismeretlen típus";
+      const type = getEventType(item);
       const scope = item.scope ? `, ${item.scope}` : "";
       const country = item.country ? item.country : "";
       const src = item.source_name ? `Forrás: ${item.source_name}.` : "Forrás: nincs adat.";
+      const sev = getSeverity(item);
+      const sevTxt = sev !== "NA" ? ` Severity: ${sev}.` : "";
+      const scTxt = isSupplyChainEvent(item) ? " Supply chain relevancia jelölt." : "";
 
       if (rt === "advisory") {
-        return `${type} jellegű figyelmeztetés${country ? ` ${country}` : ""}${scope} fókuszban. ${src}`;
+        return `${type} jellegű figyelmeztetés${country ? ` ${country}` : ""}${scope}.${sevTxt}${scTxt} ${src}`;
       }
 
       if (rt === "kev") {
-        return `${type} jellegű, aktívan kihasznált sérülékenységi rekord${country ? ` ${country}` : ""}. ${src}`;
+        return `${type} jellegű, aktívan kihasznált sérülékenységi rekord${country ? ` ${country}` : ""}.${sevTxt}${scTxt} ${src}`;
       }
 
-      return `${type} jellegű esemény${country ? ` ${country}` : ""}${scope}. ${src}`;
+      return `${type} jellegű esemény${country ? ` ${country}` : ""}${scope}.${sevTxt}${scTxt} ${src}`;
     }
 
     function renderLatestEvents(){
@@ -2105,9 +2356,12 @@
 
       el.innerHTML = all.map(item => {
         const rt = recordTypeNorm(item.record_type);
-        const type = item.type || item.event_type || "n/a";
+        const type = getEventType(item);
         const where = item.country || item.scope || "n/a";
         const shortText = buildEventShortText(item);
+        const severityValue = getSeverity(item);
+        const summary = getSummaryHu(item);
+        const analyst = getAnalystNoteHu(item);
         const link = item.source_url
           ? `<a class="event-link" href="${escapeAttr(item.source_url)}" target="_blank" rel="noopener noreferrer">Forrás megnyitása</a>`
           : "";
@@ -2121,7 +2375,11 @@
               <span class="event-badge">${escapeHtml(rt)}</span>
               <span class="event-badge">${escapeHtml(type)}</span>
               <span class="event-badge">${escapeHtml(where)}</span>
+              ${severityValue !== "NA" ? `<span class="event-badge ${severityBadgeClass(severityValue)}">${escapeHtml(severityValue)}</span>` : ""}
+              ${isSupplyChainEvent(item) ? `<span class="event-badge badge-supply">Supply chain</span>` : ""}
             </div>
+            <div class="event-item-summary">${escapeHtml(summary)}</div>
+            <div class="event-item-analyst">${escapeHtml(analyst)}</div>
             ${link}
           </div>
         `;
@@ -2279,7 +2537,7 @@
 
       for (const item of all){
         const rt = recordTypeNorm(item.record_type);
-        const t = item.type || item.event_type || "Other";
+        const t = getEventType(item);
         const s = sourceTypeNorm(item.source_type);
 
         byRecordType[rt] = (byRecordType[rt] || 0) + 1;
@@ -2320,11 +2578,13 @@
       const q = norm(document.getElementById("searchFilter").value);
       const targetValue = document.getElementById("targetFilter").value;
       const confValue = document.getElementById("confFilter").value;
+      const severityValue = document.getElementById("severityFilter").value;
       const srcTypeValue = document.getElementById("sourceTypeFilter").value;
       const statusValue = document.getElementById("statusFilter").value;
       const impactValue = document.getElementById("impactFilter").value;
       const operatorValue = document.getElementById("operatorFilter").value;
       const onlyWithSources = document.getElementById("onlyWithSources").checked;
+      const onlySupplyChain = document.getElementById("onlySupplyChain").checked;
       const { from, to } = getSelectedDateRange();
 
       CURRENT_FILTERED_COUNTRY_EVENTS = INCIDENTS.filter(item => {
@@ -2335,15 +2595,27 @@
         const rt = recordTypeNorm(item.record_type);
         if (recordTypeValue !== "ALL" && rt !== recordTypeValue) return false;
 
-        if (typeValue !== "ALL" && item.type !== typeValue) return false;
-        if (q && !norm(`${item.title || ""} ${item.scope || ""} ${item.country || ""} ${item.source_name || ""}`).includes(q)) return false;
+        if (typeValue !== "ALL" && getEventType(item) !== typeValue) return false;
+
+        const hay = `${item.title || ""} ${item.scope || ""} ${item.country || ""} ${item.source_name || ""} ${item.summary_hu || ""} ${item.analyst_note_hu || ""} ${item.attack_vector || ""} ${item.target_class || ""}`;
+        if (q && !norm(hay).includes(q)) return false;
 
         const c = confNorm(item.confidence);
         if (confValue !== "ALL" && c !== confValue) return false;
 
+        const sev = getSeverity(item);
+        if (severityValue !== "ALL" && sev !== severityValue) return false;
+
         const src = sourceTypeNorm(item.source_type);
         if (srcTypeValue !== "ALL" && src !== srcTypeValue) return false;
 
+        const st = statusNorm(item.status);
+        if (statusValue !== "ALL" && st !== statusValue) return false;
+
+        const imp = impactNorm(item.impact);
+        if (impactValue !== "ALL" && imp !== impactValue) return false;
+
+        if (onlySupplyChain && !isSupplyChainEvent(item)) return false;
         if (onlyWithSources && !hasAnySource(item)) return false;
 
         if (isOsintModeOn()) {
@@ -2363,13 +2635,16 @@
         const rt = recordTypeNorm(item.record_type);
         if (recordTypeValue !== "ALL" && rt !== recordTypeValue) return false;
 
-        if (typeValue !== "ALL" && item.event_type !== typeValue) return false;
+        if (typeValue !== "ALL" && getEventType(item) !== typeValue) return false;
 
-        const hay = `${item.target_name || ""} ${item.city || ""} ${item.operator || ""} ${item.country || ""}`;
+        const hay = `${item.target_name || ""} ${item.city || ""} ${item.operator || ""} ${item.country || ""} ${item.summary_hu || ""} ${item.analyst_note_hu || ""} ${item.attack_vector || ""} ${item.target_class || ""}`;
         if (q && !norm(hay).includes(q)) return false;
 
         const c = confNorm(item.confidence);
         if (confValue !== "ALL" && c !== confValue) return false;
+
+        const sev = getSeverity(item);
+        if (severityValue !== "ALL" && sev !== severityValue) return false;
 
         const src = sourceTypeNorm(item.source_type);
         if (srcTypeValue !== "ALL" && src !== srcTypeValue) return false;
@@ -2381,7 +2656,7 @@
         if (impactValue !== "ALL" && imp !== impactValue) return false;
 
         if (operatorValue !== "ALL" && (item.operator || "") !== operatorValue) return false;
-
+        if (onlySupplyChain && !isSupplyChainEvent(item)) return false;
         if (onlyWithSources && !hasAnySource(item)) return false;
 
         if (isOsintModeOn()) {
@@ -2410,7 +2685,7 @@
         const pos = resolveIncidentLatLon(item);
         if (!pos) continue;
 
-        const marker = L.marker([pos.lat, pos.lon], { icon: iconForType(item.type) });
+        const marker = L.marker([pos.lat, pos.lon], { icon: iconForType(getEventType(item)) });
         marker.bindPopup(buildIncidentPopupHtml(item, "Country"));
 
         rawMarkersLayer.addLayer(marker);
@@ -2422,7 +2697,7 @@
         const pos = resolveIncidentLatLon(item);
         if (!pos) continue;
 
-        const marker = L.marker([pos.lat, pos.lon], { icon: iconForType(item.event_type) });
+        const marker = L.marker([pos.lat, pos.lon], { icon: iconForType(getEventType(item)) });
         marker.bindPopup(buildIncidentPopupHtml(item, "DataCenter"));
 
         dcIncidentsLayer.addLayer(marker);
@@ -2484,6 +2759,7 @@
         "targetFilter",
         "typeFilter",
         "confFilter",
+        "severityFilter",
         "sourceTypeFilter",
         "statusFilter",
         "impactFilter",
@@ -2494,6 +2770,10 @@
 
       document.getElementById("onlyWithSources").addEventListener("change", async () => {
         setOsintMode(false);
+        await renderMapData();
+      });
+
+      document.getElementById("onlySupplyChain").addEventListener("change", async () => {
         await renderMapData();
       });
 
@@ -2524,11 +2804,13 @@
         document.getElementById("targetFilter").value = "ALL";
         document.getElementById("typeFilter").value = "ALL";
         document.getElementById("confFilter").value = "ALL";
+        document.getElementById("severityFilter").value = "ALL";
         document.getElementById("sourceTypeFilter").value = "ALL";
         document.getElementById("statusFilter").value = "ALL";
         document.getElementById("impactFilter").value = "ALL";
         document.getElementById("operatorFilter").value = "ALL";
         document.getElementById("onlyWithSources").checked = false;
+        document.getElementById("onlySupplyChain").checked = false;
         setOsintMode(false);
 
         document.getElementById("toggleIncidents").checked = true;

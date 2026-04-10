@@ -2153,11 +2153,13 @@
       downloadText("events_missing.csv", csv, "text/csv;charset=utf-8");
     }
 
+    function cloneItem(item){
+      return JSON.parse(JSON.stringify(item));
+    }
+
     function getDedupKey(item, targetType){
       const sourceUrl = norm(item.source_url);
-      if (sourceUrl) {
-        return `${targetType}|src|${sourceUrl}`;
-      }
+      if (sourceUrl) return `${targetType}|src|${sourceUrl}`;
 
       const title = norm(item.title || item.target_name);
       const date = toDateKey(item.date);
@@ -2169,8 +2171,16 @@
       return `${targetType}|fallback|${title}|${date}|${country}|${type}|${operator}|${targetId}`;
     }
 
-    function cloneItem(item){
-      return JSON.parse(JSON.stringify(item));
+    function dedupPriorityScore(item){
+      return (
+        (isOsintReady(item) ? 1000 : 0) +
+        (Number(item.severity_score) || 0) +
+        (confNorm(item.confidence) === "High" ? 30 : confNorm(item.confidence) === "Med" ? 20 : 10) +
+        (impactNorm(item.impact) === "High" ? 15 : impactNorm(item.impact) === "Med" ? 8 : 3) +
+        (item.source_url ? 4 : 0) +
+        (item.summary_hu ? 2 : 0) +
+        (item.analyst_note_hu ? 2 : 0)
+      );
     }
 
     function deduplicateItems(items, targetType){
@@ -2191,21 +2201,7 @@
         current._duplicate_count = Number(current._duplicate_count || 1) + 1;
         current._duplicate_ids = [...new Set([...(current._duplicate_ids || []), item.id ?? ""])];
 
-        const currentScore =
-          (isOsintReady(current) ? 1000 : 0) +
-          (Number(current.severity_score) || 0) +
-          (confNorm(current.confidence) === "High" ? 30 : confNorm(current.confidence) === "Med" ? 20 : 10) +
-          (impactNorm(current.impact) === "High" ? 15 : impactNorm(current.impact) === "Med" ? 8 : 3) +
-          (current.source_url ? 4 : 0);
-
-        const newScore =
-          (isOsintReady(item) ? 1000 : 0) +
-          (Number(item.severity_score) || 0) +
-          (confNorm(item.confidence) === "High" ? 30 : confNorm(item.confidence) === "Med" ? 20 : 10) +
-          (impactNorm(item.impact) === "High" ? 15 : impactNorm(item.impact) === "Med" ? 8 : 3) +
-          (item.source_url ? 4 : 0);
-
-        if (newScore > currentScore) {
+        if (dedupPriorityScore(item) > dedupPriorityScore(current)) {
           const copy = cloneItem(item);
           copy._duplicate_count = current._duplicate_count;
           copy._duplicate_ids = current._duplicate_ids;
@@ -2687,36 +2683,14 @@
       renderMiniColumnChart("miniSourceChart", "miniSourceLegend", "miniSourceTotal", sourceRows);
     }
 
-    async function renderMapData(){
-      await ensureCountriesData();
-
-      rawMarkersLayer.clearLayers();
-      dcIncidentsLayer.clearLayers();
-      datacentersLayer.clearLayers();
-      clusterLayer.clearLayers();
-
-      const recordTypeValue = document.getElementById("recordTypeFilter").value;
-      const typeValue = document.getElementById("typeFilter").value;
-      const q = norm(document.getElementById("searchFilter").value);
-      const targetValue = document.getElementById("targetFilter").value;
-      const confValue = document.getElementById("confFilter").value;
-      const severityValue = document.getElementById("severityFilter").value;
-      const srcTypeValue = document.getElementById("sourceTypeFilter").value;
-      const statusValue = document.getElementById("statusFilter").value;
-      const impactValue = document.getElementById("impactFilter").value;
-      const operatorValue = document.getElementById("operatorFilter").value;
-      const onlyWithSources = document.getElementById("onlyWithSources").checked;
-      const onlySupplyChain = document.getElementById("onlySupplyChain").checked;
-      const { from, to } = getSelectedDateRange();
-
-      const countryRawFiltered = INCIDENTS.filter(item => {
+    function getCountryFilteredRaw({ from, to, recordTypeValue, typeValue, q, targetValue, confValue, severityValue, srcTypeValue, statusValue, impactValue, onlySupplyChain, onlyWithSources }){
+      return INCIDENTS.filter(item => {
         const d = toDateKey(item.date);
         if (!inDateRangeKey(d, from, to)) return false;
         if (targetValue !== "ALL" && targetValue !== "Country") return false;
 
         const rt = recordTypeNorm(item.record_type);
         if (recordTypeValue !== "ALL" && rt !== recordTypeValue) return false;
-
         if (typeValue !== "ALL" && getEventType(item) !== typeValue) return false;
 
         const hay = `${item.title || ""} ${item.scope || ""} ${item.country || ""} ${item.source_name || ""} ${item.summary_hu || ""} ${item.analyst_note_hu || ""} ${item.attack_vector || ""} ${item.target_class || ""}`;
@@ -2748,15 +2722,16 @@
 
         return true;
       });
+    }
 
-      const dcRawFiltered = DC_INCIDENTS.filter(item => {
+    function getDcFilteredRaw({ from, to, recordTypeValue, typeValue, q, targetValue, confValue, severityValue, srcTypeValue, statusValue, impactValue, operatorValue, onlySupplyChain, onlyWithSources }){
+      return DC_INCIDENTS.filter(item => {
         const d = toDateKey(item.date);
         if (!inDateRangeKey(d, from, to)) return false;
         if (targetValue !== "ALL" && targetValue !== "DataCenter") return false;
 
         const rt = recordTypeNorm(item.record_type);
         if (recordTypeValue !== "ALL" && rt !== recordTypeValue) return false;
-
         if (typeValue !== "ALL" && getEventType(item) !== typeValue) return false;
 
         const hay = `${item.target_name || ""} ${item.city || ""} ${item.operator || ""} ${item.country || ""} ${item.summary_hu || ""} ${item.analyst_note_hu || ""} ${item.attack_vector || ""} ${item.target_class || ""}`;
@@ -2789,6 +2764,38 @@
 
         return true;
       });
+    }
+
+    async function renderMapData(){
+      await ensureCountriesData();
+
+      rawMarkersLayer.clearLayers();
+      dcIncidentsLayer.clearLayers();
+      datacentersLayer.clearLayers();
+      clusterLayer.clearLayers();
+
+      const recordTypeValue = document.getElementById("recordTypeFilter").value;
+      const typeValue = document.getElementById("typeFilter").value;
+      const q = norm(document.getElementById("searchFilter").value);
+      const targetValue = document.getElementById("targetFilter").value;
+      const confValue = document.getElementById("confFilter").value;
+      const severityValue = document.getElementById("severityFilter").value;
+      const srcTypeValue = document.getElementById("sourceTypeFilter").value;
+      const statusValue = document.getElementById("statusFilter").value;
+      const impactValue = document.getElementById("impactFilter").value;
+      const operatorValue = document.getElementById("operatorFilter").value;
+      const onlyWithSources = document.getElementById("onlyWithSources").checked;
+      const onlySupplyChain = document.getElementById("onlySupplyChain").checked;
+      const { from, to } = getSelectedDateRange();
+
+      const filterArgs = {
+        from, to, recordTypeValue, typeValue, q, targetValue, confValue,
+        severityValue, srcTypeValue, statusValue, impactValue, operatorValue,
+        onlySupplyChain, onlyWithSources
+      };
+
+      const countryRawFiltered = getCountryFilteredRaw(filterArgs);
+      const dcRawFiltered = getDcFilteredRaw(filterArgs);
 
       CURRENT_FILTERED_COUNTRY_EVENTS = maybeDeduplicate(countryRawFiltered, "Country");
       CURRENT_FILTERED_DC_EVENTS = maybeDeduplicate(dcRawFiltered, "DataCenter");
@@ -2808,7 +2815,6 @@
 
         const hay = `${dc.name || ""} ${dc.city || ""} ${dc.operator || ""} ${dc.country || ""} ${dc.category || ""}`;
         if (q && !norm(hay).includes(q)) return false;
-
         if (operatorValue !== "ALL" && (dc.operator || "") !== operatorValue) return false;
 
         return true;

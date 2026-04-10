@@ -11,7 +11,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0107.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in FortiClient EMS van Fortinet” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "fortinet"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "0bb7cb1d320fb7a8",
@@ -25,7 +49,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0106.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Cisco Integrated Management Controller” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "cisco"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "20e5613b9bfd87d7",
@@ -39,12 +87,36 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0105.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Cisco Nexus Dashboard en Nexus Dashboard Insights” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "cisco"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "578ff6b5d5bd9294",
     "title": "Kwetsbaarheden verholpen in Cisco IOS XE Software",
-    "type": "DataLeak",
+    "type": "Vulnerability",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -53,12 +125,37 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0104.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Network infrastructure",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Cisco IOS XE Software” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Perimeter exposure",
+      "Administrative compromise risk",
+      "Endpoint compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "cisco"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Network appliance",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "6be0109229a6b884",
     "title": "Kwetsbaarheden verholpen in GitLab",
-    "type": "Vulnerability",
+    "type": "SupplyChain",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -67,12 +164,37 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0103.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Software dependency",
+    "target_class": "Enterprise platforms",
+    "severity": "High",
+    "severity_score": 88,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in GitLab” advisory beszállítói vagy szoftverfüggőségi kockázatot is jelezhet. A NCSC-NL forrás alapján nemcsak az érintett termék, hanem a rá épülő környezetek kitettsége is fontos.",
+    "analyst_note_hu": "Elemzői megjegyzés: kiemelt figyelmet igényel a lánchatás, a downstream érintettség és az, hogy hány szervezet használja az érintett komponenst vagy szolgáltatást.",
+    "operational_effects": [
+      "Third-party dependency exposure",
+      "Cross-environment propagation risk"
+    ],
+    "tags": [
+      "supplychain",
+      "ncsc-nl",
+      "gitlab",
+      "dependency-risk"
+    ],
+    "supply_chain": {
+      "is_supply_chain": true,
+      "dependency_type": "Software",
+      "propagation_risk": "High",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "3bf02c8726a59dc8",
     "title": "Kwetsbaarheden verholpen in Apple macOS",
-    "type": "DataLeak",
+    "type": "Vulnerability",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -81,12 +203,35 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0102.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Client-side exploitation",
+    "target_class": "Endpoints / user platforms",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Apple macOS” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Endpoint compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "apple"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software platform",
+      "propagation_risk": "Med",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "adee714934f86fe2",
     "title": "Kwetsbaarheden verholpen in Apple iOS en iPadOS",
-    "type": "DataLeak",
+    "type": "Vulnerability",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -95,12 +240,35 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0101.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Client-side exploitation",
+    "target_class": "Endpoints / user platforms",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Apple iOS en iPadOS” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Endpoint compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "apple"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software platform",
+      "propagation_risk": "Med",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "8c69504e3b330bed",
     "title": "Kwetsbaarheden verholpen in Citrix Netscaler ADC en Netscaler Gateway",
-    "type": "DataLeak",
+    "type": "Vulnerability",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -109,7 +277,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0100.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Network infrastructure",
+    "severity": "High",
+    "severity_score": 82,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Citrix Netscaler ADC en Netscaler Gateway” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Perimeter exposure",
+      "Administrative compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Network appliance",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "a4318370a62915cd",
@@ -123,7 +314,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0099.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in Oracle Identity Manager en Oracle Web Services Manager” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "b5ef4ae41528f3e4",
@@ -137,12 +351,34 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0097.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Client-side exploitation",
+    "target_class": "Endpoints / user platforms",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Google Chrome” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Endpoint compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software platform",
+      "propagation_risk": "Med",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "21dfb54a73ba929e",
     "title": "Kwetsbaarheden verholpen in Veeam Backup & Replication",
-    "type": "Vulnerability",
+    "type": "SupplyChain",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -151,12 +387,39 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0096.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Trusted service compromise",
+    "target_class": "Enterprise platforms",
+    "severity": "Critical",
+    "severity_score": 92,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Veeam Backup & Replication” advisory beszállítói vagy szoftverfüggőségi kockázatot is jelezhet. A NCSC-NL forrás alapján nemcsak az érintett termék, hanem a rá épülő környezetek kitettsége is fontos.",
+    "analyst_note_hu": "Elemzői megjegyzés: kiemelt figyelmet igényel a lánchatás, a downstream érintettség és az, hogy hány szervezet használja az érintett komponenst vagy szolgáltatást.",
+    "operational_effects": [
+      "Enterprise service disruption",
+      "Administrative exposure",
+      "Third-party dependency exposure",
+      "Cross-environment propagation risk"
+    ],
+    "tags": [
+      "supplychain",
+      "ncsc-nl",
+      "veeam",
+      "dependency-risk"
+    ],
+    "supply_chain": {
+      "is_supply_chain": true,
+      "dependency_type": "Software",
+      "propagation_risk": "High",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "a5c180ec3975aeb6",
     "title": "Kwetsbaarheid verholpen in pac4j-jwt",
-    "type": "Vulnerability",
+    "type": "SupplyChain",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -165,7 +428,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0095.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Software dependency",
+    "target_class": "Enterprise IT",
+    "severity": "High",
+    "severity_score": 88,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in pac4j-jwt” advisory beszállítói vagy szoftverfüggőségi kockázatot is jelezhet. A NCSC-NL forrás alapján nemcsak az érintett termék, hanem a rá épülő környezetek kitettsége is fontos.",
+    "analyst_note_hu": "Elemzői megjegyzés: kiemelt figyelmet igényel a lánchatás, a downstream érintettség és az, hogy hány szervezet használja az érintett komponenst vagy szolgáltatást.",
+    "operational_effects": [
+      "Third-party dependency exposure",
+      "Cross-environment propagation risk"
+    ],
+    "tags": [
+      "supplychain",
+      "ncsc-nl",
+      "dependency-risk"
+    ],
+    "supply_chain": {
+      "is_supply_chain": true,
+      "dependency_type": "Software",
+      "propagation_risk": "High",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "ce6dde29d5197276",
@@ -179,7 +466,32 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0094.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Network infrastructure",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Cisco IOS XR” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Perimeter exposure",
+      "Administrative compromise risk",
+      "Endpoint compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "cisco"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Network appliance",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "24097115616e8172",
@@ -193,7 +505,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0092.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Network infrastructure",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Fortinet FortiWeb” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "fortinet"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Network appliance",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "948b761c9fe9fb1a",
@@ -207,7 +543,32 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0091.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Third-party compromise",
+    "target_class": "Enterprise platforms",
+    "severity": "High",
+    "severity_score": 88,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in SAP-producten” advisory beszállítói vagy szoftverfüggőségi kockázatot is jelezhet. A NCSC-NL forrás alapján nemcsak az érintett termék, hanem a rá épülő környezetek kitettsége is fontos.",
+    "analyst_note_hu": "Elemzői megjegyzés: kiemelt figyelmet igényel a lánchatás, a downstream érintettség és az, hogy hány szervezet használja az érintett komponenst vagy szolgáltatást.",
+    "operational_effects": [
+      "Third-party dependency exposure",
+      "Cross-environment propagation risk"
+    ],
+    "tags": [
+      "supplychain",
+      "ncsc-nl",
+      "sap",
+      "dependency-risk"
+    ],
+    "supply_chain": {
+      "is_supply_chain": true,
+      "dependency_type": "Software",
+      "propagation_risk": "High",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "6d31b10a6eb8c8a0",
@@ -221,7 +582,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0090.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Adobe Experience Manager” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "adobe"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "d45f9018a22c6805",
@@ -235,7 +620,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0089.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Client-side exploitation",
+    "target_class": "Endpoints / user platforms",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Adobe Acrobat Reader” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Endpoint compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "adobe"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "ead3921bb8db089d",
@@ -249,7 +657,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0088.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Client-side exploitation",
+    "target_class": "Endpoints / user platforms",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Adobe Illustrator” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Endpoint compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "adobe"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "089fcc769ad7c72d",
@@ -263,7 +694,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0087.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Adobe Commerce” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "adobe"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "2b300b18ae70e053",
@@ -277,7 +732,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0086.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Network infrastructure",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Fortinet FortiManager en FortiAnalyzer” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "fortinet"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "ca44c2cb2e250ad7",
@@ -291,7 +770,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0085.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Microsoft Developer tools” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "microsoft"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "8f669eb95996ed82",
@@ -305,7 +808,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0084.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Client-side exploitation",
+    "target_class": "Endpoints / user platforms",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Microsoft Office” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Endpoint compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "microsoft"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software platform",
+      "propagation_risk": "Med",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "46f93e4be45d0e8a",
@@ -319,12 +845,36 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0083.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Endpoints / user platforms",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in Microsoft Authenticator app” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "microsoft"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "cb8852521c5fd574",
     "title": "Kwetsbaarheden verholpen in Microsoft Azure",
-    "type": "Vulnerability",
+    "type": "SupplyChain",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -333,7 +883,35 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0082.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Third-party compromise",
+    "target_class": "Enterprise platforms",
+    "severity": "Critical",
+    "severity_score": 92,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Microsoft Azure” advisory beszállítói vagy szoftverfüggőségi kockázatot is jelezhet. A NCSC-NL forrás alapján nemcsak az érintett termék, hanem a rá épülő környezetek kitettsége is fontos.",
+    "analyst_note_hu": "Elemzői megjegyzés: kiemelt figyelmet igényel a lánchatás, a downstream érintettség és az, hogy hány szervezet használja az érintett komponenst vagy szolgáltatást.",
+    "operational_effects": [
+      "Enterprise service disruption",
+      "Administrative exposure",
+      "Third-party dependency exposure",
+      "Cross-environment propagation risk"
+    ],
+    "tags": [
+      "supplychain",
+      "ncsc-nl",
+      "microsoft",
+      "azure",
+      "dependency-risk"
+    ],
+    "supply_chain": {
+      "is_supply_chain": true,
+      "dependency_type": "Cloud service",
+      "propagation_risk": "High",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "a9f8e153ebb5f13b",
@@ -347,7 +925,32 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0081.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Remote exploitation",
+    "target_class": "Enterprise platforms",
+    "severity": "High",
+    "severity_score": 78,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Microsoft SQL Server” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Enterprise service disruption",
+      "Administrative exposure"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "microsoft",
+      "sql-server"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "373d5b1b22e00ebc",
@@ -361,12 +964,36 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0080.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Client-side exploitation",
+    "target_class": "Endpoints / user platforms",
+    "severity": "High",
+    "severity_score": 86,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Microsoft Windows” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Endpoint compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "microsoft",
+      "windows"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software platform",
+      "propagation_risk": "Med",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "b959e437977f79de",
     "title": "Kwetsbaarheden verholpen in Siemens producten",
-    "type": "DataLeak",
+    "type": "Vulnerability",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -375,7 +1002,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0079.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Siemens producten” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "7a272f878c548605",
@@ -389,12 +1039,35 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0078.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Enterprise platforms",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Kibana” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "4db935604d9f5e81",
     "title": "Kwetsbaarheden verholpen in Cisco Secure Firewall systemen",
-    "type": "DataLeak",
+    "type": "Vulnerability",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -403,12 +1076,36 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0077.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Network infrastructure",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Cisco Secure Firewall systemen” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Perimeter exposure",
+      "Administrative compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "cisco"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Network appliance",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "8994738798b0c2bc",
     "title": "Kwetsbaarheden verholpen in Cisco Secure Firewall Management Center",
-    "type": "Ransomware",
+    "type": "Vulnerability",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -417,12 +1114,36 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0076.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Network infrastructure",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Cisco Secure Firewall Management Center” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Perimeter exposure",
+      "Administrative compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "cisco"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Network appliance",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "b838b95a50d42d43",
     "title": "Kwetsbaarheid verholpen in n8n Automation Platform",
-    "type": "Vulnerability",
+    "type": "SupplyChain",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -431,12 +1152,36 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0075.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Software dependency",
+    "target_class": "Enterprise platforms",
+    "severity": "High",
+    "severity_score": 88,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in n8n Automation Platform” advisory beszállítói vagy szoftverfüggőségi kockázatot is jelezhet. A NCSC-NL forrás alapján nemcsak az érintett termék, hanem a rá épülő környezetek kitettsége is fontos.",
+    "analyst_note_hu": "Elemzői megjegyzés: kiemelt figyelmet igényel a lánchatás, a downstream érintettség és az, hogy hány szervezet használja az érintett komponenst vagy szolgáltatást.",
+    "operational_effects": [
+      "Third-party dependency exposure",
+      "Cross-environment propagation risk"
+    ],
+    "tags": [
+      "supplychain",
+      "ncsc-nl",
+      "dependency-risk"
+    ],
+    "supply_chain": {
+      "is_supply_chain": true,
+      "dependency_type": "Software",
+      "propagation_risk": "High",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "e63304a5d7629af9",
     "title": "Kwetsbaarheden verholpen in Google Android en Samsung Mobile",
-    "type": "DataLeak",
+    "type": "Vulnerability",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -445,7 +1190,29 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0074.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Client-side exploitation",
+    "target_class": "Endpoints / user platforms",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Google Android en Samsung Mobile” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Endpoint compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software platform",
+      "propagation_risk": "Med",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "fda783d0515d8582",
@@ -459,7 +1226,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0073.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Network infrastructure",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in Juniper Junos OS Evolved” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Perimeter exposure",
+      "Administrative compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Network appliance",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "b1737abe312ca004",
@@ -473,7 +1263,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0071.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Network infrastructure",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Cisco Catalyst SD-WAN Manager” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Perimeter exposure",
+      "Administrative compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "cisco"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "242fbc9abd847e99",
@@ -487,12 +1301,35 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0070.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in VMware Aria Operations” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "aa71e64116586d06",
     "title": "Kwetsbaarheden verholpen in SolarWinds Serv-U",
-    "type": "Vulnerability",
+    "type": "SupplyChain",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -501,7 +1338,32 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0069.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Trusted service compromise",
+    "target_class": "Enterprise platforms",
+    "severity": "High",
+    "severity_score": 88,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in SolarWinds Serv-U” advisory beszállítói vagy szoftverfüggőségi kockázatot is jelezhet. A NCSC-NL forrás alapján nemcsak az érintett termék, hanem a rá épülő környezetek kitettsége is fontos.",
+    "analyst_note_hu": "Elemzői megjegyzés: kiemelt figyelmet igényel a lánchatás, a downstream érintettség és az, hogy hány szervezet használja az érintett komponenst vagy szolgáltatást.",
+    "operational_effects": [
+      "Third-party dependency exposure",
+      "Cross-environment propagation risk"
+    ],
+    "tags": [
+      "supplychain",
+      "ncsc-nl",
+      "solarwinds",
+      "dependency-risk"
+    ],
+    "supply_chain": {
+      "is_supply_chain": true,
+      "dependency_type": "Software",
+      "propagation_risk": "High",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "b962a979024b2629",
@@ -515,12 +1377,35 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0068.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Enterprise platforms",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Splunk Enterprise en Splunk Cloud Platform” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Cloud service",
+      "propagation_risk": "Med",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "75b64c920111cd2a",
     "title": "Kwetsbaarheden verholpen in GitHub Enterprise Server",
-    "type": "Vulnerability",
+    "type": "SupplyChain",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -529,7 +1414,32 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0067.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Software dependency",
+    "target_class": "Enterprise platforms",
+    "severity": "High",
+    "severity_score": 84,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in GitHub Enterprise Server” advisory beszállítói vagy szoftverfüggőségi kockázatot is jelezhet. A NCSC-NL forrás alapján nemcsak az érintett termék, hanem a rá épülő környezetek kitettsége is fontos.",
+    "analyst_note_hu": "Elemzői megjegyzés: kiemelt figyelmet igényel a lánchatás, a downstream érintettség és az, hogy hány szervezet használja az érintett komponenst vagy szolgáltatást.",
+    "operational_effects": [
+      "Third-party dependency exposure",
+      "Cross-environment propagation risk"
+    ],
+    "tags": [
+      "supplychain",
+      "ncsc-nl",
+      "github",
+      "dependency-risk"
+    ],
+    "supply_chain": {
+      "is_supply_chain": true,
+      "dependency_type": "Cloud service",
+      "propagation_risk": "High",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "340d094ec10de705",
@@ -543,7 +1453,29 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0066.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Client-side exploitation",
+    "target_class": "Endpoints / user platforms",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in Google Chrome” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Endpoint compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software platform",
+      "propagation_risk": "Med",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "9acc28a18ca8e819",
@@ -557,12 +1489,35 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0065.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in Dell RecoverPoint for Virtual Machines” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "2ac10f7523b94a9e",
     "title": "Kwetsbaarheden verholpen in GitLab CE/EE",
-    "type": "Vulnerability",
+    "type": "SupplyChain",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -571,7 +1526,32 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0062.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Software dependency",
+    "target_class": "Enterprise platforms",
+    "severity": "High",
+    "severity_score": 84,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in GitLab CE/EE” advisory beszállítói vagy szoftverfüggőségi kockázatot is jelezhet. A NCSC-NL forrás alapján nemcsak az érintett termék, hanem a rá épülő környezetek kitettsége is fontos.",
+    "analyst_note_hu": "Elemzői megjegyzés: kiemelt figyelmet igényel a lánchatás, a downstream érintettség és az, hogy hány szervezet használja az érintett komponenst vagy szolgáltatást.",
+    "operational_effects": [
+      "Third-party dependency exposure",
+      "Cross-environment propagation risk"
+    ],
+    "tags": [
+      "supplychain",
+      "ncsc-nl",
+      "gitlab",
+      "dependency-risk"
+    ],
+    "supply_chain": {
+      "is_supply_chain": true,
+      "dependency_type": "Software",
+      "propagation_risk": "High",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "1d9f91175cb764af",
@@ -585,7 +1565,32 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0061.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Network infrastructure",
+    "severity": "High",
+    "severity_score": 82,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Fortinet FortiOS” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Perimeter exposure",
+      "Administrative compromise risk",
+      "Endpoint compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "fortinet"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Network appliance",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "0421636974df6eb7",
@@ -599,12 +1604,36 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0060.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Endpoints / user platforms",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Fortinet FortiSandbox, FortiAuthenticator en FortiClient” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "fortinet"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "7f4ccad9f86ac51a",
     "title": "Kwetsbaarheden verholpen in Ivanti Endpoint Manager",
-    "type": "DataLeak",
+    "type": "Vulnerability",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -613,7 +1642,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0059.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Ivanti Endpoint Manager” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "7202fa3fdc7cb8f4",
@@ -627,7 +1679,32 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0055.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Remote exploitation",
+    "target_class": "Enterprise platforms",
+    "severity": "High",
+    "severity_score": 78,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in Microsoft SQL Server” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Enterprise service disruption",
+      "Administrative exposure"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "microsoft",
+      "sql-server"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "cef17d050473bc4a",
@@ -641,12 +1718,37 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0054.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Remote exploitation",
+    "target_class": "Enterprise platforms",
+    "severity": "High",
+    "severity_score": 86,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in Microsoft Exchange” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Enterprise service disruption",
+      "Administrative exposure"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "microsoft",
+      "exchange"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "5df5a3dd70f4ecd2",
     "title": "Kwetsbaarheden verholpen in SAP producten",
-    "type": "DataLeak",
+    "type": "SupplyChain",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -655,12 +1757,37 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0052.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Third-party compromise",
+    "target_class": "Enterprise platforms",
+    "severity": "High",
+    "severity_score": 88,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in SAP producten” advisory beszállítói vagy szoftverfüggőségi kockázatot is jelezhet. A NCSC-NL forrás alapján nemcsak az érintett termék, hanem a rá épülő környezetek kitettsége is fontos.",
+    "analyst_note_hu": "Elemzői megjegyzés: kiemelt figyelmet igényel a lánchatás, a downstream érintettség és az, hogy hány szervezet használja az érintett komponenst vagy szolgáltatást.",
+    "operational_effects": [
+      "Third-party dependency exposure",
+      "Cross-environment propagation risk"
+    ],
+    "tags": [
+      "supplychain",
+      "ncsc-nl",
+      "sap",
+      "dependency-risk"
+    ],
+    "supply_chain": {
+      "is_supply_chain": true,
+      "dependency_type": "Software",
+      "propagation_risk": "High",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "29e8bc821af3a887",
     "title": "Kwetsbaarheid verholpen in PEAR",
-    "type": "Vulnerability",
+    "type": "SupplyChain",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -669,12 +1796,36 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0050.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Software dependency",
+    "target_class": "Enterprise IT",
+    "severity": "High",
+    "severity_score": 88,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in PEAR” advisory beszállítói vagy szoftverfüggőségi kockázatot is jelezhet. A NCSC-NL forrás alapján nemcsak az érintett termék, hanem a rá épülő környezetek kitettsége is fontos.",
+    "analyst_note_hu": "Elemzői megjegyzés: kiemelt figyelmet igényel a lánchatás, a downstream érintettség és az, hogy hány szervezet használja az érintett komponenst vagy szolgáltatást.",
+    "operational_effects": [
+      "Third-party dependency exposure",
+      "Cross-environment propagation risk"
+    ],
+    "tags": [
+      "supplychain",
+      "ncsc-nl",
+      "dependency-risk"
+    ],
+    "supply_chain": {
+      "is_supply_chain": true,
+      "dependency_type": "Software",
+      "propagation_risk": "High",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "ccb58b5bd92e0d8b",
     "title": "Kwetsbaarheden verholpen in n8n",
-    "type": "Vulnerability",
+    "type": "SupplyChain",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -683,7 +1834,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0049.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Software dependency",
+    "target_class": "Enterprise platforms",
+    "severity": "High",
+    "severity_score": 88,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in n8n” advisory beszállítói vagy szoftverfüggőségi kockázatot is jelezhet. A NCSC-NL forrás alapján nemcsak az érintett termék, hanem a rá épülő környezetek kitettsége is fontos.",
+    "analyst_note_hu": "Elemzői megjegyzés: kiemelt figyelmet igényel a lánchatás, a downstream érintettség és az, hogy hány szervezet használja az érintett komponenst vagy szolgáltatást.",
+    "operational_effects": [
+      "Third-party dependency exposure",
+      "Cross-environment propagation risk"
+    ],
+    "tags": [
+      "supplychain",
+      "ncsc-nl",
+      "dependency-risk"
+    ],
+    "supply_chain": {
+      "is_supply_chain": true,
+      "dependency_type": "Software",
+      "propagation_risk": "High",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "d8931c8186f52551",
@@ -697,7 +1872,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0048.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in BeyondTrust Remote Support” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "b0da64f1272b81ee",
@@ -711,7 +1909,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0405.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Remote exploitation",
+    "target_class": "Enterprise platforms",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in Roundcube Webmail” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "714e6ac25765cada",
@@ -725,7 +1946,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0404.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Remote exploitation",
+    "target_class": "Enterprise platforms",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in SmarterMail” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "72f897f5e2e37299",
@@ -739,7 +1983,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0403.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in QNAP besturingssystemen” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "fdde7e4237dcfb63",
@@ -753,7 +2020,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0402.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Remote exploitation",
+    "target_class": "Enterprise platforms",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in MongoDB” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "e979793aac1dd2b9",
@@ -767,7 +2057,29 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0401.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Client-side exploitation",
+    "target_class": "Endpoints / user platforms",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Foxit PDF Reader” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Endpoint compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "e7cebd3952908653",
@@ -781,7 +2093,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0400.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in WatchGuard Firebox” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "c3a39115282af82b",
@@ -795,7 +2130,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0399.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in HPE OneView Software” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "ebf4d0100a4842c2",
@@ -809,12 +2167,36 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0398.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheid in Cisco AsyncOS” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "cisco"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "813ba37326ed2337",
     "title": "Kwetsbaarheden verholpen in SAP Software",
-    "type": "Vulnerability",
+    "type": "SupplyChain",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -823,12 +2205,37 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0395.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Third-party compromise",
+    "target_class": "Enterprise platforms",
+    "severity": "High",
+    "severity_score": 88,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in SAP Software” advisory beszállítói vagy szoftverfüggőségi kockázatot is jelezhet. A NCSC-NL forrás alapján nemcsak az érintett termék, hanem a rá épülő környezetek kitettsége is fontos.",
+    "analyst_note_hu": "Elemzői megjegyzés: kiemelt figyelmet igényel a lánchatás, a downstream érintettség és az, hogy hány szervezet használja az érintett komponenst vagy szolgáltatást.",
+    "operational_effects": [
+      "Third-party dependency exposure",
+      "Cross-environment propagation risk"
+    ],
+    "tags": [
+      "supplychain",
+      "ncsc-nl",
+      "sap",
+      "dependency-risk"
+    ],
+    "supply_chain": {
+      "is_supply_chain": true,
+      "dependency_type": "Software",
+      "propagation_risk": "High",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "b8db58445840d540",
     "title": "Kwetsbaarheden verholpen in React Server Components",
-    "type": "Vulnerability",
+    "type": "SupplyChain",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -837,7 +2244,32 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0394.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Software dependency",
+    "target_class": "Enterprise platforms",
+    "severity": "High",
+    "severity_score": 84,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in React Server Components” advisory beszállítói vagy szoftverfüggőségi kockázatot is jelezhet. A NCSC-NL forrás alapján nemcsak az érintett termék, hanem a rá épülő környezetek kitettsége is fontos.",
+    "analyst_note_hu": "Elemzői megjegyzés: kiemelt figyelmet igényel a lánchatás, a downstream érintettség és az, hogy hány szervezet használja az érintett komponenst vagy szolgáltatást.",
+    "operational_effects": [
+      "Third-party dependency exposure",
+      "Cross-environment propagation risk"
+    ],
+    "tags": [
+      "supplychain",
+      "ncsc-nl",
+      "react",
+      "dependency-risk"
+    ],
+    "supply_chain": {
+      "is_supply_chain": true,
+      "dependency_type": "Software",
+      "propagation_risk": "High",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "7e23956cc8090704",
@@ -851,7 +2283,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0393.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Remote exploitation",
+    "target_class": "Enterprise platforms",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in GeoServer” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "74930e1a9dfb384d",
@@ -865,7 +2320,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0392.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in Barracuda Service Center” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "4779cf4586eabed5",
@@ -879,7 +2357,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0387.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Remote exploitation",
+    "target_class": "Enterprise platforms",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Adobe ColdFusion” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "adobe"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "9dc4505fbfefd91d",
@@ -893,7 +2395,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0386.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Fortinet producten” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "fortinet"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "d67b7b3e368bc1d6",
@@ -907,7 +2433,32 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0385.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Remote exploitation",
+    "target_class": "Enterprise platforms",
+    "severity": "High",
+    "severity_score": 86,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Microsoft Exchange” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Enterprise service disruption",
+      "Administrative exposure"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "microsoft",
+      "exchange"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "333d2f88b9d31d2c",
@@ -921,7 +2472,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0378.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Remote exploitation",
+    "target_class": "Enterprise platforms",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Mattermost” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "2713be40aff09311",
@@ -935,12 +2509,35 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0376.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in SonicWall Email Security appliances” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "df8a479a6843d82f",
     "title": "Kwetsbaarheid verholpen in Progress MOVEit Transfer",
-    "type": "Vulnerability",
+    "type": "SupplyChain",
     "record_type": "advisory",
     "date": "2026-04-10",
     "country": "NL",
@@ -949,7 +2546,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0375.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Third-party compromise",
+    "target_class": "Enterprise platforms",
+    "severity": "High",
+    "severity_score": 84,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in Progress MOVEit Transfer” advisory beszállítói vagy szoftverfüggőségi kockázatot is jelezhet. A NCSC-NL forrás alapján nemcsak az érintett termék, hanem a rá épülő környezetek kitettsége is fontos.",
+    "analyst_note_hu": "Elemzői megjegyzés: kiemelt figyelmet igényel a lánchatás, a downstream érintettség és az, hogy hány szervezet használja az érintett komponenst vagy szolgáltatást.",
+    "operational_effects": [
+      "Third-party dependency exposure",
+      "Cross-environment propagation risk"
+    ],
+    "tags": [
+      "supplychain",
+      "ncsc-nl",
+      "dependency-risk"
+    ],
+    "supply_chain": {
+      "is_supply_chain": true,
+      "dependency_type": "Software",
+      "propagation_risk": "High",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "3fbc75c6839b7679",
@@ -963,7 +2584,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0374.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Network infrastructure",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Arista EOS” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Perimeter exposure",
+      "Administrative compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Network appliance",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "65d043af3cd46255",
@@ -977,7 +2621,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0372.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Network infrastructure",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in Fortinet FortiWeb” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "fortinet"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Network appliance",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "6236e0e58331fd2d",
@@ -991,7 +2659,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0370.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Cisco Unified Contact Center Express” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "cisco"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "eda0b86c755f609a",
@@ -1005,7 +2697,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0369.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in IBM AIX” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "3895fe3c355eb27c",
@@ -1019,7 +2734,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0368.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Zoom Workplace en Zoom Clients” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "5a4ac94ffa1bee75",
@@ -1033,7 +2771,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0365.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Network infrastructure",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Cisco Catalyst Center” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Perimeter exposure",
+      "Administrative compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "cisco"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "9f976b82211fe8d6",
@@ -1047,7 +2809,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0364.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Client-side exploitation",
+    "target_class": "Endpoints / user platforms",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in Adobe Photoshop” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Endpoint compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "adobe"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "13713c6cfb3d4c8e",
@@ -1061,7 +2846,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0362.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Microsoft Visual Studio” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "microsoft"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "83983bd41e1ff14d",
@@ -1075,7 +2884,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0360.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Microsoft Dynamics” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "microsoft"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "519ed6ca40ef9771",
@@ -1089,7 +2922,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0358.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Client-side exploitation",
+    "target_class": "Endpoints / user platforms",
+    "severity": "High",
+    "severity_score": 86,
+    "summary_hu": "A(z) „Kwetsbaartheden verholpen in Microsoft Windows” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Endpoint compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "microsoft",
+      "windows"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software platform",
+      "propagation_risk": "Med",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "ceeb19b663b6475a",
@@ -1103,7 +2960,32 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0355.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Network infrastructure",
+    "severity": "High",
+    "severity_score": 82,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Fortinet FortiOS en FortiProxy” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Perimeter exposure",
+      "Administrative compromise risk",
+      "Endpoint compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "fortinet"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Network appliance",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "68547725880e465c",
@@ -1117,7 +2999,31 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0354.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "High",
+    "severity_score": 78,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in Cisco Identity Services Engine” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl",
+      "cisco"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "edb88366b414c650",
@@ -1131,7 +3037,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0350.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "Enterprise IT",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheid verholpen in CFMOTO Ride voertuigdatabeheer systemen” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "2c24b4b0607c89ca",
@@ -1145,7 +3074,29 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0349.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Endpoints / user platforms",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Nagios XI” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Endpoint compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software platform",
+      "propagation_risk": "Med",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "19efa88d67176512",
@@ -1159,7 +3110,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0348.json",
     "confidence": "High",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Network infrastructure",
+    "severity": "Med",
+    "severity_score": 62,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in Arista Networks producten” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Perimeter exposure",
+      "Administrative compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Network appliance",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "a48a67e55539abe6",
@@ -1173,7 +3147,30 @@
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2025/ncsc-2025-0347.json",
     "confidence": "Med",
     "generated": true,
-    "scope": "Netherlands"
+    "scope": "Netherlands",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Enterprise platforms",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „Kwetsbaarheden verholpen in IBM QRadar SIEM” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás NCSC-NL, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "ncsc-nl"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": false
+    }
   },
   {
     "id": "b6dd158723bc56a9",
@@ -1186,7 +3183,31 @@
     "source_url": "https://cert.europa.eu/publications/threat-intelligence/cyber-threat-intelligence-framework/",
     "confidence": "Med",
     "generated": true,
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "Low",
+    "status": "Reported",
+    "attack_vector": "Strategic assessment",
+    "target_class": "Strategic intelligence",
+    "severity": "Low",
+    "severity_score": 24,
+    "summary_hu": "A(z) „Cyber Threat Intelligence Framework” bejegyzés nem konkrét incidens, hanem helyzetértékelő vagy fenyegetési háttéranyag. A forrás CERT-EU, ezért ezt stratégiai tájékozódási tételként érdemes kezelni.",
+    "analyst_note_hu": "Elemzői megjegyzés: ezt a rekordot külön érdemes kezelni az incidensektől, mert inkább háttérelemzés vagy havi összefoglaló, nem konkrét támadási esemény.",
+    "operational_effects": [
+      "Situational awareness",
+      "Strategic monitoring"
+    ],
+    "tags": [
+      "other",
+      "cert-eu",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "22f3f8579a134192",
@@ -1199,7 +3220,31 @@
     "source_url": "https://cert.europa.eu/publications/threat-intelligence/tlr2025/",
     "confidence": "Med",
     "generated": true,
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "Low",
+    "status": "Reported",
+    "attack_vector": "Strategic assessment",
+    "target_class": "Strategic intelligence",
+    "severity": "Low",
+    "severity_score": 24,
+    "summary_hu": "A(z) „Threat Landscape Report 2025 - A Year In Review” bejegyzés nem konkrét incidens, hanem helyzetértékelő vagy fenyegetési háttéranyag. A forrás CERT-EU, ezért ezt stratégiai tájékozódási tételként érdemes kezelni.",
+    "analyst_note_hu": "Elemzői megjegyzés: ezt a rekordot külön érdemes kezelni az incidensektől, mert inkább háttérelemzés vagy havi összefoglaló, nem konkrét támadási esemény.",
+    "operational_effects": [
+      "Situational awareness",
+      "Strategic monitoring"
+    ],
+    "tags": [
+      "other",
+      "cert-eu",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "d4544cf99960581c",
@@ -1212,7 +3257,31 @@
     "source_url": "https://cert.europa.eu/publications/threat-intelligence/cb26-04/",
     "confidence": "Med",
     "generated": true,
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "Low",
+    "status": "Reported",
+    "attack_vector": "Strategic assessment",
+    "target_class": "Strategic intelligence",
+    "severity": "Low",
+    "severity_score": 24,
+    "summary_hu": "A(z) „Cyber Brief 26-04 - March 2026” bejegyzés nem konkrét incidens, hanem helyzetértékelő vagy fenyegetési háttéranyag. A forrás CERT-EU, ezért ezt stratégiai tájékozódási tételként érdemes kezelni.",
+    "analyst_note_hu": "Elemzői megjegyzés: ezt a rekordot külön érdemes kezelni az incidensektől, mert inkább háttérelemzés vagy havi összefoglaló, nem konkrét támadási esemény.",
+    "operational_effects": [
+      "Situational awareness",
+      "Strategic monitoring"
+    ],
+    "tags": [
+      "other",
+      "cert-eu",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "936ac6c231e7a3f5",
@@ -1226,7 +3295,32 @@
     "confidence": "Med",
     "generated": true,
     "country": "BE",
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Remote exploitation",
+    "target_class": "Enterprise platforms",
+    "severity": "Critical",
+    "severity_score": 96,
+    "summary_hu": "A(z) „2026-004: Critical Vulnerability in SharePoint Exploited” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás CERT-EU, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Enterprise service disruption",
+      "Administrative exposure"
+    ],
+    "tags": [
+      "vulnerability",
+      "cert-eu",
+      "sharepoint",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "6a7176c551231bae",
@@ -1240,7 +3334,31 @@
     "confidence": "Med",
     "generated": true,
     "country": "BE",
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Network infrastructure",
+    "severity": "High",
+    "severity_score": 82,
+    "summary_hu": "A(z) „2026-003: Multiple Vulnerabilities in Citrix NetScaler and Citrix ADC” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás CERT-EU, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Perimeter exposure",
+      "Administrative compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "cert-eu",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Network appliance",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "2c6919c5e2243c6f",
@@ -1253,7 +3371,31 @@
     "source_url": "https://cert.europa.eu/publications/threat-intelligence/cb26-03/",
     "confidence": "Med",
     "generated": true,
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "Low",
+    "status": "Reported",
+    "attack_vector": "Strategic assessment",
+    "target_class": "Strategic intelligence",
+    "severity": "Low",
+    "severity_score": 24,
+    "summary_hu": "A(z) „Cyber Brief 26-03 - February 2026” bejegyzés nem konkrét incidens, hanem helyzetértékelő vagy fenyegetési háttéranyag. A forrás CERT-EU, ezért ezt stratégiai tájékozódási tételként érdemes kezelni.",
+    "analyst_note_hu": "Elemzői megjegyzés: ezt a rekordot külön érdemes kezelni az incidensektől, mert inkább háttérelemzés vagy havi összefoglaló, nem konkrét támadási esemény.",
+    "operational_effects": [
+      "Situational awareness",
+      "Strategic monitoring"
+    ],
+    "tags": [
+      "other",
+      "cert-eu",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "54f966fae5aadca2",
@@ -1267,7 +3409,32 @@
     "confidence": "Med",
     "generated": true,
     "country": "BE",
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "EU institutions",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „2026-002: Multiple Vulnerabilities in Cisco Products” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás CERT-EU, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "cert-eu",
+      "cisco",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "9cea6d63929ea56d",
@@ -1280,7 +3447,31 @@
     "source_url": "https://cert.europa.eu/publications/threat-intelligence/cb26-02/",
     "confidence": "Med",
     "generated": true,
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "Low",
+    "status": "Reported",
+    "attack_vector": "Strategic assessment",
+    "target_class": "Strategic intelligence",
+    "severity": "Low",
+    "severity_score": 24,
+    "summary_hu": "A(z) „Cyber Brief 26-02 - January 2026” bejegyzés nem konkrét incidens, hanem helyzetértékelő vagy fenyegetési háttéranyag. A forrás CERT-EU, ezért ezt stratégiai tájékozódási tételként érdemes kezelni.",
+    "analyst_note_hu": "Elemzői megjegyzés: ezt a rekordot külön érdemes kezelni az incidensektől, mert inkább háttérelemzés vagy havi összefoglaló, nem konkrét támadási esemény.",
+    "operational_effects": [
+      "Situational awareness",
+      "Strategic monitoring"
+    ],
+    "tags": [
+      "other",
+      "cert-eu",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "41570fb4dee5b366",
@@ -1294,7 +3485,31 @@
     "confidence": "Med",
     "generated": true,
     "country": "BE",
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "EU institutions",
+    "severity": "Critical",
+    "severity_score": 90,
+    "summary_hu": "A(z) „2026-001: Critical vulnerabilities in Ivanti EPMM” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás CERT-EU, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "cert-eu",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "ce54740600c5f11c",
@@ -1307,7 +3522,31 @@
     "source_url": "https://cert.europa.eu/publications/threat-intelligence/cb26-01/",
     "confidence": "Med",
     "generated": true,
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "Low",
+    "status": "Reported",
+    "attack_vector": "Strategic assessment",
+    "target_class": "Strategic intelligence",
+    "severity": "Low",
+    "severity_score": 24,
+    "summary_hu": "A(z) „Cyber Brief 26-01 - December 2025” bejegyzés nem konkrét incidens, hanem helyzetértékelő vagy fenyegetési háttéranyag. A forrás CERT-EU, ezért ezt stratégiai tájékozódási tételként érdemes kezelni.",
+    "analyst_note_hu": "Elemzői megjegyzés: ezt a rekordot külön érdemes kezelni az incidensektől, mert inkább háttérelemzés vagy havi összefoglaló, nem konkrét támadási esemény.",
+    "operational_effects": [
+      "Situational awareness",
+      "Strategic monitoring"
+    ],
+    "tags": [
+      "other",
+      "cert-eu",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "d2326a4e7cb7f7c6",
@@ -1321,12 +3560,37 @@
     "confidence": "Med",
     "generated": true,
     "country": "BE",
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "EU institutions",
+    "severity": "Critical",
+    "severity_score": 90,
+    "summary_hu": "A(z) „2025-042: Critical Vulnerability in Cisco Secure Email and Web Manager” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás CERT-EU, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "cert-eu",
+      "cisco",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "baafa79898212d9c",
     "title": "2025-041: Critical Security Vulnerability in React Server Components",
-    "type": "Vulnerability",
+    "type": "SupplyChain",
     "record_type": "advisory",
     "date": "2025-12-04",
     "source_type": "CERT",
@@ -1335,7 +3599,33 @@
     "confidence": "Med",
     "generated": true,
     "country": "BE",
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Software dependency",
+    "target_class": "EU institutions",
+    "severity": "High",
+    "severity_score": 84,
+    "summary_hu": "A(z) „2025-041: Critical Security Vulnerability in React Server Components” advisory beszállítói vagy szoftverfüggőségi kockázatot is jelezhet. A CERT-EU forrás alapján nemcsak az érintett termék, hanem a rá épülő környezetek kitettsége is fontos.",
+    "analyst_note_hu": "Elemzői megjegyzés: kiemelt figyelmet igényel a lánchatás, a downstream érintettség és az, hogy hány szervezet használja az érintett komponenst vagy szolgáltatást.",
+    "operational_effects": [
+      "Third-party dependency exposure",
+      "Cross-environment propagation risk"
+    ],
+    "tags": [
+      "supplychain",
+      "cert-eu",
+      "react",
+      "dependency-risk",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": true,
+      "dependency_type": "Software",
+      "propagation_risk": "High",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "1ff569c0bc03f1f5",
@@ -1348,7 +3638,31 @@
     "source_url": "https://cert.europa.eu/publications/threat-intelligence/cb25-12/",
     "confidence": "Med",
     "generated": true,
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "Low",
+    "status": "Reported",
+    "attack_vector": "Strategic assessment",
+    "target_class": "Strategic intelligence",
+    "severity": "Low",
+    "severity_score": 24,
+    "summary_hu": "A(z) „Cyber Brief 25-12 - November 2025” bejegyzés nem konkrét incidens, hanem helyzetértékelő vagy fenyegetési háttéranyag. A forrás CERT-EU, ezért ezt stratégiai tájékozódási tételként érdemes kezelni.",
+    "analyst_note_hu": "Elemzői megjegyzés: ezt a rekordot külön érdemes kezelni az incidensektől, mert inkább háttérelemzés vagy havi összefoglaló, nem konkrét támadási esemény.",
+    "operational_effects": [
+      "Situational awareness",
+      "Strategic monitoring"
+    ],
+    "tags": [
+      "other",
+      "cert-eu",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "e3e3b66583e6ba4d",
@@ -1361,12 +3675,36 @@
     "source_url": "https://cert.europa.eu/publications/threat-intelligence/cb25-11/",
     "confidence": "Med",
     "generated": true,
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "Low",
+    "status": "Reported",
+    "attack_vector": "Strategic assessment",
+    "target_class": "Strategic intelligence",
+    "severity": "Low",
+    "severity_score": 24,
+    "summary_hu": "A(z) „Cyber Brief 25-11 - October 2025” bejegyzés nem konkrét incidens, hanem helyzetértékelő vagy fenyegetési háttéranyag. A forrás CERT-EU, ezért ezt stratégiai tájékozódási tételként érdemes kezelni.",
+    "analyst_note_hu": "Elemzői megjegyzés: ezt a rekordot külön érdemes kezelni az incidensektől, mert inkább háttérelemzés vagy havi összefoglaló, nem konkrét támadási esemény.",
+    "operational_effects": [
+      "Situational awareness",
+      "Strategic monitoring"
+    ],
+    "tags": [
+      "other",
+      "cert-eu",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "38c05db66d2198f3",
     "title": "2025-040: Critical Vulnerability in Windows Server Update Service (WSUS)",
-    "type": "Vulnerability",
+    "type": "SupplyChain",
     "record_type": "advisory",
     "date": "2025-10-24",
     "source_type": "CERT",
@@ -1375,7 +3713,35 @@
     "confidence": "Med",
     "generated": true,
     "country": "BE",
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Trusted service compromise",
+    "target_class": "Endpoint and productivity",
+    "severity": "Critical",
+    "severity_score": 94,
+    "summary_hu": "A(z) „2025-040: Critical Vulnerability in Windows Server Update Service (WSUS)” advisory beszállítói vagy szoftverfüggőségi kockázatot is jelezhet. A CERT-EU forrás alapján nemcsak az érintett termék, hanem a rá épülő környezetek kitettsége is fontos.",
+    "analyst_note_hu": "Elemzői megjegyzés: kiemelt figyelmet igényel a lánchatás, a downstream érintettség és az, hogy hány szervezet használja az érintett komponenst vagy szolgáltatást.",
+    "operational_effects": [
+      "Enterprise service disruption",
+      "Administrative exposure",
+      "Endpoint compromise risk",
+      "Third-party dependency exposure"
+    ],
+    "tags": [
+      "supplychain",
+      "cert-eu",
+      "windows",
+      "dependency-risk",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": true,
+      "dependency_type": "Software platform",
+      "propagation_risk": "High",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "ed8d4f6a63c790c0",
@@ -1389,12 +3755,37 @@
     "confidence": "Med",
     "generated": true,
     "country": "BE",
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Network/management exploitation",
+    "target_class": "Network infrastructure",
+    "severity": "High",
+    "severity_score": 86,
+    "summary_hu": "A(z) „2025-039: High Severity Vulnerability in FortiOS” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás CERT-EU, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: az érintett komponens valószínűleg több rendszert is kiszolgál, ezért a javítás és az expozíció csökkentése magas prioritású.",
+    "operational_effects": [
+      "Perimeter exposure",
+      "Administrative compromise risk",
+      "Endpoint compromise risk"
+    ],
+    "tags": [
+      "vulnerability",
+      "cert-eu",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Network appliance",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "0fa8364878f66b30",
     "title": "2025-038: Critical Vulnerabilities in Veeam Backup",
-    "type": "Vulnerability",
+    "type": "SupplyChain",
     "record_type": "advisory",
     "date": "2025-10-15",
     "source_type": "CERT",
@@ -1403,12 +3794,40 @@
     "confidence": "Med",
     "generated": true,
     "country": "BE",
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "High",
+    "status": "Confirmed",
+    "attack_vector": "Trusted service compromise",
+    "target_class": "Enterprise platforms",
+    "severity": "Critical",
+    "severity_score": 94,
+    "summary_hu": "A(z) „2025-038: Critical Vulnerabilities in Veeam Backup” advisory beszállítói vagy szoftverfüggőségi kockázatot is jelezhet. A CERT-EU forrás alapján nemcsak az érintett termék, hanem a rá épülő környezetek kitettsége is fontos.",
+    "analyst_note_hu": "Elemzői megjegyzés: kiemelt figyelmet igényel a lánchatás, a downstream érintettség és az, hogy hány szervezet használja az érintett komponenst vagy szolgáltatást.",
+    "operational_effects": [
+      "Enterprise service disruption",
+      "Administrative exposure",
+      "Third-party dependency exposure",
+      "Cross-environment propagation risk"
+    ],
+    "tags": [
+      "supplychain",
+      "cert-eu",
+      "veeam",
+      "dependency-risk",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": true,
+      "dependency_type": "Software",
+      "propagation_risk": "High",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "c779af7a0dca67a5",
     "title": "2025-037: Multiple Vulnerabilities in F5 Products",
-    "type": "DataLeak",
+    "type": "Vulnerability",
     "record_type": "advisory",
     "date": "2025-10-15",
     "source_type": "CERT",
@@ -1417,7 +3836,31 @@
     "confidence": "Med",
     "generated": true,
     "country": "BE",
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "Med",
+    "status": "Confirmed",
+    "attack_vector": "Exploitation",
+    "target_class": "EU institutions",
+    "severity": "Med",
+    "severity_score": 58,
+    "summary_hu": "A(z) „2025-037: Multiple Vulnerabilities in F5 Products” advisory sérülékenységhez kapcsolódó kockázatot jelez. A forrás CERT-EU, ezért ezt megerősített technikai riasztásként érdemes követni és a kitettséget ellenőrizni.",
+    "analyst_note_hu": "Elemzői megjegyzés: első körben az érintett eszközök, verziók és publikus elérés ellenőrzése szükséges, majd a patch-elési prioritás meghatározása.",
+    "operational_effects": [
+      "Security exposure",
+      "Patch management requirement"
+    ],
+    "tags": [
+      "vulnerability",
+      "cert-eu",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "d5f2ab4bb9a057ca",
@@ -1430,7 +3873,31 @@
     "source_url": "https://cert.europa.eu/publications/threat-intelligence/cb25-10/",
     "confidence": "Med",
     "generated": true,
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "Low",
+    "status": "Reported",
+    "attack_vector": "Strategic assessment",
+    "target_class": "Strategic intelligence",
+    "severity": "Low",
+    "severity_score": 24,
+    "summary_hu": "A(z) „Cyber Brief 25-10 - September 2025” bejegyzés nem konkrét incidens, hanem helyzetértékelő vagy fenyegetési háttéranyag. A forrás CERT-EU, ezért ezt stratégiai tájékozódási tételként érdemes kezelni.",
+    "analyst_note_hu": "Elemzői megjegyzés: ezt a rekordot külön érdemes kezelni az incidensektől, mert inkább háttérelemzés vagy havi összefoglaló, nem konkrét támadási esemény.",
+    "operational_effects": [
+      "Situational awareness",
+      "Strategic monitoring"
+    ],
+    "tags": [
+      "other",
+      "cert-eu",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   },
   {
     "id": "89ed0bbea3491078",
@@ -1443,6 +3910,30 @@
     "source_url": "https://cert.europa.eu/publications/threat-intelligence/cb25-09/",
     "confidence": "Med",
     "generated": true,
-    "scope": "EU institutions"
+    "scope": "EU institutions",
+    "impact": "Low",
+    "status": "Reported",
+    "attack_vector": "Strategic assessment",
+    "target_class": "Strategic intelligence",
+    "severity": "Low",
+    "severity_score": 24,
+    "summary_hu": "A(z) „Cyber Brief 25-09 - August 2025” bejegyzés nem konkrét incidens, hanem helyzetértékelő vagy fenyegetési háttéranyag. A forrás CERT-EU, ezért ezt stratégiai tájékozódási tételként érdemes kezelni.",
+    "analyst_note_hu": "Elemzői megjegyzés: ezt a rekordot külön érdemes kezelni az incidensektől, mert inkább háttérelemzés vagy havi összefoglaló, nem konkrét támadási esemény.",
+    "operational_effects": [
+      "Situational awareness",
+      "Strategic monitoring"
+    ],
+    "tags": [
+      "other",
+      "cert-eu",
+      "eu-institutions"
+    ],
+    "supply_chain": {
+      "is_supply_chain": false,
+      "dependency_type": "Software",
+      "propagation_risk": "Low",
+      "cross_border_relevance": true,
+      "critical_sector_flag": true
+    }
   }
 ]

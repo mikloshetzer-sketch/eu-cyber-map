@@ -1,5 +1,19 @@
 [
   {
+    "id": "ae2e7824a78a2162",
+    "title": "Kwetsbaarheid verholpen in Adobe Acrobat",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-04-13",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0111.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "8598f3d72156d578",
     "title": "Kwetsbaarheid verholpen in FortiClient EMS van Fortinet",
     "type": "Vulnerability",

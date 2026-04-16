@@ -1,5 +1,47 @@
 [
   {
+    "id": "c1faff38335fee18",
+    "title": "Kwetsbaarheden verholpen in Fortinet FortiSandbox",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-04-16",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0121.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "805c04c7f0dec45e",
+    "title": "Kwetsbaarheden verholpen in Fortinet FortiAnalyzer en FortiManager",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-04-16",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0120.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "af4c41812dcf59c9",
+    "title": "Kwetsbaarheden verholpen in Microsoft Windows",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-04-16",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0119.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "25b83368357e4e88",
     "title": "Kwetsbaarheden verholpen in Microsoft SQL Server",
     "type": "Vulnerability",

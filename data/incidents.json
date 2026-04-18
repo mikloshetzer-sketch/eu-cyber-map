@@ -1,5 +1,19 @@
 [
   {
+    "id": "603c37038a5fa9bd",
+    "title": "Kwetsbaarheid verholpen in Cisco Webex Services",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-04-18",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0122.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "c1faff38335fee18",
     "title": "Kwetsbaarheden verholpen in Fortinet FortiSandbox",
     "type": "Vulnerability",

@@ -1,5 +1,19 @@
 [
   {
+    "id": "52f86988066e16d5",
+    "title": "Kwetsbaarheden verholpen in GitLab EE en CE",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-04-24",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0128.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "c296fc801fb9ab5a",
     "title": "Kwetsbaarheden verholpen in Oracle PeopleSoft",
     "type": "Vulnerability",

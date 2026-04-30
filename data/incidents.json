@@ -1,5 +1,19 @@
 [
   {
+    "id": "6070510fb6594189",
+    "title": "Kwetsbaarheid verholpen in cPanel en WHM",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-04-30",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0130.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "4bdd6d3261bf7094",
     "title": "Kwetsbaarheden verholpen in Apache Camel",
     "type": "Vulnerability",

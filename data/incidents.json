@@ -1,5 +1,19 @@
 [
   {
+    "id": "c0b2a7635f26f507",
+    "title": "Kwetsbaarheid verholpen in Linux kernel cryptographic subsystem",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-05-01",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0131.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "6070510fb6594189",
     "title": "Kwetsbaarheid verholpen in cPanel en WHM",
     "type": "Vulnerability",
@@ -12,6 +26,20 @@
     "confidence": "High",
     "generated": true,
     "scope": "Netherlands"
+  },
+  {
+    "id": "6166947dcfbeeaf8",
+    "title": "2026-005: High Vulnerability in the Linux Kernel (\"Copy Fail\")",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-04-30",
+    "source_type": "CERT",
+    "source_name": "CERT-EU",
+    "source_url": "https://cert.europa.eu/publications/security-advisories/2026-005/",
+    "confidence": "Med",
+    "generated": true,
+    "country": "BE",
+    "scope": "EU institutions"
   },
   {
     "id": "4bdd6d3261bf7094",

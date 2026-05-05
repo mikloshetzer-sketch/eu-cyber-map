@@ -1,5 +1,18 @@
 [
   {
+    "id": "dbc9be9cbe5d49b8",
+    "title": "Cyber Brief 26-05 - April 2026",
+    "type": "Other",
+    "record_type": "incident",
+    "date": "2026-05-04",
+    "source_type": "CERT",
+    "source_name": "CERT-EU",
+    "source_url": "https://cert.europa.eu/publications/threat-intelligence/cb26-05/",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "EU institutions"
+  },
+  {
     "id": "c0b2a7635f26f507",
     "title": "Kwetsbaarheid verholpen in Linux kernel cryptographic subsystem",
     "type": "Vulnerability",

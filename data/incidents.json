@@ -1,5 +1,19 @@
 [
   {
+    "id": "4ee40d841b45cb2b",
+    "title": "Kwetsbaarheid verholpen in Palo Alto Networks PAN-OS",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-05-06",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0132.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "dbc9be9cbe5d49b8",
     "title": "Cyber Brief 26-05 - April 2026",
     "type": "Other",

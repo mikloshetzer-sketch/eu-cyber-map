@@ -1,5 +1,33 @@
 [
   {
+    "id": "2c335c83cc0121e5",
+    "title": "Kwetsbaarheden verholpen in Apache HTTP Server",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-05-07",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0134.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "afc356ed14f63ffc",
+    "title": "Kwetsbaarheden verholpen in Progress MOVEit Automation",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-05-07",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0133.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "4ee40d841b45cb2b",
     "title": "Kwetsbaarheid verholpen in Palo Alto Networks PAN-OS",
     "type": "Vulnerability",
@@ -12,6 +40,20 @@
     "confidence": "Med",
     "generated": true,
     "scope": "Netherlands"
+  },
+  {
+    "id": "432cfcd98ffd430e",
+    "title": "2026-006: Critical Vulnerability in PAN-OS",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-05-06",
+    "source_type": "CERT",
+    "source_name": "CERT-EU",
+    "source_url": "https://cert.europa.eu/publications/security-advisories/2026-006/",
+    "confidence": "Med",
+    "generated": true,
+    "country": "BE",
+    "scope": "EU institutions"
   },
   {
     "id": "dbc9be9cbe5d49b8",

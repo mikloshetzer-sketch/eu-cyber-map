@@ -1,5 +1,19 @@
 [
   {
+    "id": "017e9fff94dc1f85",
+    "title": "Kwetsbaarheden verholpen in Ivanti Endpoint Manager Mobile",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-05-08",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0135.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "2c335c83cc0121e5",
     "title": "Kwetsbaarheden verholpen in Apache HTTP Server",
     "type": "Vulnerability",

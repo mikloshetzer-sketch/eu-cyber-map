@@ -1,5 +1,19 @@
 [
   {
+    "id": "d8b3ff794a54d8e6",
+    "title": "Kwetsbaarheden verholpen in Cisco Unity Connection",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-05-09",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0136.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "017e9fff94dc1f85",
     "title": "Kwetsbaarheden verholpen in Ivanti Endpoint Manager Mobile",
     "type": "Vulnerability",

@@ -1,5 +1,19 @@
 [
   {
+    "id": "36c9fd251797416a",
+    "title": "Kwetsbaarheden verholpen in LiteLLM door BerriAI",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-05-11",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0137.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "d8b3ff794a54d8e6",
     "title": "Kwetsbaarheden verholpen in Cisco Unity Connection",
     "type": "Vulnerability",

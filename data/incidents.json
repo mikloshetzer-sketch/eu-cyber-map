@@ -1,5 +1,47 @@
 [
   {
+    "id": "5fbc2d3c5a94e8e3",
+    "title": "Kwetsbaarheid verholpen in Exim",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-05-16",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0163.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "b3f1885604c3ba92",
+    "title": "Kwetsbaarheden verholpen in F5 BIG-IP en BIG-IQ producten",
+    "type": "DDoS",
+    "record_type": "advisory",
+    "date": "2026-05-16",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0162.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "fa2f0e613a774864",
+    "title": "Kwetsbaarheden verholpen in GitLab door GitLab Inc.",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-05-16",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0161.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "743d3029e9f499b1",
     "title": "Kwetsbaarheden verholpen in Ivanti Endpoint Manager",
     "type": "DataLeak",

@@ -1,5 +1,19 @@
 [
   {
+    "id": "0c64ed79b445c31b",
+    "title": "Kwetsbaarheid verholpen in NGINX ngx_http_rewrite_module",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-05-18",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0164.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "5fbc2d3c5a94e8e3",
     "title": "Kwetsbaarheid verholpen in Exim",
     "type": "Vulnerability",

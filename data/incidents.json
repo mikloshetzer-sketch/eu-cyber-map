@@ -1,5 +1,19 @@
 [
   {
+    "id": "08636cc4e4ebcc39",
+    "title": "Kwetsbaarheid aangetroffen in Microsoft Windows",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-05-20",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0165.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "0c64ed79b445c31b",
     "title": "Kwetsbaarheid verholpen in NGINX ngx_http_rewrite_module",
     "type": "Vulnerability",

@@ -1,5 +1,19 @@
 [
   {
+    "id": "da4eda9f7544afc6",
+    "title": "Kwetsbaarheid verholpen in Drupal core",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-05-21",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0166.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "08636cc4e4ebcc39",
     "title": "Kwetsbaarheid aangetroffen in Microsoft Windows",
     "type": "Vulnerability",

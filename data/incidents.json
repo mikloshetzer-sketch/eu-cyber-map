@@ -1,5 +1,47 @@
 [
   {
+    "id": "733f122dd83994ba",
+    "title": "Kwetsbaarheid verholpen in Starlette",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-05-30",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0171.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "683b07d7e14e4e04",
+    "title": "Kwetsbaarheden verholpen in Oracle E-Business Suite componenten",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-05-30",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0170.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "db527768f256728d",
+    "title": "Kwetsbaarheden verholpen in Oracle Database Server",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-05-30",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0169.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "87694a525864cbba",
     "title": "Kwetsbaarheden verholpen in GitLab Community Edition en Enterprise Edition",
     "type": "Vulnerability",

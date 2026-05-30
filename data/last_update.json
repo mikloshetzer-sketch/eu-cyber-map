@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-05-29T10:13:43.818410Z",
+  "updated_at": "2026-05-30T08:40:18.940833Z",
   "auto_raw_count": 140,
   "auto_clean_count": 140,
-  "total_count": 204,
+  "total_count": 207,
   "record_type_counts": {
-    "advisory": 193,
+    "advisory": 196,
     "incident": 11
   },
   "logs_tail": [
@@ -13,7 +13,7 @@
     "[cert-eu-threat-intelligence] GET https://cert.europa.eu/publications/threat-intelligence-rss",
     "[cert-eu-threat-intelligence]  -> status 200",
     "[ccb-belgium-advisories] GET https://ccb.belgium.be/en/rss.xml",
-    "[ccb-belgium-advisories]  -> status 404",
+    "[ccb-belgium-advisories]  -> status 503",
     "[ccb-belgium-advisories] ERROR: feed not fetched/parsed (skipping)",
     "[ncsc-ireland-alerts] GET https://www.ncsc.gov.ie/rss.xml",
     "[ncsc-ireland-alerts]  -> status 404",

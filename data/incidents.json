@@ -1,5 +1,19 @@
 [
   {
+    "id": "ce8d6744f4978b7b",
+    "title": "Kwetsbaarheden verholpen in Google Android en Samsung Mobile",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-06-02",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0173.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "1984849616ec1c70",
     "title": "Kwetsbaarheid verholpen in Palo Alto Networks PAN-OS en Prisma Access",
     "type": "Vulnerability",

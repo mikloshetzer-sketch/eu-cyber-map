@@ -14,6 +14,19 @@
     "scope": "Netherlands"
   },
   {
+    "id": "7e15e853a810c96c",
+    "title": "Cyber Brief 26-06 - May 2026",
+    "type": "Other",
+    "record_type": "incident",
+    "date": "2026-06-02",
+    "source_type": "CERT",
+    "source_name": "CERT-EU",
+    "source_url": "https://cert.europa.eu/publications/threat-intelligence/cb26-06/",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "EU institutions"
+  },
+  {
     "id": "1984849616ec1c70",
     "title": "Kwetsbaarheid verholpen in Palo Alto Networks PAN-OS en Prisma Access",
     "type": "Vulnerability",

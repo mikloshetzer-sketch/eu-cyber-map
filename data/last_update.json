@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-06-02T10:55:22.248641Z",
+  "updated_at": "2026-06-03T11:23:01.228533Z",
   "auto_raw_count": 140,
   "auto_clean_count": 140,
-  "total_count": 209,
+  "total_count": 210,
   "record_type_counts": {
     "advisory": 198,
-    "incident": 11
+    "incident": 12
   },
   "logs_tail": [
     "[cert-eu-security-advisories] GET https://cert.europa.eu/publications/security-advisories-rss",

@@ -1,5 +1,47 @@
 [
   {
+    "id": "2a0034f2ea67ac25",
+    "title": "Kwetsbaarheid verholpen in SolarWinds Serv-U",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-06-05",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0176.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "fc58d94aa865b6a9",
+    "title": "Kwetsbaarheid verholpen in Cisco SD-WAN Manager",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-06-05",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0175.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "393048488da94ce9",
+    "title": "Kwetsbaarheid verholpen in Cisco Unified Communications Manager",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-06-05",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0174.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "ce8d6744f4978b7b",
     "title": "Kwetsbaarheden verholpen in Google Android en Samsung Mobile",
     "type": "Vulnerability",

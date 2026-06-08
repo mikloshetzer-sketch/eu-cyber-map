@@ -1,5 +1,33 @@
 [
   {
+    "id": "975599b534c0b11f",
+    "title": "Kwetsbaarheden verholpen in IBM Aspera High-Speed Transfer Endpoint en Server",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-06-08",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0178.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "a6067d78d569b571",
+    "title": "Kwetsbaarheden verholpen in IBM WebSphere Application Server en WebSphere Liberty",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-06-08",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0177.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "2a0034f2ea67ac25",
     "title": "Kwetsbaarheid verholpen in SolarWinds Serv-U",
     "type": "Vulnerability",

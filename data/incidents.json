@@ -1,5 +1,19 @@
 [
   {
+    "id": "c317bfe0e4f695f5",
+    "title": "Kwetsbaarheden verholpen in Check Point Remote and Mobile Access VPN-producten",
+    "type": "Ransomware",
+    "record_type": "advisory",
+    "date": "2026-06-09",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0179.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "975599b534c0b11f",
     "title": "Kwetsbaarheden verholpen in IBM Aspera High-Speed Transfer Endpoint en Server",
     "type": "Vulnerability",

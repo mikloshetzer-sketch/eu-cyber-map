@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-06-08T11:20:09.750474Z",
+  "updated_at": "2026-06-09T10:02:26.240688Z",
   "auto_raw_count": 140,
   "auto_clean_count": 140,
-  "total_count": 215,
+  "total_count": 216,
   "record_type_counts": {
-    "advisory": 203,
+    "advisory": 204,
     "incident": 12
   },
   "logs_tail": [

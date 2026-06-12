@@ -1,5 +1,47 @@
 [
   {
+    "id": "7ceaafe7ada71196",
+    "title": "Kwetsbaarheid verholpen in Fortinet FortiPortal",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-06-12",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0197.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "71a625268725c523",
+    "title": "Kwetsbaarheden verholpen in GitLab Enterprise Edition",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-06-12",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0196.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "567e50af065c646c",
+    "title": "Kwetsbaarheid verholpen in Oracle PeopleSoft Enterprise PeopleTools",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-06-12",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0195.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "08017d5f860fdc35",
     "title": "Kwetsbaarheden verholpen in Adobe InDesign Desktop",
     "type": "Vulnerability",

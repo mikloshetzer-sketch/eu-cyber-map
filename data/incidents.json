@@ -1,5 +1,19 @@
 [
   {
+    "id": "7dc30ecf53269a84",
+    "title": "Kwetsbaarheden verholpen in Splunk Enterprise en Splunk Cloud Platform",
+    "type": "Phishing",
+    "record_type": "advisory",
+    "date": "2026-06-15",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0198.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "7ceaafe7ada71196",
     "title": "Kwetsbaarheid verholpen in Fortinet FortiPortal",
     "type": "Vulnerability",

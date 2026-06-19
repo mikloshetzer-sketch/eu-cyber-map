@@ -1,5 +1,19 @@
 [
   {
+    "id": "4589446811664439",
+    "title": "Kwetsbaarheden verholpen in Cisco Identity Services Engine",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-06-19",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0208.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "ed7886e7990efcc3",
     "title": "Kwetsbaarheden verholpen in Check Point Remote and Mobile Access VPN-producten",
     "type": "Ransomware",

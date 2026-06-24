@@ -1,5 +1,19 @@
 [
   {
+    "id": "23c045268f16de39",
+    "title": "Kwetsbaarheden verholpen in libssh2 door libssh",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-06-24",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0210.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "3b7077559c522647",
     "title": "Kwetsbaarheden verholpen in MongoDB Server",
     "type": "Vulnerability",

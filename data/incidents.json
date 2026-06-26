@@ -1,5 +1,19 @@
 [
   {
+    "id": "09a027bba76f910a",
+    "title": "Kwetsbaarheden verholpen in GitLab Community Edition en Enterprise Edition",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-06-26",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0211.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "23c045268f16de39",
     "title": "Kwetsbaarheden verholpen in libssh2 door libssh",
     "type": "Vulnerability",

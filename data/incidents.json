@@ -1,5 +1,33 @@
 [
   {
+    "id": "d07c7a8185e389b7",
+    "title": "Kwetsbaarheden verholpen in MISP platform",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-06-29",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0213.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "9d65b3ae0f91b313",
+    "title": "Kwetsbaarheden verholpen in n8n workflow automation platform",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-06-29",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0212.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "09a027bba76f910a",
     "title": "Kwetsbaarheden verholpen in GitLab Community Edition en Enterprise Edition",
     "type": "Vulnerability",

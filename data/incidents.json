@@ -56,6 +56,19 @@
     "scope": "Netherlands"
   },
   {
+    "id": "2521c28d5e765b17",
+    "title": "Cyber Brief 26-07 - June 2026",
+    "type": "Other",
+    "record_type": "incident",
+    "date": "2026-07-01",
+    "source_type": "CERT",
+    "source_name": "CERT-EU",
+    "source_url": "https://cert.europa.eu/publications/threat-intelligence/cb26-07/",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "EU institutions"
+  },
+  {
     "id": "d07c7a8185e389b7",
     "title": "Kwetsbaarheden verholpen in MISP platform",
     "type": "Vulnerability",

@@ -1,5 +1,47 @@
 [
   {
+    "id": "47cb352de592612b",
+    "title": "Kwetsbaarheden verholpen in Rancher door Rancher Labs",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-03",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0220.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "c541ecd083480da1",
+    "title": "Kwetsbaarheden verholpen in GitHub Enterprise Server",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-03",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0219.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "53989f91788da37a",
+    "title": "Kwetsbaarheid verholpen in Cisco Catalyst Center",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-03",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0218.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "0bfe513cf69ea4c7",
     "title": "Kwetsbaarheden verholpen in Adobe ColdFusion",
     "type": "Vulnerability",

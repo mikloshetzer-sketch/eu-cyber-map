@@ -1,5 +1,19 @@
 [
   {
+    "id": "4de97a622f5ae849",
+    "title": "Kwetsbaarheden verholpen in UniFi-producten van Ubiquiti Networks",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-07",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0221.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "47cb352de592612b",
     "title": "Kwetsbaarheden verholpen in Rancher door Rancher Labs",
     "type": "Vulnerability",

@@ -1,5 +1,33 @@
 [
   {
+    "id": "1331ce852923dd51",
+    "title": "Kwetsbaarheden verholpen in BeyondTrust Remote Support en Privileged Remote Access",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-10",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0223.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "16bbba573277345d",
+    "title": "Kwetsbaarheden verholpen in GitLab Enterprise Edition en Community Edition",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-10",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0222.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "4de97a622f5ae849",
     "title": "Kwetsbaarheden verholpen in UniFi-producten van Ubiquiti Networks",
     "type": "Vulnerability",

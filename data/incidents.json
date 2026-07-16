@@ -1,5 +1,33 @@
 [
   {
+    "id": "5791a63cdec814e2",
+    "title": "Kwetsbaarheden verholpen in meerdere Fortinet producten",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-16",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0240.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "ec8f73f1011a552f",
+    "title": "Zero-Day kwetsbaarheden verholpen in SonicWall SMA1000",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-16",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0239.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "d044d8c2e78f3561",
     "title": "Kwetsbaarheid verholpen in Microsoft Dynamics",
     "type": "Vulnerability",

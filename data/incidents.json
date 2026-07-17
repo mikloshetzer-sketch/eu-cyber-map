@@ -1,5 +1,33 @@
 [
   {
+    "id": "8cbaed820ce7ad83",
+    "title": "Kwetsbaarheden verholpen in Mozilla Firefox",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-17",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0242.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "fe857125c3ffea9c",
+    "title": "Kwetsbaarheden verholpen in Adobe ColdFusion",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-17",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0241.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "5791a63cdec814e2",
     "title": "Kwetsbaarheden verholpen in meerdere Fortinet producten",
     "type": "Vulnerability",

@@ -1,5 +1,19 @@
 [
   {
+    "id": "d9a2096b4bb0a7ff",
+    "title": "Kwetsbaarheden verholpen in WordPress door Automattic",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-19",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0250.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "119194cbb9748380",
     "title": "Kwetsbaarheden verholpen in Zoom",
     "type": "Vulnerability",

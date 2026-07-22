@@ -1,5 +1,33 @@
 [
   {
+    "id": "98b17bc005544dce",
+    "title": "2026-009: Critical Vulnerability in Microsoft SharePoint",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-22",
+    "source_type": "CERT",
+    "source_name": "CERT-EU",
+    "source_url": "https://cert.europa.eu/publications/security-advisories/2026-009/",
+    "confidence": "Med",
+    "generated": true,
+    "country": "BE",
+    "scope": "EU institutions"
+  },
+  {
+    "id": "149d2e227a719eb8",
+    "title": "Kwetsbaarheden verholpen in IBM Langflow OSS",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-22",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0251.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "d9a2096b4bb0a7ff",
     "title": "Kwetsbaarheden verholpen in WordPress door Automattic",
     "type": "Vulnerability",

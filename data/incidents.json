@@ -1,5 +1,33 @@
 [
   {
+    "id": "ee2a99ff908a3dab",
+    "title": "Kwetsbaarheden verholpen in Check Point Security Management producten",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-25",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0264.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "b112790899062560",
+    "title": "Kwetsbaarheid verholpen in ManageEngine ADAudit Plus van ZohoCorp",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-25",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0263.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "afc69f071743f52b",
     "title": "Kwetsbaarheden verholpen in Oracle MySQL Server en MySQL Cluster",
     "type": "Vulnerability",

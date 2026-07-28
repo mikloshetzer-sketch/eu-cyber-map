@@ -1,5 +1,19 @@
 [
   {
+    "id": "aa53b54eb8778944",
+    "title": "Kwetsbaarheden verholpen in SolarWinds Serv-U",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-28",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0265.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "ee2a99ff908a3dab",
     "title": "Kwetsbaarheden verholpen in Check Point Security Management producten",
     "type": "Vulnerability",

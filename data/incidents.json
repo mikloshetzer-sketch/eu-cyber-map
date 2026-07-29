@@ -1,5 +1,47 @@
 [
   {
+    "id": "1ff4f55a541486c6",
+    "title": "Kwetsbaarheid verholpen in SQLite door SQLite Consortium",
+    "type": "DataLeak",
+    "record_type": "advisory",
+    "date": "2026-07-29",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0268.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "110c311bf3ca9daf",
+    "title": "Kwetsbaarheden verholpen in Apple MacOS",
+    "type": "DataLeak",
+    "record_type": "advisory",
+    "date": "2026-07-29",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0267.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "e0f133f82767af45",
+    "title": "Kwetsbaarheden verholpen in Apple iOS en iPadOS",
+    "type": "DataLeak",
+    "record_type": "advisory",
+    "date": "2026-07-29",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0266.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "aa53b54eb8778944",
     "title": "Kwetsbaarheden verholpen in SolarWinds Serv-U",
     "type": "Vulnerability",

@@ -1,5 +1,47 @@
 [
   {
+    "id": "fe849a346f363551",
+    "title": "Kwetsbaarheid verholpen in Cisco Secure Firewall Management Center",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-30",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0271.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "ed7f44b8b2b0af65",
+    "title": "Kwetsbaarheden verholpen in GitLab door GitLab Inc.",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-30",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0270.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "b457b9721ed5f1ad",
+    "title": "Kwetsbaarheden verholpen in VMware producten",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-30",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0269.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "1ff4f55a541486c6",
     "title": "Kwetsbaarheid verholpen in SQLite door SQLite Consortium",
     "type": "DataLeak",

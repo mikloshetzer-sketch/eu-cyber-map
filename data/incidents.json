@@ -1,5 +1,19 @@
 [
   {
+    "id": "85d4ad4947cf8f20",
+    "title": "Kwetsbaarheden verholpen in JFrog Artifactory",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-07-31",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0272.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "fe849a346f363551",
     "title": "Kwetsbaarheid verholpen in Cisco Secure Firewall Management Center",
     "type": "Vulnerability",

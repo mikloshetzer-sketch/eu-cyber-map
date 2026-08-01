@@ -1,5 +1,33 @@
 [
   {
+    "id": "3e7becf51d7aedb0",
+    "title": "Kwetsbaarheid verholpen in SolarWinds Web Help Desk",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-01",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0274.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "dead52fb389d7e0d",
+    "title": "Kwetsbaarheden verholpen in Adobe Campaign Classic",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-01",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0273.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "85d4ad4947cf8f20",
     "title": "Kwetsbaarheden verholpen in JFrog Artifactory",
     "type": "Vulnerability",

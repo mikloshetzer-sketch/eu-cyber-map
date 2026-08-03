@@ -1,5 +1,19 @@
 [
   {
+    "id": "62135f45169a881b",
+    "title": "Kwetsbaarheden verholpen in N-able N-central",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-03",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0275.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "3e7becf51d7aedb0",
     "title": "Kwetsbaarheid verholpen in SolarWinds Web Help Desk",
     "type": "Vulnerability",

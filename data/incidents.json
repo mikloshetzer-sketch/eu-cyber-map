@@ -14,6 +14,19 @@
     "scope": "Netherlands"
   },
   {
+    "id": "be5c7ba3092a424f",
+    "title": "Cyber Brief 26-08 - July 2026",
+    "type": "Other",
+    "record_type": "incident",
+    "date": "2026-08-03",
+    "source_type": "CERT",
+    "source_name": "CERT-EU",
+    "source_url": "https://cert.europa.eu/publications/threat-intelligence/cb26-08/",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "EU institutions"
+  },
+  {
     "id": "3e7becf51d7aedb0",
     "title": "Kwetsbaarheid verholpen in SolarWinds Web Help Desk",
     "type": "Vulnerability",

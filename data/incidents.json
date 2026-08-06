@@ -1,5 +1,47 @@
 [
   {
+    "id": "7088caea4a489d78",
+    "title": "Kwetsbaarheden verholpen in Adobe Campaign Classic",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-06",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0278.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "c1efaee00bf363e0",
+    "title": "Kwetsbaarheden verholpen in Cisco Catalyst SD-WAN",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-06",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0277.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "1a8bea9774e7d475",
+    "title": "Kwetsbaarheden verholpen in Veeam Service Provider Console",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-06",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0276.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "62135f45169a881b",
     "title": "Kwetsbaarheden verholpen in N-able N-central",
     "type": "Vulnerability",

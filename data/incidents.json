@@ -1,5 +1,33 @@
 [
   {
+    "id": "3694f47b60c5bd20",
+    "title": "Kwetsbaarheid verholpen in macOS Screen Sharing door Apple",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-08",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0280.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "4caad408899e48be",
+    "title": "Kwetsbaarheden verholpen in Cisco IOS XE Software",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-08",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0279.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "7088caea4a489d78",
     "title": "Kwetsbaarheden verholpen in Adobe Campaign Classic",
     "type": "Vulnerability",

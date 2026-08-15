@@ -1,5 +1,19 @@
 [
   {
+    "id": "26971f9217a60850",
+    "title": "Kwetsbaarheden verholpen in IBM i operating system door IBM",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-15",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0301.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "0524aa6fc97866c4",
     "title": "Kwetsbaarheden verholpen in Fortinet FortiWeb",
     "type": "Vulnerability",

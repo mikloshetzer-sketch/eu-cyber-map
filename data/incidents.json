@@ -1,5 +1,19 @@
 [
   {
+    "id": "389ce89589fd110d",
+    "title": "Kwetsbaarheden verholpen in SAP Commerce Cloud Data Hub Adapter",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-16",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0302.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "26971f9217a60850",
     "title": "Kwetsbaarheden verholpen in IBM i operating system door IBM",
     "type": "Vulnerability",

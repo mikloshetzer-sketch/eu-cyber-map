@@ -1,5 +1,47 @@
 [
   {
+    "id": "ea7378f3b9a6d410",
+    "title": "Kwetsbaarheden verholpen in Mattermost",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-19",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0305.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "8ea758b3f25dfa2d",
+    "title": "ZeroDay Kwetsbaarheid verholpen in GeoTools door OpenGeo",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-19",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0304.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "9685a797329d0dd5",
+    "title": "Kwetsbaarheden verholpen in GitLab door GitLab Inc.",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-19",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0303.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "389ce89589fd110d",
     "title": "Kwetsbaarheden verholpen in SAP Commerce Cloud Data Hub Adapter",
     "type": "Vulnerability",

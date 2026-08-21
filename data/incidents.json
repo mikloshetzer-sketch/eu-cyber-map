@@ -1,5 +1,19 @@
 [
   {
+    "id": "7765baa717d5aaf3",
+    "title": "Kwetsbaarheden verholpen in Zabbix",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-21",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0320.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "f6e849f29ae8d4b3",
     "title": "Kwetsbaarheden verholpen in Apple iOS en iPadOS",
     "type": "DataLeak",

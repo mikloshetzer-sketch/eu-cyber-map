@@ -1,5 +1,47 @@
 [
   {
+    "id": "448e0035c8eaa3b2",
+    "title": "Kwetsbaarheden verholpen in Cisco Secure Workload",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-22",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0323.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "3d70fda55ba1a35f",
+    "title": "Kwetsbaarheden verholpen in Splunk Enterprise door Splunk",
+    "type": "Phishing",
+    "record_type": "advisory",
+    "date": "2026-08-22",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0322.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "d1b4025138e3a507",
+    "title": "Meerdere kwetsbaarheden verholpen in IBM AIX en IBM PowerVM VIOS",
+    "type": "DataLeak",
+    "record_type": "advisory",
+    "date": "2026-08-22",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0321.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "7765baa717d5aaf3",
     "title": "Kwetsbaarheden verholpen in Zabbix",
     "type": "Vulnerability",

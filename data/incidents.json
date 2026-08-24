@@ -1,5 +1,19 @@
 [
   {
+    "id": "039fda80b15d72ed",
+    "title": "Kwetsbaarheid verholpen in Zimbra Collaboration Suite",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-24",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0324.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "448e0035c8eaa3b2",
     "title": "Kwetsbaarheden verholpen in Cisco Secure Workload",
     "type": "Vulnerability",

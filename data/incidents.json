@@ -1,5 +1,19 @@
 [
   {
+    "id": "f2b8571ed5b4827a",
+    "title": "Kwetsbaarheden verholpen in Keycloak",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-26",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0326.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "806ae4dc701b8e52",
     "title": "Kwetsbaarheden verholpen in Atlassian producten",
     "type": "DataLeak",

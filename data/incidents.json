@@ -1,5 +1,33 @@
 [
   {
+    "id": "7f4600fee58cdacb",
+    "title": "Kwetsbaarheden verholpen in PaperCut MF en PaperCut NG van PaperCut",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-28",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0334.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "c420e40714845994",
+    "title": "Kwetsbaarheden verholpen in CodeMeter Runtime van Wibu-Systems",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-08-28",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0333.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "32d47e12df51492a",
     "title": "Kwetsbaarheden verholpen in Apache CloudStack",
     "type": "Vulnerability",

@@ -1,5 +1,47 @@
 [
   {
+    "id": "b790bb457535475e",
+    "title": "Zero-Day kwetsbaarheden verholpen in SMA1000 Appliance van SonicWall",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-02",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0337.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "6ca3b2e4c37eb66b",
+    "title": "Kwetsbaarheid verholpen in JFrog Artifactory",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-02",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0336.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "a07088ff731fac91",
+    "title": "Kwetsbaarheden verholpen in WatchGuard Fireware OS",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-02",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0335.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "7f4600fee58cdacb",
     "title": "Kwetsbaarheden verholpen in PaperCut MF en PaperCut NG van PaperCut",
     "type": "Vulnerability",

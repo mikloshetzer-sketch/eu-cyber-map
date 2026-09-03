@@ -1,5 +1,18 @@
 [
   {
+    "id": "1961935bd605abf0",
+    "title": "Cyber Brief 26-09 - August 2026",
+    "type": "Other",
+    "record_type": "incident",
+    "date": "2026-09-03",
+    "source_type": "CERT",
+    "source_name": "CERT-EU",
+    "source_url": "https://cert.europa.eu/publications/threat-intelligence/cb26-09/",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "EU institutions"
+  },
+  {
     "id": "b790bb457535475e",
     "title": "Zero-Day kwetsbaarheden verholpen in SMA1000 Appliance van SonicWall",
     "type": "Vulnerability",

@@ -1,5 +1,47 @@
 [
   {
+    "id": "559c6e5c855208e9",
+    "title": "Kwetsbaarheden verholpen in Aruba Networks ArubaOS-CX",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-04",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0340.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "caa9b07e9ce76032",
+    "title": "Kwetsbaarheden verholpen in HPE Networking Fabric Composer",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-04",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0339.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "1f321a43efe4dd8f",
+    "title": "Kwetsbaarheden verholpen in Cisco Nexus 9000 Series, IOS XR Software en Secure Email",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-04",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0338.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "1961935bd605abf0",
     "title": "Cyber Brief 26-09 - August 2026",
     "type": "Other",

@@ -1,5 +1,19 @@
 [
   {
+    "id": "568ec8a84a5c2d8e",
+    "title": "Kwetsbaarheden verholpen in Google Chrome",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-05",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0341.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "559c6e5c855208e9",
     "title": "Kwetsbaarheden verholpen in Aruba Networks ArubaOS-CX",
     "type": "Vulnerability",

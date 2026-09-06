@@ -2,7 +2,7 @@
   "source_name": "CISA KEV",
   "source_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
   "record_type": "kev",
-  "fetched_at": "2026-09-05T10:31:29.119785Z",
+  "fetched_at": "2026-09-06T10:52:12.519969Z",
   "data": {
     "title": "CISA Catalog of Known Exploited Vulnerabilities",
     "catalogVersion": "2026.09.04",

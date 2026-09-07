@@ -1,5 +1,33 @@
 [
   {
+    "id": "3ca3b0ff0cef5392",
+    "title": "Kwetsbaarheden verholpen in GeoNetwork door OpenGeo",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-07",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0343.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "fe273cb3e6716b10",
+    "title": "Kwetsbaarheid verholpen in N-central van N-able",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-07",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0342.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "568ec8a84a5c2d8e",
     "title": "Kwetsbaarheden verholpen in Google Chrome",
     "type": "Vulnerability",

@@ -1,5 +1,33 @@
 [
   {
+    "id": "60b3b4364099c220",
+    "title": "Kwetsbaarheden verholpen in MikroTik RouterOS",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-08",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0345.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "02b06db7a55fb1c2",
+    "title": "Kwetsbaarheid verholpen in Adobe Commerce en Magento",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-08",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0344.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "3ca3b0ff0cef5392",
     "title": "Kwetsbaarheden verholpen in GeoNetwork door OpenGeo",
     "type": "Vulnerability",

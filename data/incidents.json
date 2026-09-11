@@ -1,5 +1,19 @@
 [
   {
+    "id": "00acc89684c16175",
+    "title": "Kwetsbaarheden verholpen in Arista EOS",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-11",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0366.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "d071c124011d4831",
     "title": "2026-012: Critical Vulnerabilities in Check Point Products",
     "type": "Vulnerability",

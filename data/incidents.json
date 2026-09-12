@@ -1,5 +1,33 @@
 [
   {
+    "id": "7aa77da2d73b5ebb",
+    "title": "Kwetsbaarheid verholpen in N-central van N-able",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-12",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0342.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "b67989c20c5d7367",
+    "title": "Kwetsbaarheid verholpen in GitLab Community en Enterprise Editions",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-12",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0367.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "00acc89684c16175",
     "title": "Kwetsbaarheden verholpen in Arista EOS",
     "type": "Vulnerability",
@@ -360,20 +388,6 @@
     "source_name": "NCSC-NL",
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0343.json",
     "confidence": "High",
-    "generated": true,
-    "scope": "Netherlands"
-  },
-  {
-    "id": "fe273cb3e6716b10",
-    "title": "Kwetsbaarheid verholpen in N-central van N-able",
-    "type": "Vulnerability",
-    "record_type": "advisory",
-    "date": "2026-09-07",
-    "country": "NL",
-    "source_type": "Gov",
-    "source_name": "NCSC-NL",
-    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0342.json",
-    "confidence": "Med",
     "generated": true,
     "scope": "Netherlands"
   },

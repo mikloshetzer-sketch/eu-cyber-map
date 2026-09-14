@@ -1,5 +1,19 @@
 [
   {
+    "id": "ee6d7b242bc08910",
+    "title": "Kwetsbaarheden verholpen in Microsoft Azure",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-14",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0347.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "7aa77da2d73b5ebb",
     "title": "Kwetsbaarheid verholpen in N-central van N-able",
     "type": "Vulnerability",
@@ -303,20 +317,6 @@
     "source_type": "Gov",
     "source_name": "NCSC-NL",
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0348.json",
-    "confidence": "Med",
-    "generated": true,
-    "scope": "Netherlands"
-  },
-  {
-    "id": "c9486b0c263cd272",
-    "title": "Kwetsbaarheden verholpen in Microsoft Azure",
-    "type": "Vulnerability",
-    "record_type": "advisory",
-    "date": "2026-09-09",
-    "country": "NL",
-    "source_type": "Gov",
-    "source_name": "NCSC-NL",
-    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0347.json",
     "confidence": "Med",
     "generated": true,
     "scope": "Netherlands"

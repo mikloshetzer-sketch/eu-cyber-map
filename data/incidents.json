@@ -1,5 +1,19 @@
 [
   {
+    "id": "bc177eb336daf7ca",
+    "title": "Kwetsbaarheid verholpen in Cisco Secure Email Gateway",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-15",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0368.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "ee6d7b242bc08910",
     "title": "Kwetsbaarheden verholpen in Microsoft Azure",
     "type": "Vulnerability",

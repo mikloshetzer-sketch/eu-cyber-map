@@ -1,5 +1,47 @@
 [
   {
+    "id": "a220c0d4c36dc015",
+    "title": "Kwetsbaarheden verholpen in Apple macOS en Samba door Apple en Samba",
+    "type": "DataLeak",
+    "record_type": "advisory",
+    "date": "2026-09-16",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0371.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "dbb07a9ab24a6177",
+    "title": "Kwetsbaarheden verholpen in Apple iOS en iPadOS",
+    "type": "DataLeak",
+    "record_type": "advisory",
+    "date": "2026-09-16",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0370.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "40daaa5ffd138607",
+    "title": "Kwetsbaarheid verholpen in Palo Alto Networks PAN-OS",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-16",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0369.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "bc177eb336daf7ca",
     "title": "Kwetsbaarheid verholpen in Cisco Secure Email Gateway",
     "type": "Vulnerability",

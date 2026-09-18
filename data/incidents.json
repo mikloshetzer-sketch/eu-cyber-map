@@ -1,5 +1,19 @@
 [
   {
+    "id": "7ea361bf961ca5a5",
+    "title": "Kwetsbaarheid verholpen in Check Point's Security Management and Log Servers",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-18",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0384.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "b721ed2d8bbeee01",
     "title": "Kwetsbaarheden verholpen in Oracle VM VirtualBox",
     "type": "Vulnerability",

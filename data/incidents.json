@@ -1,5 +1,33 @@
 [
   {
+    "id": "d2245f6dc8060bd5",
+    "title": "Kwetsbaarheden verholpen in NetScaler ADC en NetScaler Gateway",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-28",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0394.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "34b20cac2dd990dd",
+    "title": "2026-014: Critical Vulnerabilities in Citrix NetScaler ADC and Gateway",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-09-27",
+    "source_type": "CERT",
+    "source_name": "CERT-EU",
+    "source_url": "https://cert.europa.eu/publications/security-advisories/2026-014/",
+    "confidence": "Med",
+    "generated": true,
+    "country": "BE",
+    "scope": "EU institutions"
+  },
+  {
     "id": "3a42dfb9e47d6b0e",
     "title": "Kwetsbaarheden verholpen in  Adobe Campaign Classic",
     "type": "Vulnerability",

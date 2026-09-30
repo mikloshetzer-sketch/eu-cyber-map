@@ -1,15 +1,15 @@
 [
   {
-    "id": "d2245f6dc8060bd5",
+    "id": "d433b8a78657a4f6",
     "title": "Kwetsbaarheden verholpen in NetScaler ADC en NetScaler Gateway",
     "type": "Vulnerability",
     "record_type": "advisory",
-    "date": "2026-09-28",
+    "date": "2026-09-30",
     "country": "NL",
     "source_type": "Gov",
     "source_name": "NCSC-NL",
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0394.json",
-    "confidence": "Med",
+    "confidence": "High",
     "generated": true,
     "scope": "Netherlands"
   },

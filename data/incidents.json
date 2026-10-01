@@ -1,5 +1,47 @@
 [
   {
+    "id": "ad47f2921c76be3f",
+    "title": "Kwetsbaarheid verholpen in Apple CoreGraphics",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-10-01",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0397.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "b2f5f7f6a6787632",
+    "title": "Kwetsbaarheden aangetroffen in Zammad",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-10-01",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0396.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "a556ff2f7f6d8662",
+    "title": "Kwetsbaarheid verholpen in Cisco Catalyst SD-WAN Manager",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-10-01",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0395.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "d433b8a78657a4f6",
     "title": "Kwetsbaarheden verholpen in NetScaler ADC en NetScaler Gateway",
     "type": "Vulnerability",

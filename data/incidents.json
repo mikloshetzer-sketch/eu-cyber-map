@@ -1,5 +1,19 @@
 [
   {
+    "id": "99d5abbe9fac353f",
+    "title": "Kwetsbaarheid verholpen in Fortinet FortiMail",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-10-02",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0398.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "ad47f2921c76be3f",
     "title": "Kwetsbaarheid verholpen in Apple CoreGraphics",
     "type": "Vulnerability",

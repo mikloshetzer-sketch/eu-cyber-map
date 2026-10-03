@@ -14,6 +14,19 @@
     "scope": "Netherlands"
   },
   {
+    "id": "c8e9a294d87492ae",
+    "title": "Cyber Brief 26-10 - September 2026",
+    "type": "Other",
+    "record_type": "incident",
+    "date": "2026-10-02",
+    "source_type": "CERT",
+    "source_name": "CERT-EU",
+    "source_url": "https://cert.europa.eu/publications/threat-intelligence/cb26-10/",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "EU institutions"
+  },
+  {
     "id": "ad47f2921c76be3f",
     "title": "Kwetsbaarheid verholpen in Apple CoreGraphics",
     "type": "Vulnerability",

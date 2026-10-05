@@ -1,5 +1,19 @@
 [
   {
+    "id": "0f4477fcaba52b92",
+    "title": "Dell heeft kwetsbaarheden verholpen in Container storage modules ",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-10-05",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0400.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "249b19e7667122f4",
     "title": "Kwetsbaarheid verholpen in Citrix NetScaler ADC en NetScaler Gateway",
     "type": "Vulnerability",

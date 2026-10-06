@@ -1,5 +1,19 @@
 [
   {
+    "id": "0249f2a568ef0f02",
+    "title": "Kwetsbaarheid verholpen in Microsoft Exchange Server",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-10-06",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0401.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "0f4477fcaba52b92",
     "title": "Dell heeft kwetsbaarheden verholpen in Container storage modules ",
     "type": "Vulnerability",

@@ -1,5 +1,33 @@
 [
   {
+    "id": "f9ef359c818c3f43",
+    "title": "2026-016: Critical Vulnerability in GitLab CE and EE",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-10-12",
+    "source_type": "CERT",
+    "source_name": "CERT-EU",
+    "source_url": "https://cert.europa.eu/publications/security-advisories/2026-016/",
+    "confidence": "Med",
+    "generated": true,
+    "country": "BE",
+    "scope": "EU institutions"
+  },
+  {
+    "id": "be22c8ca43c3f0dd",
+    "title": "Kwetsbaarheden verholpen in HPE Networking AOS-Switch",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-10-12",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0413.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "25978f0455271c22",
     "title": "Kwetsbaarheden verholpen in Splunk Enterprise",
     "type": "Vulnerability",

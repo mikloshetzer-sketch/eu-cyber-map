@@ -1,5 +1,33 @@
 [
   {
+    "id": "1225c4751206d785",
+    "title": "Kwetsbaarheden verholpen in Siemens-producten",
+    "type": "DataLeak",
+    "record_type": "advisory",
+    "date": "2026-10-13",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0415.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "168f9b4f195859c3",
+    "title": "Kwetsbaarheden verholpen in GitLab",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-10-13",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0414.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "f9ef359c818c3f43",
     "title": "2026-016: Critical Vulnerability in GitLab CE and EE",
     "type": "Vulnerability",

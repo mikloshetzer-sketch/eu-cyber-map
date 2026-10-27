@@ -1,5 +1,47 @@
 [
   {
+    "id": "fbcf94c6a799624a",
+    "title": "Kwetsbaarheden verholpen in Apple iOS en iPadOS",
+    "type": "DataLeak",
+    "record_type": "advisory",
+    "date": "2026-10-27",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0456.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "0303240660ede44c",
+    "title": "Kwetsbaarheden verholpen in Apple MacOS",
+    "type": "DataLeak",
+    "record_type": "advisory",
+    "date": "2026-10-27",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0455.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "309cf761f77b689c",
+    "title": "Kwetsbaarheden verholpen in HPE Networking AOS",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-10-27",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0454.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "9c5e1740d83051ef",
     "title": "Kwetsbaarheid in Google Brotli-decoder",
     "type": "Vulnerability",

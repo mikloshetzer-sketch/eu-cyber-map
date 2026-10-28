@@ -1,5 +1,33 @@
 [
   {
+    "id": "8621953114a6cb06",
+    "title": "Kwetsbaarheden verholpen in Cisco Secure Firewall ASA, Threat Defense en Management Center",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-10-28",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0458.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "b7d852ff3918dc64",
+    "title": "Kwetsbaarheden verholpen in Splunk Enterprise",
+    "type": "Phishing",
+    "record_type": "advisory",
+    "date": "2026-10-28",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0457.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "fbcf94c6a799624a",
     "title": "Kwetsbaarheden verholpen in Apple iOS en iPadOS",
     "type": "DataLeak",

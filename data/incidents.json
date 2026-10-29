@@ -1,5 +1,19 @@
 [
   {
+    "id": "e6f4093783f1b64d",
+    "title": "Kwetsbaarheid verholpen in Arista VeloCloud Orchestrator (VCO) on-premises",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-10-29",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0459.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "8621953114a6cb06",
     "title": "Kwetsbaarheden verholpen in Cisco Secure Firewall ASA, Threat Defense en Management Center",
     "type": "Vulnerability",

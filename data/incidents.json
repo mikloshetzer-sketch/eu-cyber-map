@@ -1,5 +1,33 @@
 [
   {
+    "id": "127e969dd44da9b8",
+    "title": "Kwetsbaarheden verholpen in Linux kernel",
+    "type": "DataLeak",
+    "record_type": "advisory",
+    "date": "2026-10-30",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0461.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "c7aec47d61bce315",
+    "title": "Kwetsbaarheden verholpen in Dell PowerProtect Data Domain",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-10-30",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0460.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "e6f4093783f1b64d",
     "title": "Kwetsbaarheid verholpen in Arista VeloCloud Orchestrator (VCO) on-premises",
     "type": "Vulnerability",

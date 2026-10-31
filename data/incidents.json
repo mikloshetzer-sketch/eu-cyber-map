@@ -1,5 +1,33 @@
 [
   {
+    "id": "09a7819be0902c3e",
+    "title": "Kwetsbaarheid verholpen in Cisco Secure Firewall ASA en FTD Software",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-10-31",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0463.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "a5e533ecb7c9350a",
+    "title": "Kwetsbaarheden verholpen in Juniper Networks Session Smart Router en Session Smart Conductor",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-10-31",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0462.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "127e969dd44da9b8",
     "title": "Kwetsbaarheden verholpen in Linux kernel",
     "type": "DataLeak",

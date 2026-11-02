@@ -1,5 +1,19 @@
 [
   {
+    "id": "84f19302294c09f4",
+    "title": "Kwetsbaarheid verholpen in LXD van Canonical",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-02",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0464.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "09a7819be0902c3e",
     "title": "Kwetsbaarheid verholpen in Cisco Secure Firewall ASA en FTD Software",
     "type": "Vulnerability",

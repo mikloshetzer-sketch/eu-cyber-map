@@ -1,5 +1,19 @@
 [
   {
+    "id": "17582b05a3da00cc",
+    "title": "ZeroDay kwetsbaarheden verholpen in Ivanti Connect Secure",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-03",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0416.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "84f19302294c09f4",
     "title": "Kwetsbaarheid verholpen in LXD van Canonical",
     "type": "Vulnerability",
@@ -681,20 +695,6 @@
     "source_type": "Gov",
     "source_name": "NCSC-NL",
     "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0419.json",
-    "confidence": "Med",
-    "generated": true,
-    "scope": "Netherlands"
-  },
-  {
-    "id": "bbdf0dd1d969f933",
-    "title": "ZeroDay kwetsbaarheid verholpen in Ivanti Connect Secure",
-    "type": "Vulnerability",
-    "record_type": "advisory",
-    "date": "2026-10-14",
-    "country": "NL",
-    "source_type": "Gov",
-    "source_name": "NCSC-NL",
-    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0416.json",
     "confidence": "Med",
     "generated": true,
     "scope": "Netherlands"

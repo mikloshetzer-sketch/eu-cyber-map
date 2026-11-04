@@ -1,5 +1,33 @@
 [
   {
+    "id": "da90dec12fddd2c7",
+    "title": "Kwetsbaarheid verholpen in WordPress Core",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-04",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0466.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "29b0a796e67789b4",
+    "title": "Kwetsbaarheden verholpen in Barracuda Email Security Gateway",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-04",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0465.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "17582b05a3da00cc",
     "title": "ZeroDay kwetsbaarheden verholpen in Ivanti Connect Secure",
     "type": "Vulnerability",

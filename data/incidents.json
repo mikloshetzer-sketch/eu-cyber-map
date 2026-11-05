@@ -1,5 +1,33 @@
 [
   {
+    "id": "8d8f7b42c96c3acc",
+    "title": "Kwetsbaarheid verholpen in Zyxel product",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-05",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0468.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "a0b5c8b97acc26e6",
+    "title": "Kwetsbaarheden verholpen in Google Android en Samsung Mobile",
+    "type": "DataLeak",
+    "record_type": "advisory",
+    "date": "2026-11-05",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0467.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "da90dec12fddd2c7",
     "title": "Kwetsbaarheid verholpen in WordPress Core",
     "type": "Vulnerability",

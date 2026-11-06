@@ -1,5 +1,46 @@
 [
   {
+    "id": "21f5f13c81e300bb",
+    "title": "Cyber Brief 26-11 - October 2026",
+    "type": "Other",
+    "record_type": "incident",
+    "date": "2026-11-06",
+    "source_type": "CERT",
+    "source_name": "CERT-EU",
+    "source_url": "https://cert.europa.eu/publications/threat-intelligence/cb26-11/",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "EU institutions"
+  },
+  {
+    "id": "a114d34815e533b3",
+    "title": "Kwetsbaarheid verholpen in Windows Paint van Microsoft",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-06",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0470.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "abc65d41428b2ee8",
+    "title": "Kwetsbaarheid verholpen in OpenSSH door OpenSSH Project",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-06",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0469.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "8d8f7b42c96c3acc",
     "title": "Kwetsbaarheid verholpen in Zyxel product",
     "type": "Vulnerability",

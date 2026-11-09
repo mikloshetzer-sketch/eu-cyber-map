@@ -1,5 +1,19 @@
 [
   {
+    "id": "7e221fe5852d9ea3",
+    "title": "Kwetsbaarheden verholpen in SonicOS van SonicWall",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-09",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0471.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "21f5f13c81e300bb",
     "title": "Cyber Brief 26-11 - October 2026",
     "type": "Other",

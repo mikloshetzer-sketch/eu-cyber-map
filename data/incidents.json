@@ -1,5 +1,19 @@
 [
   {
+    "id": "e1d45f21c52a4b8d",
+    "title": "Kwetsbaarheden verholpen in Zoom Workplace",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-13",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0494.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "321116417dfdf665",
     "title": "Kwetsbaarheden verholpen in Ivanti Endpoint Manager",
     "type": "Vulnerability",
@@ -166,6 +180,20 @@
     "confidence": "Med",
     "generated": true,
     "scope": "Netherlands"
+  },
+  {
+    "id": "1a16e136fc0e3177",
+    "title": "2026-020: Critical Vulnerabilities in Citrix NetScaler ADC and NetScaler Gateway",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-12",
+    "source_type": "CERT",
+    "source_name": "CERT-EU",
+    "source_url": "https://cert.europa.eu/publications/security-advisories/2026-020/",
+    "confidence": "Med",
+    "generated": true,
+    "country": "BE",
+    "scope": "EU institutions"
   },
   {
     "id": "2e10e195a3002a66",

@@ -1,5 +1,61 @@
 [
   {
+    "id": "2fa6ee9e4affbf2b",
+    "title": "Kwetsbaarheden verholpen in F5 BIG-IP",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-19",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0508.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "855596567c687970",
+    "title": "Kwetsbaarheden verholpen in Drupal core",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-19",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0507.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "fe48af275b8ef1b6",
+    "title": "Kwetsbaarheden verholpen in NGINX door F5 Networks",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-19",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0506.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "34255e93dabe12a5",
+    "title": "Kwetsbaarheden verholpen in Oracle E-Business Suite",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-19",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0505.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "bdcd5ce6989ec077",
     "title": "2026-021: High Severity Vulnerability in Java SE and OpenJDK",
     "type": "Vulnerability",
@@ -152,6 +208,20 @@
     "confidence": "High",
     "generated": true,
     "scope": "Netherlands"
+  },
+  {
+    "id": "b8aa17f53ac25652",
+    "title": "2026-022: Critical vulnerabilities in Nginx",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-18",
+    "source_type": "CERT",
+    "source_name": "CERT-EU",
+    "source_url": "https://cert.europa.eu/publications/security-advisories/2026-022/",
+    "confidence": "Med",
+    "generated": true,
+    "country": "BE",
+    "scope": "EU institutions"
   },
   {
     "id": "e1d45f21c52a4b8d",

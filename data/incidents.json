@@ -1,5 +1,47 @@
 [
   {
+    "id": "fac45063e26dc658",
+    "title": "Kwetsbaarheid verholpen in IBM Aspera Faspex",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-20",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0511.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "0cd4adb5007c949e",
+    "title": "Kwetsbaarheden verholpen in VMware-producten",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-20",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0510.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "41b82639abf94830",
+    "title": "Kwetsbaarheden verholpen in PHP",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-20",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0509.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "2fa6ee9e4affbf2b",
     "title": "Kwetsbaarheden verholpen in F5 BIG-IP",
     "type": "Vulnerability",

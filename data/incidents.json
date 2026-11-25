@@ -1,5 +1,19 @@
 [
   {
+    "id": "13b933d95905bf7e",
+    "title": "Kwetsbaarheid verholpen in OTRS",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-25",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0515.json",
+    "confidence": "Med",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "e61a1c37908c683d",
     "title": "Kwetsbaarheden verholpen in Mitel MiCollab",
     "type": "Vulnerability",

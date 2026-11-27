@@ -1,5 +1,33 @@
 [
   {
+    "id": "e246d3bba1df2e16",
+    "title": "Kwetsbaarheden verholpen in GeoServer",
+    "type": "Vulnerability",
+    "record_type": "advisory",
+    "date": "2026-11-27",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0526.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
+    "id": "7715e39491d4673d",
+    "title": "Kwetsbaarheden verholpen in Linux kernel",
+    "type": "DataLeak",
+    "record_type": "advisory",
+    "date": "2026-11-27",
+    "country": "NL",
+    "source_type": "Gov",
+    "source_name": "NCSC-NL",
+    "source_url": "https://advisories.ncsc.nl/csaf/v2/2026/ncsc-2026-0525.json",
+    "confidence": "High",
+    "generated": true,
+    "scope": "Netherlands"
+  },
+  {
     "id": "321216b9b2f1965a",
     "title": "Kwetsbaarheid verholpen in Drupal core",
     "type": "Vulnerability",
